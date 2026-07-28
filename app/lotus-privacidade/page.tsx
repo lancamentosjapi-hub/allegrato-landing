@@ -71,7 +71,7 @@ export default function LotusPrivacidadePage() {
       </header>
       <main>
         <h1>Política de Privacidade</h1>
-        <p className="upd">Última atualização: 30 de junho de 2026</p>
+        <p className="upd">Última atualização: 27 de julho de 2026</p>
         <div className="note">
           📋 Conteúdo-base padrão para imobiliária com LGPD.{' '}
           <strong>Recomenda-se revisão jurídica</strong> antes da divulgação pública (go-live),
@@ -83,39 +83,106 @@ export default function LotusPrivacidadePage() {
           conforme a Lei nº 13.709/2018 (Lei Geral de Proteção de Dados — LGPD). Esta política
           explica quais dados coletamos, por que, e quais são os seus direitos.
         </p>
-        <h2>1. Dados que coletamos</h2>
+        <h2>1. Quem somos</h2>
         <p>
-          Coletamos os dados que você nos fornece ao preencher formulários (nome, e-mail,
-          telefone/WhatsApp e a mensagem sobre o imóvel ou serviço de interesse), além de dados de
-          navegação coletados por cookies (ver Política de Cookies).
+          A Lotus Brokers é uma imobiliária que atua em Jundiaí, Itupeva e região, e utiliza
+          tecnologia — inclusive inteligência artificial — para dar suporte ao atendimento e à
+          consultoria imobiliária. Razão social, CNPJ, CRECI-PJ e endereço completos: [⬜].
         </p>
-        <h2>2. Por que tratamos seus dados</h2>
+        <h2>2. O que este documento faz</h2>
         <p>
-          Para responder ao seu contato, conectar você ao especialista do seu bairro, enviar
-          informações de imóveis e lançamentos que você solicitou e, com o seu consentimento,
-          comunicações de marketing. A base legal é o seu consentimento e a execução de medidas
-          pré-contratuais a seu pedido.
+          Esta política explica, de forma clara, como a Lotus coleta, usa, compartilha e protege
+          os seus dados pessoais quando você interage com nosso site, nosso atendimento ou nossos
+          corretores.
         </p>
-        <h2>3. Compartilhamento</h2>
+        <h2>3. Quais dados coletamos</h2>
+        <p>
+          Coletamos dados de identificação e contato (nome, e-mail, telefone/WhatsApp),
+          preferências de busca e histórico de interações, dados de navegação e cookies (ver
+          Política de Cookies). Em negociações em andamento, podemos coletar documentos como CPF e
+          RG; em propostas, dados financeiros — sempre restritos ao necessário para aquela etapa.
+        </p>
+        <h2>4. Por que coletamos (finalidades)</h2>
+        <p>
+          Usamos seus dados para atender você, conduzir e executar negociações imobiliárias,
+          cumprir obrigações legais e regulatórias e, quando você autorizar, enviar comunicações de
+          marketing.
+        </p>
+        <h2>5. Base legal para cada tratamento</h2>
+        <p>
+          Tratamos seus dados com base no seu consentimento, na execução de procedimentos
+          pré-contratuais ou contratuais solicitados por você, no cumprimento de obrigação legal e,
+          em hipóteses específicas, em nosso legítimo interesse.
+        </p>
+        <h2>6. Com quem compartilhamos</h2>
         <p>
           Seus dados podem ser compartilhados com corretores parceiros da Lotus e com provedores de
-          tecnologia (ex.: ferramentas de atendimento e analytics) estritamente para as finalidades
-          acima. Não vendemos seus dados.
+          tecnologia contratados (ex.: ferramentas de atendimento e analytics), estritamente para
+          as finalidades descritas nesta política. Não vendemos seus dados.
         </p>
-        <h2>4. Seus direitos</h2>
+        <h2>7. Por quanto tempo guardamos</h2>
         <p>
-          Você pode, a qualquer momento, confirmar o tratamento, acessar, corrigir, eliminar, portar
-          seus dados e revogar o consentimento, conforme o art. 18 da LGPD. Para exercer seus
-          direitos, fale conosco pelo WhatsApp{' '}
+          Mantemos seus dados pelo tempo necessário para cumprir as finalidades informadas ou pelo
+          prazo exigido pela legislação aplicável, o que for maior.
+        </p>
+        <h2>8. Onde os dados ficam armazenados</h2>
+        <p>
+          Seus dados são armazenados em plataformas e provedores de tecnologia contratados pela
+          Lotus, que adotam medidas de segurança compatíveis com a sensibilidade das informações.
+        </p>
+        <h2>9. Segurança</h2>
+        <p>
+          Adotamos medidas técnicas e organizacionais razoáveis para proteger seus dados contra
+          acesso não autorizado, perda, alteração ou vazamento.
+        </p>
+        <h2>10. Seus direitos LGPD</h2>
+        <p>
+          Conforme o art. 18 da LGPD, você pode, a qualquer momento, confirmar o tratamento,
+          acessar, corrigir, eliminar e portar seus dados, além de revogar o consentimento dado.
+          Para exercer seus direitos, acesse{' '}
+          <a href="/meus-dados">/meus-dados</a> ou fale conosco pelo e-mail{' '}
+          <a href="mailto:atendimento@lotusbrokers.com.br">atendimento@lotusbrokers.com.br</a>.
+          Respondemos em até 15 dias úteis.
+        </p>
+        <div className="note">
+          <h2 style={{ marginTop: 0 }}>11. Uso de inteligência artificial</h2>
+          <p>
+            Usamos inteligência artificial como apoio ao atendimento e à consultoria imobiliária.
+            A <strong>LIA</strong> é nossa assistente virtual de atendimento: você pode pedir para
+            falar com um atendente humano a qualquer momento da conversa. A{' '}
+            <strong>VISÃO</strong> gera uma pontuação (scoring) de leads usada apenas como
+            priorização interna do nosso trabalho — ela <strong>não</strong> toma decisões
+            automatizadas com efeitos jurídicos ou impacto significativo sobre você. Conforme o
+            art. 20 da LGPD, você tem direito à revisão humana de decisões baseadas unicamente em
+            tratamento automatizado; para solicitá-la, fale conosco pelo e-mail{' '}
+            <a href="mailto:atendimento@lotusbrokers.com.br">atendimento@lotusbrokers.com.br</a>.
+          </p>
+        </div>
+        <h2>12. Menores de 18 anos</h2>
+        <p>
+          Nossos serviços são destinados a maiores de 18 anos. Não coletamos intencionalmente
+          dados de menores de idade; caso identifiquemos esse tipo de coleta, os dados serão
+          apagados ou anonimizados.
+        </p>
+        <h2>13. Cookies</h2>
+        <p>
+          Para saber como usamos cookies e como você pode gerenciá-los, consulte nossa{' '}
+          <a href="../lotus-cookies/">Política de Cookies</a>.
+        </p>
+        <h2>14. Contato do DPO</h2>
+        <p>
+          Para dúvidas sobre esta política ou sobre o tratamento dos seus dados, fale conosco pelo
+          e-mail{' '}
+          <a href="mailto:atendimento@lotusbrokers.com.br">atendimento@lotusbrokers.com.br</a> ou
+          pelo WhatsApp{' '}
           <a href="https://wa.me/5511926143393" target="_blank" rel="noopener">
             +55 11 92614-3393
           </a>
-          .
+          . Você também pode acessar seus dados diretamente em{' '}
+          <a href="/meus-dados">/meus-dados</a>.
         </p>
-        <h2>5. Retenção e segurança</h2>
         <p>
-          Mantemos os dados pelo tempo necessário às finalidades informadas ou conforme exigido por
-          lei, adotando medidas de segurança razoáveis para protegê-los.
+          <strong>Histórico de versões:</strong> v1.0 — 27 de julho de 2026 — versão inicial.
         </p>
         <p style={{ marginTop: '40px' }}>
           <a href="../lotus-home/">← Voltar para a Lotus Brokers</a>
@@ -128,6 +195,7 @@ export default function LotusPrivacidadePage() {
             <a href="../lotus-privacidade/">Privacidade</a>
             <a href="../lotus-termos/">Termos</a>
             <a href="../lotus-cookies/">Cookies</a>
+            <a href="/meus-dados">Meus dados</a>
           </div>
         </div>
       </footer>
