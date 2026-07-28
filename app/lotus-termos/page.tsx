@@ -79,7 +79,7 @@ export default function LotusTermosPage() {
       </header>
       <main>
         <h1>Termos de Uso</h1>
-        <p className="upd">Última atualização: 30 de junho de 2026</p>
+        <p className="upd">Última atualização: 27 de julho de 2026</p>
         <div className="note">
           📋 Conteúdo-base padrão para imobiliária com LGPD.{' '}
           <strong>Recomenda-se revisão jurídica</strong> antes da divulgação
@@ -87,41 +87,174 @@ export default function LotusTermosPage() {
           e endereço completos da Lotus Brokers.
         </div>
         <p>
-          Ao acessar e utilizar o site da Lotus Brokers, você concorda com estes
-          Termos de Uso. Caso não concorde, por favor não utilize o site.
+          Estes Termos de Uso (v1.0) regem o acesso e a utilização do site e
+          dos serviços da Lotus Brokers.
         </p>
-        <h2>1. Objeto</h2>
+
+        <h2>1. Aceitação dos Termos</h2>
         <p>
-          O site apresenta imóveis, lançamentos e serviços de intermediação
-          imobiliária da Lotus Brokers em Jundiaí, Itupeva e região. As
-          informações têm caráter informativo e não constituem oferta
-          vinculante.
+          Ao acessar ou utilizar este site, você concorda integralmente com
+          estes Termos de Uso. O uso do site pressupõe que você tem 18 anos ou
+          mais. Caso não concorde com qualquer disposição destes Termos, não
+          utilize o site.
         </p>
-        <h2>2. Informações de imóveis</h2>
+
+        <h2>2. Quem somos</h2>
         <p>
-          Preços, disponibilidade, metragens e características são fornecidos
-          pelas construtoras/proprietários e podem mudar sem aviso. Confirme
-          sempre os dados com um especialista antes de qualquer decisão.
+          A Lotus Brokers atua no ramo de intermediação imobiliária. Dados da
+          empresa:
         </p>
-        <h2>3. Uso adequado</h2>
         <p>
-          Você concorda em não utilizar o site para fins ilícitos, não tentar
-          acessar áreas restritas e não reproduzir o conteúdo sem autorização.
+          Razão social: [⬜]
+          <br />
+          Nome fantasia: Lotus Brokers
+          <br />
+          CNPJ: [⬜]
+          <br />
+          CRECI-PJ: [⬜]
+          <br />
+          Endereço: [⬜]
+          <br />
+          Canal de atendimento:{' '}
+          <a href="mailto:atendimento@lotusbrokers.com.br">
+            atendimento@lotusbrokers.com.br
+          </a>
         </p>
-        <h2>4. Propriedade intelectual</h2>
+
+        <h2>3. Cadastro e responsabilidades do usuário</h2>
         <p>
-          Marca, textos, imagens e layout são de titularidade da Lotus Brokers
-          ou de seus licenciadores, protegidos por lei.
+          Ao se cadastrar, você declara fornecer dados verdadeiros, completos
+          e atualizados. Ao utilizar o site, você se compromete a não:
         </p>
-        <h2>5. Limitação de responsabilidade</h2>
         <p>
-          A Lotus empenha-se na precisão das informações, mas não se
-          responsabiliza por eventuais imprecisões ou indisponibilidades
-          temporárias do site.
+          a) fornecer informações falsas ou de terceiros sem autorização;
+          <br />
+          b) utilizar o site para fins ilícitos ou não autorizados;
+          <br />
+          c) tentar acessar áreas, sistemas ou dados restritos;
+          <br />
+          d) interferir no funcionamento do site ou de seus sistemas de
+          segurança;
+          <br />
+          e) reproduzir, copiar ou explorar o conteúdo do site sem autorização
+          prévia.
         </p>
-        <h2>6. Contato</h2>
         <p>
-          Dúvidas sobre estes Termos: WhatsApp{' '}
+          3.5. O site não é destinado a menores de 18 anos e não coleta
+          intencionalmente dados de menores. Caso identifiquemos cadastro de
+          menor de idade, o tratamento seguirá o disposto no art. 14 da Lei
+          Geral de Proteção de Dados (LGPD).
+        </p>
+        <p>
+          3.6. A Lotus Brokers pode suspender ou cancelar cadastros que
+          violem estes Termos.
+        </p>
+
+        <h2>4. Serviços oferecidos</h2>
+        <p>
+          O site oferece divulgação de imóveis, captação, intermediação,
+          atendimento ao cliente, avaliação de imóveis, agendamento de visitas
+          e apresentação de propostas. A Lotus Brokers atua como
+          intermediadora nas negociações e não garante a conclusão de
+          qualquer negócio.
+        </p>
+
+        <h2>5. Tratamento de dados pessoais</h2>
+        <p>
+          O tratamento de dados pessoais realizado pela Lotus Brokers segue a
+          Lei Geral de Proteção de Dados (LGPD). A{' '}
+          <a href="../lotus-privacidade/">Política de Privacidade</a> e a{' '}
+          <a href="../lotus-cookies/">Política de Cookies</a> integram estes
+          Termos de Uso.
+        </p>
+
+        <h2>6. Comunicações</h2>
+        <p>
+          Podemos enviar comunicações transacionais e operacionais (por
+          exemplo, confirmações de agendamento ou retorno a solicitações) e
+          comunicações de marketing. Você pode solicitar o cancelamento
+          (opt-out) de comunicações de marketing a qualquer momento pelo canal{' '}
+          <a href="mailto:atendimento@lotusbrokers.com.br">
+            atendimento@lotusbrokers.com.br
+          </a>
+          . O opt-out de marketing não implica a exclusão de dados cuja
+          manutenção seja exigida por lei.
+        </p>
+
+        <h2>7. Conteúdo gerado ou enviado pelo usuário</h2>
+        <p>
+          Ao enviar conteúdo ao site (mensagens, avaliações, documentos ou
+          materiais), você declara ser titular dos direitos sobre esse
+          conteúdo e concede à Lotus Brokers licença não exclusiva, gratuita
+          e revogável para utilizá-lo nos serviços prestados.
+        </p>
+        <p>
+          7.3.1. Em caso de suspensão de cadastro ou de venda/encerramento de
+          operações, o conteúdo enviado poderá ser mantido por até 6 meses,
+          para fins de: a) cumprimento de obrigação legal ou regulatória; b)
+          exercício regular de direitos em processo administrativo, judicial
+          ou arbitral; c) segurança e prevenção a fraudes; d) uso conforme
+          autorização do titular ou consentimento previamente obtido.
+        </p>
+        <p>
+          7.3.2. Encerrado esse prazo, o conteúdo será descartado, salvo se
+          houver obrigação legal que exija sua manutenção por período
+          diverso.
+        </p>
+
+        <h2>8. Propriedade intelectual</h2>
+        <p>
+          Marca, identidade visual, textos, imagens e demais conteúdos do
+          site são protegidos por direitos de propriedade intelectual. O
+          usuário não pode copiar, reproduzir ou explorar comercialmente esse
+          conteúdo sem autorização prévia da Lotus Brokers.
+        </p>
+
+        <h2>9. Compartilhamento de dados com corretores Lotus</h2>
+        <p>
+          Dados de leads e clientes podem ser distribuídos internamente entre
+          corretores da Lotus Brokers, conforme a necessidade do atendimento,
+          a finalidade da coleta e controles de acesso baseados em função
+          (RBAC).
+        </p>
+
+        <h2>10. Limitações de responsabilidade</h2>
+        <p>
+          A Lotus Brokers emprega esforços razoáveis para manter as
+          informações do site atualizadas e precisas, mas não garante a
+          conclusão de negócios, a aprovação de financiamento, o aceite de
+          propostas, a disponibilidade ou o preço final de qualquer imóvel.
+          O conteúdo do site não substitui assessoria jurídica
+          especializada.
+        </p>
+
+        <h2>11. Modificações dos Termos</h2>
+        <p>
+          Podemos alterar estes Termos a qualquer momento. Alterações não
+          materiais entram em vigor com aviso de ao menos 15 dias, com
+          aceite tácito pela continuidade de uso. Alterações materiais
+          exigem aceite ativo do usuário.
+        </p>
+
+        <h2>12. Lei aplicável e foro</h2>
+        <p>
+          Estes Termos são regidos pelas leis do Brasil. Fica eleito o foro
+          da Comarca de Jundiaí/SP, ressalvadas as hipóteses de foro
+          obrigatório previstas em lei.
+        </p>
+        <p>
+          12.3. Caso qualquer disposição destes Termos seja considerada
+          inválida ou inexequível, as demais disposições permanecem em pleno
+          vigor e efeito.
+        </p>
+
+        <h2>13. Canal de contato</h2>
+        <p>
+          Dúvidas sobre estes Termos podem ser encaminhadas pelo e-mail{' '}
+          <a href="mailto:atendimento@lotusbrokers.com.br">
+            atendimento@lotusbrokers.com.br
+          </a>{' '}
+          ou pelo WhatsApp{' '}
           <a
             href="https://wa.me/5511926143393"
             target="_blank"
@@ -131,6 +264,7 @@ export default function LotusTermosPage() {
           </a>
           .
         </p>
+
         <p style={{ marginTop: 40 }}>
           <a href="../lotus-home/">← Voltar para a Lotus Brokers</a>
         </p>
@@ -144,6 +278,7 @@ export default function LotusTermosPage() {
             <a href="../lotus-privacidade/">Privacidade</a>
             <a href="../lotus-termos/">Termos</a>
             <a href="../lotus-cookies/">Cookies</a>
+            <a href="/meus-dados">Meus dados</a>
           </div>
         </div>
       </footer>
