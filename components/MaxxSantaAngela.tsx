@@ -418,7 +418,7 @@ export default function MaxxSantaAngela({
               target="_blank"
               rel="noopener"
               baseStyle={parseStyle('display:inline-flex;align-items:center;gap:9px;background:#2B2521;color:#F6F1E8;font-weight:700;font-size:13.5px;padding:12px 22px;border-radius:40px;letter-spacing:.02em;transition:transform .3s,background .3s')}
-              hoverStyle={parseStyle('transform:translateY(-2px);background:#B0894E')}
+              hoverStyle={parseStyle('transform:translateY(-2px);background:#8f6a2c')}
             >
               Fale com um corretor
             </Hoverable>
@@ -446,7 +446,7 @@ export default function MaxxSantaAngela({
             <h1 style={parseStyle("font-family:'Bodoni Moda',serif;font-weight:600;font-size:clamp(40px,6.4vw,84px);line-height:1.02;letter-spacing:-.01em;margin:0;text-shadow:0 2px 30px rgba(0,0,0,.35)")}>{heroTitle}</h1>
             <p style={parseStyle('font-size:clamp(16px,1.5vw,20px);line-height:1.6;max-width:560px;margin:26px 0 0;color:#F3ECE0;font-weight:400')}>{heroSub}</p>
             <div style={parseStyle('display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:38px')}>
-              <Hoverable as="a" href="#contato" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:10px;background:#B0894E;color:#fff;font-weight:700;font-size:15px;padding:17px 34px;border-radius:46px;letter-spacing:.02em;box-shadow:0 14px 40px rgba(176,137,78,.4);transition:transform .3s,box-shadow .3s')} hoverStyle={parseStyle('transform:translateY(-3px);box-shadow:0 20px 50px rgba(176,137,78,.55)')}>Quero saber mais</Hoverable>
+              <Hoverable as="a" href="#contato" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:10px;background:#8f6a2c;color:#fff;font-weight:700;font-size:15px;padding:17px 34px;border-radius:46px;letter-spacing:.02em;box-shadow:0 14px 40px rgba(176,137,78,.4);transition:transform .3s,box-shadow .3s')} hoverStyle={parseStyle('transform:translateY(-3px);box-shadow:0 20px 50px rgba(176,137,78,.55)')}>Quero saber mais</Hoverable>
               <Hoverable as="a" href="#lazer" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:600;font-size:15px;padding:17px 30px;border-radius:46px;border:1px solid rgba(255,255,255,.5);transition:background .3s,border-color .3s')} hoverStyle={parseStyle('background:rgba(255,255,255,.12);border-color:#fff')}>Conhecer o empreendimento</Hoverable>
             </div>
             <div data-priceinline="" style={parseStyle('display:none;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.25)')}>
@@ -684,14 +684,14 @@ export default function MaxxSantaAngela({
       </section>
 
       {/* ============ CONFIANCA ============ */}
-      <section style={parseStyle('position:relative;padding:clamp(70px,9vw,120px) 32px;background:#33291f;color:#F6F1E8;overflow:hidden')}>
+      <section style={parseStyle('position:relative;padding:clamp(56px,6vw,84px) 32px;background:#33291f;color:#F6F1E8;overflow:hidden')}>
         <div style={parseStyle('max-width:1100px;margin:0 auto;text-align:center')} data-reveal="">
-          <div style={parseStyle('opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)')}>
+          <div data-reveal="" style={parseStyle('opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)')}>
             <img src="https://santaangelaconstrutora.com.br/wp-content/uploads/2022/11/logo-01.png" alt="Santa Angela Construtora" style={parseStyle('height:58px;width:auto;margin:0 auto 30px;display:block;opacity:.96')} />
             <span style={parseStyle('font-size:11.5px;letter-spacing:.32em;font-weight:700;color:#D9B877')}>A CONSTRUTORA MAIS CONFIÁVEL DA REGIÃO</span>
             <h2 style={parseStyle("font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(26px,3.6vw,46px);line-height:1.2;margin:22px auto 0;max-width:780px")}>Há mais de 40 anos construindo lares — e a confiança de milhares de famílias.</h2>
           </div>
-          <div style={parseStyle('display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:64px')} data-statgrid="">
+          <div style={parseStyle('display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:44px')} data-statgrid="">
             <div data-reveal="" style={parseStyle('opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)')}>
               <div data-count="40" data-suffix="+" style={parseStyle("font-family:'Bodoni Moda',serif;font-weight:700;font-size:clamp(48px,7vw,82px);color:#D9B877;line-height:1")}>40+</div>
               <div style={parseStyle('font-size:14px;color:#cabfae;margin-top:10px;letter-spacing:.04em')}>anos de experiência no mercado</div>
@@ -747,7 +747,7 @@ export default function MaxxSantaAngela({
                     <option>Dias de semana pela manhã</option><option>Dias de semana à tarde</option><option>Dias de semana à noite</option><option>Final de semana pela manhã</option><option>Final de semana à tarde</option>
                   </Focusable>
                 </label>
-                <Hoverable as="button" type="submit" baseStyle={parseStyle('margin-top:6px;background:#B0894E;color:#fff;font-weight:700;font-size:15.5px;padding:17px;border:none;border-radius:46px;letter-spacing:.02em;transition:transform .3s,background .3s')} hoverStyle={parseStyle('transform:translateY(-2px);background:#97703A')}>Quero saber mais</Hoverable>
+                <Hoverable as="button" type="submit" baseStyle={parseStyle('margin-top:6px;background:#8f6a2c;color:#fff;font-weight:700;font-size:15.5px;padding:17px;border:none;border-radius:46px;letter-spacing:.02em;transition:transform .3s,background .3s')} hoverStyle={parseStyle('transform:translateY(-2px);background:#7d5a26')}>Quero saber mais</Hoverable>
                 <p style={parseStyle('font-size:11.5px;color:#9a8a72;line-height:1.5;margin:2px 0 0')}>Ao enviar, autorizo o contato de corretores e parceiros, inclusive por WhatsApp, e declaro estar ciente da Política de Privacidade da Santa Angela.</p>
               </form>
             )}
@@ -811,7 +811,7 @@ export default function MaxxSantaAngela({
               <a key={i} href={lnk.href} onClick={closeMobile} style={parseStyle("font-family:'Bodoni Moda',serif;font-size:30px;color:#2B2521;padding:14px 0;border-bottom:1px solid rgba(43,37,33,.1)")}>{lnk.label}</a>
             ))}
           </div>
-          <a href={waLink} target="_blank" rel="noopener" style={parseStyle('margin-top:auto;text-align:center;background:#B0894E;color:#fff;font-weight:700;padding:18px;border-radius:46px')}>Fale com um corretor</a>
+          <a href={waLink} target="_blank" rel="noopener" style={parseStyle('margin-top:auto;text-align:center;background:#8f6a2c;color:#fff;font-weight:700;padding:18px;border-radius:46px')}>Fale com um corretor</a>
         </div>
       )}
     </div>

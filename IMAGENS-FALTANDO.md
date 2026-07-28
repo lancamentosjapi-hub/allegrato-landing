@@ -32,9 +32,47 @@ fazendo galerias inteiras renderizarem como blocos vazios.
 **Ação:** subir os arquivos reais nos caminhos abaixo (mantendo nomes/extensões exatos).
 Auditoria: Playwright, 2026-07-22.
 
+> **Atualização 2026-07-24 — extração dos HTMLs em `htmls/`.**
+> Os HTMLs salvos (Wix/standalone) embutem as imagens num blob JSON por UUID.
+> Extraí e renomeei via `alt`/ordem de galeria (bate com os componentes).
+> **Resultado: 9 de 11 landings 100% completas.**
+>
+> Resolvidas 100% pelos HTMLs:
+> - `/vigore` (21/21) — hero `a44` = render aéreo da fachada.
+> - `/jardins-do-horto` (19/19) — ver obs. `a012` abaixo.
+> - `/auten-jundiai` (4/4 plantas) — 128 e 131 são espelhadas; usei ordem do DOM.
+> - `/gran-ville-santo-angelo` (17/17).
+> - `/manawa` (4/4 plantas).
+> - `/portal-dos-lagos` (8/8) — 3 vistas do salão + 2 ângulos da portaria.
+> - `/resort-prime` (21/21).
+> - `/terrace-serra-do-japi` (37/37).
+> - `/vistta-castanho` (6/6).
+>
+> Obs. `/jardins-do-horto` `a012.jpg`: legenda "Hall de Entrada" no componente,
+> mas a imagem é a sala de beleza ("GLOW"). Carrega — só a legenda diverge
+> (decisão de conteúdo da Lotus).
+>
+> **Atualização 2026-07-24 (2) — extração dos books PDF em `pdf/`.**
+> Os PDFs (`Book - Altos da Avenida.pdf`, `Book do Corretor - Brisas Do Japi`)
+> trazem os renders em alta resolução. Extraí com PyMuPDF e identifiquei cada
+> imagem VISUALMENTE (os renders do PDF não têm legenda). Resultado:
+> - `/brisas-do-japi` → **12/12 completo** (fachada, piscina, beach tennis,
+>   quadra, academia, coworking, jogos, festas, quiosque, hall/portaria,
+>   garagem, quarto). Obs.: `HALLDEENTRADA` usa a portaria com placa (não há
+>   render de lobby interno no book).
+> - `/altos-da-avenida` → **19/20**. As 4 plantas (58/68/96/105) + 11 amenidades
+>   vieram do book. `a003.png` (bg do CTA, opacity .22) reusa a piscina hero
+>   `a005.png`. **Falta só `assets/cinema.jpg`** — o book NÃO tem render de sala
+>   de cinema/home-theater. Único item pendente do projeto inteiro.
+>
+> **RESULTADO FINAL: 10 de 11 landings 100% completas. Pendência única:**
+> `/altos-da-avenida/assets/cinema.jpg` (não existe no material disponível —
+> HTML nem PDF). Precisa de um render de cinema da Santa Angela, ou remover o
+> tile "Cinema" da galeria em `components/AltosDaAvenida.tsx` (linha ~161).
+
 ---
 
-## `/altos-da-avenida` — 20 arquivos (presentes: `a000.jpg`, `a005.png`)
+## `/altos-da-avenida` — faltam 17 (o HTML só tinha hero; já extraídos: `a001.png`, `a002.png`, `a004.png`)
 
 ```
 public/altos-da-avenida/a001.png            # logo do empreendimento (hero, rodapé)

@@ -25,6 +25,7 @@ function toEmpItem(item: LancamentoListItem, i: number): EmpItem {
     exclusive: item.exclusive,
     slot: `le-dyn-${i}`,
     img: item.img,
+    href: item.href,
   };
 }
 

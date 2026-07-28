@@ -399,6 +399,8 @@
 
 .auten-root, .auten-root *{ box-sizing: border-box; margin: 0; padding: 0; }
 .auten-root{ scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scrollbar-width: none; -ms-overflow-style: none; }
+/* scroll-padding-top precisa estar no container de rolagem real (html), não no .auten-root */
+html{ scroll-behavior: smooth; scroll-padding-top: 94px; }
 .auten-root::-webkit-scrollbar{ display: none; }
 .auten-root{
   font-family: var(--body);
@@ -465,8 +467,10 @@
 .auten-root .nav-links a{
   font-size: 13px; letter-spacing: .04em; color: var(--paper); white-space: nowrap;
   transition: color .4s var(--ease), opacity .25s; opacity: .9;
+  /* Sombra leve p/ legibilidade sobre a imagem, sem escurecer o fundo. */
+  text-shadow: 0 1px 10px rgba(20,10,4,.55);
 }
-.auten-root .scrolled .nav-links a{ color: var(--ink-soft); }
+.auten-root .scrolled .nav-links a{ color: var(--ink-soft); text-shadow: none; }
 .auten-root .nav-links a:hover{ opacity: 1; color: var(--brand-soft); }
 
 .auten-root .btn{
@@ -480,6 +484,10 @@
 .auten-root .btn-wpp:hover{ background: var(--brand-deep); transform: translateY(-2px); }
 .auten-root .btn-ghost{ border: 1.4px solid currentColor; color: inherit; }
 .auten-root .btn-ghost:hover{ background: var(--ink); color: var(--paper); border-color: var(--ink); }
+/* No header transparente (topo) o btn-ghost precisa ser claro; ao rolar (fundo
+   claro) volta a ser escuro. Sem isso herda --ink e some sobre o hero escuro. */
+.auten-root .site-header .btn-ghost{ color: var(--paper); }
+.auten-root .site-header.scrolled .btn-ghost{ color: var(--ink); }
 .auten-root .btn-light{ background: var(--paper); color: var(--brand-deep); }
 .auten-root .btn-light:hover{ transform: translateY(-2px); box-shadow: 0 16px 30px -14px rgba(0,0,0,.4); }
 .auten-root .btn svg{ width: 17px; height: 17px; }
@@ -491,7 +499,9 @@
    ============================================================ */
 .auten-root .hero{
   position: relative; min-height: 680px; height: 90vh; max-height: 900px;
-  display: flex; align-items: center;
+  /* safe center: centraliza quando cabe, mas em janelas baixas ancora no topo
+     em vez de deixar o conteúdo transbordar para trás do header fixo. */
+  display: flex; align-items: safe center;
   background:
     radial-gradient(120% 90% at 75% 15%, rgba(160,108,68,.45), transparent 60%),
     linear-gradient(160deg, #4a2c19 0%, #6e4427 38%, #3a2316 100%);
@@ -631,9 +641,9 @@
 .auten-root .lz img{ width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
 .auten-root .lz:hover img{ transform: scale(1.06); }
 .auten-root .lz::after{ content:''; position:absolute; inset:0; background: linear-gradient(transparent 45%, rgba(20,10,4,.78)); pointer-events: none; }
-.auten-root .lz .cap{ position:absolute; left: 20px; bottom: 16px; z-index:2; pointer-events: none; }
+.auten-root .lz .cap{ position:absolute; left: 20px; bottom: 16px; z-index:2; pointer-events: none; color: var(--paper); text-shadow: 0 1px 12px rgba(20,10,4,.7); }
 .auten-root .lz .cap .t{ font-family: var(--display); font-size: 24px; font-weight: 600; }
-.auten-root .lz .cap .s{ font-size: 12px; color: #d8c4ac; }
+.auten-root .lz .cap .s{ font-size: 12px; color: #f0e6d8; }
 .auten-root .lz-a{ grid-column: span 7; aspect-ratio: 16/10; }
 .auten-root .lz-b{ grid-column: span 5; aspect-ratio: 16/10; }
 .auten-root .lz-c{ grid-column: span 5; aspect-ratio: 16/11; }
@@ -654,10 +664,10 @@
 .auten-root .int{ position: relative; border-radius: 14px; overflow: hidden; background: var(--sand); cursor: zoom-in; }
 .auten-root .int img{ width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
 .auten-root .int:hover img{ transform: scale(1.05); }
-.auten-root .int .ovl{ position:absolute; inset:0; background: linear-gradient(transparent 55%, rgba(20,10,4,.62)); pointer-events: none; }
-.auten-root .int .cap{ position:absolute; left: 20px; bottom: 16px; z-index:2; color: var(--paper); pointer-events: none; }
+.auten-root .int .ovl{ position:absolute; inset:0; background: linear-gradient(transparent 34%, rgba(20,10,4,.86)); pointer-events: none; }
+.auten-root .int .cap{ position:absolute; left: 20px; bottom: 16px; z-index:2; color: var(--paper); pointer-events: none; text-shadow: 0 1px 12px rgba(20,10,4,.7); }
 .auten-root .int .cap .t{ font-family: var(--display); font-size: 22px; font-weight: 600; }
-.auten-root .int .cap .s{ font-size: 12px; color: #e6d6c2; letter-spacing:.02em; }
+.auten-root .int .cap .s{ font-size: 12px; color: #f0e6d8; letter-spacing:.02em; }
 .auten-root .int-tall{ grid-column: span 5; aspect-ratio: 3/4; }
 .auten-root .int-wide{ grid-column: span 7; aspect-ratio: 16/11; }
 .auten-root .int-half{ grid-column: span 6; aspect-ratio: 16/10; }

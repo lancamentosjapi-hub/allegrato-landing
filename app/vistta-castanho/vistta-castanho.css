@@ -435,7 +435,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden;scroll-padding-top:92px}
 body{
   font-family:var(--ff-body);
   background:var(--ink);

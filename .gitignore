@@ -18,5 +18,9 @@ npm-debug.log*
 # Artefatos de dev / documentacao local (nao versionar)
 FINALIZAR.MD
 .playwright-mcp/
+# Material de referência das landings (HTMLs exportados do Wix + PDFs/books):
+# ~155MB de fonte usada para recriar as páginas. Fica local, fora do repo.
+/htmls/
+/pdf/
 # Screenshots de auditoria/QA na RAIZ do repo (os assets de produção vivem em public/)
 /*.png

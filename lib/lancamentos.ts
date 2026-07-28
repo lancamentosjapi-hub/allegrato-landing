@@ -49,6 +49,12 @@ export function slugify(nome: string): string {
     .toLowerCase();
 }
 
+// Rota da landing rica para um slug, ou null se não existir página.
+// Fonte única de verdade do link do card (banco e fallback estático).
+export function hrefForSlug(slug: string): string | null {
+  return LANDING_SLUGS.has(slug) ? `/${slug}` : null;
+}
+
 // Card rico — o shape que os cards de empreendimento (home + lançamentos) consomem.
 // Espelha os campos do array estático atual para manter o design idêntico.
 export type LancamentoCard = {
@@ -86,7 +92,7 @@ export function toCard(row: LancamentoRow): LancamentoCard {
     price: row.preco_texto ?? 'Consultar valor',
     exclusive: row.exclusivo ?? false,
     img: capa(row.fotos),
-    href: LANDING_SLUGS.has(slug) ? `/${slug}` : null,
+    href: hrefForSlug(slug),
   };
 }
 
@@ -111,11 +117,13 @@ export type LancamentoListItem = {
   specs: string;
   exclusive: boolean;
   img: string | null;
+  href: string | null; // landing rica se existir; senão null (card abre contato)
 };
 
 export function toListItem(row: LancamentoRow): LancamentoListItem {
+  const slug = slugify(row.nome);
   return {
-    id: slugify(row.nome),
+    id: slug,
     name: row.nome,
     neighborhood: row.bairro ?? '',
     city: row.cidade ?? '',
@@ -126,6 +134,7 @@ export function toListItem(row: LancamentoRow): LancamentoListItem {
     specs: row.specs ?? row.dormitorios ?? '',
     exclusive: row.exclusivo ?? false,
     img: capa(row.fotos),
+    href: hrefForSlug(slug),
   };
 }
 

@@ -511,3 +511,5 @@
 .ada-root { font-family: 'Manrope', system-ui, sans-serif; color: #211f1c; background: #f6f1e8; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 .ada-root img { display: block; max-width: 100%; }
 .ada-root ::selection { background: #bd6a45; color: #fff; }
+/* Compensa o header fixo (~90px) nos saltos de âncora do menu. */
+html { scroll-behavior: smooth; scroll-padding-top: 98px; }

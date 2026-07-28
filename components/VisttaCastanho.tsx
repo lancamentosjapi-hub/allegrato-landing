@@ -125,11 +125,14 @@ export default function VisttaCastanho() {
     });
     let ticking = false;
     function parallaxUpdate() {
-      const vh = window.innerHeight;
       parallaxEls.forEach((p) => {
         const rect = p.el.parentElement!.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-        const off = (center - vh / 2) * p.speed;
+        // Ancorado no topo: quando a seção está alinhada ao topo do viewport
+        // (rect.top === 0) o offset é 0 — a imagem não "nasce deslocada" nem
+        // sobe junto com o header fixo. Só desloca conforme a seção rola.
+        // Clamp ±48px p/ não exceder a folga de 8% da imagem (evita mostrar borda).
+        const raw = -rect.top * p.speed;
+        const off = Math.max(-48, Math.min(48, raw));
         p.el.style.transform = 'translate3d(0,' + off.toFixed(1) + 'px,0)';
       });
       ticking = false;
@@ -222,7 +225,16 @@ export default function VisttaCastanho() {
     function openLb(i: number) {
       current = i;
       const t = tiles[current];
-      if (lbImg) lbImg.src = t.getAttribute('data-full') || '';
+      if (lbImg) {
+        // data-full veio do HTML estático com caminho relativo (assets/img/...);
+        // no Next isso resolveria contra a rota atual → 404. Prefixa com a base
+        // da landing quando não for absoluto.
+        const full = t.getAttribute('data-full') || '';
+        lbImg.src =
+          full && !full.startsWith('/') && !/^https?:/.test(full)
+            ? '/vistta-castanho/' + full
+            : full;
+      }
       if (lbCap) lbCap.textContent = t.getAttribute('data-cap') || '';
       lb?.classList.add('open');
       document.body.style.overflow = 'hidden';

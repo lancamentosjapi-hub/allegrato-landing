@@ -320,7 +320,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
               <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:24px;')}>
                 {/* hint-placeholder-count="6" */}
                 {view.map((e, i) => (
-                  <Hoverable as="a" key={i} href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:flex;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 16px 40px -32px rgba(21,36,28,.34);transition:transform .3s ease, box-shadow .3s ease;')} hoverStyle={parseStyle('transform:translateY(-5px);box-shadow:0 30px 60px -34px rgba(21,36,28,.5)')}>
+                  <Hoverable as="a" key={i} href={e.href ?? waLink} target={e.href ? '_top' : '_blank'} rel="noopener" baseStyle={parseStyle('display:flex;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 16px 40px -32px rgba(21,36,28,.34);transition:transform .3s ease, box-shadow .3s ease;')} hoverStyle={parseStyle('transform:translateY(-5px);box-shadow:0 30px 60px -34px rgba(21,36,28,.5)')}>
                     <div style={parseStyle('position:relative;aspect-ratio:4/3;background:#1d3a2c;')}>
                       <ImageSlot id={e.slot} src={e.img} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={e.name} />
                       <span style={parseStyle(`position:absolute;top:12px;left:12px;background:${e.stageBg};color:${e.stageColor};font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:30px;`)}>{e.stage}</span>
@@ -339,7 +339,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
                       <div style={parseStyle('font-size:13.5px;color:#3f6249;margin-bottom:16px;')}>{e.specs}</div>
                       <div style={parseStyle('margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;border-top:1px solid rgba(21,36,28,.08);padding-top:16px;')}>
                         <div><div style={parseStyle('font-size:11.5px;color:#8aa593;')}>a partir de</div><div style={parseStyle("font-family:'Fraunces',serif;font-size:20px;color:#1d3a2c;")}>{e.price}</div></div>
-                        <span style={parseStyle('color:#b18a4a;font-weight:600;font-size:14px;')}>Ver este empreendimento →</span>
+                        <span style={parseStyle('color:#b18a4a;font-weight:600;font-size:14px;')}>{e.href ? 'Ver este empreendimento →' : 'Falar sobre este →'}</span>
                       </div>
                     </div>
                   </Hoverable>

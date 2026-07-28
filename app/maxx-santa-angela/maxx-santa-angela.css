@@ -569,6 +569,8 @@
 
 .maxx-root *{box-sizing:border-box}
 .maxx-root{scroll-behavior:smooth;scroll-padding-top:92px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+/* scroll-padding-top precisa estar no container de rolagem real (html), não no .maxx-root */
+html{scroll-behavior:smooth;scroll-padding-top:92px}
 .maxx-root{font-family:'Mulish',system-ui,sans-serif;background:#F6F1E8;color:#2B2521}
 .maxx-root img{display:block;max-width:100%}
 .maxx-root a{text-decoration:none;color:inherit}

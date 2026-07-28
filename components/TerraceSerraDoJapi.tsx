@@ -328,9 +328,17 @@ export default function TerraceSerraDoJapi() {
         const items: LbItem[] = ([] as Element[]).slice
           .call(g.querySelectorAll('[data-lb]'))
           .map(function (el: Element) {
+            // data-full veio do HTML estático com caminho relativo (web/renders/...);
+            // no Next resolveria contra a rota atual → 404. Prefixa com a base
+            // da landing quando não for absoluto.
+            const rawFull = el.getAttribute('data-full') || '';
+            const full =
+              rawFull && !rawFull.startsWith('/') && !/^https?:/.test(rawFull)
+                ? '/terrace-serra-do-japi/' + rawFull
+                : rawFull;
             return {
               el: el,
-              full: el.getAttribute('data-full') || '',
+              full: full,
               name: el.getAttribute('data-name') || '',
               cat: el.getAttribute('data-cat') || '',
             };

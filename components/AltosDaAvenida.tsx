@@ -158,7 +158,6 @@ const GAL: GalleryItem[] = [
   { img: A + 'assets/coworking.jpg', title: 'Coworking & estudo', tag: 'Trabalho', alt: 'Espaço coworking e estudo', colSpan: 4, rowSpan: 1 },
   { img: A + 'assets/lounge.jpg', title: 'Lounge & convivência', tag: 'Relax', alt: 'Lounge de convivência', colSpan: 4, rowSpan: 1 },
   { img: A + 'assets/brinquedoteca.jpg', title: 'Brinquedoteca', tag: 'Crianças', alt: 'Brinquedoteca', colSpan: 4, rowSpan: 1 },
-  { img: A + 'assets/cinema.jpg', title: 'Cinema', tag: 'Lazer', alt: 'Sala de cinema', colSpan: 12, rowSpan: 1 },
 ];
 
 const AMEN = ['Piscina adulto e infantil', 'Salão de festas', '2 churrasqueiras', 'Academia', 'Fitness externo', 'Espaço bem-estar', 'Coworking', 'Salão de jogos', 'Espaço gamer', 'Quadra poliesportiva', 'Playground 6 a 10 anos', 'Espaço baby', 'Espaço pet', 'Vestiários', 'Áreas comuns decoradas', 'Espaços de convivência'];
@@ -511,14 +510,15 @@ export default function AltosDaAvenida({
       </div>
 
       {/* ============ HERO ============ */}
-      <section id="topo" data-screen-label="Hero" style={parseStyle('position:relative; min-height:680px; height:90vh; max-height:900px; display:flex; align-items:center; overflow:hidden;')}>
+      <section id="topo" data-screen-label="Hero" style={parseStyle('position:relative; min-height:680px; height:90vh; max-height:900px; display:flex; flex-direction:column; justify-content:center; overflow:hidden;')}>
         <div style={parseStyle('position:absolute; inset:0; z-index:0;')}>
           <img src={A + 'a005.png'} alt="Piscina do Altos da Avenida ao entardecer" style={parseStyle('width:100%; height:100%; object-fit:cover; animation:adKenBurns 22s ease-in-out infinite alternate;')} />
         </div>
         <div style={parseStyle('position:absolute; inset:0; z-index:1; background:linear-gradient(105deg,rgba(13,33,25,.86) 0%,rgba(13,33,25,.6) 38%,rgba(13,33,25,.18) 70%,rgba(189,106,69,.12) 100%);')}></div>
         <div style={parseStyle('position:absolute; inset:0; z-index:1; background:linear-gradient(0deg,rgba(13,33,25,.7) 0%,rgba(13,33,25,0) 35%);')}></div>
 
-        <div style={parseStyle('position:relative; z-index:2; max-width:1340px; margin:0 auto; padding:120px clamp(20px,4vw,64px) 90px; width:100%;')}>
+        <div style={parseStyle('position:relative; z-index:2; flex:1; display:flex; align-items:center; width:100%;')}>
+          <div style={parseStyle('max-width:1340px; margin:0 auto; padding:120px clamp(20px,4vw,64px) 40px; width:100%; box-sizing:border-box;')}>
           <div style={parseStyle('max-width:720px;')}>
             <div data-reveal="" style={parseStyle('display:inline-flex; align-items:center; gap:12px; margin-bottom:26px;')}>
               <span style={parseStyle('width:30px; height:1px; background:#d6a98c;')}></span>
@@ -539,10 +539,11 @@ export default function AltosDaAvenida({
               <Hoverable as="a" href="#empreendimento" baseStyle={parseStyle("display:inline-flex; align-items:center; gap:10px; font-family:'Barlow Semi Condensed',sans-serif; font-size:16px; letter-spacing:.08em; text-transform:uppercase; color:#fff; text-decoration:none; padding:18px 30px; border-radius:46px; border:1px solid rgba(255,255,255,.45); transition:background .3s, border-color .3s;")} hoverStyle={parseStyle('background:rgba(255,255,255,.12); border-color:#fff;')}>Conhecer o projeto</Hoverable>
             </div>
           </div>
+          </div>
         </div>
 
-        {/* hero facts strip */}
-        <div data-reveal="" data-reveal-delay="400" style={parseStyle('position:absolute; bottom:0; left:0; right:0; z-index:3; background:rgba(13,33,25,.42); backdrop-filter:blur(6px); border-top:1px solid rgba(255,255,255,.14);')}>
+        {/* hero facts strip — no fluxo (margin-top:auto cola na base sem sobrepor o conteúdo) */}
+        <div data-reveal="" data-reveal-delay="400" style={parseStyle('position:relative; z-index:3; margin-top:auto; background:rgba(13,33,25,.42); backdrop-filter:blur(6px); border-top:1px solid rgba(255,255,255,.14);')}>
           <div style={parseStyle('max-width:1340px; margin:0 auto; padding:0 clamp(20px,4vw,64px); display:flex; flex-wrap:wrap;')}>
             <div style={parseStyle('flex:1; min-width:160px; padding:22px 8px; display:flex; flex-direction:column; gap:3px; border-right:1px solid rgba(255,255,255,.12);')}>
               <span style={parseStyle("font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:600; color:#fff; line-height:1;")}>58–105m²</span>
