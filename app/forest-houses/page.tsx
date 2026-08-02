@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'Forest Houses, casas em condomínio Louveira, condomínio fechado Louveira, casas 147m², casas 200m², 3 suítes, Lotus Brokers, imóveis Louveira SP, alto padrão',
   authors: [{ name: 'Lotus Brokers' }],
   robots: 'index, follow',
-  alternates: { canonical: 'https://lotusbrokers.com.br/forest-houses' },
+  alternates: { canonical: 'https://www.lotusbrokers.com.br/forest-houses' },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
