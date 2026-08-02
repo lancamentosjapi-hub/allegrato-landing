@@ -17,6 +17,7 @@ import { footerLegalLine } from '@/lib/site';
  */
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import React, {
   useEffect,
   useRef,
@@ -26,6 +27,9 @@ import React, {
 } from 'react';
 import LotusHeader from './LotusHeader';
 import type { ImovelBusca } from '@/lib/imoveis';
+
+// Chat do Atendimento Rápido — chunk só carrega quando o usuário abre o widget.
+const AtendimentoChat = dynamic(() => import('./AtendimentoChat'), { ssr: false });
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -573,21 +577,7 @@ export default function LotusBusca({
 
       {/* ===== CONCIERGE + WHATSAPP ===== */}
       <div style={parseStyle('position:fixed;right:22px;bottom:22px;z-index:75;display:flex;flex-direction:column;align-items:flex-end;gap:12px;')}>
-        {liaOpen && (
-          <div style={parseStyle('width:320px;max-width:calc(100vw - 44px);background:#f7f2e8;border-radius:18px;box-shadow:0 28px 60px -22px rgba(21,36,28,.5);overflow:hidden;')}>
-            <div style={parseStyle('background:#1d3a2c;padding:16px 18px;display:flex;align-items:center;gap:11px;')}>
-              <div style={parseStyle('width:34px;height:34px;border-radius:50%;background:#3f6249;display:flex;align-items:center;justify-content:center;')}>
-                <svg width="16" height="16" viewBox="0 0 32 32"><path d="M16 4C19 9 19 15 16 20 13 15 13 9 16 4Z" fill="#cdab6e"></path><path d="M25 9C21 11 17.8 14 16 20 20.5 19 23.8 15.6 25 9Z" fill="#8aa593"></path></svg>
-              </div>
-              <div style={parseStyle('flex:1;')}><div style={parseStyle('font-size:14px;font-weight:600;color:#f7f2e8;')}>Atendimento Lotus</div><div style={parseStyle('font-size:11.5px;color:#8aa593;')}>online agora</div></div>
-              <button onClick={toggleLia} style={parseStyle('background:none;border:none;color:rgba(247,242,232,.7);font-size:20px;cursor:pointer;line-height:1;')}>×</button>
-            </div>
-            <div style={parseStyle('padding:18px;')}>
-              <p style={parseStyle('font-size:14px;color:#15241c;line-height:1.5;margin:0 0 14px;')}>Quer que um especialista do bairro te mostre as melhores opções dentro do seu critério? 🌿</p>
-              <a href={waLink} target="_blank" rel="noopener" style={parseStyle('display:block;text-align:center;background:#b18a4a;border-radius:11px;padding:12px;font-size:14px;color:#15241c;font-weight:600;')}>Falar com um especialista</a>
-            </div>
-          </div>
-        )}
+        {liaOpen && <AtendimentoChat onClose={() => setLiaOpen(false)} />}
         <div style={parseStyle('display:flex;gap:11px;align-items:center;')}>
           <a href={waLink} target="_blank" rel="noopener" aria-label="WhatsApp" style={parseStyle('width:50px;height:50px;border-radius:50%;background:#25543b;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -10px rgba(21,36,28,.6);')}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="#f7f2e8"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"></path></svg>

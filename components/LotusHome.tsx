@@ -21,8 +21,12 @@ import React, {
   type ReactNode,
 } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { developmentsFallback, type DevelopmentCard } from '@/lib/developments';
 import MobileMenu from './MobileMenu';
+
+// Chat do Atendimento Rápido — chunk só carrega quando o usuário abre o widget.
+const AtendimentoChat = dynamic(() => import('./AtendimentoChat'), { ssr: false });
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -1210,28 +1214,7 @@ export default function LotusHome({
       {/* ============ FLOATING: LIA + WHATSAPP ============ */}
       {liaEnabled && (
         <div style={parseStyle('position:fixed;right:24px;bottom:24px;z-index:95;display:flex;flex-direction:column;align-items:flex-end;gap:14px;')}>
-          {liaOpen && (
-            <div style={parseStyle('width:330px;max-width:calc(100vw - 48px);background:#f7f2e8;border-radius:20px;box-shadow:0 30px 70px -24px rgba(21,36,28,.5);overflow:hidden;border:1px solid rgba(21,36,28,.08);')}>
-              <div style={parseStyle('background:#1d3a2c;padding:18px 20px;display:flex;align-items:center;gap:12px;')}>
-                <div style={parseStyle('width:38px;height:38px;border-radius:50%;background:#3f6249;display:flex;align-items:center;justify-content:center;flex-shrink:0;')}>
-                  <svg width="18" height="18" viewBox="0 0 32 32"><path d="M16 4C19 9 19 15 16 20 13 15 13 9 16 4Z" fill="#cdab6e"></path><path d="M25 9C21 11 17.8 14 16 20 20.5 19 23.8 15.6 25 9Z" fill="#8aa593"></path></svg>
-                </div>
-                <div style={parseStyle('flex:1;')}>
-                  <div style={parseStyle('font-size:15px;font-weight:600;color:#f7f2e8;')}>Atendimento Lotus</div>
-                  <div style={parseStyle('font-size:12px;color:#8aa593;display:flex;align-items:center;gap:6px;')}><span style={parseStyle('width:7px;height:7px;border-radius:50%;background:#8aa593;display:inline-block;')}></span>online agora</div>
-                </div>
-                <button onClick={() => setLiaOpen((s) => !s)} style={parseStyle('background:none;border:none;cursor:pointer;color:rgba(247,242,232,.7);font-size:22px;line-height:1;padding:4px;')}>×</button>
-              </div>
-              <div style={parseStyle('padding:20px;')}>
-                <p style={parseStyle('font-size:14.5px;color:#15241c;line-height:1.5;margin:0 0 16px;')}>Oi! Me conta o que você procura — bairro, tipo, faixa de preço — que eu já te conecto ao especialista certo. 🌿</p>
-                <div style={parseStyle('display:flex;flex-direction:column;gap:9px;')}>
-                  <Hoverable as="a" href="#lancamentos" baseStyle={parseStyle('background:#ece2cf;border-radius:12px;padding:12px 15px;font-size:14px;color:#1d3a2c;font-weight:500;transition:background .2s;')} hoverStyle={parseStyle('background:#e3d7be')}>Quero ver lançamentos</Hoverable>
-                  <Hoverable as="a" href="#comprar" baseStyle={parseStyle('background:#ece2cf;border-radius:12px;padding:12px 15px;font-size:14px;color:#1d3a2c;font-weight:500;transition:background .2s;')} hoverStyle={parseStyle('background:#e3d7be')}>Procuro imóvel para comprar</Hoverable>
-                  <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('background:#b18a4a;border-radius:12px;padding:12px 15px;font-size:14px;color:#15241c;font-weight:600;text-align:center;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Falar com um especialista</Hoverable>
-                </div>
-              </div>
-            </div>
-          )}
+          {liaOpen && <AtendimentoChat onClose={() => setLiaOpen(false)} />}
           <div style={parseStyle('display:flex;gap:12px;align-items:center;')}>
             <Hoverable as="a" href={waLink} target="_blank" rel="noopener" aria-label="WhatsApp" baseStyle={parseStyle('width:54px;height:54px;border-radius:50%;background:#25543b;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px -10px rgba(21,36,28,.6);transition:transform .2s;')} hoverStyle={parseStyle('transform:translateY(-2px)')}>
               <svg width="26" height="26" viewBox="0 0 24 24" fill="#f7f2e8"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"></path></svg>
