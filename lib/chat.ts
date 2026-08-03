@@ -3,15 +3,19 @@
  *
  * A UI (components/AtendimentoChat.tsx) só conhece este módulo:
  *  - tipos ChatMessage / Conversation
- *  - sendMessage(text, history)  ← ponto ÚNICO de troca pela IA real
+ *  - sendMessage(text, conversationId) → fala com a LIA via /api/chat
  *  - load/save de sessão (histórico dura enquanto a aba viver)
  *
- * Para conectar a IA existente depois: trocar o corpo de `sendMessage` por um
- * fetch a uma rota server-side (ex.: POST /api/chat) que guarda a API key no
- * servidor. Nada na UI precisa mudar.
+ * A LIA fica atrás de app/api/chat/route.ts: a URL e a x-api-key vivem só no
+ * servidor. Aqui não há endpoint externo, chave nem lógica de atendimento.
+ *
+ * O histórico NÃO é enviado: a memória da conversa é da LIA, indexada pelo
+ * conversationId (o mesmo `Conversation.id` que persistimos na sessão).
  */
 
 export type ChatRole = 'user' | 'assistant';
+
+export type ChatAttachment = { type: 'image'; url: string };
 
 export type ChatMessage = {
   id: string;
@@ -19,11 +23,18 @@ export type ChatMessage = {
   content: string;
   createdAt: string; // ISO — string para serializar em sessionStorage sem conversão
   status?: 'sending' | 'sent' | 'error';
+  attachments?: ChatAttachment[];
 };
 
 export type Conversation = {
   id: string;
   messages: ChatMessage[];
+};
+
+/** Resposta da LIA: uma ou mais bolhas, renderizadas em sequência. */
+export type ChatReply = {
+  bubbles: string[];
+  attachments: ChatAttachment[];
 };
 
 export function newConversation(): Conversation {
@@ -41,37 +52,45 @@ export function newMessage(role: ChatRole, content: string): ChatMessage {
 }
 
 function newId(): string {
-  // crypto.randomUUID existe em todo runtime alvo (browser moderno + Node 24)
+  // UUID v4 cabe no formato aceito pela LIA (8–128 chars, [A-Za-z0-9._:-]).
   return typeof crypto !== 'undefined' && 'randomUUID' in crypto
     ? crypto.randomUUID()
     : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 
 /* ------------------------------------------------------------------ */
-/* Service — hoje mock; amanhã a IA real                               */
+/* Service — conversa com a LIA através da nossa rota server-side      */
 /* ------------------------------------------------------------------ */
 
-// ponytail: mock temporário; substituir por fetch à rota server-side da IA.
-// "#erro" força falha para exercitar o estado de erro em dev/QA.
-const MOCK_REPLIES = [
-  'Perfeito! Me conta um pouco mais: qual bairro ou região você tem em mente? 🌿',
-  'Entendi. E qual faixa de preço você está considerando?',
-  'Ótimo, já tenho um bom panorama. Um dos nossos especialistas pode te mostrar as melhores opções — quer seguir por aqui ou prefere WhatsApp?',
-  'Anotado! Algo mais que eu possa registrar para o atendimento?',
-];
+export const MAX_MESSAGE_CHARS = 4000;
 
-const MOCK_DELAY_MS = 900;
+// A LIA leva 15–25s por resposta e a rota corta em 60s; aqui esperamos um
+// pouco mais para que o texto de erro venha do servidor, não de um abort local.
+const CLIENT_TIMEOUT_MS = 70_000;
 
-export async function sendMessage(
-  text: string,
-  history: ChatMessage[],
-): Promise<string> {
-  await new Promise((r) => setTimeout(r, MOCK_DELAY_MS));
-  if (text.includes('#erro')) {
-    throw new Error('mock: falha simulada');
+const FALLBACK_ERROR = 'Tive um problema para responder agora. Pode tentar de novo?';
+
+export async function sendMessage(text: string, conversationId: string): Promise<ChatReply> {
+  let res: Response;
+  try {
+    res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text, conversationId }),
+      signal: AbortSignal.timeout(CLIENT_TIMEOUT_MS),
+    });
+  } catch {
+    throw new Error('Demorei mais que o normal 😅 pode repetir?');
   }
-  const userTurns = history.filter((m) => m.role === 'user').length;
-  return MOCK_REPLIES[Math.min(userTurns, MOCK_REPLIES.length - 1)];
+
+  const data = (await res.json().catch(() => null)) as
+    | { bubbles?: string[]; attachments?: ChatAttachment[]; error?: string }
+    | null;
+
+  if (!res.ok || !data?.bubbles?.length) {
+    throw new Error(typeof data?.error === 'string' ? data.error : FALLBACK_ERROR);
+  }
+  return { bubbles: data.bubbles, attachments: data.attachments ?? [] };
 }
 
 /* ------------------------------------------------------------------ */

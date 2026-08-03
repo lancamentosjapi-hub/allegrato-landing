@@ -5,10 +5,11 @@
  *
  * Aberto pelo botão flutuante "Atendimento" já existente (LotusHome/LotusBusca),
  * renderizado dentro do container fixo do widget, acima da fileira de FABs.
- * Toda a comunicação passa por lib/chat.ts (hoje mock, depois IA real) — este
- * componente não conhece endpoint, token nem provider.
+ * Toda a comunicação passa por lib/chat.ts → /api/chat → LIA. Este componente
+ * não conhece endpoint, chave nem lógica de atendimento.
  *
- * Histórico persiste em sessionStorage durante a sessão da aba.
+ * Histórico persiste em sessionStorage durante a sessão da aba; o id da
+ * conversa é o que dá memória à LIA (mesmo id ⇒ ela continua a conversa).
  */
 
 import React, { useEffect, useRef, useState, type CSSProperties } from 'react';
@@ -18,7 +19,10 @@ import {
   newMessage,
   saveConversation,
   sendMessage as requestReply,
+  MAX_MESSAGE_CHARS,
+  type ChatAttachment,
   type ChatMessage,
+  type ChatReply,
   type Conversation,
 } from '@/lib/chat';
 
@@ -27,6 +31,9 @@ const SUGGESTIONS = [
   'Tenho dúvidas sobre um imóvel',
   'Quero falar com um corretor',
 ];
+
+/** Intervalo entre bolhas da mesma resposta — dá ritmo de conversa. */
+const BUBBLE_GAP_MS = 700;
 
 /* Paleta do portal (mesmos tokens dos componentes Lotus*) */
 const INK = '#15241c';
@@ -53,6 +60,8 @@ function storage(): Storage | null {
   }
 }
 
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 export default function AtendimentoChat({ onClose }: { onClose: () => void }) {
   const [conv, setConv] = useState<Conversation>(() => {
     const s = storage();
@@ -60,9 +69,12 @@ export default function AtendimentoChat({ onClose }: { onClose: () => void }) {
   });
   const [input, setInput] = useState('');
   const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const messagesRef = useRef(conv.messages);
-  messagesRef.current = conv.messages;
+  // Id da conversa vigente: uma resposta que chega depois de "Nova conversa"
+  // pertence à conversa antiga e é descartada.
+  const convIdRef = useRef(conv.id);
+  convIdRef.current = conv.id;
   const logRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -92,23 +104,40 @@ export default function AtendimentoChat({ onClose }: { onClose: () => void }) {
     }));
   }
 
+  /** Publica as bolhas da resposta uma a uma; anexos vão na última. */
+  async function appendReply(reply: ChatReply, conversationId: string) {
+    for (let i = 0; i < reply.bubbles.length; i++) {
+      if (i > 0) await sleep(BUBBLE_GAP_MS);
+      if (convIdRef.current !== conversationId) return;
+      const isLast = i === reply.bubbles.length - 1;
+      const msg = newMessage('assistant', reply.bubbles[i]);
+      appendMessage(isLast && reply.attachments.length ? { ...msg, attachments: reply.attachments } : msg);
+    }
+  }
+
   async function deliver(msg: ChatMessage) {
+    const conversationId = convIdRef.current;
     setPending(true);
+    setError(null);
     markStatus(msg.id, 'sending');
     try {
-      const reply = await requestReply(msg.content, messagesRef.current);
+      const reply = await requestReply(msg.content, conversationId);
+      if (convIdRef.current !== conversationId) return;
       markStatus(msg.id, 'sent');
-      appendMessage(newMessage('assistant', reply));
-    } catch {
+      await appendReply(reply, conversationId);
+    } catch (e) {
+      if (convIdRef.current !== conversationId) return;
       markStatus(msg.id, 'error');
+      setError(e instanceof Error ? e.message : 'Não foi possível enviar sua mensagem.');
+    } finally {
+      if (convIdRef.current === conversationId) setPending(false);
     }
-    setPending(false);
   }
 
   function send(raw: string) {
     const text = raw.trim();
     if (!text || pending) return;
-    const userMsg = newMessage('user', text);
+    const userMsg = newMessage('user', text.slice(0, MAX_MESSAGE_CHARS));
     appendMessage(userMsg);
     setInput('');
     if (inputRef.current) inputRef.current.style.height = 'auto';
@@ -116,8 +145,12 @@ export default function AtendimentoChat({ onClose }: { onClose: () => void }) {
   }
 
   function startNewConversation() {
-    setConv(newConversation());
+    const fresh = newConversation();
+    convIdRef.current = fresh.id; // descarta resposta em voo da conversa anterior
+    setConv(fresh);
     setInput('');
+    setError(null);
+    setPending(false);
     inputRef.current?.focus();
   }
 
@@ -159,7 +192,7 @@ export default function AtendimentoChat({ onClose }: { onClose: () => void }) {
           <svg width="17" height="17" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4C19 9 19 15 16 20 13 15 13 9 16 4Z" fill="#cdab6e" /><path d="M25 9C21 11 17.8 14 16 20 20.5 19 23.8 15.6 25 9Z" fill={SAGE} /></svg>
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 15, fontWeight: 600, color: CREAM }}>Atendimento Lotus</div>
+          <div style={{ fontSize: 15, fontWeight: 600, color: CREAM }}>Lia · Atendimento Lotus</div>
           <div style={{ fontSize: 12, color: SAGE, display: 'flex', alignItems: 'center', gap: 6 }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: SAGE, display: 'inline-block' }} aria-hidden="true"></span>
             Assistente virtual · online
@@ -222,24 +255,38 @@ export default function AtendimentoChat({ onClose }: { onClose: () => void }) {
           </>
         )}
         {conv.messages.map((m) => (
-          <Bubble key={m.id} role={m.role} content={m.content} error={m.status === 'error'} />
+          <Bubble
+            key={m.id}
+            role={m.role}
+            content={m.content}
+            error={m.status === 'error'}
+            attachments={m.attachments}
+          />
         ))}
         {pending && (
-          <div aria-label="Atendimento digitando" style={{ alignSelf: 'flex-start', background: SAND, borderRadius: '14px 14px 14px 4px', padding: '12px 14px', display: 'flex', gap: 5 }}>
-            {[0, 1, 2].map((i) => (
-              <span key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: '#3f6249', animation: `lchat-dot 1.2s ${i * 0.18}s infinite` }}></span>
-            ))}
+          <div style={{ alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: 9 }}>
+            <div style={{ background: SAND, borderRadius: '14px 14px 14px 4px', padding: '12px 14px', display: 'flex', gap: 5 }} aria-hidden="true">
+              {[0, 1, 2].map((i) => (
+                <span key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: '#3f6249', animation: `lchat-dot 1.2s ${i * 0.18}s infinite` }}></span>
+              ))}
+            </div>
+            <span style={{ fontSize: 12.5, color: 'rgba(21,36,28,.55)' }}>Lia está digitando…</span>
           </div>
         )}
-        {lastFailed && !pending && (
-          <div style={{ alignSelf: 'flex-end', display: 'flex', alignItems: 'center', gap: 8, fontSize: 12.5, color: '#8a3b2e' }}>
-            Não foi possível enviar.
-            <button
-              onClick={() => void deliver(last)}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: GREEN, fontWeight: 600, fontSize: 12.5, textDecoration: 'underline', padding: 0, fontFamily: 'inherit' }}
-            >
-              Tentar novamente
-            </button>
+        {error && !pending && (
+          <div
+            role="status"
+            style={{ alignSelf: 'flex-start', maxWidth: '90%', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, fontSize: 12.5, color: '#8a3b2e', lineHeight: 1.4 }}
+          >
+            {error}
+            {lastFailed && (
+              <button
+                onClick={() => void deliver(last)}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: GREEN, fontWeight: 600, fontSize: 12.5, textDecoration: 'underline', padding: 0, fontFamily: 'inherit' }}
+              >
+                Tentar novamente
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -256,6 +303,7 @@ export default function AtendimentoChat({ onClose }: { onClose: () => void }) {
           ref={inputRef}
           className="lchat-input"
           value={input}
+          maxLength={MAX_MESSAGE_CHARS}
           onChange={(e) => {
             setInput(e.target.value);
             e.target.style.height = 'auto';
@@ -268,7 +316,7 @@ export default function AtendimentoChat({ onClose }: { onClose: () => void }) {
             }
           }}
           rows={1}
-          placeholder="Escreva sua mensagem…"
+          placeholder={pending ? 'Aguardando a Lia responder…' : 'Escreva sua mensagem…'}
           aria-label="Escreva sua mensagem"
           style={{
             boxSizing: 'border-box',
@@ -312,7 +360,17 @@ export default function AtendimentoChat({ onClose }: { onClose: () => void }) {
   );
 }
 
-function Bubble({ role, content, error }: { role: 'user' | 'assistant'; content: string; error?: boolean }) {
+function Bubble({
+  role,
+  content,
+  error,
+  attachments,
+}: {
+  role: 'user' | 'assistant';
+  content: string;
+  error?: boolean;
+  attachments?: ChatAttachment[];
+}) {
   const isUser = role === 'user';
   return (
     <div
@@ -331,8 +389,20 @@ function Bubble({ role, content, error }: { role: 'user' | 'assistant'; content:
         opacity: error ? 0.65 : 1,
       }}
     >
-      <span style={srOnly}>{isUser ? 'Você:' : 'Atendimento:'}</span>
+      <span style={srOnly}>{isUser ? 'Você:' : 'Lia:'}</span>
       {content}
+      {attachments?.map((a) => (
+        // ponytail: <img> puro — URLs vêm da LIA (host arbitrário) e next/image
+        // exigiria remotePatterns para cada domínio novo do empreendimento.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={a.url}
+          src={a.url}
+          alt="Foto do empreendimento"
+          loading="lazy"
+          style={{ display: 'block', width: '100%', borderRadius: 10, marginTop: 8 }}
+        />
+      ))}
     </div>
   );
 }
