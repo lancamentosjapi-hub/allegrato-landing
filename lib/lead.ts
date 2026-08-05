@@ -29,7 +29,7 @@ const LIMITS = {
   message: 1000,
 } as const;
 
-/** Remove caracteres de controle, colapsa espaços e corta no limite do campo. */
+/** Remove caracteres de controle, trimming de espaços e corta no limite do campo. */
 function clean(raw: string | undefined, max: number): string {
   if (!raw) return '';
   // eslint-disable-next-line no-control-regex
@@ -59,8 +59,9 @@ export function toE164(raw: string): string {
  * página, o que um UUID guardado em ref não faria.
  */
 export function leadId(source: string, phone: string, name: string): string {
+  const digits = toE164(phone).replace(/\D/g, '');
   const key =
-    phone.replace(/\D/g, '') ||
+    digits ||
     name.trim().toLowerCase().replace(/\s+/g, '-').slice(0, 60);
   return `portal:${source}:${key}`;
 }

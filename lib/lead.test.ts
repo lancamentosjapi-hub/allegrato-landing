@@ -13,6 +13,8 @@ assert.equal(toE164('5511999998888'), '+5511999998888');
 assert.equal(toE164(''), '');
 // fora do padrão brasileiro: preserva os dígitos em vez de descartar o dado
 assert.equal(toE164('99999'), '99999');
+// landline com código do país (12 dígitos)
+assert.equal(toE164('+55 11 3333-4444'), '+551133334444');
 
 /* ---------- leadId ---------- */
 // determinístico: mesma entrada, mesmo id em chamadas separadas
@@ -33,6 +35,11 @@ assert.notEqual(
 assert.equal(
   leadId('landing_avela', '', 'Maria Souza'),
   'portal:landing_avela:maria-souza',
+);
+// determinismo: raw e normalized form do mesmo número produzem o mesmo id
+assert.equal(
+  leadId('landing_x', '11999998888', 'M'),
+  leadId('landing_x', '+5511999998888', 'M'),
 );
 
 /* ---------- buildLeadPayload ---------- */
