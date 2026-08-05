@@ -153,3 +153,48 @@ for f in $(grep -oE "a[0-9]{2}\.(jpg|png)" components/Vigore.tsx | sort -u); do
   [ -f "public/vigore/$f" ] && echo "OK $f" || echo "FALTA $f"
 done
 ```
+
+---
+
+# Landings migradas em 05/08/2026 (Allegrato, Avalon, Best View, Doppio, Maitá, Odeon, SKY)
+
+Os sete arquivos HTML de origem foram desempacotados e todos os assets que
+**existiam** neles já estão em `public/<slug>/`. Duas landings referenciavam
+imagens que **não vieram** no material original (já estavam quebradas lá):
+
+## Doppio Jundiaí — plantas
+`components/DoppioJundiai.tsx` aponta para `public/doppio-jundiai/plantas/`.
+Enquanto os arquivos não existirem, cada planta mostra o aviso
+"planta disponível sob consulta" (fallback do `PlanImg`) em vez de imagem
+quebrada. Arquivos esperados:
+
+```
+public/doppio-jundiai/plantas/tipo210.jpg
+public/doppio-jundiai/plantas/tipo191.jpg
+public/doppio-jundiai/plantas/tipo156a.jpg
+public/doppio-jundiai/plantas/tipo156b.jpg
+public/doppio-jundiai/plantas/gar186.jpg
+public/doppio-jundiai/plantas/gar212.jpg
+public/doppio-jundiai/plantas/gar244.jpg
+public/doppio-jundiai/plantas/plana442.jpg
+public/doppio-jundiai/plantas/plana434.jpg
+public/doppio-jundiai/plantas/dpx375i.jpg
+public/doppio-jundiai/plantas/dpx375s.jpg
+public/doppio-jundiai/plantas/dpx307i.jpg
+public/doppio-jundiai/plantas/dpx307s.jpg
+public/doppio-jundiai/plantas/dpx374i.jpg
+public/doppio-jundiai/plantas/dpx374s.jpg
+```
+
+## Maitá Residencial — 3 das 4 plantas
+Só a planta de 63,45 m² veio no bundle (`public/maita/a014.png`). As outras três
+abas mostram "planta disponível sob consulta". Para exibi-las, adicione os
+arquivos e preencha o campo `img` de `PLANTS` em `components/Maita.tsx`
+(hoje `null` para 65,52 / 67,12 / 80,87 m²).
+
+## Números e dados a confirmar
+- **Allegrato**: o `WA_NUMBER` do fonte estava marcado como *PLACEHOLDER*.
+  Hoje usa `5511926143393` (mesmo número do resto do portal). Confirmar.
+- **Maitá**: a landing original é da marca **Japi Lançamentos** (inclusive o
+  rodapé e o número `5511926143393`). Se ela for publicada sob a marca Lotus,
+  o texto de marca precisa ser revisto.

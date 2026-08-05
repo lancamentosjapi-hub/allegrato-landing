@@ -27,3 +27,4 @@ FINALIZAR.MD
 /pdf/
 # Screenshots de auditoria/QA na RAIZ do repo (os assets de produção vivem em public/)
 /*.png
+/Landing Pages/
