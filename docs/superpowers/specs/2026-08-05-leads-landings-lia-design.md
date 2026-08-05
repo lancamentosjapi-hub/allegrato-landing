@@ -186,16 +186,35 @@ veio. Não expõe nada novo — o telefone já vai no `phone` do mesmo payload.
 A rota é um POST público que despeja no CRM. Sem defesa, bots enchem a base de
 lixo — e lixo no CRM significa a LIA abordando gente que não existe.
 
+- **Teto de tamanho do corpo:** 16 KB, verificado no `content-length` **antes**
+  de fazer o parse do JSON. Os limites por campo rodam depois do parse, então
+  sozinhos não protegem: um corpo de 200 MB é inteiramente carregado em memória
+  antes que qualquer limite de campo seja aplicado.
 - **Limites de tamanho por campo:** `name` ≤ 120, `phone` ≤ 32, `email` ≤ 200,
   `interest` ≤ 200, `message` ≤ 1000, `source` ≤ 64.
-- **Obrigatoriedade:** exige `name` ou `phone`, conforme o contrato.
+- **Obrigatoriedade:** exige `name` ou `phone`, conforme o contrato. Verificada
+  sobre os valores **já normalizados**, não sobre a entrada crua — senão
+  `"   "` passa e o campo chega vazio no CRM.
 - **Sanitização:** remove caracteres de controle antes de repassar.
-- **`id` derivado no servidor:** não vem do cliente, então não há como forjar
-  chave de deduplicação para sobrescrever lead alheio.
+- **`source` validado por regex** (`^landing_[a-z0-9-]{1,48}$`): sem isso a
+  atribuição no CRM é escolhida pelo cliente.
+- **`id` derivado no servidor:** o cliente não manda o `id`, então um id opaco
+  forjado é ignorado. Isso **não** impede reprodução: como `id = f(source,
+  phone)` e os dois vêm do cliente, quem souber o telefone de um lead consegue
+  recompor a chave dele. O regex de `source` reduz a superfície; a proteção
+  real contra sobrescrita é do lado do CRM.
 - **Rate limit por IP:** em memória, ~5 leads / 10 min. Marcado com comentário
   `ponytail:` declarando o teto — é por instância e zera no redeploy. Se o
-  portal escalar para várias instâncias, vira rate limit compartilhado.
+  portal escalar para várias instâncias, vira rate limit compartilhado. O IP
+  sai da **última** entrada do `x-forwarded-for` (a que o proxy confiável
+  acrescentou); a primeira é fornecida pelo cliente e forjá-la anula o limite.
 - Erros nunca expõem URL, segredo ou resposta crua do webhook.
+
+**PII em log (item conhecido de LGPD):** o log de falha grava o `id`, que
+embute o telefone, no stdout do container. É a única trilha de um lead que o
+CRM não recebeu — sem ele, sabe-se que um lead se perdeu sem saber para quem
+ligar. Fica, mas é um destino de PII novo (retenção indefinida no Easypanel)
+que a política de privacidade atual não descreve.
 
 Honeypot anti-bot foi considerado e deixado de fora: exigiria editar os 26
 formulários para ganhar pouco além do rate limit. Entra se spam aparecer.
