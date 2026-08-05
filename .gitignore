@@ -18,6 +18,9 @@ npm-debug.log*
 # permissões locais do Claude Code (contém caminhos da máquina do dev)
 .claude/settings.local.json
 
+# scratch do subagent-driven-development (ledger, briefs, relatórios de review)
+.superpowers/
+
 # Artefatos de dev / documentacao local (nao versionar)
 FINALIZAR.MD
 .playwright-mcp/
