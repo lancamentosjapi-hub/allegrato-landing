@@ -13,12 +13,25 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 // Ninguém está esperando esta resposta — o visitante já foi para o WhatsApp.
-// Segurar conexão além disso só ocupa a instância.
-const TIMEOUT_MS = 10_000;
+// Segurar conexão além disso só ocupa a instância. TIMEOUT_MS é por
+// tentativa: com as duas tentativas do postWebhook + RETRY_DELAY_MS, o pior
+// caso fim-a-fim é ~12s (2 × TIMEOUT_MS + RETRY_DELAY_MS), não os 10s daqui.
+const TIMEOUT_MS = 5_750;
 const RETRY_DELAY_MS = 500;
 
 const RATE_WINDOW_MS = 10 * 60_000;
 const RATE_MAX = 5;
+
+// Lead real tem algumas centenas de bytes; 16 KB é folga generosa. Sem teto,
+// req.json() abaixo bufferiza o body inteiro — App Router não tem limite de
+// body parser, e este repo não tem middleware.ts.
+const MAX_BODY_BYTES = 16 * 1024;
+
+// source é sempre "landing_" + slug da rota (kebab-case), nunca texto livre —
+// mesmo padrão de CONVERSATION_ID_RE em app/api/chat/route.ts. Também é
+// insumo do id de dedup (lib/lead.ts): sem validar o formato, dava pra
+// forjar o id de um lead de outra landing só sabendo o telefone.
+const SOURCE_RE = /^landing_[a-z0-9-]{1,48}$/;
 
 // ponytail: rate limit em memória — é por instância e zera no redeploy. Se o
 // portal passar a rodar com mais de uma instância, isto vira Redis/upstash.
@@ -41,14 +54,19 @@ function rateLimited(ip: string): boolean {
 }
 
 function clientIp(req: NextRequest): string {
+  // O último IP da lista é o que o proxy mais próximo do server anexou
+  // (confiável); o primeiro é o que o cliente alega no header — forjável, e
+  // trocando esse valor a cada request dava pra furar o rate limit abaixo.
   const fwd = req.headers.get('x-forwarded-for');
-  return fwd?.split(',')[0]?.trim() || 'unknown';
+  const ip = fwd?.split(',').pop()?.trim() || 'unknown';
+  return ip.slice(0, 45); // teto de tamanho de chave do Map (IPv6 cabe em 45)
 }
 
 /**
- * Uma retentativa em falha de rede ou 5xx. Sem ela, um soluço do webhook perde
- * o lead em silêncio — que é exatamente o problema que este código resolve.
- * 4xx não retenta: payload errado não melhora repetindo.
+ * Uma retentativa em falha de rede, 5xx, 408 (timeout) ou 429 (rate limit) do
+ * webhook. Sem ela, um soluço perde o lead em silêncio — exatamente o
+ * problema que este código resolve. Outro 4xx não retenta: payload errado
+ * não melhora repetindo.
  */
 async function postWebhook(
   url: string,
@@ -65,7 +83,10 @@ async function postWebhook(
         cache: 'no-store',
       });
       if (res.ok) return true;
-      if (res.status < 500) {
+      // 408/429 são soluço transitório do webhook (timeout/rate limit),
+      // igual 5xx — vale retentar. Outro 4xx é payload errado: repetir não ajuda.
+      const retryable = res.status >= 500 || res.status === 408 || res.status === 429;
+      if (!retryable) {
         console.error(`[lead] webhook recusou (${res.status})`);
         return false;
       }
@@ -90,6 +111,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'rate_limited' }, { status: 429 });
   }
 
+  // Content-Length ausente/ilegível também rejeita — não dá pra escapar do
+  // teto só omitindo o header.
+  const contentLength = Number(req.headers.get('content-length'));
+  if (!Number.isFinite(contentLength) || contentLength <= 0 || contentLength > MAX_BODY_BYTES) {
+    return NextResponse.json({ error: 'payload_too_large' }, { status: 413 });
+  }
+
   const body = (await req.json().catch(() => null)) as Partial<Lead> | null;
   const str = (v: unknown) => (typeof v === 'string' ? v : '');
   const lead: Lead = {
@@ -101,11 +129,13 @@ export async function POST(req: NextRequest) {
     message: str(body?.message),
   };
 
-  if (!lead.source || !lead.interest) {
+  const payload = buildLeadPayload(lead);
+
+  // Validar o valor normalizado (pós-clean), não o bruto: "   " passa no
+  // truthy check do lead cru, mas vira "" depois do clean() em buildLeadPayload.
+  if (!SOURCE_RE.test(payload.data.source) || !payload.data.interest) {
     return NextResponse.json({ error: 'invalid_payload' }, { status: 400 });
   }
-
-  const payload = buildLeadPayload(lead);
   // O contrato exige pelo menos um dos dois; sem eles o lead é inútil.
   if (!payload.data.name && !payload.data.phone) {
     return NextResponse.json({ error: 'invalid_payload' }, { status: 400 });
