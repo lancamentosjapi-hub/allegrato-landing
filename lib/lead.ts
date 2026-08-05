@@ -91,3 +91,29 @@ export function buildLeadPayload(lead: Lead): {
 
   return { event: 'lead.created', data };
 }
+
+/* ------------------------------------------------------------------ */
+/* Cliente — usado pelas landings                                      */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Registra o lead. Dispara e NÃO espera, de propósito.
+ *
+ * Quem chama faz `window.open(WhatsApp)` logo em seguida, e um `await` aqui
+ * tiraria o open da pilha do gesto do usuário — o bloqueador de pop-up mataria
+ * a aba do WhatsApp. Registrar o lead nunca pode piorar a experiência de quem
+ * acabou de preencher o formulário.
+ *
+ * `keepalive` mantém o POST vivo se a pessoa fechar a aba logo depois de enviar.
+ * Falha é silenciosa para o visitante e fica logada no servidor.
+ */
+export function sendLead(lead: Lead): void {
+  void fetch('/api/lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(lead),
+    keepalive: true,
+  }).catch(() => {
+    // rede caiu no meio: o visitante segue para o WhatsApp normalmente
+  });
+}
