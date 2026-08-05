@@ -11,6 +11,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { parseStyle, useReveal, waHref } from '@/lib/dc-runtime';
+import { sendLead } from '@/lib/lead';
 
 const WA = '5511926143393';
 const wa = (text: string) => waHref(WA, text);
@@ -284,6 +285,13 @@ export default function Maita() {
     };
     setErrs(next);
     if (next.nome || next.email || next.tel || next.consent) return;
+    sendLead({
+      name: nome,
+      phone: tel,
+      email,
+      source: 'landing_maita',
+      interest: 'Maitá Residencial',
+    });
     setSent(
       wa(
         `Olá! Tenho interesse no *Maitá Residencial* (Jundiaí).\n\n*Nome:* ${nome}\n*E-mail:* ${email}\n*Telefone:* ${tel}`,

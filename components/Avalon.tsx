@@ -11,6 +11,7 @@
 
 import React, { useRef, useState } from 'react';
 import { parseStyle, useReveal, waHref } from '@/lib/dc-runtime';
+import { sendLead } from '@/lib/lead';
 
 const WHATSAPP = '5511926143393';
 const EMP = 'Avalon Residencial';
@@ -34,6 +35,13 @@ export default function Avalon() {
     const nome = nomeRef.current?.value.trim() || '';
     const tel = telRef.current?.value.trim() || '';
     const interesse = interesseRef.current?.value || '';
+    sendLead({
+      name: nome,
+      phone: tel,
+      source: 'landing_avalon',
+      interest: 'Avalon Residencial',
+      message: interesse,
+    });
     window.open(
       waLink(`Olá! Meu nome é ${nome}. ${interesse}. Meu WhatsApp: ${tel}.`),
       '_blank',

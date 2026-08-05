@@ -23,6 +23,7 @@ import React, {
 } from 'react';
 import { p34, p49, p52, p66 } from '@/app/brisas-do-japi/plantas';
 import Link from 'next/link';
+import { sendLead } from '@/lib/lead';
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -296,6 +297,14 @@ export default function BrisasDoJapi({
     msg += '\nWhatsApp: ' + tel;
     msg += '\nE-mail: ' + email;
     if (tipo) msg += '\nTipologia: ' + tipo;
+    sendLead({
+      name: nome,
+      phone: tel,
+      email,
+      source: 'landing_brisas-do-japi',
+      interest: 'Brisas do Japi',
+      message: tipo,
+    });
     setSent(true);
     window.open(waMsg(msg), '_blank');
   };

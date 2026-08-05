@@ -24,6 +24,7 @@ import React, {
   type CSSProperties,
   type ReactNode,
 } from 'react';
+import { sendLead } from '@/lib/lead';
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -293,6 +294,13 @@ export default function Vivarte({
       setFormError('Por favor, preencha nome e telefone.');
       return;
     }
+    sendLead({
+      name: nome,
+      phone: tel,
+      email,
+      source: 'landing_vivarte',
+      interest: 'Vivarte Grand Alamedas',
+    });
     const n = String(whatsappNumber ?? WHATSAPP_NUMBER_DEFAULT).replace(/\D/g, '');
     const msg =
       'Ola! Tenho interesse no Vivarte Grand Alamedas.%0A%0ANome: ' +

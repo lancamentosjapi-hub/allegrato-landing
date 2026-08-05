@@ -17,6 +17,7 @@
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { parseStyle, useReveal, waHref } from '@/lib/dc-runtime';
+import { sendLead } from '@/lib/lead';
 
 // TODO(Lotus): número de vendas real — o fonte marcava este como PLACEHOLDER.
 const WA_NUMBER = '5511926143393';
@@ -133,6 +134,13 @@ export default function Allegrato() {
     }
     const interesse = interesseRef.current?.value || '';
     const extra = `Meu nome é ${nome}.${interesse ? ` Tenho interesse em: ${interesse}.` : ''}`;
+    sendLead({
+      name: nome,
+      phone: fone,
+      source: 'landing_allegrato',
+      interest: 'Allegrato Residencial',
+      message: interesse,
+    });
     const url = waUrl(extra);
     setSentUrl(url);
     window.open(url, '_blank', 'noopener');
