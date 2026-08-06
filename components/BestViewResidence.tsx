@@ -16,6 +16,7 @@
 
 import React, { useEffect, useState, type CSSProperties } from 'react';
 import { Hoverable, parseStyle, waHref } from '@/lib/dc-runtime';
+import { sendLead } from '@/lib/lead';
 
 const WA_NUMBER = '5511926143393';
 const wa = (msg: string) => waHref(WA_NUMBER, msg);
@@ -266,6 +267,13 @@ export default function BestViewResidence() {
   const setFoneEv = (e: React.ChangeEvent<HTMLInputElement>) => setFone(e.target.value);
   const enviarForm = (e: React.FormEvent) => {
     e.preventDefault();
+    sendLead({
+      name: fNome,
+      phone: fFone,
+      email: fEmail,
+      source: 'landing_best-view-residence',
+      interest: 'Best View Residence',
+    });
     window.open(waLinkForm, '_blank', 'noopener');
     setSent(true);
   };

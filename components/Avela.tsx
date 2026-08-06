@@ -20,6 +20,7 @@ import React, {
   type CSSProperties,
   type ReactNode,
 } from 'react';
+import { sendLead } from '@/lib/lead';
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -767,6 +768,14 @@ export default function Avela({
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
+                  sendLead({
+                    name: form.nome,
+                    phone: form.tel,
+                    email: form.email,
+                    source: 'landing_avela',
+                    interest: 'Avela',
+                    message: form.interesse,
+                  });
                   setSent(true);
                 }}
                 style={parseStyle('background:#FBF8F1;border-radius:22px;padding:clamp(26px,3.5vw,40px);box-shadow:0 40px 70px -34px rgba(0,0,0,.6);')}

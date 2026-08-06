@@ -14,6 +14,7 @@
 
 import React, { useEffect, useState, type CSSProperties } from 'react';
 import { Hoverable, parseStyle, waHref } from '@/lib/dc-runtime';
+import { sendLead } from '@/lib/lead';
 
 const WA_NUMBER = '5511926143393';
 const buildWhats = (text?: string) =>
@@ -326,6 +327,13 @@ export default function Odeon() {
   const setInteresseEv = (e: React.ChangeEvent<HTMLSelectElement>) => setInteresse(e.target.value);
   const enviarForm = (e: React.FormEvent) => {
     e.preventDefault();
+    sendLead({
+      name: nome,
+      phone: telefone,
+      source: 'landing_odeon',
+      interest: 'Odeon Residencial',
+      message: interesse,
+    });
     const txt = `Olá! Sou ${nome} (${telefone}). ${interesse} — Odeon Residencial, Jundiaí.`;
     window.open(buildWhats(txt), '_blank', 'noopener');
   };

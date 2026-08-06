@@ -16,6 +16,7 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
+import { sendLead } from '@/lib/lead';
 
 /* ------------------------------------------------------------------ */
 /* Constantes (valores exatos do a006.js)                             */
@@ -283,6 +284,15 @@ export default function Manawa() {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)) { setErrEmail(true); ok = false; } else setErrEmail(false);
     if (!consent.checked) { ok = false; }
     if (!ok) return;
+
+    sendLead({
+      name: nome.value.trim(),
+      phone: tel,
+      email: email.value.trim(),
+      source: 'landing_manawa',
+      interest: 'Manawa Residencial',
+      message: interesse.value,
+    });
 
     const msg =
       'Olá! Quero conhecer o *Manawa Residencial* (Jundiaí).%0A%0A' +

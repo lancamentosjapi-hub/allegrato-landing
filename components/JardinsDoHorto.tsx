@@ -20,6 +20,7 @@ import React, {
   type CSSProperties,
   type ReactNode,
 } from 'react';
+import { sendLead } from '@/lib/lead';
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -203,6 +204,17 @@ export default function JardinsDoHorto({
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const f = e.currentTarget as HTMLFormElement;
+    const val = (n: string) =>
+      (f.elements.namedItem(n) as HTMLInputElement | HTMLSelectElement | null)?.value ?? '';
+    sendLead({
+      name: val('nome'),
+      phone: val('telefone'),
+      email: val('email'),
+      source: 'landing_jardins-do-horto',
+      interest: 'Jardins do Horto',
+      message: val('interesse'),
+    });
     setSent(true);
   };
 
