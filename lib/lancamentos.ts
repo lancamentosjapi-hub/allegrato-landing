@@ -1,5 +1,6 @@
 import { supabase, TENANT_ID } from './supabase';
 import { hrefForSlug, slugParaLanding, slugify } from './landings';
+import { developmentsFallback, type DevelopmentCard } from './developments';
 
 // Reexportados por compatibilidade: a descoberta das landings mora em landings.ts
 // (ver o comentário de lá), mas `toCard`/`toListItem` continuam sendo o ponto de
@@ -195,15 +196,65 @@ async function fetchRowsComLanding(): Promise<LancamentoRow[]> {
   return rows.map((r) => ({ ...r, landing_slug: slugs.get(r.id) ?? null }));
 }
 
+/**
+ * Landings publicadas que nenhum lançamento do banco representa.
+ *
+ * Uma página que existe em app/ NÃO pode depender de cadastro no dash para ser
+ * encontrada. Foi assim que 8 landings prontas e no ar (authoria, avalon,
+ * best-view-residence, brisas-do-japi, odeon, sky-videiras, vigore, vivarte)
+ * ficaram invisíveis na vitrine: a listagem passou a ler só do Supabase, e elas
+ * não tinham linha lá. Página publicada aparece; cadastro no dash enriquece o
+ * card (foto real, preço, estágio), não decide se ele existe.
+ *
+ * Os dados saem do fallback curado em developments.ts, que já cobre as 23.
+ */
+function landingsForaDoBanco(slugsNoBanco: Set<string>): DevelopmentCard[] {
+  return developmentsFallback.filter((d) => {
+    const slug = d.href?.replace(/^\//, '') ?? '';
+    return slug && hrefForSlug(slug) !== null && !slugsNoBanco.has(slug);
+  });
+}
+
+// "Bairro · Cidade" -> as duas partes. A listagem filtra por cidade, então o
+// fallback precisa entregar os campos separados como o banco entrega.
+function partesLocalizacao(location: string): { neighborhood: string; city: string } {
+  const partes = location.split('·').map((p) => p.trim()).filter(Boolean);
+  if (partes.length >= 2) return { neighborhood: partes[0], city: partes[partes.length - 1] };
+  return { neighborhood: '', city: partes[0] ?? '' };
+}
+
 export async function getLancamentos(): Promise<LancamentoCard[]> {
   const rows = await fetchRowsComLanding();
-  return rows
-    .map(toCard)
-    .sort((a, b) => {
-      const al = a.href ? 0 : 1;
-      const bl = b.href ? 0 : 1;
-      return al !== bl ? al - bl : a.name.localeCompare(b.name, 'pt-BR');
-    });
+  const cards = rows.map(toCard);
+
+  // Só conta como "coberta pelo banco" a landing cujo card do banco realmente vai
+  // aparecer. Um lançamento cadastrado sem foto é escondido pelo filtro de
+  // apresentável — se ele bastasse para bloquear o fallback, a landing sumiria
+  // por ter sido cadastrada pela metade, que é pior do que não ter cadastro.
+  const noBanco = new Set(
+    cards
+      .filter(isApresentavel)
+      .map((c) => c.href?.replace(/^\//, '') ?? '')
+      .filter(Boolean),
+  );
+  const daLanding: LancamentoCard[] = landingsForaDoBanco(noBanco).map((d) => ({
+    id: `landing:${d.href}`,
+    name: d.name,
+    location: d.location,
+    stage: d.stage,
+    builder: d.builder,
+    specs: d.specs,
+    price: d.price,
+    exclusive: d.exclusive,
+    img: d.img,
+    href: d.href,
+  }));
+
+  return [...cards, ...daLanding].sort((a, b) => {
+    const al = a.href ? 0 : 1;
+    const bl = b.href ? 0 : 1;
+    return al !== bl ? al - bl : a.name.localeCompare(b.name, 'pt-BR');
+  });
 }
 
 // Linhas cruas do banco. Só o diagnóstico (scripts/check-landings.ts) usa — ele
@@ -216,5 +267,37 @@ export async function getLancamentosRows(): Promise<LancamentoRow[]> {
 // Itens da listagem /lotus-lancamentos (com campos de filtro).
 export async function getLancamentosList(): Promise<LancamentoListItem[]> {
   const rows = await fetchRowsComLanding();
-  return rows.map(toListItem);
+  const itens = rows.map(toListItem);
+
+  // Mesmo critério da home: cadastro incompleto (sem foto/cidade) não bloqueia o
+  // fallback, senão a landing some por ter sido cadastrada pela metade.
+  const noBanco = new Set(
+    itens
+      .filter(isListItemApresentavel)
+      .map((i) => i.href?.replace(/^\//, '') ?? '')
+      .filter(Boolean),
+  );
+  const daLanding: LancamentoListItem[] = landingsForaDoBanco(noBanco).map((d) => {
+    const { neighborhood, city } = partesLocalizacao(d.location);
+    return {
+      id: d.href?.replace(/^\//, '') ?? d.name,
+      name: d.name,
+      neighborhood,
+      city,
+      stage: d.stage,
+      // Sem type/priceNum: o fallback curado não tem os categóricos de filtro. O
+      // card aparece normalmente e só não é alcançado pelos filtros de tipo/preço
+      // — o mesmo trade-off já aceito para os lançamentos do banco sem esses
+      // campos (ver isListItemApresentavel). Mostrar vale mais que filtrar.
+      type: '',
+      priceNum: 0,
+      price: d.price,
+      specs: d.specs,
+      exclusive: d.exclusive,
+      img: d.img,
+      href: d.href,
+    };
+  });
+
+  return [...itens, ...daLanding];
 }
