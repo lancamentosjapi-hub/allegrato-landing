@@ -16,11 +16,9 @@
 /* Correções de overflow horizontal no mobile (grids fixos que não empilhavam).
    Cada seletor mira o style inline exato do componente. Ver auditoria C4. */
 @media (max-width:760px){
-  /* /lotus-sobre — grid "escritório" (foto destaque + roleta).
-     min-width:0 nos filhos deixa o overflow-x:auto da roleta funcionar
-     (grid items têm min-width:auto por padrão e não encolhem abaixo do conteúdo). */
-  div[style*="1.15fr 1fr"]{grid-template-columns:1fr !important;}
-  div[style*="1.15fr 1fr"] > *{min-width:0 !important;}
+  /* /lotus-sobre — grid "escritório" (mapa + cartão de endereço). */
+  [data-escritorio-grid]{grid-template-columns:1fr !important;}
+  [data-escritorio-grid] > *{min-width:0 !important;}
   /* /lotus-imovel — conteúdo + sidebar "Agendar visita" (1fr 380px) */
   [data-pdp-grid]{grid-template-columns:1fr !important;}
   /* /lotus-sobre — dois CTAs "Quer vender / Procurando um imóvel" lado a lado */

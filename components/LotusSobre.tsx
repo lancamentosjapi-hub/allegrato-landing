@@ -175,17 +175,12 @@ const NOISE_BG =
 
 const WHATSAPP_DEFAULT = '5511926143393';
 
-// Slots de fotos do escritório (fonte: this.OFFICE)
-const OFFICE = [
-  'escritorio-1',
-  'escritorio-2',
-  'escritorio-3',
-  'escritorio-4',
-  'escritorio-5',
-  'escritorio-6',
-  'escritorio-7',
-  'escritorio-8',
-];
+/** Endereço do escritório — fonte única do mapa, do texto e do "Como chegar". */
+const ENDERECO_ESCRITORIO = {
+  linha1: 'Av. José Luiz Sereno, 655 · sala 5',
+  linha2: 'Jardim Ermida II · Jundiaí · SP',
+  busca: 'Avenida José Luiz Sereno, 655, Jardim Ermida II, Jundiaí, SP',
+};
 
 const pilares = [
   { num: '01', title: 'Especialista do bairro', text: 'Você é atendido por quem conhece a região de verdade — a rua, a escola, o preço justo daquele metro quadrado. Nada de generalista de tudo.' },
@@ -237,12 +232,8 @@ export default function LotusSobre({
   whatsapp?: string;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const galleryRef = useRef<HTMLDivElement>(null);
 
-  // state = { openFaq: 0, lbOpen: false, lbIndex: 0 }
   const [openFaq, setOpenFaq] = useState(0);
-  const [lbOpen, setLbOpen] = useState(false);
-  const [lbIndex, setLbIndex] = useState(0);
 
   // waLink — replica exata da lógica do renderVals().
   const waLink =
@@ -250,26 +241,6 @@ export default function LotusSobre({
     String(whatsapp ?? WHATSAPP_DEFAULT) +
     '?text=' +
     encodeURIComponent('Oi! Vim pela página A Lotus e quero conhecer melhor o time de vocês.');
-
-  // scrollGallery(dir) — idêntico ao componentDidMount original.
-  const scrollGallery = (dir: number) => {
-    const g = galleryRef.current;
-    if (g) g.scrollBy({ left: dir * Math.min(g.clientWidth * 0.8, 360), behavior: 'smooth' });
-  };
-
-  // --- handler de teclado do lightbox (usa lbOpen mais recente via ref) ---
-  const lbOpenRef = useRef(lbOpen);
-  lbOpenRef.current = lbOpen;
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (!lbOpenRef.current) return;
-      if (e.key === 'Escape') setLbOpen(false);
-      else if (e.key === 'ArrowRight') setLbIndex((i) => (i + 1) % OFFICE.length);
-      else if (e.key === 'ArrowLeft') setLbIndex((i) => (i + OFFICE.length - 1) % OFFICE.length);
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
 
   // --- contador de estatísticas (rAF + IntersectionObserver threshold .4) ---
   useEffect(() => {
@@ -328,25 +299,6 @@ export default function LotusSobre({
   }, []);
 
   // Derivados de render (renderVals()).
-  const officePhotos = OFFICE.map((id, i) => ({
-    slot: id,
-    label: 'Foto do escritório ' + (i + 1),
-    open: () => {
-      setLbOpen(true);
-      setLbIndex(i);
-    },
-  }));
-  const lightboxView = OFFICE.map((id, i) => ({
-    slot: id,
-    style:
-      'position:absolute;inset:0;opacity:' +
-      (i === lbIndex ? '1' : '0') +
-      ';transition:opacity .35s ease;pointer-events:' +
-      (i === lbIndex ? 'auto' : 'none') +
-      ';',
-  }));
-  const lbCounter = lbIndex + 1 + ' / ' + OFFICE.length;
-
   const faqs = faqData.map((f, i) => ({
     q: f.q,
     a: f.a,
@@ -354,16 +306,6 @@ export default function LotusSobre({
     sign: openFaq === i ? '–' : '+',
     toggle: () => setOpenFaq((cur) => (cur === i ? -1 : i)),
   }));
-
-  const closeLb = () => setLbOpen(false);
-  const nextLb = () => setLbIndex((i) => (i + 1) % OFFICE.length);
-  const prevLb = () => setLbIndex((i) => (i + OFFICE.length - 1) % OFFICE.length);
-  const scrollPrev = () => scrollGallery(-1);
-  const scrollNext = () => scrollGallery(1);
-  const openFirst = () => {
-    setLbOpen(true);
-    setLbIndex(0);
-  };
 
   return (
     <div ref={rootRef}>
@@ -540,44 +482,24 @@ export default function LotusSobre({
             <h2 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(30px,4vw,48px);color:#15241c;line-height:1.06;letter-spacing:-.02em;margin:0 0 16px;')}>Nosso escritório em Jundiaí.</h2>
             <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>A porta está aberta. Passe para conhecer o time, conversar sobre o seu momento e tomar um café — sem compromisso.</p>
           </div>
-          <div style={parseStyle('display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:stretch;')}>
-            {/* office photos: featured + roleta */}
-            <div style={parseStyle('display:flex;flex-direction:column;gap:12px;min-height:420px;')}>
-              <button onClick={openFirst} style={parseStyle('position:relative;flex:1;min-height:280px;border:none;padding:0;cursor:pointer;border-radius:16px;overflow:hidden;background:#1d3a2c;')}>
-                <ImageSlot id="escritorio-1" src="/authoria/a002.jpg" style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} />
-                <span style={parseStyle('position:absolute;bottom:14px;right:14px;display:inline-flex;align-items:center;gap:7px;background:rgba(21,36,28,.82);backdrop-filter:blur(4px);color:#f7f2e8;font-size:12.5px;font-weight:600;padding:8px 13px;border-radius:30px;')}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>Ampliar</span>
-              </button>
-              <div style={parseStyle('position:relative;')}>
-                <button onClick={scrollPrev} aria-label="Anterior" style={parseStyle('position:absolute;top:50%;left:-6px;transform:translateY(-50%);z-index:3;width:34px;height:34px;border-radius:50%;background:#fff;border:1px solid rgba(21,36,28,.12);color:#1d3a2c;font-size:18px;line-height:1;cursor:pointer;box-shadow:0 8px 20px -12px rgba(21,36,28,.6);')}>‹</button>
-                <div data-roleta="" ref={galleryRef} style={parseStyle('display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px;')}>
-                  {/* hint-placeholder-count="8" */}
-                  {officePhotos.map((p, i) => (
-                    <button key={i} onClick={p.open} aria-label="Ampliar foto" style={parseStyle('flex:0 0 116px;height:84px;scroll-snap-align:start;position:relative;border:none;padding:0;cursor:pointer;border-radius:11px;overflow:hidden;background:#3f6249;')}>
-                      <ImageSlot id={p.slot} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} />
-                    </button>
-                  ))}
-                </div>
-                <button onClick={scrollNext} aria-label="Próxima" style={parseStyle('position:absolute;top:50%;right:-6px;transform:translateY(-50%);z-index:3;width:34px;height:34px;border-radius:50%;background:#fff;border:1px solid rgba(21,36,28,.12);color:#1d3a2c;font-size:18px;line-height:1;cursor:pointer;box-shadow:0 8px 20px -12px rgba(21,36,28,.6);')}>›</button>
-              </div>
-              <p style={parseStyle('font-size:12px;color:#8aa593;margin:2px 0 0;')}>Clique para ampliar · arraste a roleta para ver mais. Cada espaço aceita uma foto sua.</p>
+          {/* A galeria de fotos do escritório saiu: eram slots vazios (só um
+              render de landing no destaque). No lugar, o mapa ocupa a largura
+              toda, com o endereço real ao lado. */}
+          <div data-escritorio-grid="" style={parseStyle('display:grid;grid-template-columns:1.6fr 1fr;gap:24px;align-items:stretch;')}>
+            <div style={parseStyle('position:relative;min-height:420px;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 16px 40px -32px rgba(21,36,28,.4);')}>
+              <iframe title="Mapa do escritório Lotus Brokers" src={`https://www.google.com/maps?q=${encodeURIComponent(ENDERECO_ESCRITORIO.busca)}&z=17&output=embed`} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;border:0;')} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen></iframe>
             </div>
-            {/* map + address */}
-            <div style={parseStyle('display:flex;flex-direction:column;gap:16px;')}>
-              <div style={parseStyle('position:relative;flex:1;min-height:280px;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 16px 40px -32px rgba(21,36,28,.4);')}>
-                <iframe title="Mapa do escritório Lotus Brokers" src="https://www.google.com/maps?q=Jundia%C3%AD,%20SP&output=embed" style={parseStyle('position:absolute;inset:0;width:100%;height:100%;border:0;')} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+            <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:28px 26px;display:flex;flex-direction:column;justify-content:center;')}>
+              <div style={parseStyle('display:flex;align-items:flex-start;gap:12px;margin-bottom:20px;')}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#cdab6e" strokeWidth="1.8" style={parseStyle('flex-shrink:0;margin-top:2px;')}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div>
+                  <div style={parseStyle('font-size:15px;font-weight:600;color:#f7f2e8;line-height:1.45;')}>{ENDERECO_ESCRITORIO.linha1}</div>
+                  <div style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.7);line-height:1.5;margin-top:2px;')}>{ENDERECO_ESCRITORIO.linha2}</div>
+                </div>
               </div>
-              <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:24px 26px;')}>
-                <div style={parseStyle('display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;')}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#cdab6e" strokeWidth="1.8" style={parseStyle('flex-shrink:0;margin-top:2px;')}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  <div>
-                    <div style={parseStyle('font-size:15px;font-weight:600;color:#f7f2e8;line-height:1.4;')}>Av. Antônio Frederico Ozanam, 0000</div>
-                    <div style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.7);')}>Jundiaí · SP · 13200-000</div>
-                  </div>
-                </div>
-                <div style={parseStyle('display:flex;flex-wrap:wrap;gap:10px;')}>
-                  <Hoverable as="a" href="https://www.google.com/maps/search/?api=1&query=Jundia%C3%AD%20SP" target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:7px;background:#b18a4a;color:#15241c;font-weight:600;font-size:13.5px;padding:10px 18px;border-radius:30px;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Como chegar <span>→</span></Hoverable>
-                  <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid rgba(247,242,232,.3);color:#f7f2e8;font-weight:600;font-size:13.5px;padding:10px 18px;border-radius:30px;transition:background .2s;')} hoverStyle={parseStyle('background:rgba(247,242,232,.1)')}>Agendar visita</Hoverable>
-                </div>
+              <div style={parseStyle('display:flex;flex-wrap:wrap;gap:10px;')}>
+                <Hoverable as="a" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ENDERECO_ESCRITORIO.busca)}`} target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:7px;background:#b18a4a;color:#15241c;font-weight:600;font-size:13.5px;padding:10px 18px;border-radius:30px;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Como chegar <span>→</span></Hoverable>
+                <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid rgba(247,242,232,.3);color:#f7f2e8;font-weight:600;font-size:13.5px;padding:10px 18px;border-radius:30px;transition:background .2s;')} hoverStyle={parseStyle('background:rgba(247,242,232,.1)')}>Agendar visita</Hoverable>
               </div>
             </div>
           </div>
@@ -651,24 +573,6 @@ export default function LotusSobre({
           </div>
         </div>
       </footer>
-
-      {/* LIGHTBOX (fotos do escritório) */}
-      {lbOpen && (
-        <>
-          <div style={parseStyle('position:fixed;inset:0;z-index:100;background:rgba(10,18,14,.94);display:flex;align-items:center;justify-content:center;')}>
-            <button onClick={closeLb} aria-label="Fechar" style={parseStyle('position:absolute;top:22px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(247,242,232,.14);border:none;color:#f7f2e8;font-size:24px;cursor:pointer;')}>✕</button>
-            <button onClick={prevLb} aria-label="Anterior" style={parseStyle('position:absolute;left:24px;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;background:rgba(247,242,232,.14);border:none;color:#f7f2e8;font-size:26px;cursor:pointer;')}>‹</button>
-            <button onClick={nextLb} aria-label="Próxima" style={parseStyle('position:absolute;right:24px;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;background:rgba(247,242,232,.14);border:none;color:#f7f2e8;font-size:26px;cursor:pointer;')}>›</button>
-            <div style={parseStyle('width:min(88vw,1100px);aspect-ratio:3/2;position:relative;border-radius:12px;overflow:hidden;')}>
-              {/* hint-placeholder-count="8" */}
-              {lightboxView.map((p, i) => (
-                <div key={i} style={parseStyle(p.style)}><ImageSlot id={p.slot} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} /></div>
-              ))}
-            </div>
-            <div style={parseStyle('position:absolute;bottom:26px;left:50%;transform:translateX(-50%);background:rgba(247,242,232,.14);color:#f7f2e8;font-size:13px;padding:7px 16px;border-radius:30px;')}>{lbCounter}</div>
-          </div>
-        </>
-      )}
 
       {/* WHATSAPP FLOAT */}
       <a href={waLink} target="_blank" rel="noopener" aria-label="WhatsApp" style={parseStyle('position:fixed;right:22px;bottom:22px;z-index:75;width:54px;height:54px;border-radius:50%;background:#25543b;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px -10px rgba(21,36,28,.6);')}>
