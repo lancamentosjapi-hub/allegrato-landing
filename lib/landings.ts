@@ -69,3 +69,17 @@ export function slugify(nome: string): string {
 export function hrefForSlug(slug: string): string | null {
   return landingSlugs().has(slug) ? `/${slug}` : null;
 }
+
+/**
+ * Slug da landing de um lançamento: o vínculo explícito do dash quando houver,
+ * senão o nome normalizado.
+ *
+ * O explícito (coluna `landing_slug`, migration 0004) também passa pelo slugify:
+ * ele vem de um campo de texto digitado à mão, então "Vivarte" ou " vivarte "
+ * valem tanto quanto "vivarte" — a coluna deve poupar o operador de adivinhar,
+ * não criar uma segunda forma de errar.
+ */
+export function slugParaLanding(landingSlug: string | null | undefined, nome: string): string {
+  const explicito = landingSlug?.trim();
+  return slugify(explicito ? explicito : nome);
+}

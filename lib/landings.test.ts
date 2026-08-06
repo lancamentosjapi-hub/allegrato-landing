@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { slugify, hrefForSlug, isLandingDir } from './landings.ts';
+import { slugify, hrefForSlug, isLandingDir, slugParaLanding } from './landings.ts';
 
 /* ---------- slugify ---------- */
 // acentos viram ASCII (é o que faz "Maxx Santa Ângela" bater com app/maxx-santa-angela)
@@ -31,6 +31,22 @@ for (const slug of ['lotus-busca', 'lotus-home', 'meus-dados', 'api']) {
 
 // Slug sem página: card cai no contato, não gera link quebrado.
 assert.equal(hrefForSlug('lago-samambaia'), null);
+
+/* ---------- slugParaLanding (coluna landing_slug, migration 0004) ---------- */
+// O motivo da coluna existir: nome comercial livre, link continua certo.
+assert.equal(slugParaLanding('vivarte', 'Vivarte Grand Alamedas'), 'vivarte');
+assert.equal(hrefForSlug(slugParaLanding('vivarte', 'Vivarte Grand Alamedas')), '/vivarte');
+// Sem vínculo explícito, mantém o comportamento antigo (deriva do nome).
+assert.equal(slugParaLanding(null, 'Maxx Santa Ângela'), 'maxx-santa-angela');
+assert.equal(slugParaLanding(undefined, 'Allegrato'), 'allegrato');
+// Coluna presente mas vazia/em branco não conta como vínculo — cai no nome.
+assert.equal(slugParaLanding('', 'Allegrato'), 'allegrato');
+assert.equal(slugParaLanding('   ', 'Allegrato'), 'allegrato');
+// O explícito também é normalizado: quem digita no dash não precisa acertar a forma.
+assert.equal(slugParaLanding(' Vivarte ', 'qualquer coisa'), 'vivarte');
+assert.equal(slugParaLanding('Best View Residence', 'x'), 'best-view-residence');
+// Slug explícito para página que não existe: sem link, e sem link quebrado.
+assert.equal(hrefForSlug(slugParaLanding('pagina-inexistente', 'x')), null);
 
 // A trava de verdade: toda landing em app/ tem que linkar. Criar uma pasta nova
 // sem mais nada já é suficiente, e este teste falha se algum filtro a excluir.

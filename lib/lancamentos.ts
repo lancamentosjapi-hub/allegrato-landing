@@ -1,5 +1,5 @@
 import { supabase, TENANT_ID } from './supabase';
-import { hrefForSlug, slugify } from './landings';
+import { hrefForSlug, slugParaLanding, slugify } from './landings';
 
 // Reexportados por compatibilidade: a descoberta das landings mora em landings.ts
 // (ver o comentário de lá), mas `toCard`/`toListItem` continuam sendo o ponto de
@@ -34,7 +34,16 @@ export type LancamentoRow = {
   preco_num: number | null;
   created_at: string;
   updated_at: string;
+  // Vínculo EXPLÍCITO com a landing (migration 0004). Quando preenchido, manda —
+  // e o nome do empreendimento volta a ser livre no dash ("Vivarte Grand Alamedas"
+  // pode apontar para /vivarte). Ausente/nulo cai no slugify(nome), que é o
+  // comportamento antigo. Opcional no tipo porque a view pode ainda não expor.
+  landing_slug?: string | null;
 };
+
+// Ponto único da regra — antes o slug era derivado em toCard e toListItem
+// separadamente, que é como um dos dois acabaria divergindo do outro.
+const slugDaLanding = (row: LancamentoRow) => slugParaLanding(row.landing_slug, row.nome);
 
 // Card rico — o shape que os cards de empreendimento (home + lançamentos) consomem.
 // Espelha os campos do array estático atual para manter o design idêntico.
@@ -62,7 +71,7 @@ function location(bairro: string | null, cidade: string | null): string {
 }
 
 export function toCard(row: LancamentoRow): LancamentoCard {
-  const slug = slugify(row.nome);
+  const slug = slugDaLanding(row);
   return {
     id: row.id,
     name: row.nome,
@@ -102,7 +111,7 @@ export type LancamentoListItem = {
 };
 
 export function toListItem(row: LancamentoRow): LancamentoListItem {
-  const slug = slugify(row.nome);
+  const slug = slugDaLanding(row);
   return {
     id: slug,
     name: row.nome,
@@ -131,21 +140,37 @@ export function isListItemApresentavel(i: LancamentoListItem): boolean {
 // Busca os lançamentos publicados do tenant Lotus. Ordena: os que têm landing
 // rica primeiro, depois por nome.
 // Colunas expostas pela view portal_lancamentos (mantidas em sincronia com a view).
-const SELECT_COLS =
+const BASE_COLS =
   'id, tenant_id, nome, descricao, fotos, endereco_plantao, cidade, bairro, estagio, construtora, dormitorios, specs, preco_texto, exclusivo, tipo_dorms, preco_num, created_at, updated_at';
+const SELECT_COLS = `${BASE_COLS}, landing_slug`;
+
+// Postgres: coluna inexistente no SELECT. Enquanto a view portal_lancamentos não
+// for recriada com landing_slug (migration 0004), pedir a coluna derruba a query
+// inteira — e com ela a home e a listagem. O retry sem a coluna é a ponte entre o
+// deploy do código e o da view, em qualquer ordem. Pode sair depois que a view
+// estiver publicada nos dois ambientes.
+const COLUNA_INEXISTENTE = '42703';
 
 async function fetchRows(): Promise<LancamentoRow[]> {
-  const { data, error } = await supabase
-    .from('portal_lancamentos')
-    .select(SELECT_COLS)
-    .eq('tenant_id', TENANT_ID);
+  const query = (cols: string) =>
+    supabase.from('portal_lancamentos').select(cols).eq('tenant_id', TENANT_ID);
+
+  let { data, error } = await query(SELECT_COLS);
+
+  if (error?.code === COLUNA_INEXISTENTE) {
+    console.warn(
+      '[lancamentos] view portal_lancamentos ainda sem landing_slug — ' +
+        'o link da landing sai do nome (ver supabase/migrations/0004).',
+    );
+    ({ data, error } = await query(BASE_COLS));
+  }
 
   if (error) {
     // ponytail: não derruba a página se o Supabase falhar; loga e devolve vazio.
     console.error('[lancamentos] erro Supabase:', error.message);
     return [];
   }
-  return data as LancamentoRow[];
+  return (data ?? []) as unknown as LancamentoRow[];
 }
 
 export async function getLancamentos(): Promise<LancamentoCard[]> {
@@ -157,6 +182,13 @@ export async function getLancamentos(): Promise<LancamentoCard[]> {
       const bl = b.href ? 0 : 1;
       return al !== bl ? al - bl : a.name.localeCompare(b.name, 'pt-BR');
     });
+}
+
+// Linhas cruas do banco. Só o diagnóstico (scripts/check-landings.ts) usa — ele
+// precisa enxergar landing_slug para dizer se o vínculo é explícito ou derivado
+// do nome. As páginas consomem os `to*` acima, não isto.
+export async function getLancamentosRows(): Promise<LancamentoRow[]> {
+  return fetchRows();
 }
 
 // Itens da listagem /lotus-lancamentos (com campos de filtro).
