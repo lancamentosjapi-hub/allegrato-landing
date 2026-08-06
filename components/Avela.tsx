@@ -773,7 +773,7 @@ export default function Avela({
                     phone: form.tel,
                     email: form.email,
                     source: 'landing_avela',
-                    interest: 'Avela',
+                    interest: 'Avelã Vila Residencial',
                     message: form.interesse,
                   });
                   setSent(true);
