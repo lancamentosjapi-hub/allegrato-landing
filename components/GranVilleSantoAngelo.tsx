@@ -18,6 +18,7 @@
  */
 
 import { useEffect } from 'react';
+import { sendLead } from '@/lib/lead';
 
 const IMG = '/gran-ville-santo-angelo';
 
@@ -335,6 +336,13 @@ export default function GranVilleSantoAngelo() {
         if (!nome || !tel) {
           return;
         }
+        sendLead({
+          name: nome,
+          phone: tel,
+          email,
+          source: 'landing_gran-ville-santo-angelo',
+          interest: 'Gran Ville Santo Angelo',
+        });
         const msg =
           'Olá! Tenho interesse no Gran Ville Santo Angelo.%0A%0ANome: ' +
           encodeURIComponent(nome) +

@@ -21,6 +21,7 @@
  */
 
 import React, { useEffect } from 'react';
+import { sendLead } from '@/lib/lead';
 
 export default function PortalDosLagos() {
   useEffect(() => {
@@ -154,6 +155,14 @@ export default function PortalDosLagos() {
           $<HTMLInputElement>('#tel')!.focus();
           return;
         }
+        sendLead({
+          name: nome,
+          phone: tel,
+          email,
+          source: 'landing_portal-dos-lagos',
+          interest: 'Portal dos Lagos',
+          message: inter,
+        });
         const msg =
           '*Novo contato — Portal dos Lagos*\n\n' +
           '👤 Nome: ' + nome + '\n' +

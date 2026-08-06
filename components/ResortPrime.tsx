@@ -14,6 +14,7 @@
  */
 
 import { useEffect, useRef } from 'react';
+import { sendLead } from '@/lib/lead';
 
 export default function ResortPrime() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -154,6 +155,14 @@ export default function ResortPrime() {
           '[name=unidade]',
         ) as HTMLInputElement | null;
         const unidade = unidadeEl ? unidadeEl.value : '';
+
+        sendLead({
+          name: nome,
+          phone: tel,
+          email,
+          source: 'landing_resort-prime',
+          interest: 'Resort Prime Santa Angela',
+        });
 
         let msg =
           'Olá! Tenho interesse no Resort Prime Santa Angela e gostaria de agendar uma visita.%0A%0A' +

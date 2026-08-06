@@ -21,6 +21,7 @@
  */
 
 import { useEffect } from 'react';
+import { sendLead } from '@/lib/lead';
 
 const WA_NUMBER = '5511926143393';
 function waLink(msg: string) {
@@ -192,6 +193,14 @@ export default function VisttaCastanho() {
         form.querySelectorAll('input,select,textarea').forEach((f) => {
           const field = f as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
           if (field.name) data[field.name] = field.value.trim();
+        });
+        sendLead({
+          name: data.nome,
+          phone: data.telefone,
+          email: data.email,
+          source: 'landing_vistta-castanho',
+          interest: 'Vistta Castanho',
+          message: [data.interesse, data.mensagem].filter(Boolean).join(' — '),
         });
         let msg =
           'Olá! Tenho interesse no *Vistta Castanho* (loteamento fechado no Castanho, Jundiaí).';

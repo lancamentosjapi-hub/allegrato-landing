@@ -30,6 +30,7 @@ import React, {
   type CSSProperties,
   type ReactNode,
 } from 'react';
+import { sendLead } from '@/lib/lead';
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -532,6 +533,14 @@ export default function Vigore() {
       const email = (fd.get('email') || '').toString().trim();
       const tel = (fd.get('whatsapp') || '').toString().trim();
       const hor = (fd.get('horario') || '').toString().trim();
+      sendLead({
+        name: nome,
+        phone: tel,
+        email,
+        source: 'landing_vigore',
+        interest: 'Residencial Vigóre',
+        message: hor ? 'Melhor horário: ' + hor : '',
+      });
       let msg = 'Olá! Meu nome é ' + nome + ' e tenho interesse no Residencial Vigóre.';
       msg += '\n\nE-mail: ' + email;
       msg += '\nWhatsApp: ' + tel;

@@ -16,6 +16,7 @@
  */
 
 import React, { useEffect, useRef } from 'react';
+import { sendLead } from '@/lib/lead';
 
 export default function TerraceSerraDoJapi() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -240,6 +241,13 @@ export default function TerraceSerraDoJapi() {
         const nome = (f.nome.value || '').trim();
         const tel = (f.telefone.value || '').trim();
         const email = (f.email.value || '').trim();
+        sendLead({
+          name: nome,
+          phone: tel,
+          email,
+          source: 'landing_terrace-serra-do-japi',
+          interest: 'Terrace Serra do Japi',
+        });
         const msg =
           'Ola! Tenho interesse no Terrace Serra do Japi (Jundiai).%0A%0A' +
           'Nome: ' +
