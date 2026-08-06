@@ -10,6 +10,7 @@
  */
 
 import React, { useEffect, useRef } from 'react';
+import { sendLead } from '@/lib/lead';
 
 export default function ForestHouses() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -287,6 +288,14 @@ export default function ForestHouses() {
           } else wrap?.classList.remove('invalid');
         });
         if (!valid) return;
+        sendLead({
+          name: nome.value.trim(),
+          phone: tel.value.trim(),
+          email: f.email.value.trim(),
+          source: 'landing_forest-houses',
+          interest: 'Forest Houses',
+          message: f.interesse.value,
+        });
         let msg = 'Olá! Sou ' + nome.value.trim() + '.';
         msg += ' Tenho interesse no Forest Houses (' + f.interesse.value + ').';
         if (f.email.value.trim())

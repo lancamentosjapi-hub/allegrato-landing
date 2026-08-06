@@ -22,6 +22,7 @@ import React, {
   type CSSProperties,
   type ReactNode,
 } from 'react';
+import { sendLead } from '@/lib/lead';
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -452,6 +453,13 @@ export default function AltosDaAvenida({
     const tel = (f.elements.namedItem('telefone') as HTMLInputElement).value;
     const met = (f.elements.namedItem('metragem') as HTMLSelectElement).value;
     const num = (whatsapp || WHATSAPP_DEFAULT).replace(/\D/g, '');
+    sendLead({
+      name: nome,
+      phone: tel,
+      source: 'landing_altos-da-avenida',
+      interest: 'Altos da Avenida',
+      message: met,
+    });
     const txt =
       'Olá! Tenho interesse no Altos da Avenida (via Imobiliária Lotus Brokers).%0A%0A*Nome:* ' +
       encodeURIComponent(nome) +

@@ -19,6 +19,7 @@
  */
 
 import { useEffect } from 'react';
+import { sendLead } from '@/lib/lead';
 
 export default function Authoria() {
   useEffect(() => {
@@ -459,6 +460,14 @@ export default function Authoria() {
           email: (form as any).email.value,
           tipologia: (form as any).tipologia.value,
         };
+        sendLead({
+          name: data.nome,
+          phone: data.telefone,
+          email: data.email,
+          source: 'landing_authoria',
+          interest: 'Authoria by Tebas',
+          message: data.tipologia,
+        });
         const msg =
           'Olá! Quero agendar uma visita ao Authoria by Tebas.%0A' +
           '%0ANome: ' +

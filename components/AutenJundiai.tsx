@@ -20,6 +20,7 @@
  */
 
 import { useEffect, useRef } from 'react';
+import { sendLead } from '@/lib/lead';
 
 /* >>> CONFIGURE AQUI <<< — troque pelo WhatsApp da sua imobiliária */
 const WPP_NUMBER = '5511900000000'; // formato internacional, somente dígitos
@@ -143,6 +144,14 @@ export default function AutenJundiai() {
         const tel = (data.get('tel') || '').toString().trim();
         const email = (data.get('email') || '').toString().trim();
         const tipo = (data.get('tipo') || '').toString().trim();
+        sendLead({
+          name: nome,
+          phone: tel,
+          email,
+          source: 'landing_auten-jundiai',
+          interest: 'Auten Jundiaí',
+          message: tipo,
+        });
         let msg = 'Olá! Tenho interesse no Auten Jundiaí.';
         if (nome) msg += ' Meu nome é ' + nome + '.';
         if (tipo) msg += ' Interesse: ' + tipo + '.';

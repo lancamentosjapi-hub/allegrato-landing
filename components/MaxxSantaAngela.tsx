@@ -22,6 +22,7 @@ import React, {
   type CSSProperties,
   type ReactNode,
 } from 'react';
+import { sendLead } from '@/lib/lead';
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -274,6 +275,14 @@ export default function MaxxSantaAngela({
     const f = e.currentTarget;
     const nome = (f.elements.namedItem('nome') as HTMLInputElement | null)?.value || '';
     const fone = (f.elements.namedItem('fone') as HTMLInputElement | null)?.value || '';
+    const email = (f.elements.namedItem('email') as HTMLInputElement | null)?.value || '';
+    sendLead({
+      name: nome,
+      phone: fone,
+      email,
+      source: 'landing_maxx-santa-angela',
+      interest: 'Maxx Santa Angela',
+    });
     const waNum = whatsappNumber || '5511926143393';
     const txt = encodeURIComponent(
       'Olá! Sou ' +

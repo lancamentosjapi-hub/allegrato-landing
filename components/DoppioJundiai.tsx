@@ -19,6 +19,7 @@
 
 import React, { useCallback, useEffect, useState, type CSSProperties } from 'react';
 import { parseStyle, waHref } from '@/lib/dc-runtime';
+import { sendLead } from '@/lib/lead';
 
 const WA_NUMBER = '5511926143393';
 const waMain = waHref(
@@ -338,6 +339,13 @@ export default function DoppioJundiai() {
     const tel = (f.elements.namedItem('telefone') as HTMLInputElement)?.value.trim() || '';
     const email = (f.elements.namedItem('email') as HTMLInputElement)?.value.trim() || '';
     if (!nome || !tel) return;
+    sendLead({
+      name: nome,
+      phone: tel,
+      email,
+      source: 'landing_doppio-jundiai',
+      interest: 'Doppio Jundiaí',
+    });
     const text =
       `Olá! Sou ${nome} e tenho interesse no Doppio Jundiaí.\nTelefone: ${tel}` +
       (email ? `\nE-mail: ${email}` : '');
