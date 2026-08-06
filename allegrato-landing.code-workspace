@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "allegrato-landing",
+			"path": "."
+		},
+		{
+			"name": "htmls",
+			"path": "../../Downloads/htmls"
+		}
+	],
+	"settings": {}
+}
