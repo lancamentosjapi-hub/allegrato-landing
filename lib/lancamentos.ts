@@ -105,12 +105,23 @@ export type LancamentoListItem = {
   stage: string;
   type: string; // categórico p/ filtro, ex "3 dorms"
   priceNum: number;
-  price: string;
+  // null = preço não informado. Quem renderiza escolhe o texto; a camada de
+  // dados não devolve rótulo de interface disfarçado de valor.
+  price: string | null;
   specs: string;
   exclusive: boolean;
   img: string | null;
   href: string | null; // landing rica se existir; senão null (card abre contato)
 };
+
+// Normaliza o preço da listagem para `string | null`. Além do campo vazio, trata
+// "Consultar valor" — texto de interface que o dash e o fallback curado gravaram
+// como se fosse valor. Concentrado aqui para o card não precisar conhecê-lo.
+function precoOuNulo(texto: string | null | undefined): string | null {
+  const v = texto?.trim();
+  if (!v || v.toLowerCase() === 'consultar valor') return null;
+  return v;
+}
 
 export function toListItem(row: LancamentoRow): LancamentoListItem {
   const slug = slugDaLanding(row);
@@ -122,7 +133,7 @@ export function toListItem(row: LancamentoRow): LancamentoListItem {
     stage: row.estagio ?? '',
     type: row.tipo_dorms ?? '',
     priceNum: row.preco_num ?? 0,
-    price: row.preco_texto ?? 'Consultar valor',
+    price: precoOuNulo(row.preco_texto),
     specs: row.specs ?? row.dormitorios ?? '',
     exclusive: row.exclusivo ?? false,
     img: capa(row.fotos),
@@ -291,7 +302,7 @@ export async function getLancamentosList(): Promise<LancamentoListItem[]> {
       // campos (ver isListItemApresentavel). Mostrar vale mais que filtrar.
       type: '',
       priceNum: 0,
-      price: d.price,
+      price: precoOuNulo(d.price),
       specs: d.specs,
       exclusive: d.exclusive,
       img: d.img,

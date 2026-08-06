@@ -150,15 +150,15 @@ const WHATSAPP_DEFAULT = '5511926143393';
 
 // motivos do renderVals (valores exatos).
 const motivos = [
-  { num: '01', title: 'Melhor preço', text: 'Na tabela de lançamento você entra pelo menor valor — antes da valorização que vem com o avanço da obra.' },
-  { num: '02', title: 'Pagamento facilitado', text: 'Entrada parcelada e fluxo direto com a construtora, sem precisar do valor cheio à vista nem financiar tudo de cara.' },
-  { num: '03', title: 'Valorização até a chave', text: 'Da planta à entrega, o imóvel tende a valorizar — quem compra cedo costuma ver o patrimônio crescer antes de morar.' },
-  { num: '04', title: 'Escolha as melhores unidades', text: 'Quem chega primeiro escolhe andar, posição do sol e vista. As melhores unidades sempre vão primeiro.' },
+  { num: '01', title: 'Condições de lançamento', text: 'As primeiras fases podem oferecer condições comerciais mais atrativas. A Lotus compara preço por metro quadrado, fluxo de pagamento e imóveis equivalentes antes de recomendar uma escolha.' },
+  { num: '02', title: 'Fluxo de pagamento', text: 'Entrada e parcelas durante a obra podem distribuir o investimento ao longo do tempo. Analisamos as condições para entender se o fluxo é compatível com o seu planejamento.' },
+  { num: '03', title: 'Potencial de valorização', text: 'Localização, demanda, qualidade do projeto e estágio da obra podem influenciar a valorização. Potencial não é promessa: exige análise e estratégia.' },
+  { num: '04', title: 'Mais opções de escolha', text: 'Nas primeiras fases, costuma haver maior variedade de plantas, andares, posições solares e vistas. A melhor unidade é aquela que combina esses fatores com o seu objetivo.' },
 ];
 
 // faqs (perguntas/respostas) do renderVals — open/sign/toggle derivados do state openFaq.
 const faqData = [
-  { q: 'Por que comprar na planta?', a: 'Pelo melhor preço (tabela de lançamento), pagamento facilitado com a construtora, valorização até a entrega e a escolha das melhores unidades. É a forma mais acessível de entrar num imóvel novo.' },
+  { q: 'Por que comprar na planta?', a: 'Porque pode oferecer condições comerciais diferenciadas, maior variedade de unidades e potencial de valorização ao longo da obra. Esses benefícios variam conforme o empreendimento e precisam ser analisados caso a caso.' },
   { q: 'É seguro comprar na planta?', a: 'Sim, desde que a construtora seja sólida e o registro de incorporação esteja em ordem. A Lotus avalia o histórico da construtora e a documentação antes de recomendar.' },
   { q: 'Quanto preciso de entrada?', a: 'Varia por empreendimento, mas em geral a entrada é parcelada durante a obra, o que dilui bastante o esforço inicial frente a um imóvel pronto.' },
   { q: 'Posso financiar um lançamento?', a: 'Sim. Durante a obra você paga direto à construtora e, na entrega (ou perto dela), pode financiar o saldo pelo banco. A Lotus acompanha a simulação.' },
@@ -240,16 +240,16 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
   return (
     <div>
       {/* HEADER */}
-      <LotusHeader active="lancamentos" />
+      <LotusHeader active="lancamentos" cta="Falar com um consultor" />
 
       {/* HERO */}
       <section style={parseStyle('background:#1d3a2c;position:relative;overflow:hidden;')}>
         <ImageSlot id="lanc-hero" src="/assets/doppio-capa.jpg" style={parseStyle('position:absolute;inset:0;width:100%;height:100%;opacity:.32;')} alt="Foto aérea de empreendimentos / região" />
         <div style={parseStyle('position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,36,28,.7),rgba(21,36,28,.92));')}></div>
         <div style={parseStyle('position:relative;max-width:980px;margin:0 auto;padding:100px 32px;text-align:center;')}>
-          <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#cdab6e;margin-bottom:24px;')}>Lançamentos · Jundiaí &amp; Itupeva</div>
-          <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(38px,5.4vw,68px);line-height:1.03;letter-spacing:-.02em;color:#f7f2e8;margin:0 0 22px;")}>Os melhores lançamentos da região, <em style={parseStyle('font-style:italic;color:#cdab6e;')}>num lugar só.</em></h1>
-          <p style={parseStyle('font-size:clamp(16px,1.7vw,20px);color:rgba(247,242,232,.82);font-weight:300;line-height:1.55;max-width:620px;margin:0 auto;')}>Pré-lançamentos, obras e prontos para morar — com curadoria do Squad Lançamentos da Lotus. Compare por preço, cidade e estágio e escale o melhor momento de comprar.</p>
+          <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#cdab6e;margin-bottom:24px;')}>Lançamentos em Jundiaí e região</div>
+          <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(38px,5.4vw,68px);line-height:1.03;letter-spacing:-.02em;color:#f7f2e8;margin:0 0 22px;")}>Grandes escolhas começam <em style={parseStyle('font-style:italic;color:#cdab6e;')}>antes da chave.</em></h1>
+          <p style={parseStyle('font-size:clamp(16px,1.7vw,20px);color:rgba(247,242,232,.82);font-weight:300;line-height:1.55;max-width:620px;margin:0 auto;')}>Pré-lançamentos, imóveis em obras e prontos para morar, selecionados com critério pela Lotus. Compare localização, planta, condições e estágio da obra para escolher com clareza o melhor momento de avançar.</p>
         </div>
       </section>
 
@@ -257,9 +257,9 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
       <section style={parseStyle('background:#ece2cf;padding:90px 32px;')}>
         <div style={parseStyle('max-width:1200px;margin:0 auto;')}>
           <div style={parseStyle('max-width:640px;margin-bottom:48px;')}>
-            <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Por que comprar na planta</div>
+            <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Antes de comprar na planta</div>
             <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.6vw,44px);color:#15241c;line-height:1.06;margin:0 0 16px;")}>Um lançamento é uma oportunidade — quando bem escolhido.</h2>
-            <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>Comprar cedo, com quem conhece a construtora e a região, costuma render mais. Veja por quê:</p>
+            <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>Comprar na planta pode oferecer condições diferenciadas, menores custos, mais opções de unidade e potencial de valorização. Mas uma boa escolha depende do preço, da construtora, do projeto e do seu objetivo.</p>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;')}>
             {/* hint-placeholder-count="4" */}
@@ -329,7 +329,17 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
                       <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:23px;color:#15241c;margin:0 0 6px;line-height:1.05;")}>{e.name}</h3>
                       <div style={parseStyle('font-size:13.5px;color:#3f6249;margin-bottom:16px;')}>{e.specs}</div>
                       <div style={parseStyle('margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;border-top:1px solid rgba(21,36,28,.08);padding-top:16px;')}>
-                        <div><div style={parseStyle('font-size:11.5px;color:#8aa593;')}>a partir de</div><div style={parseStyle("font-family:'Fraunces',serif;font-size:20px;color:#1d3a2c;")}>{e.price}</div></div>
+                        {/* Sem preço cadastrado, o rótulo "A partir de" some junto:
+                            exibir os dois virava "a partir de Consultar valor".
+                            "Valor sob consulta" é mais largo que o texto anterior e
+                            quebra em duas linhas nos cards de CTA longo ("Ver este
+                            empreendimento"). Deixamos quebrar: forçar uma linha só
+                            (nowrap) estoura o card, que é overflow:hidden, e corta o
+                            texto no mobile. Encurtar o CTA resolve — depende da Lotus. */}
+                        <div>
+                          {e.price && <div style={parseStyle('font-size:11.5px;color:#8aa593;')}>A partir de</div>}
+                          <div style={parseStyle("font-family:'Fraunces',serif;font-size:20px;color:#1d3a2c;")}>{e.price ?? 'Valor sob consulta'}</div>
+                        </div>
                         <span style={parseStyle('color:#b18a4a;font-weight:600;font-size:14px;')}>{e.href ? 'Ver este empreendimento →' : 'Falar sobre este →'}</span>
                       </div>
                     </div>
@@ -357,8 +367,8 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
           <div style={parseStyle('width:130px;height:130px;border-radius:50%;background:#3f6249;overflow:hidden;position:relative;flex-shrink:0;')}><ImageSlot id="lanc-corretor" style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt="Rafael" /></div>
           <div>
             <div style={parseStyle('font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>Squad Lançamentos</div>
-            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(24px,2.8vw,34px);color:#f7f2e8;line-height:1.1;margin:0 0 12px;")}>A gente conhece cada planta e cada construtora.</h2>
-            <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.8);font-weight:300;line-height:1.6;margin:0 0 20px;max-width:560px;')}>O Squad Lançamentos da Lotus acompanha cada empreendimento desde o pré-lançamento — pra te dizer com honestidade qual é a melhor oportunidade pro seu momento, e negociar a melhor condição.</p>
+            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(24px,2.8vw,34px);color:#f7f2e8;line-height:1.1;margin:0 0 12px;")}>Conhecer a planta é só o começo.</h2>
+            <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.8);font-weight:300;line-height:1.6;margin:0 0 20px;max-width:560px;')}>Antes de recomendar um lançamento, nossos especialistas analisam a incorporadora, o projeto, a localização, a unidade, o fluxo de pagamento e o potencial de cada escolha. Você recebe contexto para decidir e apoio para negociar a melhor condição possível.</p>
             <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:13px 24px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Falar com o especialista <span>→</span></Hoverable>
           </div>
         </div>
@@ -369,10 +379,10 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
         <div style={parseStyle('max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;')}>
           <div>
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:16px;')}>Dúvidas sobre lançamentos</div>
-            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3vw,38px);color:#15241c;line-height:1.08;margin:0 0 22px;")}>Comprar na planta vale a pena?</h2>
+            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3vw,38px);color:#15241c;line-height:1.08;margin:0 0 22px;")}>Comprar na planta faz sentido para você?</h2>
             <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:26px 28px;')}>
-              <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>TL;DR</div>
-              <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.65;margin:0;')}>Comprar um imóvel na planta em Jundiaí ou Itupeva costuma valer a pena: preço de tabela de lançamento, pagamento facilitado direto com a construtora, valorização até a entrega e escolha das melhores unidades. O segredo é escolher a construtora e o momento certos — é aí que a Lotus entra.</p>
+              <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>Em resumo</div>
+              <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.65;margin:0;')}>Pode fazer sentido quando o empreendimento, a condição de pagamento e o horizonte da compra estão alinhados ao seu objetivo. A Lotus ajuda você a comparar vantagens, riscos e alternativas antes de avançar.</p>
             </div>
           </div>
           <div>
@@ -398,8 +408,8 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
       <section style={parseStyle('background:#3f6249;padding:100px 32px;position:relative;overflow:hidden;')}>
         <div style={parseStyle("position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;pointer-events:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\");")}></div>
         <div style={parseStyle('max-width:680px;margin:0 auto;position:relative;text-align:center;')}>
-          <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,46px);color:#f7f2e8;line-height:1.05;margin:0 0 16px;")}>Quer saber das oportunidades na cidade?</h2>
-          <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.82);font-weight:300;line-height:1.55;margin:0 0 36px;')}>Deixe seu contato e um especialista do Squad Lançamentos te apresenta as melhores oportunidades de Jundiaí e Itupeva — inclusive antes de irem ao mercado.</p>
+          <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,46px);color:#f7f2e8;line-height:1.05;margin:0 0 16px;")}>Quer descobrir quais lançamentos fazem sentido para você?</h2>
+          <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.82);font-weight:300;line-height:1.55;margin:0 0 36px;')}>Conte seu momento. Um especialista do Squad Lançamentos apresentará opções alinhadas ao seu objetivo, perfil e planejamento em Jundiaí e região.</p>
           <div style={parseStyle('background:#1d3a2c;border-radius:22px;padding:clamp(28px,4vw,40px);text-align:left;')}>
             {leadDone && (
               <>
@@ -438,8 +448,8 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#b18a4a" strokeWidth="1.8"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
               Newsletter de oportunidades
             </div>
-            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3.2vw,38px);color:#15241c;line-height:1.08;margin:0 0 12px;")}>Fique por dentro, antes de todo mundo.</h2>
-            <p style={parseStyle('font-size:16px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>Novos lançamentos, andamento das obras e oportunidades da região direto no seu e-mail. Sem spam — só o que importa.</p>
+            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3.2vw,38px);color:#15241c;line-height:1.08;margin:0 0 12px;")}>Acompanhe o mercado antes de decidir.</h2>
+            <p style={parseStyle('font-size:16px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>Receba novos lançamentos, atualizações de obras e oportunidades selecionadas em Jundiaí e região. Informação relevante, sem excesso de mensagens.</p>
           </div>
           <div>
             {newsDone && (

@@ -37,9 +37,9 @@ function toEmpItem(item: LancamentoListItem, i: number): EmpItem {
 // Metadata portada do <head>/<helmet> de lotus-lancamentos/index.html (paridade de SEO).
 // TODO go-live: trocar canonical/og:url para o domínio final, remover noindex e publicar sitemap.
 export const metadata: Metadata = {
-  title: 'Lançamentos imobiliários em Jundiaí e Itupeva | Lotus Brokers',
+  title: 'Lançamentos em Jundiaí e região | Lotus Brokers',
   description:
-    'Lançamentos selecionados em Jundiaí e Itupeva, da planta à chave, acompanhados pelo Squad Lançamentos da Lotus. Curadoria, não catálogo.',
+    'Conheça lançamentos selecionados em Jundiaí e região. Compare plantas, condições e estágios da obra com orientação especializada da Lotus Brokers.',
   alternates: {
     canonical: 'https://www.lotusbrokers.com.br/lotus-lancamentos',
   },
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
     siteName: 'Lotus Brokers',
     type: 'website',
     url: 'https://www.lotusbrokers.com.br/lotus-lancamentos',
-    title: 'Lançamentos em Jundiaí e Itupeva — Lotus Brokers',
+    title: 'Grandes escolhas começam antes da chave | Lotus Brokers',
     description:
-      'Os melhores lançamentos da região, com quem conhece cada planta e a negociação com a construtora.',
+      'Pré-lançamentos, imóveis em obras e prontos para morar, analisados por localização, projeto, condição e potencial.',
     images: [
       'https://i.postimg.cc/nzx1wvHM/Chat-GPT-Image-25-de-jun-de-2026-14-04-13.png',
     ],
