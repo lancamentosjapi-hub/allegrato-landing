@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { slugify, hrefForSlug, isLandingDir, slugParaLanding } from './landings.ts';
+import { developmentsFallback } from './developments.ts';
 
 /* ---------- slugify ---------- */
 // acentos viram ASCII (é o que faz "Maxx Santa Ângela" bater com app/maxx-santa-angela)
@@ -60,4 +61,32 @@ for (const slug of landings) {
   assert.equal(hrefForSlug(slug), `/${slug}`, `landing ${slug} existe em app/ mas não linka`);
 }
 
-console.log(`ok — ${landings.length} landings, todas linkáveis`);
+/* ---------- toda landing aparece na vitrine ---------- */
+// A vitrine (home e /lotus-lancamentos) mostra os lançamentos do Supabase MAIS as
+// landings que nenhum deles representa, e os dados dessas últimas saem de
+// developmentsFallback. Uma landing sem entrada lá só apareceria se alguém a
+// cadastrasse no dash — que é exatamente como 8 páginas prontas ficaram
+// invisíveis antes. Criar app/<slug>/page.tsx sem a entrada quebra aqui.
+const fallbackSlugs = developmentsFallback
+  .map((d) => d.href?.replace(/^\//, '') ?? '')
+  .filter(Boolean);
+
+for (const slug of landings) {
+  assert.ok(
+    fallbackSlugs.includes(slug),
+    `landing ${slug} não tem entrada em lib/developments.ts — não apareceria na vitrine sem cadastro no dash`,
+  );
+}
+
+// E o contrário: entrada apontando para pasta que não existe vira card com link
+// quebrado na home, já que o fallback não passa por hrefForSlug.
+for (const slug of fallbackSlugs) {
+  assert.ok(
+    landings.includes(slug),
+    `lib/developments.ts aponta para /${slug}, que não existe em app/`,
+  );
+}
+
+console.log(
+  `ok — ${landings.length} landings, todas linkáveis e todas presentes na vitrine`,
+);

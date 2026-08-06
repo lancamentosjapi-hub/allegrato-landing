@@ -49,20 +49,30 @@ function landingProvavel(slug: string, landings: string[]): string | null {
 }
 
 async function main() {
-  const { getLancamentosList, getLancamentosRows, isListItemApresentavel } =
+  const { getLancamentosList, getLancamentosRows, toListItem, isListItemApresentavel } =
     await import('../lib/lancamentos');
   const { landingSlugs, slugify } = await import('../lib/landings');
 
   const landings = [...landingSlugs()].sort();
-  const rows = await getLancamentosList();
 
-  // Para dizer se o vínculo é explícito (landing_slug) ou derivado do nome.
-  const explicito = new Map(
-    (await getLancamentosRows()).map((r) => [r.nome, (r.landing_slug ?? '').trim()]),
-  );
+  // DUAS fontes, e a distinção importa: getLancamentosList() é a vitrine final
+  // (banco + landings servidas pelo fallback), enquanto getLancamentosRows() é só
+  // o banco. Ler apenas a primeira torna o diagnóstico circular — ele veria os
+  // itens do fallback e concluiria que estão cadastrados.
+  const doBanco = await getLancamentosRows();
+  const naVitrine = await getLancamentosList();
+
+  const explicito = new Map(doBanco.map((r) => [r.nome, (r.landing_slug ?? '').trim()]));
   const origem = (nome: string) => (explicito.get(nome) ? 'landing_slug' : 'nome');
 
-  if (rows.length === 0) {
+  // Convertidos a partir de `doBanco`, não filtrados de `naVitrine`: quando o
+  // fallback serve uma landing com o mesmo nome do lançamento (Doppio, Forest
+  // Houses), filtrar a vitrine traria os dois e o mesmo empreendimento apareceria
+  // como OK e como incompleto ao mesmo tempo. Só o banco passa pelas checagens de
+  // cadastro — item do fallback não tem dono no dash para corrigir.
+  const rows = doBanco.map(toListItem);
+
+  if (doBanco.length === 0) {
     console.log('Nenhum lançamento retornado pelo banco. Verifique as env vars do Supabase.');
     process.exitCode = 1;
     return;
@@ -111,8 +121,19 @@ async function main() {
     }
   }
 
-  const usados = new Set(rows.map((r) => slugify(r.name)));
-  const orfas = landings.filter((l) => !usados.has(l));
+  // Landings servidas pelo fallback curado, por não terem lançamento apresentável
+  // no banco. NÃO é problema: a página aparece e abre normalmente. Cadastrar no
+  // dash só troca os dados do card pelos reais (foto, preço, estágio).
+  const cobertasPeloBanco = new Set(
+    rows.filter(isListItemApresentavel).map((r) => r.href?.replace(/^\//, '') ?? ''),
+  );
+  const peloFallback = landings.filter((l) => !cobertasPeloBanco.has(l));
+
+  // A trava de verdade: landing que não aparece por caminho NENHUM — nem pelo
+  // banco nem pelo fallback. Só acontece se a página existir em app/ sem entrada
+  // em developments.ts. Confirmado contra a vitrine real, não deduzido.
+  const naVitrineSlugs = new Set(naVitrine.map((r) => r.href?.replace(/^\//, '') ?? ''));
+  const invisiveisDeVez = landings.filter((l) => !naVitrineSlugs.has(l));
 
   const p = (t: string, xs: string[]) => {
     console.log(`\n${t} (${xs.length})`);
@@ -120,21 +141,26 @@ async function main() {
     else xs.forEach((x) => console.log('   ' + x));
   };
 
-  console.log(`${rows.length} lançamentos no banco · ${landings.length} landings em app/`);
-  p('OK — abrem a landing', linkam);
-  p('NOME ERRADO NO DASH — a landing existe mas o card cai no WhatsApp', errados);
-  // Com landing_slug o nome ficou livre, então a instrução é preencher o campo —
-  // o nome sugerido vale só para quem ainda não tem o campo no dash.
-  p(
-    'LANDING ÓRFÃ — a página existe, mas nenhum lançamento no dash aponta para ela',
-    orfas.map(
-      (o) => `/${o}   cadastre um lançamento com landing_slug = "${o}"  (nome livre; sem o campo, chame de "${nomeNecessario(o)}")`,
-    ),
+  console.log(
+    `${doBanco.length} lançamentos no banco · ${landings.length} landings em app/ · ` +
+      `${naVitrine.length} cards na vitrine`,
   );
-  p('INVISÍVEL — cadastrado, mas não aparece na vitrine', invisiveis);
+  p('OK — abrem a landing, com dados do banco', linkam);
+  p('NOME ERRADO NO DASH — a landing existe mas o card cai no WhatsApp', errados);
+  p(
+    'NA VITRINE PELO FALLBACK — aparece e abre; cadastrar no dash troca pelos dados reais',
+    peloFallback.map((o) => `/${o}   opcional: lançamento com landing_slug = "${o}" (nome livre)`),
+  );
+  p(
+    'NÃO APARECE EM LUGAR NENHUM — página existe mas falta entrada em lib/developments.ts',
+    invisiveisDeVez.map((o) => `/${o}`),
+  );
+  p('CARD SEM FOTO/CIDADE — a landing aparece pelo fallback, mas com dados curados', invisiveis);
   p('SEM LANDING — card vai para o WhatsApp (esperado, não há página)', semLanding);
 
-  if (errados.length || invisiveis.length) process.exitCode = 1;
+  // Só falha no que é de fato defeito: link para página inexistente ou landing
+  // que sumiu da vitrine. Card servido pelo fallback é o funcionamento normal.
+  if (errados.length || invisiveisDeVez.length) process.exitCode = 1;
 }
 
 main().catch((e) => {
