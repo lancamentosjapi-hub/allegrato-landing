@@ -15,7 +15,7 @@ export const dynamic = 'force-dynamic';
 // Ninguém está esperando esta resposta — o visitante já foi para o WhatsApp.
 // Segurar conexão além disso só ocupa a instância. TIMEOUT_MS é por
 // tentativa: com as duas tentativas do postWebhook + RETRY_DELAY_MS, o pior
-// caso fim-a-fim é ~12s (2 × TIMEOUT_MS + RETRY_DELAY_MS), não os 10s daqui.
+// caso fim-a-fim é ~12s (2 × TIMEOUT_MS + RETRY_DELAY_MS).
 const TIMEOUT_MS = 5_750;
 const RETRY_DELAY_MS = 500;
 
@@ -107,14 +107,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'unavailable' }, { status: 500 });
   }
 
-  if (rateLimited(clientIp(req))) {
-    return NextResponse.json({ error: 'rate_limited' }, { status: 429 });
-  }
-
   // Content-Length ausente/ilegível também rejeita — não dá pra escapar do
-  // teto só omitindo o header.
-  const contentLength = Number(req.headers.get('content-length'));
+  // teto só omitindo o header. Fica antes do rate limit e do req.json() de
+  // propósito: precisa rodar antes do corpo ser bufferizado.
+  const rawLength = req.headers.get('content-length');
+  const contentLength = Number(rawLength);
   if (!Number.isFinite(contentLength) || contentLength <= 0 || contentLength > MAX_BODY_BYTES) {
+    console.error(`[lead] payload recusado por content-length inválido/grande (${rawLength})`);
     return NextResponse.json({ error: 'payload_too_large' }, { status: 413 });
   }
 
@@ -139,6 +138,20 @@ export async function POST(req: NextRequest) {
   // O contrato exige pelo menos um dos dois; sem eles o lead é inútil.
   if (!payload.data.name && !payload.data.phone) {
     return NextResponse.json({ error: 'invalid_payload' }, { status: 400 });
+  }
+
+  // Rate limit só depois de validado: senão, alguns submits em branco do
+  // mesmo IP consomem o teto e derrubam o próximo lead de verdade.
+  const ip = clientIp(req);
+  // Chave 'unknown' = sem x-forwarded-for utilizável (app acessado direto,
+  // proxy mal configurado, ou um CDN na frente que sempre repassa o mesmo IP
+  // de borda). Sem IP de cliente não dá pra limitar por IP — e limitar mesmo
+  // assim juntaria as 23 landings num balde só. Num formulário público,
+  // alguns leads de spam são um resultado bem melhor que perder leads reais
+  // em massa, então pulamos o limite em vez de aplicá-lo.
+  if (ip !== 'unknown' && rateLimited(ip)) {
+    console.error(`[lead] rate limit atingido para ${payload.data.id} (ip=${ip})`);
+    return NextResponse.json({ error: 'rate_limited' }, { status: 429 });
   }
 
   const ok = await postWebhook(url, secret, payload);

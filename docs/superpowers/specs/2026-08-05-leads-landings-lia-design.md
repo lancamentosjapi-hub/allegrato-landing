@@ -203,11 +203,16 @@ lixo — e lixo no CRM significa a LIA abordando gente que não existe.
   phone)` e os dois vêm do cliente, quem souber o telefone de um lead consegue
   recompor a chave dele. O regex de `source` reduz a superfície; a proteção
   real contra sobrescrita é do lado do CRM.
-- **Rate limit por IP:** em memória, ~5 leads / 10 min. Marcado com comentário
-  `ponytail:` declarando o teto — é por instância e zera no redeploy. Se o
-  portal escalar para várias instâncias, vira rate limit compartilhado. O IP
-  sai da **última** entrada do `x-forwarded-for` (a que o proxy confiável
-  acrescentou); a primeira é fornecida pelo cliente e forjá-la anula o limite.
+- **Rate limit por IP:** em memória, ~5 leads / 10 min, aplicado só depois da
+  validação (um submit em branco não consome o teto de um lead de verdade).
+  Marcado com comentário `ponytail:` declarando o teto — é por instância e
+  zera no redeploy. Se o portal escalar para várias instâncias, vira rate
+  limit compartilhado. O IP sai da **última** entrada do `x-forwarded-for` (a
+  que o proxy confiável acrescentou); a primeira é fornecida pelo cliente e
+  forjá-la anula o limite. Sem XFF utilizável a chave cai em `'unknown'` —
+  nesse caso o limite é **pulado**, não aplicado: sem IP de cliente ele
+  juntaria as 23 landings num balde só, e num formulário público perder leads
+  reais em massa é pior do que deixar passar algum spam.
 - Erros nunca expõem URL, segredo ou resposta crua do webhook.
 
 **PII em log (item conhecido de LGPD):** o log de falha grava o `id`, que
@@ -221,14 +226,16 @@ formulários para ganhar pouco além do rate limit. Entra se spam aparecer.
 
 ## Confiabilidade
 
-Uma retentativa no servidor em falha de rede ou 5xx, após ~500 ms. Sem ela, um
-soluço do webhook perde o lead em silêncio — exatamente o problema que este
-trabalho existe para resolver. Não retenta em 4xx: erro de payload não melhora
-repetindo.
+Uma retentativa no servidor em falha de rede, 5xx, 408 (timeout) ou 429 (rate
+limit) do webhook, após ~500 ms. Sem ela, um soluço do webhook perde o lead em
+silêncio — exatamente o problema que este trabalho existe para resolver. Não
+retenta em outro 4xx: erro de payload não melhora repetindo.
 
-Timeout de 10 s por tentativa. É bem menor que os 60 s da rota de chat porque
-ninguém está esperando a resposta: o visitante já foi para o WhatsApp e o
-registro é assíncrono. Segurar conexão além disso só ocupa a instância.
+Timeout de 5,75 s por tentativa (`TIMEOUT_MS`). Com as duas tentativas mais o
+delay entre elas, o pior caso fim-a-fim é ~12 s (2 × 5,75 s + 0,5 s) — bem
+menor que os 60 s da rota de chat porque ninguém está esperando a resposta: o
+visitante já foi para o WhatsApp e o registro é assíncrono. Segurar conexão
+além disso só ocupa a instância.
 
 ## LGPD
 

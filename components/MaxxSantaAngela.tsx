@@ -276,12 +276,14 @@ export default function MaxxSantaAngela({
     const nome = (f.elements.namedItem('nome') as HTMLInputElement | null)?.value || '';
     const fone = (f.elements.namedItem('fone') as HTMLInputElement | null)?.value || '';
     const email = (f.elements.namedItem('email') as HTMLInputElement | null)?.value || '';
+    const horario = (f.elements.namedItem('horario') as HTMLSelectElement | null)?.value || '';
     sendLead({
       name: nome,
       phone: fone,
       email,
       source: 'landing_maxx-santa-angela',
       interest: 'Maxx Santa Angela',
+      message: horario ? 'Melhor horário: ' + horario : '',
     });
     const waNum = whatsappNumber || '5511926143393';
     const txt = encodeURIComponent(
