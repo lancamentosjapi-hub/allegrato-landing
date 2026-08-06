@@ -190,7 +190,6 @@ function ImageSlot({
 /* ------------------------------------------------------------------ */
 
 const WHATSAPP_DEFAULT = '5511926143393';
-const GAL_LEN = 6;
 
 type Broker = {
   id: string;
@@ -261,15 +260,6 @@ function realToBroker(b: {
     photoUrl: b.photoUrl ?? conteudoRealDe(b.name)?.foto ?? null,
   };
 }
-
-const galleryData = [
-  { slot: 'gal-1', tag: 'Equipe', label: 'Nosso time completo, 2026' },
-  { slot: 'gal-2', tag: 'Premiação', label: 'Top imobiliária da região' },
-  { slot: 'gal-3', tag: 'Bastidores', label: 'Treinamento semanal de especialistas' },
-  { slot: 'gal-4', tag: 'Evento', label: 'Convenção anual Lotus' },
-  { slot: 'gal-5', tag: 'Conquista', label: 'Recorde de vendas no trimestre' },
-  { slot: 'gal-6', tag: 'Comunidade', label: 'Ação social em Jundiaí' },
-];
 
 /**
  * Conteúdo REAL por corretor, enquanto o banco não tem onde guardá-lo.
@@ -463,7 +453,6 @@ export default function LotusCorretores({
   const [fName, setFName] = useState('');
   const [openFaq, setOpenFaq] = useState(0);
   const [formDone, setFormDone] = useState(false);
-  const [galIndex, setGalIndex] = useState(0);
 
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -474,20 +463,6 @@ export default function LotusCorretores({
     '?text=' +
     encodeURIComponent('Quero falar com um corretor especialista da Lotus.');
   const waLink = wa;
-
-  // Carrossel automático: setInterval 5s, só avança quando view==='list'.
-  // (componentDidMount / componentWillUnmount do dc-runtime)
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (view === 'list') setGalIndex((g) => (g + 1) % GAL_LEN);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [view]);
-
-  const prevGallery = () => setGalIndex((g) => (g + GAL_LEN - 1) % GAL_LEN);
-  const nextGallery = () => setGalIndex((g) => (g + 1) % GAL_LEN);
-
-  const gi = galIndex;
 
   // Filtro de brokers (lógica exata do script).
   const list = BROKERS.filter(
@@ -656,35 +631,6 @@ export default function LotusCorretores({
                 </div>
               </>
             )}
-          </section>
-
-          {/* vida na lotus (carrossel) */}
-          <section style={parseStyle('background:#f7f2e8;padding:20px 32px 90px;')}>
-            <div style={parseStyle('max-width:1100px;margin:0 auto;')}>
-              <div style={parseStyle('text-align:center;max-width:600px;margin:0 auto 36px;')}>
-                <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:14px;')}>Vida na Lotus</div>
-                <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3.4vw,40px);color:#15241c;line-height:1.06;margin:0;")}>Time, bastidores e conquistas.</h2>
-              </div>
-              <div style={parseStyle('position:relative;border-radius:22px;overflow:hidden;background:#1d3a2c;box-shadow:0 24px 60px -34px rgba(21,36,28,.5);aspect-ratio:16/9;')}>
-                {galleryData.map((g, i) => (
-                  <div key={i} style={parseStyle('position:absolute;inset:0;opacity:' + (i === gi ? '1' : '0') + ';transition:opacity .7s ease;pointer-events:' + (i === gi ? 'auto' : 'none') + ';')}>
-                    <ImageSlot id={g.slot} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={g.label} />
-                    <div style={parseStyle('position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(21,36,28,.85));')}></div>
-                    <div style={parseStyle('position:absolute;left:0;right:0;bottom:0;padding:clamp(22px,3vw,40px);')}>
-                      <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#cdab6e;margin-bottom:8px;')}>{g.tag}</div>
-                      <div style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(22px,2.8vw,32px);color:#f7f2e8;line-height:1.1;max-width:560px;")}>{g.label}</div>
-                    </div>
-                  </div>
-                ))}
-                <Hoverable as="button" onClick={prevGallery} aria-label="Anterior" baseStyle={parseStyle('position:absolute;top:50%;left:18px;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(247,242,232,.16);backdrop-filter:blur(4px);border:1px solid rgba(247,242,232,.32);color:#f7f2e8;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:3;')} hoverStyle={parseStyle('background:rgba(247,242,232,.3)')}>‹</Hoverable>
-                <Hoverable as="button" onClick={nextGallery} aria-label="Próximo" baseStyle={parseStyle('position:absolute;top:50%;right:18px;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(247,242,232,.16);backdrop-filter:blur(4px);border:1px solid rgba(247,242,232,.32);color:#f7f2e8;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:3;')} hoverStyle={parseStyle('background:rgba(247,242,232,.3)')}>›</Hoverable>
-                <div style={parseStyle('position:absolute;left:0;right:0;bottom:18px;display:flex;justify-content:center;gap:8px;z-index:3;')}>
-                  {galleryData.map((g, i) => (
-                    <button key={i} onClick={() => setGalIndex(i)} aria-label="Ir para a foto" style={parseStyle('width:' + (i === gi ? '26px' : '9px') + ';height:9px;border-radius:30px;border:none;cursor:pointer;transition:all .3s;padding:0;background:' + (i === gi ? '#cdab6e' : 'rgba(247,242,232,.45)') + ';')}></button>
-                  ))}
-                </div>
-              </div>
-            </div>
           </section>
 
           {/* CTA recrutamento */}
