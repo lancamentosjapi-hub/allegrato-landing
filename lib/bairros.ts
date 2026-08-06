@@ -99,9 +99,7 @@ const vianeloBonfiglioli: Bairro = {
   cidade: 'Jundiaí',
   tagline:
     'Numa região central de Jundiaí, um dos bairros mais tradicionais da cidade — infraestrutura consolidada, mobilidade privilegiada e ampla oferta de serviços.',
-  // Sem foto própria ainda: o '' cai no gradiente da marca, em vez de emprestar
-  // a imagem de outro bairro e rotular errado um lugar específico.
-  heroImg: '',
+  heroImg: '/bairros/vianelo-bonfiglioli.jpg',
   stats: [
     { value: 'Central', label: 'localização' },
     { value: 'Misto', label: 'perfil predominante' },
