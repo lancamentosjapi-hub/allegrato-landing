@@ -734,7 +734,10 @@ export default function LotusHome({
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:26px;')}>
             {/* hint-placeholder-count: 6 */}
             {devs.map((d, i) => (
-              <Hoverable key={i} as="a" href={d.href ?? undefined} target="_top" rel="noopener" data-reveal="" baseStyle={parseStyle('display:flex;flex-direction:column;background:#f7f2e8;border-radius:18px;overflow:hidden;box-shadow:0 18px 44px -28px rgba(21,36,28,.35);transition:transform .35s ease, box-shadow .35s ease;')} hoverStyle={parseStyle('transform:translateY(-5px);box-shadow:0 30px 60px -30px rgba(21,36,28,.45)')}>
+              // Sem landing o card cai no WhatsApp, mesmo comportamento de
+              // /lotus-lancamentos. Antes o href virava `undefined` e o card
+              // continuava dizendo "Ver este empreendimento" sem levar a lugar nenhum.
+              <Hoverable key={i} as="a" href={d.href ?? waLink} target={d.href ? '_top' : '_blank'} rel="noopener" data-reveal="" baseStyle={parseStyle('display:flex;flex-direction:column;background:#f7f2e8;border-radius:18px;overflow:hidden;box-shadow:0 18px 44px -28px rgba(21,36,28,.35);transition:transform .35s ease, box-shadow .35s ease;')} hoverStyle={parseStyle('transform:translateY(-5px);box-shadow:0 30px 60px -30px rgba(21,36,28,.45)')}>
                 <div style={parseStyle('position:relative;aspect-ratio:4/3;background:#1d3a2c;')}>
                   {d.img && <img src={d.img} alt={d.name} loading="lazy" style={parseStyle('position:absolute;inset:0;width:100%;height:100%;object-fit:cover;')} />}
                   <div style={parseStyle('position:absolute;top:14px;left:14px;display:flex;gap:8px;')}>
@@ -753,7 +756,7 @@ export default function LotusHome({
                       <div style={parseStyle('font-size:12px;color:#8aa593;font-weight:500;')}>a partir de</div>
                       <div style={parseStyle("font-family:'Fraunces',serif;font-size:22px;color:#1d3a2c;font-weight:400;")}>{d.price}</div>
                     </div>
-                    <span style={parseStyle('color:#b18a4a;font-weight:600;font-size:14px;white-space:nowrap;')}>Ver este empreendimento →</span>
+                    <span style={parseStyle('color:#b18a4a;font-weight:600;font-size:14px;white-space:nowrap;')}>{d.href ? 'Ver este empreendimento →' : 'Falar sobre este →'}</span>
                   </div>
                 </div>
               </Hoverable>

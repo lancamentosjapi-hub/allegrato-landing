@@ -1,4 +1,10 @@
 import { supabase, TENANT_ID } from './supabase';
+import { hrefForSlug, slugify } from './landings';
+
+// Reexportados por compatibilidade: a descoberta das landings mora em landings.ts
+// (ver o comentário de lá), mas `toCard`/`toListItem` continuam sendo o ponto de
+// consumo e quem já importava daqui não precisa mudar.
+export { hrefForSlug, slugify };
 
 // Camada de dados dos LANÇAMENTOS (empreendimentos) do Portal.
 // Fonte: view pública portal_lancamentos (Supabase, leitura anônima).
@@ -29,31 +35,6 @@ export type LancamentoRow = {
   created_at: string;
   updated_at: string;
 };
-
-// Landing pages ricas que existem no site estático (pastas na raiz do repo).
-// Um lançamento só linka para landing quando seu slug bate com uma destas.
-const LANDING_SLUGS = new Set([
-  'altos-da-avenida', 'auten-jundiai', 'authoria', 'avela', 'brisas-do-japi',
-  'forest-houses', 'gran-ville-santo-angelo', 'jardins-do-horto', 'manawa',
-  'maxx-santa-angela', 'resort-prime', 'terrace-serra-do-japi', 'vigore',
-  'vistta-castanho', 'vivarte',
-]);
-
-// slug a partir do nome (ex.: "Gran Ville Santo Ângelo" -> "gran-ville-santo-angelo")
-export function slugify(nome: string): string {
-  return nome
-    .normalize('NFKD')
-    .replace(/[̀-ͯ]/g, '') // remove acentos
-    .replace(/[^a-zA-Z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .toLowerCase();
-}
-
-// Rota da landing rica para um slug, ou null se não existir página.
-// Fonte única de verdade do link do card (banco e fallback estático).
-export function hrefForSlug(slug: string): string | null {
-  return LANDING_SLUGS.has(slug) ? `/${slug}` : null;
-}
 
 // Card rico — o shape que os cards de empreendimento (home + lançamentos) consomem.
 // Espelha os campos do array estático atual para manter o design idêntico.
