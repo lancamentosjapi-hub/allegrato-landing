@@ -1,0 +1,17 @@
+name: Deploy Easypanel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: easypanel-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Disparar webhook de deploy
+        run: curl -fsS -X POST "${{ secrets.EASYPANEL_DEPLOY_HOOK }}"
