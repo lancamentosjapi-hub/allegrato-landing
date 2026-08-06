@@ -374,7 +374,7 @@ export default function LotusBusca({
         <div style={parseStyle('max-width:1480px;margin:0 auto;padding:18px 32px;')}>
           {/* conversational */}
           <div style={parseStyle('display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(21,36,28,.14);border-radius:14px;padding:7px 7px 7px 18px;box-shadow:0 12px 30px -24px rgba(21,36,28,.4);')}>
-            <svg width="20" height="20" viewBox="0 0 32 32" style={parseStyle('flex-shrink:0;')}><path d="M16 4C19 9 19 15 16 20 13 15 13 9 16 4Z" fill="#cdab6e"></path><path d="M25 9C21 11 17.8 14 16 20 20.5 19 23.8 15.6 25 9Z" fill="#8aa593"></path></svg>
+            <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85"></path></svg>
             <input ref={searchRef} type="text" placeholder="Descreva o imóvel que você procura — ex.: casa com 4 suítes perto da Serra do Japi até R$ 2,5 mi" style={parseStyle('flex:1;border:none;outline:none;background:transparent;font-size:15.5px;color:#15241c;padding:9px 0;')} onKeyDown={onSearchKey} />
             <Hoverable as="button" onClick={parseAndSearch} baseStyle={parseStyle('flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:11px 20px;border:none;border-radius:10px;cursor:pointer;transition:background .2s;')} hoverStyle={parseStyle('background:#a07a3c')}>
               Buscar
@@ -547,8 +547,8 @@ export default function LotusBusca({
       <footer style={parseStyle('background:#15241c;padding:40px 32px;margin-top:24px;')}>
         <div style={parseStyle('max-width:1480px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;')}>
           <div style={parseStyle('display:flex;align-items:center;gap:11px;')}>
-            <svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85"></path></svg>
-            <span style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:rgba(247,242,232,.8);")}>O imóvel é só o palco. O cliente é a história.</span>
+            <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
+            <span style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:rgba(247,242,232,.8);")}>Grandes escolhas têm endereço.</span>
           </div>
           <div style={parseStyle('font-size:12.5px;color:rgba(247,242,232,.5);')}>{footerLegalLine()}</div>
         </div>
@@ -583,7 +583,7 @@ export default function LotusBusca({
             <svg width="24" height="24" viewBox="0 0 24 24" fill="#f7f2e8"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"></path></svg>
           </a>
           <button onClick={toggleLia} aria-label="Atendimento" style={parseStyle('height:50px;padding:0 20px 0 16px;border-radius:40px;background:#b18a4a;border:none;cursor:pointer;display:flex;align-items:center;gap:9px;box-shadow:0 12px 30px -10px rgba(21,36,28,.6);')}>
-            <svg width="18" height="18" viewBox="0 0 32 32"><path d="M16 4C19 9 19 15 16 20 13 15 13 9 16 4Z" fill="#15241c"></path><path d="M25 9C21 11 17.8 14 16 20 20.5 19 23.8 15.6 25 9Z" fill="#1d3a2c"></path></svg>
+            <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#15241c"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#25543b"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#15241c" opacity=".85"></path></svg>
             <span style={parseStyle('font-size:14px;font-weight:600;color:#15241c;')}>Atendimento</span>
           </button>
         </div>

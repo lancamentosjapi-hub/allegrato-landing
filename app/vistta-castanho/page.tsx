@@ -4,12 +4,11 @@ import VisttaCastanho from '@/components/VisttaCastanho';
 
 // Metadata portada do <head> do index.html original (valores EXATOS).
 export const metadata: Metadata = {
-  title: 'Vistta Castanho · Loteamento Fechado em Jundiaí — SP | Imobiliária Japi',
+  title: 'Vistta Castanho · Loteamento Fechado em Jundiaí — SP',
   description:
-    'Vistta Castanho: loteamento fechado com lotes a partir de 126 m² no bairro do Castanho, Jundiaí — entre São Paulo e Campinas. Clube completo, lago, portaria inteligente e natureza. Fale com a Imobiliária Japi.',
+    'Vistta Castanho: loteamento fechado com lotes a partir de 126 m² no bairro do Castanho, Jundiaí — entre São Paulo e Campinas. Clube completo, lago, portaria inteligente e natureza. Fale com um corretor.',
   keywords:
-    'Vistta Castanho, loteamento fechado Jundiaí, lotes Castanho Jundiaí, terrenos condomínio fechado Jundiaí, comprar lote Jundiaí, Vistta Castanho Applausi, Imobiliária Japi',
-  authors: [{ name: 'Imobiliária Japi' }],
+    'Vistta Castanho, loteamento fechado Jundiaí, lotes Castanho Jundiaí, terrenos condomínio fechado Jundiaí, comprar lote Jundiaí, Vistta Castanho Applausi',
   robots: 'index, follow',
   alternates: { canonical: 'https://www.lotusbrokers.com.br/vistta-castanho' },
   openGraph: {
@@ -45,11 +44,11 @@ const jsonLd = {
     addressRegion: 'SP',
     addressCountry: 'BR',
   },
-  broker: {
-    '@type': 'RealEstateAgent',
-    name: 'Imobiliária Japi',
-    telephone: '+55 11 92614-3393',
-  },
+  // `broker` removido junto com o branding da Imobiliária Japi. Um
+  // RealEstateAgent sem `name` seria inválido, então o bloco sai inteiro —
+  // `Residence` não exige `broker`. Para reintroduzir, basta voltar o objeto
+  // com o nome da imobiliária responsável.
+  telephone: '+55 11 92614-3393',
 };
 
 export default function Page() {

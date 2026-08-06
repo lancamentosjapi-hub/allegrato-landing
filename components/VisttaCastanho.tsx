@@ -208,7 +208,7 @@ export default function VisttaCastanho() {
         if (data.telefone) msg += '\nTelefone: ' + data.telefone;
         if (data.interesse) msg += '\nInteresse: ' + data.interesse;
         if (data.mensagem) msg += '\nMensagem: ' + data.mensagem;
-        msg += '\n\nGostaria de falar com um corretor da Imobiliária Japi.';
+        msg += '\n\nGostaria de falar com um corretor.';
         window.open(waLink(msg), '_blank');
         const btn = form.querySelector<HTMLElement>('button[type=submit]');
         if (btn) {
@@ -339,11 +339,7 @@ export default function VisttaCastanho() {
       {/* ===================== HEADER ===================== */}
       <header className="header">
         <div className="wrap nav">
-          <a href="#inicio" className="brand" aria-label="Imobiliária Japi — Vistta Castanho">
-            <span className="logo-chip">
-              <img src="/vistta-castanho/a003.png" alt="Imobiliária Japi" />
-            </span>
-            <span className="sep"></span>
+          <a href="#inicio" className="brand" aria-label="Vistta Castanho">
             <span className="dev-name">
               <span className="b1">Vistta Castanho</span>
               <span className="b2">Castanho · Jundiaí</span>
@@ -990,7 +986,7 @@ export default function VisttaCastanho() {
 
           <div className="form-card reveal d2">
             <h3>Quero falar com um corretor</h3>
-            <p className="sub">Resposta rápida e atendimento exclusivo pela Imobiliária Japi.</p>
+            <p className="sub">Resposta rápida e atendimento exclusivo.</p>
             <form data-wa="">
               <div className="form-row">
                 <div className="field">
@@ -1021,8 +1017,7 @@ export default function VisttaCastanho() {
                 Enviar pelo WhatsApp
               </button>
               <p className="legal">
-                Ao enviar, você abre uma conversa no WhatsApp com a Imobiliária Japi. Imagens
-                meramente ilustrativas.
+                Ao enviar, você abre uma conversa no WhatsApp. Imagens meramente ilustrativas.
               </p>
             </form>
           </div>
@@ -1034,12 +1029,9 @@ export default function VisttaCastanho() {
         <div className="wrap">
           <div className="foot-grid">
             <div className="foot-brand">
-              <span className="logo-chip">
-                <img src="/vistta-castanho/a003.png" alt="Imobiliária Japi" />
-              </span>
               <p>
-                Imobiliária Japi — atendimento de qualidade na comercialização do Vistta Castanho,
-                loteamento fechado no Castanho, em Jundiaí — SP.
+                Atendimento de qualidade na comercialização do Vistta Castanho, loteamento fechado
+                no Castanho, em Jundiaí — SP.
               </p>
             </div>
             <div className="foot-col">
@@ -1064,7 +1056,7 @@ export default function VisttaCastanho() {
           </div>
           <div className="foot-bottom">
             <p>
-              © 2026 Imobiliária Japi · Vistta Castanho. Empreendimento Applausi Construtora. Imagens
+              © 2026 Vistta Castanho. Empreendimento Applausi Construtora. Imagens
               meramente ilustrativas.
             </p>
             <div className="socials">

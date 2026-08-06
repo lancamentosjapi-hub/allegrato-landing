@@ -46,7 +46,7 @@ const jsonLd = {
     addressCountry: 'BR',
     addressLocality: 'Jundiaí',
   },
-  slogan: 'O imóvel é só o palco. O cliente é a história.',
+  slogan: 'Grandes escolhas têm endereço.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

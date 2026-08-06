@@ -100,11 +100,7 @@ const S = {
 
 function LotusMark() {
   return (
-    <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
-      <path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e" />
-      <path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593" />
-      <path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85" />
-    </svg>
+    <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
   );
 }
 
@@ -171,10 +167,6 @@ export default function LotusHeader({
       <div style={S.inner(maxWidth)}>
         <Link href="/lotus-home" style={S.logo}>
           <LotusMark />
-          <span style={S.brand}>
-            Lotus
-            <span style={S.brandSub}>Brokers</span>
-          </span>
         </Link>
 
         <nav style={S.nav}>

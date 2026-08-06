@@ -169,7 +169,7 @@ export default function PortalDosLagos() {
           '📱 Telefone: ' + tel + '\n' +
           (email ? '✉️ E-mail: ' + email + '\n' : '') +
           '⭐ Interesse: ' + inter + '\n\n' +
-          'Enviado pelo site da Imobiliária Japi.';
+          'Enviado pelo site do Portal dos Lagos.';
         const url = waURL(msg);
         const link = $('#okLink');
         if (link) link.setAttribute('href', url);
@@ -192,7 +192,14 @@ export default function PortalDosLagos() {
       cur = i;
       const f = figs[i];
       if (lbImg) {
-        lbImg.src = f.getAttribute('data-full') || '';
+        // data-full veio do HTML estático com caminho relativo (img/real-*.jpg);
+        // no Next isso resolveria contra a rota atual → 404. Prefixa com a base
+        // da landing quando não for absoluto (mesmo tratamento de Vistta/Terrace).
+        const full = f.getAttribute('data-full') || '';
+        lbImg.src =
+          full && !full.startsWith('/') && !/^https?:/.test(full)
+            ? '/portal-dos-lagos/' + full
+            : full;
         lbImg.alt = f.getAttribute('data-cap') || '';
       }
       if (lbCap) lbCap.textContent = f.getAttribute('data-cap') || '';
@@ -256,8 +263,10 @@ export default function PortalDosLagos() {
     <>
       {/* ============ NAV ============ */}
       <header className="nav" id="nav">
-        <a className="nav__brand" href="#top" aria-label="Imobiliária Japi">
-          <img className="nav__logo" src="/portal-dos-lagos/a000.jpg" alt="Imobiliária Japi" />
+        {/* O logo da Imobiliária Japi saiu; a marca do nav passa a ser o nome do
+            próprio empreendimento, para o link de voltar ao topo não ficar vazio. */}
+        <a className="nav__brand" href="#top" aria-label="Portal dos Lagos">
+          Portal dos Lagos
         </a>
         <nav className="nav__links">
           <a href="#localizacao">Localização</a>
@@ -281,7 +290,7 @@ export default function PortalDosLagos() {
       {/* mobile menu */}
       <div className="mmenu" id="mmenu">
         <div className="mmenu__top">
-          <img className="nav__logo" src="/portal-dos-lagos/a000.jpg" alt="Imobiliária Japi" style={{ height: '46px' }} />
+          <span className="nav__brand">Portal dos Lagos</span>
           <button className="mmenu__close" id="mclose" aria-label="Fechar menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6 6 18M6 6l12 12"></path></svg>
           </button>
@@ -328,7 +337,9 @@ export default function PortalDosLagos() {
           </div>
           <div className="hero__trust reveal in" data-d="3">
             <span>Realização</span>
-            <img src="/portal-dos-lagos/a002.jpg" alt="Santa Angela, Capital e Mac Lucer" />
+            {/* Só a Santa Angela no hero (recorte de a002.jpg). O lockup com as
+                três construtoras segue na seção REALIZAÇÃO, mais abaixo. */}
+            <img src="/portal-dos-lagos/santa-angela.jpg" alt="Santa Angela Construtora" />
           </div>
         </div>
         <a className="hero__scroll" href="#destaques" aria-label="Rolar">
@@ -539,7 +550,7 @@ export default function PortalDosLagos() {
         <div className="ctaband__bg" style={{ backgroundImage: 'url("/portal-dos-lagos/a013.jpg")', backgroundPosition: 'center 58%' }}></div>
         <div className="wrap reveal">
           <h2><span className="script">O seu próximo capítulo</span> começa aqui</h2>
-          <p>Garanta as melhores condições do lançamento. Fale agora com um consultor da Imobiliária Japi e receba valores, plantas e disponibilidade de lotes.</p>
+          <p>Garanta as melhores condições do lançamento. Fale agora com um consultor e receba valores, plantas e disponibilidade de lotes.</p>
           <div className="hero__cta">
             <a className="btn btn--lg" href="#contato" data-cta="band">Receber valores agora <span className="ar">→</span></a>
             <a className="btn btn--wa btn--lg" href="#" data-wa="band">
@@ -556,7 +567,7 @@ export default function PortalDosLagos() {
           <div className="reveal">
             <p className="eyebrow on-dark">Fale com a Japi</p>
             <h2><span className="script">Receba valores</span> e condições</h2>
-            <p className="lede" style={{ color: 'rgba(255,255,255,.82)', marginTop: '8px' }}>Preencha os dados e um consultor da Imobiliária Japi entra em contato pelo WhatsApp com todas as informações do Portal dos Lagos.</p>
+            <p className="lede" style={{ color: 'rgba(255,255,255,.82)', marginTop: '8px' }}>Preencha os dados e um consultor entra em contato pelo WhatsApp com todas as informações do Portal dos Lagos.</p>
             <div className="lead__list">
               <div className="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M20 6 9 17l-5-5"></path></svg> Atendimento personalizado, sem compromisso</div>
               <div className="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M20 6 9 17l-5-5"></path></svg> Tabela de valores, plantas e disponibilidade</div>
@@ -593,7 +604,7 @@ export default function PortalDosLagos() {
               <button className="btn btn--lg btn--block" type="submit">Enviar pelo WhatsApp
                 <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: '19px', height: '19px' }}><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.42 1.32-1.95 1.36-.5.05-.5.41-3.15-.66-2.65-1.07-4.3-3.78-4.43-3.96-.13-.18-1.06-1.4-1.06-2.68 0-1.28.67-1.9.91-2.17.24-.26.52-.33.7-.33l.5.01c.16 0 .38-.06.59.45.24.59.81 2.04.88 2.19.07.15.12.32.02.51-.1.18-.15.3-.29.46l-.43.5c-.14.14-.29.3-.12.58.16.27.74 1.21 1.58 1.96 1.09.97 2 1.27 2.28 1.42.27.14.43.11.59-.07.16-.18.69-.8.87-1.08.18-.27.36-.22.59-.13.24.09 1.52.72 1.78.85.27.13.44.2.5.31.07.11.07.62-.17 1.3Z"></path></svg>
               </button>
-              <p className="form-note">Ao enviar, você abre uma conversa no WhatsApp com a Imobiliária Japi. Não compartilhamos seus dados.</p>
+              <p className="form-note">Ao enviar, você abre uma conversa no WhatsApp. Não compartilhamos seus dados.</p>
             </form>
             <div className="form-ok" id="formOk">
               <div className="ok-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M20 6 9 17l-5-5"></path></svg></div>
@@ -630,7 +641,7 @@ export default function PortalDosLagos() {
             </div>
             <div className="faq-item">
               <button className="faq-q">Como recebo valores e condições? <span className="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"></path></svg></span></button>
-              <div className="faq-a"><div className="faq-a__in">Preencha o formulário desta página ou fale com um consultor da Imobiliária Japi pelo WhatsApp. Os valores são informados sob consulta, conforme a disponibilidade de lotes.</div></div>
+              <div className="faq-a"><div className="faq-a__in">Preencha o formulário desta página ou fale com um consultor pelo WhatsApp. Os valores são informados sob consulta, conforme a disponibilidade de lotes.</div></div>
             </div>
           </div>
         </div>
@@ -659,8 +670,7 @@ export default function PortalDosLagos() {
         <div className="wrap">
           <div className="footer__top">
             <div>
-              <img className="footer__logo" src="/portal-dos-lagos/a000.jpg" alt="Imobiliária Japi" />
-              <p style={{ maxWidth: '34ch' }}>Japi Lançamentos — especialistas em empreendimentos de alto padrão na região de Jundiaí. Atendimento consultivo do primeiro contato à chave na mão.</p>
+              <p style={{ maxWidth: '34ch' }}>Especialistas em empreendimentos de alto padrão na região de Jundiaí. Atendimento consultivo do primeiro contato à chave na mão.</p>
               <a className="footer__wa" href="#" data-wa="footer">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.42 1.32-1.95 1.36-.5.05-.5.41-3.15-.66-2.65-1.07-4.3-3.78-4.43-3.96-.13-.18-1.06-1.4-1.06-2.68 0-1.28.67-1.9.91-2.17.24-.26.52-.33.7-.33l.5.01c.16 0 .38-.06.59.45.24.59.81 2.04.88 2.19.07.15.12.32.02.51-.1.18-.15.3-.29.46l-.43.5c-.14.14-.29.3-.12.58.16.27.74 1.21 1.58 1.96 1.09.97 2 1.27 2.28 1.42.27.14.43.11.59-.07.16-.18.69-.8.87-1.08.18-.27.36-.22.59-.13.24.09 1.52.72 1.78.85.27.13.44.2.5.31.07.11.07.62-.17 1.3Z"></path></svg>
                 +55 11 92614-3393
@@ -683,10 +693,10 @@ export default function PortalDosLagos() {
             </div>
           </div>
           <p className="legal">
-            As informações constantes no Memorial de Incorporação e nos futuros Instrumentos de Compra e Venda prevalecerão sobre as divulgadas neste material. Todas as imagens e perspectivas aqui contidas são meramente ilustrativas. As tonalidades das cores, formas e texturas podem sofrer alterações. A vegetação exposta é meramente ilustrativa e será entregue de acordo com o Projeto Paisagístico, podendo apresentar diferenças de tamanho e porte. Registro nº R3 feito no 1º Cartório de Registro de Imóveis de Jundiaí-SP, sobre matrícula nº 169.626 (protocolo nº 447.596). Imobiliária Japi atua na intermediação imobiliária deste empreendimento.
+            As informações constantes no Memorial de Incorporação e nos futuros Instrumentos de Compra e Venda prevalecerão sobre as divulgadas neste material. Todas as imagens e perspectivas aqui contidas são meramente ilustrativas. As tonalidades das cores, formas e texturas podem sofrer alterações. A vegetação exposta é meramente ilustrativa e será entregue de acordo com o Projeto Paisagístico, podendo apresentar diferenças de tamanho e porte. Registro nº R3 feito no 1º Cartório de Registro de Imóveis de Jundiaí-SP, sobre matrícula nº 169.626 (protocolo nº 447.596).
           </p>
           <div className="legal__bar">
-            <span>© <span id="yr"></span> Imobiliária Japi · Portal dos Lagos</span>
+            <span>© <span id="yr"></span> Portal dos Lagos</span>
             <span>Realização: Santa Angela · Capital · Mac Lucer</span>
           </div>
         </div>

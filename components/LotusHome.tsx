@@ -167,7 +167,7 @@ const faqData = [
 const banners = [
   { slot: 'lotus-banner-1', eyebrow: 'Campanha do mês', title: 'Lançamentos com condições de pré-venda', text: 'Unidades selecionadas com tabela exclusiva por tempo limitado.', cta: 'Ver lançamentos', href: 'https://www.lotusbrokers.com.br/lotus-lancamentos', img: '/assets/doppio-capa.jpg' },
   { slot: 'lotus-banner-2', eyebrow: 'Serra do Japi', title: 'Casas em condomínio a partir de R$ 1,2 mi', text: 'Mais verde, mais privacidade — a 10 minutos do centro de Jundiaí.', cta: 'Explorar imóveis', href: 'https://www.lotusbrokers.com.br/lotus-busca', img: '/gran-ville-santo-angelo/a025.jpg' },
-  { slot: 'lotus-banner-3', eyebrow: 'Quer vender?', title: 'Avaliação do seu imóvel, sem custo', text: 'Descubra quanto vale com quem realmente conhece o seu bairro.', cta: 'Anunciar agora', href: 'https://www.lotusbrokers.com.br/lotus-anunciar', img: 'https://i.postimg.cc/nzx1wvHM/Chat-GPT-Image-25-de-jun-de-2026-14-04-13.png' },
+  { slot: 'lotus-banner-3', eyebrow: 'Quer vender?', title: 'Uma estratégia de venda à altura do seu imóvel', text: 'Receba uma análise completa de precificação e posicionamento, conduzida por especialistas que conhecem profundamente a região.', cta: 'Anunciar agora', href: 'https://www.lotusbrokers.com.br/lotus-anunciar', img: 'https://i.postimg.cc/nzx1wvHM/Chat-GPT-Image-25-de-jun-de-2026-14-04-13.png' },
 ];
 
 const reviewsData = [
@@ -218,25 +218,44 @@ const popularCidades = [
 // compartilhável, sem 'use client') para poderem ser importados pelo Server
 // Component da rota, que faz o merge com o Supabase.
 
+/**
+ * Depoimentos desativados enquanto não houver avaliações reais, autorizadas e
+ * verificáveis (exceção autorizada na atualização de copy). A seção, os dados e
+ * o carrossel permanecem no arquivo — só não são renderizados. Para reativar,
+ * troque para `true`; o ideal é ligar antes na origem real (avaliações do Perfil
+ * da Empresa no Google) em vez de voltar com os textos atuais.
+ */
+const DEPOIMENTOS_ATIVOS = false;
+
+/**
+ * Perfis com CRECI placeholder (000000-F…) desativados: "Erick Santos" e os
+ * dois corretores abaixo são pessoas fictícias, com CRECI e números inventados.
+ * Os dados ficam no arquivo para referência de layout; a grade não é renderizada.
+ * A seção mantém o título e o link para /lotus-corretores, onde estão os
+ * corretores REAIS vindos do Supabase. Reativar só com nome e CRECI verificáveis.
+ */
+const PERFIS_PLACEHOLDER_ATIVOS = false;
+
+/**
+ * Squads. `ativo: false` apenas OCULTA o card — o dado e a copy ficam aqui,
+ * prontos para reativação (exceção autorizada na atualização de copy: exibir
+ * somente Lançamentos e Residencial). Para voltar a exibir, troque para `true`;
+ * o grid é `auto-fit`, então ele se reorganiza sozinho.
+ */
 const squads = [
-  { num: '01', title: 'Squad Alto Padrão', desc: 'Imóveis de R$ 1,5 mi para cima, com a discrição e a imersão que o ticket pede.' },
-  { num: '02', title: 'Squad Lançamentos', desc: 'Quem conhece cada planta e a negociação com a construtora — da escolha à chave.' },
-  { num: '03', title: 'Squad Popular', desc: 'Primeiro imóvel, financiamento e Minha Casa — atendimento que respeita seu tempo.' },
-  { num: '04', title: 'Squad Comercial', desc: 'Salas, lojas e galpões na região, para quem investe ou expande o negócio.' },
+  { num: '01', title: 'Squad Alto Padrão', desc: 'Imóveis de alto padrão conduzidos com profundidade, discrição e atenção a cada detalhe.', ativo: false },
+  { num: '02', title: 'Squad Lançamentos', desc: 'Quem conhece cada planta e a negociação com a construtora — da escolha à chave.', ativo: true },
+  { num: '03', title: 'Squad Residencial', desc: 'Casas e apartamentos para quem busca morar bem e construir patrimônio com segurança.', ativo: true },
+  { num: '04', title: 'Squad Comercial', desc: 'Salas, lojas e galpões na região, para quem investe ou expande o negócio.', ativo: false },
 ];
 
 const neighborhoodsJundiai = [
-  { name: 'Eloy Chaves', city: 'Jundiaí', count: '34 imóveis', bairroSlug: 'eloy-chaves', slot: 'lotus-bairro-eloy', img: '/gran-ville-santo-angelo/a038.jpg' },
-  { name: 'Anhangabaú', city: 'Jundiaí', count: '28 imóveis', bairroSlug: 'anhangabau', slot: 'lotus-bairro-anhangabau', img: '/auten-jundiai/a023.jpg' },
-  { name: 'Malota', city: 'Jundiaí', count: '19 imóveis', bairroSlug: 'malota', slot: 'lotus-bairro-malota', img: '/forest-houses/a002.jpg' },
-  { name: 'Medeiros', city: 'Jundiaí', count: '22 imóveis', bairroSlug: 'medeiros', slot: 'lotus-bairro-medeiros', img: '/vivarte/a003.jpg' },
+  { name: 'Eloy Chaves', city: 'Jundiaí', count: '34 imóveis', bairroSlug: 'eloy-chaves', slot: 'lotus-bairro-eloy', img: '/bairros/eloy-chaves.jpg' },
+  { name: 'Vianelo Bonfiglioli', city: 'Jundiaí', count: '', bairroSlug: 'vianelo-bonfiglioli', slot: 'lotus-bairro-vianelo', img: '' },
+  { name: 'Medeiros', city: 'Jundiaí', count: '22 imóveis', bairroSlug: 'medeiros', slot: 'lotus-bairro-medeiros', img: '/bairros/medeiros.jpg' },
+  { name: 'Caxambu', city: 'Jundiaí', count: '', bairroSlug: 'caxambu', slot: 'lotus-bairro-caxambu', img: '/bairros/caxambu.jpg' },
 ];
 
-const neighborhoodsItupeva = [
-  { name: 'Centro', city: 'Itupeva', count: '17 imóveis', bairroSlug: 'centro-itupeva', slot: 'lotus-bairro-itupeva-centro', img: '/jardins-do-horto/a004.jpg' },
-  { name: 'Reserva da Serra', city: 'Itupeva', count: '12 imóveis', bairroSlug: 'reserva-da-serra', slot: 'lotus-bairro-itupeva-serra', img: '/altos-da-avenida/a005.png' },
-  { name: 'Horto Florestal', city: 'Itupeva', count: '9 imóveis', bairroSlug: 'horto-florestal', slot: 'lotus-bairro-itupeva-horto', img: '/vistta-castanho/a007.jpg' },
-];
 
 const posts = [
   { title: 'Onde morar em Jundiaí em 2026: 5 bairros em ascensão', cat: 'Cidade', date: '12 jun 2026', read: '6 min', excerpt: 'Da Serra do Japi ao Anhangabaú: o que está valorizando e por quê, na visão de quem vive a região.', slot: 'lotus-post-1' },
@@ -517,15 +536,7 @@ export default function LotusHome({
       >
         <div style={parseStyle('max-width:1280px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;')}>
           <a href="#topo" style={parseStyle('display:flex;align-items:center;gap:12px;')}>
-            <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
-              <path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e"></path>
-              <path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593"></path>
-              <path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85"></path>
-            </svg>
-            <span style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:23px;letter-spacing:-.01em;color:#f7f2e8;line-height:1;")}>
-              Lotus
-              <span style={parseStyle("font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-left:7px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;vertical-align:2px;")}>Brokers</span>
-            </span>
+            <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
           </a>
           <nav style={parseStyle('display:flex;align-items:center;gap:34px;font-size:15px;font-weight:500;color:rgba(247,242,232,.86);')}>
             <Hoverable as="a" href="/lotus-lancamentos" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Lançamentos</Hoverable>
@@ -564,9 +575,9 @@ export default function LotusHome({
             <div style={parseStyle('background:linear-gradient(135deg,rgba(11,22,16,.9),rgba(21,36,28,.6) 58%,rgba(21,36,28,.24));backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border:1px solid rgba(205,171,110,.18);border-radius:24px;padding:38px 42px 34px;max-width:780px;box-shadow:0 36px 80px -44px rgba(0,0,0,.65);margin-bottom:40px;')}>
               <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#cdab6e;margin-bottom:20px;')}>Jundiaí · Itupeva · Interior de São Paulo</div>
               <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(42px,6vw,78px);line-height:1.02;letter-spacing:-.02em;color:#f7f2e8;margin:0 0 26px;")}>
-                O imóvel é só o palco.<br /><em style={parseStyle('font-style:italic;font-weight:300;color:#cdab6e;')}>O cliente é a história.</em>
+                Grandes escolhas<br /><em style={parseStyle('font-style:italic;font-weight:300;color:#cdab6e;')}>têm endereço</em>
               </h1>
-              <p style={parseStyle('font-size:clamp(17px,1.5vw,20px);line-height:1.5;color:rgba(247,242,232,.88);max-width:560px;margin:0;font-weight:300;')}>Imobiliária moderna de Jundiaí e Itupeva, voltada para um atendimento de excelência. Equipe segmentada por especialidade — corretores que conhecem cada bairro e te chamam pelo nome.</p>
+              <p style={parseStyle('font-size:clamp(17px,1.5vw,20px);line-height:1.5;color:rgba(247,242,232,.88);max-width:560px;margin:0;font-weight:300;')}>Consultoria imobiliária em Jundiaí e Itupeva para comprar, vender ou investir com estratégia, clareza e segurança. Especialistas em imóveis de médio e alto padrão, com conhecimento profundo da região e acompanhamento em cada etapa.</p>
             </div>
 
             {/* hero search (filtros / conversa) */}
@@ -694,7 +705,7 @@ export default function LotusHome({
         <div style={parseStyle('max-width:1280px;margin:0 auto;')}>
           <div data-reveal="" style={parseStyle('max-width:620px;margin-bottom:56px;')}>
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Por onde começar</div>
-            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0;color:#15241c;")}>Dois caminhos. O mesmo cuidado de especialista.</h2>
+            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0;color:#15241c;")}>Dois caminhos. O mesmo cuidado em cada escolha.</h2>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;')}>
             <Hoverable as="a" target="_top" href="/lotus-lancamentos" data-reveal="" baseStyle={parseStyle('position:relative;display:block;border-radius:20px;overflow:hidden;min-height:380px;background:#1d3a2c;box-shadow:0 24px 60px -30px rgba(21,36,28,.45);transition:transform .4s ease, box-shadow .4s ease;')} hoverStyle={parseStyle('transform:translateY(-4px);box-shadow:0 34px 70px -30px rgba(21,36,28,.55)')}>
@@ -712,8 +723,8 @@ export default function LotusHome({
               <div style={parseStyle('position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,36,28,.1),rgba(21,36,28,.85));')}></div>
               <div style={parseStyle('position:absolute;left:0;right:0;bottom:0;padding:36px;')}>
                 <div style={parseStyle('font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>Comprar &amp; alugar</div>
-                <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:30px;color:#f7f2e8;margin:0 0 10px;line-height:1.08;")}>Imóveis curados pelo especialista do bairro</h3>
-                <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.78);margin:0 0 18px;font-weight:300;line-height:1.5;')}>Busca por conversa, mapa em tempo real e curadoria — selecionados, nunca um catálogo de volume.</p>
+                <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:30px;color:#f7f2e8;margin:0 0 10px;line-height:1.08;")}>Imóveis selecionados para o seu momento</h3>
+                <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.78);margin:0 0 18px;font-weight:300;line-height:1.5;')}>Busca orientada, conhecimento regional e uma seleção coerente com o que realmente importa para você.</p>
                 <span style={parseStyle('display:inline-flex;align-items:center;gap:8px;color:#cdab6e;font-weight:600;font-size:15px;')}>Explorar a busca <span style={parseStyle('font-size:18px;')}>→</span></span>
               </div>
             </Hoverable>
@@ -727,7 +738,7 @@ export default function LotusHome({
           <div data-reveal="" style={parseStyle('display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:52px;')}>
             <div style={parseStyle('max-width:620px;')}>
               <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Lançamentos · Jundiaí e Itupeva</div>
-              <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0;color:#15241c;")}>Os melhores lançamentos da região, com quem conhece cada planta.</h2>
+              <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0;color:#15241c;")}>Lançamentos selecionados por quem conhece cada planta, condição e potencial.</h2>
             </div>
             <Link href="/lotus-lancamentos" data-reveal-launches="" style={parseStyle('display:inline-flex;align-items:center;gap:8px;color:#1d3a2c;font-weight:600;font-size:15px;border-bottom:1.5px solid #b18a4a;padding-bottom:3px;white-space:nowrap;')}>Ver todos os empreendimentos <span>→</span></Link>
           </div>
@@ -774,12 +785,11 @@ export default function LotusHome({
         <div style={parseStyle('max-width:1280px;margin:0 auto;position:relative;')}>
           <div data-reveal="" style={parseStyle('max-width:680px;margin-bottom:60px;')}>
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#cdab6e;margin-bottom:18px;')}>Como a gente trabalha</div>
-            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0 0 18px;color:#f7f2e8;")}>Um time de especialistas, não um corretor que dá conta de tudo.</h2>
-            <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.7);font-weight:300;line-height:1.55;margin:0;')}>A gente combate o padrão do mercado — o corretor que some, o catálogo no WhatsApp, o "acho que vale". Aqui o atendimento é segmentado por especialidade, e cada squad domina o seu terreno.</p>
+            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0 0 18px;color:#f7f2e8;")}>Especialistas para cada tipo de decisão.</h2>
+            <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.7);font-weight:300;line-height:1.55;margin:0;')}>Cada jornada exige conhecimento específico. Por isso, nosso atendimento é organizado por especialidade, com consultores preparados para compreender o seu momento e conduzir cada etapa com profundidade.</p>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:rgba(247,242,232,.14);border-radius:18px;overflow:hidden;')}>
-            {/* hint-placeholder-count: 4 */}
-            {squads.map((s, i) => (
+            {squads.filter((s) => s.ativo).map((s, i) => (
               <div key={i} data-reveal="" style={parseStyle('background:#1d3a2c;padding:36px 30px;display:flex;flex-direction:column;')}>
                 <div style={parseStyle("font-family:'Fraunces',serif;font-size:40px;font-weight:300;color:#cdab6e;line-height:1;margin-bottom:18px;")}>{s.num}</div>
                 <h3 style={parseStyle('font-size:19px;font-weight:600;color:#f7f2e8;margin:0 0 10px;')}>{s.title}</h3>
@@ -798,7 +808,7 @@ export default function LotusHome({
         <div style={parseStyle('max-width:1280px;margin:0 auto;')}>
           <div data-reveal="" style={parseStyle('max-width:640px;margin-bottom:52px;')}>
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Nossa região</div>
-            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0 0 16px;color:#15241c;")}>Nossa Região.</h2>
+            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0 0 16px;color:#15241c;")}>Conhecimento local muda a qualidade da sua escolha.</h2>
             <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>Serra do Japi, vinhedos, condomínios. A gente conhece cada bairro pelo que ele tem de vivido — a padaria da esquina, a escola a 9 minutos, o sol da manhã na sala.</p>
           </div>
           <div data-reveal="" style={parseStyle('display:flex;align-items:baseline;gap:14px;margin-bottom:22px;')}>
@@ -808,24 +818,6 @@ export default function LotusHome({
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-bottom:56px;')}>
             {/* hint-placeholder-count: 4 */}
             {neighborhoodsJundiai.map((n, i) => (
-              <Hoverable key={i} as="a" href={`/lotus-bairro/${n.bairroSlug}`} target="_top" data-reveal="" baseStyle={parseStyle('position:relative;display:block;aspect-ratio:3/4;border-radius:16px;overflow:hidden;box-shadow:0 16px 40px -28px rgba(21,36,28,.4);transition:transform .35s ease;')} hoverStyle={parseStyle('transform:translateY(-4px)')}>
-                <ImageSlot id={n.slot} src={n.img} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={n.name} />
-                <div style={parseStyle('position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,36,28,0) 40%,rgba(21,36,28,.85));')}></div>
-                <div style={parseStyle('position:absolute;left:0;right:0;bottom:0;padding:20px;')}>
-                  <div style={parseStyle('font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#cdab6e;margin-bottom:5px;')}>{n.city}</div>
-                  <div style={parseStyle("font-family:'Fraunces',serif;font-size:21px;font-weight:400;color:#f7f2e8;line-height:1.05;")}>{n.name}</div>
-                  <div style={parseStyle('font-size:12.5px;color:rgba(247,242,232,.7);margin-top:5px;')}>{n.count}</div>
-                </div>
-              </Hoverable>
-            ))}
-          </div>
-          <div data-reveal="" style={parseStyle('display:flex;align-items:baseline;gap:14px;margin-bottom:22px;')}>
-            <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:26px;color:#15241c;margin:0;")}>Itupeva</h3>
-            <span style={parseStyle('height:1px;flex:1;background:rgba(21,36,28,.14);')}></span>
-          </div>
-          <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;')}>
-            {/* hint-placeholder-count: 3 */}
-            {neighborhoodsItupeva.map((n, i) => (
               <Hoverable key={i} as="a" href={`/lotus-bairro/${n.bairroSlug}`} target="_top" data-reveal="" baseStyle={parseStyle('position:relative;display:block;aspect-ratio:3/4;border-radius:16px;overflow:hidden;box-shadow:0 16px 40px -28px rgba(21,36,28,.4);transition:transform .35s ease;')} hoverStyle={parseStyle('transform:translateY(-4px)')}>
                 <ImageSlot id={n.slot} src={n.img} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={n.name} />
                 <div style={parseStyle('position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,36,28,0) 40%,rgba(21,36,28,.85));')}></div>
@@ -847,6 +839,7 @@ export default function LotusHome({
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Os especialistas</div>
             <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0;color:#15241c;")}>Gente que conhece cada esquina — e te chama pelo nome.</h2>
           </div>
+          {PERFIS_PLACEHOLDER_ATIVOS && (
           <div style={parseStyle('display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:24px;')}>
             {/* founder feature */}
             <div data-reveal="" style={parseStyle('grid-row:span 1;position:relative;border-radius:20px;overflow:hidden;min-height:440px;background:#1d3a2c;box-shadow:0 24px 60px -30px rgba(21,36,28,.45);')}>
@@ -874,6 +867,7 @@ export default function LotusHome({
               </div>
             ))}
           </div>
+          )}
           <div data-reveal="" style={parseStyle('margin-top:38px;')}>
             <Link href="/lotus-corretores" style={parseStyle('display:inline-flex;align-items:center;gap:8px;color:#1d3a2c;font-weight:600;font-size:15px;border-bottom:1.5px solid #b18a4a;padding-bottom:3px;')}>Conhecer todos os corretores <span>→</span></Link>
           </div>
@@ -881,12 +875,13 @@ export default function LotusHome({
       </section>
 
       {/* ============ DEPOIMENTOS ============ */}
+      {DEPOIMENTOS_ATIVOS && (
       <section id="depoimentos" style={parseStyle('background:#f7f2e8;padding:90px 40px 36px;')}>
         <div style={parseStyle('max-width:1280px;margin:0 auto;')}>
           <div data-reveal="" style={parseStyle('display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:48px;')}>
             <div style={parseStyle('max-width:620px;')}>
               <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Quem viveu, conta</div>
-              <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0;color:#15241c;")}>Histórias que terminam com a chave na mão.</h2>
+              <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0;color:#15241c;")}>Grandes escolhas, contadas por quem viveu.</h2>
             </div>
           </div>
 
@@ -927,6 +922,7 @@ export default function LotusHome({
           </div>
         </div>
       </section>
+      )}
 
       {/* ============ BLOG ============ */}
       <section id="blog" style={parseStyle('background:#f7f2e8;padding:56px 40px 120px;')}>
@@ -934,7 +930,7 @@ export default function LotusHome({
           <div data-reveal="" style={parseStyle('display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:52px;')}>
             <div style={parseStyle('max-width:620px;')}>
               <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Blog Lotus · em breve</div>
-              <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0;color:#15241c;")}>Notícias da cidade e do mercado, sem enrolação.</h2>
+              <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0;color:#15241c;")}>Conhecimento para grandes escolhas.</h2>
             </div>
             <Hoverable as="a" href="/lotus-blog" target="_top" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:700;font-size:15px;padding:13px 26px;border-radius:40px;white-space:nowrap;transition:transform .2s, background .2s;')} hoverStyle={parseStyle('background:#cdab6e;transform:translateY(-2px)')}>Em breve <span style={parseStyle('font-size:17px;')}>→</span></Hoverable>
           </div>
@@ -961,7 +957,7 @@ export default function LotusHome({
             <div style={{ position: 'absolute', inset: 0, opacity: 0.05, mixBlendMode: 'overlay', pointerEvents: 'none', backgroundImage: NOISE_BG }}></div>
             <div style={parseStyle('position:relative;')}>
               <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#cdab6e;margin-bottom:16px;')}>Newsletter Lotus</div>
-              <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3vw,36px);line-height:1.1;letter-spacing:-.02em;color:#f7f2e8;margin:0 0 14px;")}>Inscreva-se e receba as notícias da cidade e do mercado.</h3>
+              <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3vw,36px);line-height:1.1;letter-spacing:-.02em;color:#f7f2e8;margin:0 0 14px;")}>Inscreva-se e receba informação de quem conhece o mercado — para decidir melhor.</h3>
               <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.7);font-weight:300;line-height:1.55;margin:0;')}>Lançamentos antes de todo mundo, leitura de mercado de Jundiaí e Itupeva e dicas de quem vive a região. Sem spam — só o que importa.</p>
             </div>
             <div style={parseStyle('position:relative;')}>
@@ -989,7 +985,7 @@ export default function LotusHome({
           <div data-reveal="" style={parseStyle('display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:52px;')}>
             <div style={parseStyle('max-width:620px;')}>
               <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Guias práticos · em breve</div>
-              <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0 0 16px;color:#15241c;")}>Dúvida comum? A gente já respondeu.</h2>
+              <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0 0 16px;color:#15241c;")}>Boas decisões começam com boas perguntas.</h2>
               <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>Conteúdo direto pra você decidir com segurança — de quem faz isso todos os dias na região.</p>
             </div>
             <Link href="/lotus-faq" style={parseStyle('display:inline-flex;align-items:center;gap:8px;color:#1d3a2c;font-weight:600;font-size:15px;border-bottom:1.5px solid #b18a4a;padding-bottom:3px;white-space:nowrap;')}>Em breve <span>→</span></Link>
@@ -1017,8 +1013,8 @@ export default function LotusHome({
         <div style={{ position: 'absolute', inset: 0, opacity: 0.05, mixBlendMode: 'overlay', pointerEvents: 'none', backgroundImage: NOISE_BG }}></div>
         <div data-reveal="" style={parseStyle('max-width:880px;margin:0 auto;text-align:center;position:relative;')}>
           <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#cdab6e;margin-bottom:20px;')}>Quer vender ou alugar?</div>
-          <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 22px;color:#f7f2e8;")}>Anuncie seu imóvel com quem leva ele a sério como se fosse o próprio.</h2>
-          <p style={parseStyle('font-size:18px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.55;max-width:600px;margin:0 auto 36px;')}>Avaliação justa, foto certa, processo transparente e um especialista do seu bairro do começo ao fim.</p>
+          <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 22px;color:#f7f2e8;")}>Seu imóvel merece uma estratégia à altura — e um especialista para conduzi-la.</h2>
+          <p style={parseStyle('font-size:18px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.55;max-width:600px;margin:0 auto 36px;')}>Avaliação responsável, apresentação cuidadosa, estratégia de divulgação e acompanhamento especializado do início ao fim.</p>
           <div style={parseStyle('display:flex;flex-wrap:wrap;gap:14px;justify-content:center;')}>
             <Hoverable as="a" href="/lotus-anunciar" target="_top" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:600;font-size:16px;padding:15px 30px;border-radius:40px;transition:transform .2s, background .2s;')} hoverStyle={parseStyle('background:#cdab6e;transform:translateY(-2px)')}>Anunciar meu imóvel <span>→</span></Hoverable>
             <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid rgba(247,242,232,.4);color:#f7f2e8;font-weight:600;font-size:16px;padding:15px 30px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:rgba(247,242,232,.1)')}>Falar no WhatsApp</Hoverable>
@@ -1031,10 +1027,10 @@ export default function LotusHome({
         <div style={parseStyle('max-width:1040px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start;')}>
           <div data-reveal="">
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Perguntas frequentes</div>
-            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.4vw,42px);line-height:1.08;letter-spacing:-.02em;margin:0 0 24px;color:#15241c;")}>Quem é a Lotus, em uma resposta.</h2>
+            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.4vw,42px);line-height:1.08;letter-spacing:-.02em;margin:0 0 24px;color:#15241c;")}>A Lotus, em poucas palavras.</h2>
             <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:26px 28px;')}>
               <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>TL;DR</div>
-              <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.6;margin:0;')}>A Lotus Brokers é uma imobiliária moderna de Jundiaí e Itupeva, voltada para um atendimento de excelência: equipe segmentada por especialidade e corretores que conhecem cada bairro. Atende lançamentos e revenda na região.</p>
+              <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.6;margin:0;')}>A Lotus Brokers é uma consultoria imobiliária de Jundiaí e Itupeva, especializada em compra, venda, locação e investimentos. Unimos conhecimento regional, estratégia e acompanhamento próximo e personalizado para conduzir cada decisão com clareza e segurança.</p>
             </div>
           </div>
           <div data-reveal="" style={parseStyle('display:flex;flex-direction:column;')}>
@@ -1160,11 +1156,10 @@ export default function LotusHome({
           <div style={parseStyle('display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid rgba(247,242,232,.12);')}>
             <div>
               <div style={parseStyle('display:flex;align-items:center;gap:12px;margin-bottom:20px;')}>
-                <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85"></path></svg>
-                <span style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:22px;color:#f7f2e8;")}>Lotus<span style={parseStyle("font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-left:7px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;vertical-align:2px;")}>Brokers</span></span>
+                <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
               </div>
-              <p style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 20px;")}>O imóvel é só o palco. O cliente é a história.</p>
-              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Imobiliária moderna de Jundiaí e Itupeva, voltada para um atendimento de excelência — interior de São Paulo.</p>
+              <p style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 20px;")}>Grandes escolhas têm endereço.</p>
+              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Consultoria imobiliária para compra, venda, locação e investimento em imóveis de médio e alto padrão em Jundiaí, Itupeva e região.</p>
             </div>
             <div>
               <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#cdab6e;margin-bottom:18px;')}>A Lotus</div>
@@ -1223,7 +1218,7 @@ export default function LotusHome({
               <svg width="26" height="26" viewBox="0 0 24 24" fill="#f7f2e8"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"></path></svg>
             </Hoverable>
             <Hoverable as="button" onClick={() => setLiaOpen((s) => !s)} aria-label="Abrir atendimento Lotus" baseStyle={parseStyle('height:54px;padding:0 22px 0 18px;border-radius:40px;background:#b18a4a;border:none;cursor:pointer;display:flex;align-items:center;gap:10px;box-shadow:0 14px 34px -10px rgba(21,36,28,.6);transition:transform .2s, background .2s;')} hoverStyle={parseStyle('background:#cdab6e;transform:translateY(-2px)')}>
-              <svg width="20" height="20" viewBox="0 0 32 32"><path d="M16 4C19 9 19 15 16 20 13 15 13 9 16 4Z" fill="#15241c"></path><path d="M25 9C21 11 17.8 14 16 20 20.5 19 23.8 15.6 25 9Z" fill="#1d3a2c"></path></svg>
+              <svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#15241c"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#25543b"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#15241c" opacity=".85"></path></svg>
               <span style={parseStyle('font-size:14.5px;font-weight:600;color:#15241c;')}>Atendimento</span>
             </Hoverable>
           </div>

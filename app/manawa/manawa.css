@@ -574,9 +574,6 @@ header:not(.solid)::before{content:"";position:absolute;inset:0;background:linea
 header:not(.solid) .navlinks a,header:not(.solid) .brand .pname{text-shadow:0 1px 14px rgba(0,0,0,.45)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{display:flex;align-items:center;gap:14px}
-.brand img{height:38px;width:auto;background:#fff;border-radius:4px;padding:3px 7px}
-.brand .sep{width:1px;height:30px;background:rgba(255,255,255,.4)}
-header.solid .brand .sep{background:var(--line)}
 .brand .pname{font-family:var(--serif);font-size:22px;font-weight:600;color:#fff;letter-spacing:.02em;line-height:1}
 .brand .pname small{display:block;font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.24em;color:var(--gold-soft);text-transform:uppercase;margin-top:3px}
 header.solid .brand .pname{color:var(--navy-deep)}

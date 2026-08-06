@@ -370,11 +370,10 @@ export default function LotusFaq({
           <div style={parseStyle('display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(247,242,232,.12);')}>
             <div>
               <div style={parseStyle('display:flex;align-items:center;gap:12px;margin-bottom:18px;')}>
-                <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85"></path></svg>
-                <span style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:22px;color:#f7f2e8;")}>Lotus<span style={parseStyle("font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-left:7px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;vertical-align:2px;")}>Brokers</span></span>
+                <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
               </div>
-              <p style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 18px;")}>O imóvel é só o palco. O cliente é a história.</p>
-              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Imobiliária moderna de Jundiaí e Itupeva, voltada para um atendimento de excelência — interior de São Paulo.</p>
+              <p style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 18px;")}>Grandes escolhas têm endereço.</p>
+              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Consultoria imobiliária para compra, venda, locação e investimento em imóveis de médio e alto padrão em Jundiaí, Itupeva e região.</p>
             </div>
             <div>
               <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#cdab6e;margin-bottom:18px;')}>A Lotus</div>

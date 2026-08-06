@@ -495,15 +495,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.brand .logo-chip{
-  background:var(--paper);
-  border-radius:11px;
-  padding:7px 11px;
-  display:flex;align-items:center;flex-shrink:0;
-  box-shadow:0 6px 18px -8px rgba(0,0,0,.5);
-}
-.brand .logo-chip img{height:30px;width:auto;flex-shrink:0}
-.brand .sep{width:1px;height:30px;background:rgba(235,227,210,.22)}
 .brand .dev-name{display:flex;flex-direction:column;line-height:1.05;flex-shrink:0}
 .brand .dev-name .b1{font-family:var(--ff-display);font-size:1.15rem;color:var(--text-cream);letter-spacing:.01em}
 .brand .dev-name .b2{font-size:.56rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:2px}
@@ -560,6 +551,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
    HERO
    ============================================================ */
 .hero{position:relative;min-height:680px;height:90vh;max-height:880px;display:flex;align-items:center;overflow:hidden;background:var(--ink)}
+/* `.hero-inner` (~787px) fica MAIOR que o hero sempre que a janela tem menos de
+   ~875px de altura — o que inclui a maioria dos notebooks. Com `align-items:center`
+   um item maior que o container transborda para os dois lados, e o topo entrava
+   por baixo do header fixo: o olho-mágico do hero imprimia por cima da marca.
+   `safe center` centraliza quando cabe e cai para `start` quando não cabe, então
+   o conteúdo nunca invade a faixa do header. A linha acima permanece como
+   fallback para navegadores sem suporte a `safe`. */
+.hero{align-items:safe center}
 .hero-media{position:absolute;inset:-8% 0 0 0;z-index:0;will-change:transform}
 .hero-media img{width:100%;height:116%;object-fit:cover;object-position:center 72%}
 .hero-media::after{
@@ -784,8 +783,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
    ============================================================ */
 .footer{background:#0E0C08;color:var(--text-cream-mut);padding:80px 0 32px;border-top:1px solid rgba(194,160,90,.16)}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;padding-bottom:50px;border-bottom:1px solid rgba(235,227,210,.1)}
-.foot-brand .logo-chip{background:var(--paper);border-radius:12px;padding:10px 14px;display:inline-flex;margin-bottom:20px}
-.foot-brand .logo-chip img{height:38px;width:auto;flex-shrink:0}
 .foot-brand p{font-size:.92rem;line-height:1.6;max-width:320px}
 .foot-col h5{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
 .foot-col a,.foot-col p{display:block;font-size:.92rem;color:var(--text-cream-mut);margin-bottom:12px;transition:color .3s}
@@ -842,7 +839,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
    RESPONSIVE
    ============================================================ */
 @media (max-width:1180px){
-  .brand .sep,.brand .dev-name{display:none}
+  /* `.dev-name` NÃO pode ser escondido: com a saída do logo da imobiliária ele
+     é o único conteúdo da marca — ocultá-lo deixaria o link do topo vazio. */
   .nav-links{gap:24px}
 }
 @media (max-width:1080px){

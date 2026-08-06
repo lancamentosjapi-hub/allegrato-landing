@@ -54,12 +54,7 @@ export default function LotusCookiesPage() {
       <header>
         <div className="bar">
           <a className="logo" href="/lotus-home">
-            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
-              <path
-                d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z"
-                fill="#cdab6e"
-              />
-            </svg>
+            <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
             <span>
               Lotus<i>BROKERS</i>
             </span>

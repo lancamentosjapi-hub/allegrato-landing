@@ -10,6 +10,9 @@ next-env.d.ts
 # env locais (a anon key vai em .env.local; NÃO commitar)
 .env*.local
 .env.local
+# env.download traz REVALIDATE_SECRET real — não pode ir para o repositório.
+# (.env.example, com placeholders, continua versionado.)
+env.download
 
 # logs / OS
 npm-debug.log*

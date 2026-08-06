@@ -159,8 +159,7 @@ export default function LotusBairrosIndex({
       <footer style={parseStyle('background:#15241c;padding:56px 32px 36px;')}>
         <div style={parseStyle('max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;')}>
           <div style={parseStyle('display:flex;align-items:center;gap:12px;')}>
-            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85"></path></svg>
-            <span style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:20px;color:#f7f2e8;")}>Lotus<span style={parseStyle("font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-left:6px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;vertical-align:2px;")}>Brokers</span></span>
+            <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
           </div>
           <div style={parseStyle('font-size:13px;color:rgba(247,242,232,.5);')}>{footerLegalLine()}</div>
         </div>

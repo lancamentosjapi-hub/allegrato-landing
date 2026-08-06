@@ -312,9 +312,7 @@ export default function Manawa() {
       {/* ============ HEADER ============ */}
       <header id="header" className={solid ? 'solid' : undefined}>
         <div className="wrap nav">
-          <a href="#topo" className="brand" aria-label="Manawa Residencial — Imobiliária JAPI">
-            <img src="/manawa/a003.jpg" alt="Imobiliária JAPI" />
-            <span className="sep"></span>
+          <a href="#topo" className="brand" aria-label="Manawa Residencial">
             <span className="pname">
               Manawa<small>Residencial · Jundiaí</small>
             </span>
@@ -572,7 +570,7 @@ export default function Manawa() {
           <div className="plan-cta-bar reveal">
             <div>
               <h3>Receba a tabela completa de unidades</h3>
-              <p>Plantas detalhadas, disponibilidade e condições do Manawa Residencial direto com a Imobiliária JAPI.</p>
+              <p>Plantas detalhadas, disponibilidade e condições do Manawa Residencial direto com um corretor.</p>
             </div>
             <div className="plan-cta-actions">
               <a href="#contato" className="btn btn-gold">Solicitar tabela</a>
@@ -683,8 +681,8 @@ export default function Manawa() {
               atuação em Jundiaí e região, reconhecida pela qualidade e pelo compromisso com cada entrega.
             </p>
             <p>
-              A comercialização é feita pela Imobiliária JAPI — atendimento próximo, transparente e
-              dedicado a encontrar o imóvel ideal para a sua família.
+              A comercialização conta com atendimento próximo, transparente e dedicado a encontrar
+              o imóvel ideal para a sua família.
             </p>
             <div className="builder-stats">
               <div className="s"><div className="n">158</div><div className="l">Unidades em 2 torres</div></div>
@@ -766,7 +764,7 @@ export default function Manawa() {
             <div className="form-ok" id="formOk" style={{ display: formSent ? 'block' : undefined }}>
               <div className="check"><IconCheckBig /></div>
               <h3>Recebido! 🎉</h3>
-              <p>Estamos te direcionando ao WhatsApp da Imobiliária JAPI para concluir o atendimento.</p>
+              <p>Estamos te direcionando ao WhatsApp para concluir o atendimento.</p>
               <a href={okHref} className="btn btn-wa" target="_blank" rel="noopener">Abrir WhatsApp</a>
             </div>
           </div>
@@ -778,10 +776,9 @@ export default function Manawa() {
         <div className="wrap">
           <div className="foot-top">
             <div className="foot-brand">
-              <img src="/manawa/a003.jpg" alt="Imobiliária JAPI" />
               <p>
-                Imobiliária JAPI — atendimento dedicado para encontrar o imóvel ideal da sua família em
-                Jundiaí e região. Comercialização do Manawa Residencial, realização MacLucer.
+                Atendimento dedicado para encontrar o imóvel ideal da sua família em Jundiaí e
+                região. Comercialização do Manawa Residencial, realização MacLucer.
               </p>
             </div>
             <div className="foot-col">
@@ -793,14 +790,14 @@ export default function Manawa() {
               <a href="#localizacao">Localização</a>
             </div>
             <div className="foot-col">
-              <h4>Atendimento JAPI</h4>
+              <h4>Atendimento</h4>
               <a href={WA_HREF} target="_blank" rel="noopener">WhatsApp: (11) 92614-3393</a>
               <a href="#contato">Agendar visita ao decorado</a>
               <p>Rua Aristides Mariotti, 336<br />Recanto Quarto Centenário<br />Jundiaí / SP</p>
             </div>
           </div>
           <div className="foot-bottom">
-            <span>© 2026 Imobiliária JAPI. Todos os direitos reservados. Imagens meramente ilustrativas.</span>
+            <span>© 2026 Manawa Residencial. Todos os direitos reservados. Imagens meramente ilustrativas.</span>
             <div className="cob">
               <span>Realização</span> <strong style={{ color: '#fff' }}>MacLucer Empreendimentos</strong>
             </div>

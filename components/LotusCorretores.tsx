@@ -121,7 +121,17 @@ function ImageSlot({
   /** Nome para gerar iniciais quando não há `src` (avatar-fallback). */
   initials?: string;
 }) {
-  const fallbackInitials = !src ? initialsOf(initials) : '';
+  // Uma foto que responde 404 (photo_url apontando para arquivo removido, ou
+  // override local antes do arquivo subir) deixava um <img> quebrado no lugar
+  // do avatar. Marcar o erro faz cair no mesmo fallback de iniciais do caso
+  // "sem src".
+  //
+  // Guardamos QUAL src falhou, não um booleano: o painel de perfil reaproveita
+  // a mesma instância de ImageSlot ao trocar de corretor, e um booleano ficaria
+  // preso em `true`, escondendo a foto boa do corretor seguinte.
+  const [srcComErro, setSrcComErro] = useState<string | null>(null);
+  const falhou = !!src && srcComErro === src;
+  const fallbackInitials = !src || falhou ? initialsOf(initials) : '';
   return (
     <div
       id={id}
@@ -131,16 +141,23 @@ function ImageSlot({
         ...style,
       }}
     >
-      {src ? (
+      {src && !falhou ? (
         <img
           src={src}
           alt={alt}
+          onError={() => setSrcComErro(src)}
           style={{
             position: 'absolute',
             inset: 0,
             width: '100%',
             height: '100%',
             objectFit: 'cover',
+            // As fotos são 4:5 (medida do painel de perfil), mas o card da
+            // listagem é QUADRADO. Com o padrão `center`, o cover comia 12,5%
+            // do topo e decepava a cabeça de quem tem enquadramento fechado.
+            // Ancorar no topo joga todo o recorte para a base — que é peito,
+            // não rosto — e alinha as cabeças na mesma altura entre os cards.
+            objectPosition: 'center top',
           }}
         />
       ) : (
@@ -239,7 +256,9 @@ function realToBroker(b: {
     reviews: 0,
     active: b.imoveisAtivos,
     slot: 'c-' + b.id,
-    photoUrl: b.photoUrl,
+    // O banco tem prioridade: o override local só entra quando photo_url é
+    // nulo. Assim, publicar a foto no dashboard desativa o override sozinho.
+    photoUrl: b.photoUrl ?? conteudoRealDe(b.name)?.foto ?? null,
   };
 }
 
@@ -252,7 +271,166 @@ const galleryData = [
   { slot: 'gal-6', tag: 'Comunidade', label: 'Ação social em Jundiaí' },
 ];
 
-// bioFor(b) do script — valores exatos.
+/**
+ * Conteúdo REAL por corretor, enquanto o banco não tem onde guardá-lo.
+ *
+ * A view `portal_brokers` expõe só id/name/photo_url/creci/imoveis_ativos —
+ * não há campo de bio. E `photo_url` vem nulo para quase todos. Estes overrides
+ * preenchem essas lacunas SEM competir com o banco: quando o dashboard publicar
+ * a foto real, `photo_url` passa a existir e vence o override (ver realToBroker).
+ * Para migrar de vez, basta criar as colunas na view e apagar este bloco.
+ *
+ * Chave = nome em minúsculas, com acento. O id é UUID do Supabase e muda entre
+ * ambientes, então não serve como chave estável em código.
+ */
+/**
+ * Um bloco da bio. `string` é um parágrafo — é o caso da grande maioria, e por
+ * isso continua sendo a forma mais curta de escrever. A variante em objeto
+ * existe para currículos com seções (um subtítulo e, opcionalmente, uma lista);
+ * sem ela, uma lista de competências viraria um parágrafo único ilegível.
+ */
+type BlocoBio = string | { titulo: string; itens?: string[] };
+
+const CONTEUDO_REAL: Record<string, { bio?: BlocoBio[]; foto?: string }> = {
+  'gabriele fávaro': {
+    foto: '/corretores/gabriele-favaro.jpg',
+    bio: [
+      'Atuo no mercado imobiliário de alto padrão, assessorando clientes na compra, venda e intermediação de imóveis com uma abordagem estratégica, personalizada e pautada pela confiança.',
+      'Acredito que um imóvel representa muito mais do que um patrimônio. Ele marca momentos importantes, acompanha novas fases da vida e materializa projetos que merecem ser conduzidos com segurança, sensibilidade e responsabilidade. Por isso, procuro compreender profundamente as necessidades e os objetivos de cada cliente, para que cada decisão seja tomada com tranquilidade e confiança.',
+      'Além da minha atuação como corretora de imóveis, sou advogada, o que agrega uma visão jurídica e estratégica a todo o processo de negociação. Essa combinação me permite oferecer uma assessoria completa, unindo conhecimento técnico, segurança e atenção aos detalhes em cada etapa.',
+      'Mais do que intermediar imóveis, meu propósito é construir relacionamentos sólidos e duradouros. Quero ser a profissional em quem meus clientes e suas famílias possam confiar hoje e nos próximos projetos de vida. É essa confiança, construída com ética, dedicação e transparência, que considero o maior patrimônio de uma carreira.',
+    ],
+  },
+  // Sem acento em "Andre": a chave tem de bater com o nome como está no banco.
+  'andre marcondes': {
+    foto: '/corretores/andre-marcondes.jpg',
+    bio: [
+      'Coordenador de Equipes da Japi Lançamentos, ANDRÉ atua há sete anos no mercado imobiliário de Jundiaí e região, após 20 anos na TOTVS, onde analisou processos e desenhou soluções de ERP para empresas de diversos portes. É formado em Comunicação e em Gestão de Negócios, foi professor universitário por cinco anos e possui formação complementar em negociação, pelo Program on Negotiation (PON), da Harvard Law School. Sua atuação vai além da apresentação do empreendimento: passa pela análise do contrato, pelo enquadramento de financiamento e pelo impacto real da compra no orçamento do cliente.',
+      '"Meu trabalho não termina quando o cliente escolhe o imóvel. Ele começa quando a gente senta para entender o contrato e o que aquela decisão significa no orçamento dele."',
+    ],
+  },
+  // No banco o nome tem dois espaços entre "Alex" e "Xavier"; normalizarNome
+  // colapsa isso, então a chave fica com espaço simples.
+  'alex xavier da silva': {
+    foto: '/corretores/alex-xavier.jpg',
+    bio: [
+      'Corretor de Imóveis | Gestor Comercial | Especialista em Crédito Imobiliário | Consultor de Ativos Imobiliários',
+      'Profissional com mais de 16 anos de experiência no mercado imobiliário, atuando de forma estratégica nas áreas de intermediação de imóveis, gestão comercial, financiamento habitacional, desenvolvimento de equipes, crédito imobiliário e ativos provenientes de leilões judiciais e extrajudiciais.',
+      'Iniciei minha trajetória no mercado em 2010 como corretor de imóveis de terceiros, evoluindo posteriormente para cargos de liderança como gerente comercial, responsável pela gestão de equipes, desenvolvimento de estratégias de vendas, treinamento de profissionais e expansão comercial.',
+      'Entre 2013 e 2021 fui proprietário de duas imobiliárias na Zona Sul de São Paulo, conduzindo todas as áreas do negócio, incluindo gestão administrativa, comercial, captação de imóveis, prospecção de clientes, negociação, marketing, contratação e desenvolvimento de equipes de vendas.',
+      'Entre 2018 e 2023 atuei como correspondente bancário, trabalhando com operações de crédito imobiliário junto ao Bradesco, Itaú e Caixa Econômica Federal. Possuo certificações CCA 300 e FEBRABAN 300, com ampla experiência em análise de crédito, enquadramento financeiro, financiamento habitacional e estruturação de operações imobiliárias.',
+      'Posteriormente, integrei a equipe comercial da construtora Plano & Plano, atuando como Gerente de Vendas no segmento Minha Casa Minha Vida, onde me especializei no programa habitacional em todas as suas faixas de atendimento.',
+      'Minha atuação envolveu a gestão de equipes comerciais, recrutamento e seleção de corretores, onboarding de novos profissionais, treinamentos técnicos e comerciais, reciclagem de equipes, acompanhamento de indicadores de desempenho (KPIs), desenvolvimento de dashboards gerenciais, geração e gestão de leads, planejamento estratégico e suporte integral às operações de vendas.',
+      'Atualmente atuo como corretor de imóveis autônomo e também presto consultoria especializada para uma empresa portuguesa voltada ao mercado de investimentos imobiliários, sendo responsável por todas as etapas do processo de aquisição de imóveis em leilão.',
+      'Nesse trabalho realizo estudos completos de viabilidade econômica, análise documental e jurídica, levantamento de custos de aquisição, regularização e reforma, avaliação de riscos, estimativa de retorno sobre investimento (ROI), condução dos processos de desocupação e regularização dos imóveis, além do planejamento comercial e da venda final dos ativos.',
+      'Minha experiência reúne uma visão completa do mercado imobiliário, contemplando desde a prospecção e comercialização de imóveis até operações estruturadas de investimento, crédito imobiliário, gestão de equipes e análise financeira, permitindo atuar tanto no segmento residencial quanto em operações de maior complexidade envolvendo ativos imobiliários.',
+      {
+        titulo: 'Principais competências',
+        itens: [
+          'Intermediação e comercialização de imóveis',
+          'Especialista em Crédito Imobiliário',
+          'Especialista no Programa Minha Casa Minha Vida',
+          'Gestão e formação de equipes comerciais',
+          'Liderança de alta performance',
+          'Recrutamento, seleção e onboarding de corretores',
+          'Desenvolvimento de treinamentos comerciais e técnicos',
+          'Planejamento estratégico de vendas',
+          'Gestão de indicadores (KPIs) e dashboards',
+          'Marketing imobiliário e geração de leads',
+          'Análise de crédito e financiamento habitacional',
+          'Estudo de viabilidade econômica de investimentos imobiliários',
+          'Avaliação de ativos provenientes de leilões',
+          'Levantamento de custos, análise de riscos e retorno sobre investimento (ROI)',
+          'Regularização e desocupação de imóveis',
+          'Negociação, relacionamento com clientes e fechamento de operações',
+        ],
+      },
+      { titulo: 'Perfil Profissional' },
+      'Profissional com perfil estratégico, visão de negócios e forte orientação para resultados, combinando experiência em vendas, gestão comercial, crédito imobiliário e investimentos em ativos imobiliários. Possuo sólida capacidade de estruturar operações, desenvolver equipes de alta performance, identificar oportunidades de mercado e conduzir negociações complexas, sempre com foco na geração de valor para clientes, parceiros e empresas.',
+    ],
+  },
+  'fernanda souza': {
+    foto: '/corretores/fernanda-souza.jpg',
+    bio: [
+      'Muito prazer, eu sou Fernanda Emília. 💙',
+      'Sou formada em Direito e Gestão Comercial e encontrei no mercado imobiliário a oportunidade de unir estratégia, relacionamento e propósito: ajudar pessoas e investidores a fazerem escolhas seguras e inteligentes.',
+      '❤️ Sou mãe da Duda e da Sofia, minhas maiores inspirações. É na minha família e na minha fé em Deus que encontro a força para enfrentar desafios e celebrar cada conquista.',
+      'No dia a dia, sou conhecida por ser uma pessoa calma, analítica e focada, características que me permitem conduzir cada negociação com segurança, transparência e atenção aos detalhes.',
+      'Também sou apaixonada por criar soluções. Gosto de enxergar oportunidades onde muitos enxergam apenas dificuldades, sempre buscando o melhor caminho para cada cliente.',
+      '✈️ Fora do trabalho, amo viajar, conhecer novas culturas e me aventurar na cozinha. Meu lado "MasterChef" aparece sempre que tenho uma boa receita e pessoas especiais para reunir.',
+      'Mais do que vender imóveis, minha missão é acompanhar sonhos, construir confiança e ajudar famílias e investidores a conquistarem patrimônio com segurança e valorização.',
+      'Se você procura alguém que caminhe ao seu lado em cada etapa da compra do seu imóvel, será um prazer fazer parte dessa conquista.',
+      '📍 Jundiaí e região.',
+    ],
+  },
+  // Sem acento em "Flavia": é como o nome está gravado no banco.
+  'flavia ceolin': {
+    foto: '/corretores/flavia-ceolin.jpg',
+    bio: [
+      'Sou Flávia Ceolin, tenho 36 anos e sou corretora de imóveis em Jundiaí. Após construir uma carreira sólida de 15 anos no setor corporativo, decidi seguir minha paixão pelo mercado imobiliário, me especializei em lançamentos e tenho como objetivo ajudar famílias a conquistarem o sonho da casa própria.',
+      'Meu compromisso é tornar todo o processo de compra mais seguro e tranquilo, orientando desde a escolha do imóvel até a conquista das chaves, sempre com dedicação, ética e confiança.',
+    ],
+  },
+  'fábio gonçalves': {
+    // Recorte com fundo transparente (.webp, alpha preservado): aparece sobre
+    // o gradiente verde do ImageSlot, diferente das demais fotos, que trazem
+    // fundo próprio. Foi assim que a foto veio.
+    foto: '/corretores/fabio-goncalves.webp',
+    bio: [
+      'Sou consultor imobiliário especializado em conectar pessoas às melhores oportunidades do mercado, oferecendo um atendimento consultivo, transparente e focado em resultados.',
+      'Minha atuação é baseada no profundo estudo do mercado imobiliário, planejamento financeiro, análise comparativa de mercado (ACM), estratégias de negociação, financiamento imobiliário e valorização patrimonial, permitindo orientar meus clientes com segurança em cada etapa da compra, venda ou investimento.',
+      'Tenho como principal área de atuação a cidade de Jundiaí, acompanhando de perto seus condomínios, lançamentos, tendências de valorização e oportunidades de investimento.',
+      'Acredito que um bom consultor imobiliário vai muito além de apresentar imóveis. Meu compromisso é compreender os objetivos de cada cliente, identificar as melhores oportunidades e conduzir todo o processo com ética, transparência, agilidade e responsabilidade.',
+    ],
+  },
+  // No banco o nome vem com espaço sobrando no fim; normalizarNome faz o trim.
+  'reginaldo barbosa faleiros': {
+    foto: '/corretores/reginaldo-faleiros.jpg',
+  },
+  'humberto martinez': {
+    foto: '/corretores/humberto-martinez.jpg',
+    bio: [
+      'Sou Humberto Martinez, corretor de imóveis em Jundiaí – SP, especializado em lançamentos e empreendimentos de médio e alto padrão. Acredito que comprar um imóvel é uma das decisões mais importantes da vida e, por isso, meu compromisso é oferecer um atendimento consultivo, exclusivo e totalmente personalizado em cada etapa dessa jornada.',
+      'Com profundo conhecimento do mercado imobiliário da região, atuo de forma estratégica para apresentar as melhores oportunidades, sempre alinhadas ao perfil, aos objetivos e ao estilo de vida de cada cliente. Mais do que intermediar negociações, meu propósito é proporcionar segurança, transparência e tranquilidade para que cada decisão seja tomada com confiança.',
+      'Entendo que um imóvel representa muito mais do que um patrimônio. Ele traduz conquistas, sonhos, qualidade de vida e legado. Por isso, faço questão de construir relacionamentos sólidos, baseados na credibilidade, na proximidade e na atenção aos detalhes, oferecendo uma experiência diferenciada do primeiro contato à entrega das chaves.',
+      'Meu trabalho é guiado pela excelência, pela ética e pelo compromisso em superar expectativas. Afinal, acredito que grandes negócios começam com confiança e são construídos por meio de um atendimento que valoriza cada cliente de forma única.',
+    ],
+  },
+  // Ainda não existe no Supabase: entra pela lista EXTRAS de lib/brokers.ts.
+  'lara matos': {
+    foto: '/corretores/lara-matos.jpg',
+    bio: [
+      'Meu nome é Lara, tenho 31 anos, sou formada em Matemática e, por mais de dez anos, atuei como gerente na área financeira. Sou natural de Goiânia (GO), morei oito anos no Tocantins e hoje vivo em Jundiaí (SP).',
+      'Escolhi a profissão de corretora de imóveis porque acredito que um imóvel representa muito mais do que um investimento: é o lugar onde sonhos, histórias e famílias ganham um lar. Meu propósito é ajudar cada cliente a encontrar esse lugar especial, seja na conquista do primeiro imóvel ou na construção do seu patrimônio, sempre com dedicação, transparência e cuidado.',
+    ],
+  },
+  // Ainda não existe no Supabase: entra pela lista EXTRAS de lib/brokers.ts.
+  'samir augusto': {
+    foto: '/corretores/samir-augusto.jpg',
+    bio: [
+      'Sou Samir Augusto, profissional com sólida experiência na área comercial, apaixonado por relacionamento com pessoas e por transformar objetivos em conquistas. Acredito que confiança, transparência e dedicação são essenciais para oferecer um atendimento de excelência. Meu compromisso é ajudar cada cliente a encontrar o imóvel ideal com segurança e tranquilidade.',
+    ],
+  },
+};
+
+/**
+ * "Gabriele Fávaro" -> "gabriele fávaro".
+ *
+ * `normalize('NFC')` é o que importa aqui: o mesmo "á" pode chegar do banco
+ * como um caractere único ou como "a" + acento combinante, e sem normalizar as
+ * duas formas não batem na comparação. Acento é preservado de propósito —
+ * assim a chave do mapa é o nome legível, sem regex de diacrítico.
+ */
+function normalizarNome(nome: string): string {
+  return nome.normalize('NFC').toLowerCase().trim().replace(/\s+/g, ' ');
+}
+
+function conteudoRealDe(nome: string) {
+  return CONTEUDO_REAL[normalizarNome(nome)];
+}
+
+// bioFor(b) do script — valores exatos. Texto genérico de placeholder: vale para
+// quem ainda não tem bio própria em CONTEUDO_REAL.
 function bioFor(b: Broker): string[] {
   return [
     'Comecei no mercado imobiliário porque gosto de gente — e descobri que a melhor parte de vender um imóvel é entender a história de quem vai morar nele. Há anos atendo ' + b.area + ' e conheço cada rua, cada escola, cada esquina que pega sol da manhã.',
@@ -337,7 +515,7 @@ export default function LotusCorretores({
   const sel = {
     ...raw,
     wa,
-    bio: bioFor(raw),
+    bio: conteudoRealDe(raw.name)?.bio ?? bioFor(raw),
     chips: [raw.area, raw.squad, 'Casas', 'Apartamentos', raw.city, 'Avaliação gratuita'],
     listings: [
       { slot: raw.id + '-l1', price: 'R$ 1.890.000', title: 'Casa · ' + raw.area, specs: '4 suítes · 280 m²' },
@@ -556,9 +734,22 @@ export default function LotusCorretores({
           <section style={parseStyle('max-width:1100px;margin:0 auto;padding:64px 32px;')}>
             <div style={parseStyle('max-width:720px;')}>
               <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(24px,3vw,34px);color:#15241c;margin:0 0 22px;")}>Sobre {sel.first}</h2>
-              {sel.bio.map((p, i) => (
-                <p key={i} style={parseStyle('font-size:16.5px;color:#3f6249;font-weight:300;line-height:1.7;margin:0 0 18px;')}>{p}</p>
-              ))}
+              {sel.bio.map((bloco, i) =>
+                typeof bloco === 'string' ? (
+                  <p key={i} style={parseStyle('font-size:16.5px;color:#3f6249;font-weight:300;line-height:1.7;margin:0 0 18px;')}>{bloco}</p>
+                ) : (
+                  <div key={i}>
+                    <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:20px;color:#15241c;margin:30px 0 14px;")}>{bloco.titulo}</h3>
+                    {bloco.itens && (
+                      <ul style={parseStyle('margin:0 0 18px;padding-left:20px;display:grid;gap:7px;')}>
+                        {bloco.itens.map((item, j) => (
+                          <li key={j} style={parseStyle('font-size:16px;color:#3f6249;font-weight:300;line-height:1.55;')}>{item}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )
+              )}
             </div>
           </section>
 
@@ -688,11 +879,10 @@ export default function LotusCorretores({
           <div style={parseStyle('display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(247,242,232,.12);')}>
             <div>
               <div style={parseStyle('display:flex;align-items:center;gap:12px;margin-bottom:18px;')}>
-                <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85"></path></svg>
-                <span style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:22px;color:#f7f2e8;")}>Lotus<span style={parseStyle("font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-left:7px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;vertical-align:2px;")}>Brokers</span></span>
+                <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
               </div>
-              <p style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 18px;")}>O imóvel é só o palco. O cliente é a história.</p>
-              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Imobiliária moderna de Jundiaí e Itupeva, voltada para um atendimento de excelência — interior de São Paulo.</p>
+              <p style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 18px;")}>Grandes escolhas têm endereço.</p>
+              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Consultoria imobiliária para compra, venda, locação e investimento em imóveis de médio e alto padrão em Jundiaí, Itupeva e região.</p>
             </div>
             <div>
               <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#cdab6e;margin-bottom:18px;')}>A Lotus</div>

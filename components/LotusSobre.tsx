@@ -194,15 +194,26 @@ const pilares = [
   { num: '04', title: 'Pós-chave de verdade', text: 'A relação não acaba na assinatura. A gente continua por perto — porque cliente bem cuidado vira o próximo capítulo (e a próxima indicação).' },
 ];
 
+// Dois squads. O corretor de cada card saiu junto com os nomes fictícios:
+// eram placeholders com CRECI 000001-F..000004-F, e escolher quais dois manter
+// significaria republicar dado inventado. Para voltar a exibir um responsável,
+// basta acrescentar o nome real e reativar o bloco no `.map` abaixo.
 const squads = [
-  { title: 'Alto Padrão', text: 'Imóveis de R$ 1,5 mi para cima, com a discrição e a imersão que o ticket pede.', broker: 'Marina Tavares', creci: 'CRECI 000001-F', slot: 'sobre-sq-1' },
-  { title: 'Lançamentos', text: 'Quem conhece cada planta e a negociação com a construtora — da escolha à chave.', broker: 'Rafael Nunes', creci: 'CRECI 000002-F', slot: 'sobre-sq-2' },
-  { title: 'Popular', text: 'Primeiro imóvel, financiamento e Minha Casa — atendimento que respeita seu tempo.', broker: 'Juliana Prado', creci: 'CRECI 000003-F', slot: 'sobre-sq-3' },
-  { title: 'Comercial', text: 'Salas, lojas e galpões na região, para quem investe ou expande o negócio.', broker: 'André Salem', creci: 'CRECI 000004-F', slot: 'sobre-sq-4' },
+  { title: 'Imóveis prontos', text: 'Casas e apartamentos prontos para morar: visita marcada, documentação conferida e negociação direta com o proprietário.' },
+  { title: 'Lançamentos', text: 'Quem conhece cada planta e a negociação com a construtora — da escolha à chave.' },
 ];
 
-const corretores = [
-  { name: 'Erick Santos', role: 'Fundador · Alto Padrão', creci: 'CRECI 000000-F', slot: 'corr-1' },
+// `foto` é opcional: só o fundador tem imagem real por enquanto. Os demais
+// continuam sendo nomes fictícios de placeholder (ver IMAGENS-FALTANDO.md) e
+// caem no avatar de iniciais.
+// Só entram na grade os perfis com CRECI real. Os cinco abaixo, de `000001-F` a
+// `000005-F`, são placeholders de pessoas fictícias e ficam filtrados (o
+// `.filter` no render); os dados permanecem para referência de layout.
+const ehCreciPlaceholder = (creci: string) => /CRECI\s*0{4,}/.test(creci);
+
+const corretores: { name: string; role: string; creci: string; slot: string; foto?: string }[] = [
+  // CRECI real ainda não informado — melhor o travessão do que exibir 000000-F.
+  { name: 'Erick Ferrigatti', role: 'Fundador · Marketing e Estratégia', creci: 'CRECI —', slot: 'corr-1', foto: '/corretores/erick-ferrigatti.jpg' },
   { name: 'Marina Tavares', role: 'Alto Padrão · Eloy Chaves', creci: 'CRECI 000001-F', slot: 'corr-2' },
   { name: 'Rafael Nunes', role: 'Lançamentos · Itupeva', creci: 'CRECI 000002-F', slot: 'corr-3' },
   { name: 'Juliana Prado', role: 'Popular · Jundiaí', creci: 'CRECI 000003-F', slot: 'corr-4' },
@@ -413,26 +424,26 @@ export default function LotusSobre({
             <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>A gente organiza o time em squads — cada um domina o seu terreno. Você nunca cai no corretor que tenta dar conta de tudo.</p>
           </div>
           {/* fundador */}
-          <div style={parseStyle('display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;background:#1d3a2c;border-radius:22px;padding:36px;margin-bottom:24px;')}>
-            <div style={parseStyle('width:150px;height:150px;border-radius:50%;background:#3f6249;overflow:hidden;position:relative;flex-shrink:0;')}><ImageSlot id="sobre-fundador" style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} initials="Erick Santos" /></div>
+          {/* `align-items:start` (não `center`): com a bio real o texto passou a
+              ~360px de altura contra 150px da foto, e centralizar deixava o
+              retrato flutuando no meio, longe do nome. Alinhado ao topo, ele
+              acompanha o "Fundador / Erick Ferrigatti". */}
+          <div style={parseStyle('display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start;background:#1d3a2c;border-radius:22px;padding:36px;margin-bottom:24px;')}>
+            <div style={parseStyle('width:180px;height:180px;border-radius:50%;background:#3f6249;overflow:hidden;position:relative;flex-shrink:0;')}><ImageSlot id="sobre-fundador" src="/corretores/erick-ferrigatti.jpg" alt="Erick Ferrigatti" style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} initials="Erick Ferrigatti" /></div>
             <div>
               <div style={parseStyle('font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>Fundador</div>
-              <h3 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:400;font-size:clamp(24px,2.6vw,30px);color:#f7f2e8;margin:0 0 10px;')}>Erick Santos</h3>
-              <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.8);font-weight:300;line-height:1.6;margin:0;max-width:620px;')}>Operador real do mercado imobiliário da região há mais de uma década. Montou a Lotus para provar uma tese simples: quando o corretor é livre do braçal, ele vira um especialista de verdade — e o cliente sente. CRECI 000000-F.</p>
+              <h3 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:400;font-size:clamp(24px,2.6vw,30px);color:#f7f2e8;margin:0 0 10px;')}>Erick Ferrigatti</h3>
+              <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.8);font-weight:300;line-height:1.6;margin:0 0 14px;max-width:620px;')}>Há 15 anos no mercado imobiliário, já atuei desde o operacional administrativo, correspondente bancário, recrutador, marketing, treinamentos, planejamento e hoje atuo como diretor de marketing e estratégia da imobiliária. Estudei Engenharia na Unicamp e sou formado em Publicidade com pós-graduação em Gestão de Negócios.</p>
+              <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.8);font-weight:300;line-height:1.6;margin:0;max-width:620px;')}>Tive a oportunidade de aprender com o mercado imobiliário dentro e fora do país, e retornei como sócio da imobiliária em 2020, quando iniciamos a metodologia de exclusivos que hoje nos fez crescer em 7x, saindo de 8 para mais de 30 corretores atualmente e estruturando o que é o mais importante na minha visão: o local perfeito para corretores que desejam atuar com excelência, contando com treinamentos, mentorias e um suporte contínuo nas áreas essenciais para seu trabalho como marketing, jurídico, administrativo e muito mais.</p>
             </div>
           </div>
           {/* squads grid */}
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:rgba(21,36,28,.12);border-radius:18px;overflow:hidden;')}>
-            {/* hint-placeholder-count="4" */}
             {squads.map((s, i) => (
               <div key={i} style={parseStyle('background:#f7f2e8;padding:32px 28px;')}>
                 <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#b18a4a;margin-bottom:12px;')}>Squad</div>
                 <h3 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:400;font-size:21px;color:#15241c;margin:0 0 8px;')}>{s.title}</h3>
-                <p style={parseStyle('font-size:14px;color:#3f6249;font-weight:300;line-height:1.55;margin:0 0 16px;')}>{s.text}</p>
-                <div style={parseStyle('display:flex;align-items:center;gap:11px;border-top:1px solid rgba(21,36,28,.1);padding-top:14px;')}>
-                  <div style={parseStyle('width:38px;height:38px;border-radius:50%;background:#1d3a2c;overflow:hidden;position:relative;flex-shrink:0;')}><ImageSlot id={s.slot} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={s.broker} initials={s.broker} /></div>
-                  <div><div style={parseStyle('font-size:13.5px;font-weight:600;color:#15241c;')}>{s.broker}</div><div style={parseStyle('font-size:11.5px;color:#8aa593;')}>{s.creci}</div></div>
-                </div>
+                <p style={parseStyle('font-size:14px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>{s.text}</p>
               </div>
             ))}
           </div>
@@ -507,10 +518,9 @@ export default function LotusSobre({
             <Link href="/lotus-home#corretores" style={parseStyle('display:inline-flex;align-items:center;gap:8px;color:#1d3a2c;font-weight:600;font-size:15px;border-bottom:1.5px solid #b18a4a;padding-bottom:3px;white-space:nowrap;')}>Ver na página inicial <span>→</span></Link>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:22px;')}>
-            {/* hint-placeholder-count="6" */}
-            {corretores.map((c, i) => (
+            {corretores.filter((c) => !ehCreciPlaceholder(c.creci)).map((c, i) => (
               <div key={i} style={parseStyle('background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 16px 40px -32px rgba(21,36,28,.32);')}>
-                <div style={parseStyle('position:relative;aspect-ratio:1/1;background:#1d3a2c;')}><ImageSlot id={c.slot} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={c.name} /></div>
+                <div style={parseStyle('position:relative;aspect-ratio:1/1;background:#1d3a2c;')}><ImageSlot id={c.slot} src={c.foto} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={c.name} initials={c.name} /></div>
                 <div style={parseStyle('padding:18px;')}>
                   <div style={parseStyle('font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#b18a4a;margin-bottom:7px;')}>{c.role}</div>
                   <h3 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:400;font-size:19px;color:#15241c;margin:0 0 4px;line-height:1.05;')}>{c.name}</h3>
@@ -597,11 +607,10 @@ export default function LotusSobre({
           <div style={parseStyle('display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(247,242,232,.12);')}>
             <div>
               <div style={parseStyle('display:flex;align-items:center;gap:12px;margin-bottom:18px;')}>
-                <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85"></path></svg>
-                <span style={parseStyle('font-family:\'Fraunces\',serif;font-weight:400;font-size:22px;color:#f7f2e8;')}>Lotus<span style={parseStyle('font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-left:7px;font-family:\'Hanken Grotesk\',sans-serif;font-weight:600;vertical-align:2px;')}>Brokers</span></span>
+                <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
               </div>
-              <p style={parseStyle('font-family:\'Fraunces\',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 18px;')}>O imóvel é só o palco. O cliente é a história.</p>
-              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Imobiliária moderna de Jundiaí e Itupeva, voltada para um atendimento de excelência — interior de São Paulo.</p>
+              <p style={parseStyle('font-family:\'Fraunces\',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 18px;')}>Grandes escolhas têm endereço.</p>
+              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Consultoria imobiliária para compra, venda, locação e investimento em imóveis de médio e alto padrão em Jundiaí, Itupeva e região.</p>
             </div>
             <div>
               <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#cdab6e;margin-bottom:18px;')}>A Lotus</div>

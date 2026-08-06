@@ -11,7 +11,9 @@ import { footerLegalLine } from '@/lib/site';
  *  - sc-for / sc-if       -> .map() / {cond && ...}
  *  - image-slot           -> <ImageSlot> (gradiente de fundo + <img> quando há src)
  *
- * O <script data-dc-script> do fonte só tem: state, EMP (dados), stageStyle, renderVals.
+ * O <script data-dc-script> do fonte só tem: state, EMP (dados), renderVals. O
+ * stageStyle do fonte foi removido junto com o badge de estágio dos cards — o
+ * `stage` continua alimentando só o filtro do topo.
  * NÃO há data-reveal, IntersectionObserver, componentDidMount/WillUnmount nem timers —
  * todo o comportamento é state React (filtros, ordenação, accordion FAQ, submit de forms).
  */
@@ -146,13 +148,6 @@ const WHATSAPP_DEFAULT = '5511926143393';
 // type Emp, EMP e IMG (fallback estático) vivem em @/lib/lancamentos-list-fallback
 // para serem compartilhados com o Server Component que faz o merge com o Supabase.
 
-// stageStyle do <script>.
-function stageStyle(stage: string): { bg: string; color: string } {
-  if (stage === 'Pré-lançamento') return { bg: '#b18a4a', color: '#15241c' };
-  if (stage === 'Em obras') return { bg: 'rgba(29,58,44,.85)', color: '#f7f2e8' };
-  return { bg: '#8aa593', color: '#15241c' };
-}
-
 // motivos do renderVals (valores exatos).
 const motivos = [
   { num: '01', title: 'Melhor preço', text: 'Na tabela de lançamento você entra pelo menor valor — antes da valorização que vem com o avanço da obra.' },
@@ -206,10 +201,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
   if (sortKey === 'priceAsc') list = [...list].sort((a, b) => a.priceNum - b.priceNum);
   else if (sortKey === 'priceDesc') list = [...list].sort((a, b) => b.priceNum - a.priceNum);
 
-  const view = list.map((e) => {
-    const st = stageStyle(e.stage);
-    return { ...e, stageBg: st.bg, stageColor: st.color, img: e.img ?? EMP_IMG[e.id] };
-  });
+  const view = list.map((e) => ({ ...e, img: e.img ?? EMP_IMG[e.id] }));
 
   const hasFilter = fCity !== 'any' || fStage !== 'any' || fType !== 'any' || fPrice !== 'any';
   const count = list.length;
@@ -323,7 +315,6 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
                   <Hoverable as="a" key={i} href={e.href ?? waLink} target={e.href ? '_top' : '_blank'} rel="noopener" baseStyle={parseStyle('display:flex;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 16px 40px -32px rgba(21,36,28,.34);transition:transform .3s ease, box-shadow .3s ease;')} hoverStyle={parseStyle('transform:translateY(-5px);box-shadow:0 30px 60px -34px rgba(21,36,28,.5)')}>
                     <div style={parseStyle('position:relative;aspect-ratio:4/3;background:#1d3a2c;')}>
                       <ImageSlot id={e.slot} src={e.img} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={e.name} />
-                      <span style={parseStyle(`position:absolute;top:12px;left:12px;background:${e.stageBg};color:${e.stageColor};font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:30px;`)}>{e.stage}</span>
                       {e.exclusive && (
                         <>
                           <span style={parseStyle('position:absolute;top:12px;right:12px;background:#b18a4a;color:#15241c;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:30px;')}>Lotus Listing</span>
@@ -476,11 +467,10 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
           <div style={parseStyle('display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(247,242,232,.12);')}>
             <div>
               <div style={parseStyle('display:flex;align-items:center;gap:12px;margin-bottom:18px;')}>
-                <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85"></path></svg>
-                <span style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:22px;color:#f7f2e8;")}>Lotus<span style={parseStyle("font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-left:7px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;vertical-align:2px;")}>Brokers</span></span>
+                <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
               </div>
-              <p style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 18px;")}>O imóvel é só o palco. O cliente é a história.</p>
-              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Imobiliária moderna de Jundiaí e Itupeva, voltada para um atendimento de excelência — interior de São Paulo.</p>
+              <p style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 18px;")}>Grandes escolhas têm endereço.</p>
+              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Consultoria imobiliária para compra, venda, locação e investimento em imóveis de médio e alto padrão em Jundiaí, Itupeva e região.</p>
             </div>
             <div>
               <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#cdab6e;margin-bottom:18px;')}>A Lotus</div>

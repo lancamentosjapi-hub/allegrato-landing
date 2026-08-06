@@ -366,7 +366,10 @@ export default function LotusBairro({
         </div>
       </section>
 
-      {/* DADOS DO BAIRRO */}
+      {/* DADOS DO BAIRRO — só aparece quando há número real. Um bairro sem dado
+          de mercado exibiria "Transparência de mercado" sobre uma faixa vazia
+          (ou sobre "R$ —"), que é o oposto do que a seção promete. */}
+      {bairro.dados.length > 0 && (
       <section style={parseStyle('background:#15241c;padding:80px 32px;position:relative;overflow:hidden;')}>
         <div style={parseStyle("position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;pointer-events:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\");")}></div>
         <div style={parseStyle('max-width:1080px;margin:0 auto;position:relative;')}>
@@ -399,6 +402,7 @@ export default function LotusBairro({
           <p style={parseStyle('font-size:12px;color:rgba(247,242,232,.45);margin-top:24px;')}>Estimativas com base em anúncios e negociações da região nos últimos 12 meses. Valores ilustrativos — atualizados periodicamente pela Lotus.</p>
         </div>
       </section>
+      )}
 
       {/* IMÓVEIS NO BAIRRO */}
       <section style={parseStyle('background:#f7f2e8;padding:90px 32px;')}>
@@ -436,20 +440,6 @@ export default function LotusBairro({
               <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:12px 24px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Falar com o especialista <span>→</span></Hoverable>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* ESPECIALISTA DO BAIRRO */}
-      <section style={parseStyle('background:#3f6249;padding:80px 32px;position:relative;overflow:hidden;')}>
-        <div style={parseStyle("position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;pointer-events:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\");")}></div>
-        <div style={parseStyle('max-width:980px;margin:0 auto;position:relative;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;')}>
-          <div style={parseStyle('width:130px;height:130px;border-radius:50%;background:#1d3a2c;overflow:hidden;position:relative;flex-shrink:0;')}><ImageSlot id="bairro-especialista" src={bairro.especialista.fotoImg || undefined} initials={bairro.especialista.nome} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={bairro.especialista.nome} /></div>
-          <div>
-            <div style={parseStyle('font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>Especialista do bairro</div>
-            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(24px,2.8vw,34px);color:#f7f2e8;margin:0 0 10px;line-height:1.1;")}>{bairro.especialista.nome} conhece {nomeBairro} rua por rua.</h2>
-            <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.8);font-weight:300;line-height:1.55;margin:0 0 20px;max-width:560px;')}>{bairro.especialista.bio} {bairro.especialista.creci}.</p>
-            <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:12px 24px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Falar com {bairro.especialista.nome.split(' ')[0]} <span>→</span></Hoverable>
-          </div>
         </div>
       </section>
 
@@ -518,11 +508,10 @@ export default function LotusBairro({
           <div style={parseStyle('display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(247,242,232,.12);')}>
             <div>
               <div style={parseStyle('display:flex;align-items:center;gap:12px;margin-bottom:18px;')}>
-                <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85"></path></svg>
-                <span style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:22px;color:#f7f2e8;")}>Lotus<span style={parseStyle("font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-left:7px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;vertical-align:2px;")}>Brokers</span></span>
+                <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
               </div>
-              <p style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 18px;")}>O imóvel é só o palco. O cliente é a história.</p>
-              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Imobiliária moderna de Jundiaí e Itupeva, voltada para um atendimento de excelência — interior de São Paulo.</p>
+              <p style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:19px;color:rgba(247,242,232,.85);line-height:1.35;max-width:300px;margin:0 0 18px;")}>Grandes escolhas têm endereço.</p>
+              <p style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.55);line-height:1.6;margin:0;')}>Consultoria imobiliária para compra, venda, locação e investimento em imóveis de médio e alto padrão em Jundiaí, Itupeva e região.</p>
             </div>
             <div>
               <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#cdab6e;margin-bottom:18px;')}>A Lotus</div>
