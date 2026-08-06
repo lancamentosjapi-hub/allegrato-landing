@@ -75,7 +75,20 @@ async function main() {
 
   for (const r of rows) {
     const slug = slugify(r.name);
+    const vinculo = explicito.get(r.name) ?? '';
     const visivel = isListItemApresentavel(r);
+
+    // Vínculo explícito apontando para página que não existe. O CHECK do banco
+    // valida o FORMATO do slug, não se a pasta existe — sem esta checagem um
+    // "vivartee" cairia em "sem landing" e voltaria a falhar calado, que é
+    // exatamente o que a coluna veio resolver.
+    if (vinculo && !landings.includes(slugify(vinculo))) {
+      errados.push(
+        `${r.name}\n      landing_slug = "${vinculo}", mas não existe app/${slugify(vinculo)}/\n      ` +
+          `CORRIJA no dash — slugs válidos: ${landings.slice(0, 4).join(', ')}, …`,
+      );
+      continue;
+    }
 
     if (!visivel) {
       const falta = [!r.img && 'foto', !r.city && 'cidade'].filter(Boolean).join(' e ');
@@ -110,7 +123,14 @@ async function main() {
   console.log(`${rows.length} lançamentos no banco · ${landings.length} landings em app/`);
   p('OK — abrem a landing', linkam);
   p('NOME ERRADO NO DASH — a landing existe mas o card cai no WhatsApp', errados);
-  p('LANDING ÓRFÃ — a página existe, mas nenhum lançamento no dash aponta para ela', orfas.map((o) => `/${o}   cadastre um lançamento chamado "${nomeNecessario(o)}"`));
+  // Com landing_slug o nome ficou livre, então a instrução é preencher o campo —
+  // o nome sugerido vale só para quem ainda não tem o campo no dash.
+  p(
+    'LANDING ÓRFÃ — a página existe, mas nenhum lançamento no dash aponta para ela',
+    orfas.map(
+      (o) => `/${o}   cadastre um lançamento com landing_slug = "${o}"  (nome livre; sem o campo, chame de "${nomeNecessario(o)}")`,
+    ),
+  );
   p('INVISÍVEL — cadastrado, mas não aparece na vitrine', invisiveis);
   p('SEM LANDING — card vai para o WhatsApp (esperado, não há página)', semLanding);
 

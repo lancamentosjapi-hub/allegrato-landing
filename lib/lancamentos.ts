@@ -34,10 +34,11 @@ export type LancamentoRow = {
   preco_num: number | null;
   created_at: string;
   updated_at: string;
-  // Vínculo EXPLÍCITO com a landing (migration 0004). Quando preenchido, manda —
-  // e o nome do empreendimento volta a ser livre no dash ("Vivarte Grand Alamedas"
-  // pode apontar para /vivarte). Ausente/nulo cai no slugify(nome), que é o
-  // comportamento antigo. Opcional no tipo porque a view pode ainda não expor.
+  // Vínculo EXPLÍCITO com a landing (view portal_landing_slugs, migration 0005).
+  // Quando preenchido manda, e o nome volta a ser livre no dash: "Vivarte Grand
+  // Alamedas" pode apontar para /vivarte. Ausente/nulo cai no slugify(nome), o
+  // comportamento de sempre. Anexado por fetchRowsComLanding — não vem de
+  // portal_lancamentos, que esta base de código não controla.
   landing_slug?: string | null;
 };
 
@@ -140,41 +141,62 @@ export function isListItemApresentavel(i: LancamentoListItem): boolean {
 // Busca os lançamentos publicados do tenant Lotus. Ordena: os que têm landing
 // rica primeiro, depois por nome.
 // Colunas expostas pela view portal_lancamentos (mantidas em sincronia com a view).
-const BASE_COLS =
+const SELECT_COLS =
   'id, tenant_id, nome, descricao, fotos, endereco_plantao, cidade, bairro, estagio, construtora, dormitorios, specs, preco_texto, exclusivo, tipo_dorms, preco_num, created_at, updated_at';
-const SELECT_COLS = `${BASE_COLS}, landing_slug`;
-
-// Postgres: coluna inexistente no SELECT. Enquanto a view portal_lancamentos não
-// for recriada com landing_slug (migration 0004), pedir a coluna derruba a query
-// inteira — e com ela a home e a listagem. O retry sem a coluna é a ponte entre o
-// deploy do código e o da view, em qualquer ordem. Pode sair depois que a view
-// estiver publicada nos dois ambientes.
-const COLUNA_INEXISTENTE = '42703';
 
 async function fetchRows(): Promise<LancamentoRow[]> {
-  const query = (cols: string) =>
-    supabase.from('portal_lancamentos').select(cols).eq('tenant_id', TENANT_ID);
-
-  let { data, error } = await query(SELECT_COLS);
-
-  if (error?.code === COLUNA_INEXISTENTE) {
-    console.warn(
-      '[lancamentos] view portal_lancamentos ainda sem landing_slug — ' +
-        'o link da landing sai do nome (ver supabase/migrations/0004).',
-    );
-    ({ data, error } = await query(BASE_COLS));
-  }
+  const { data, error } = await supabase
+    .from('portal_lancamentos')
+    .select(SELECT_COLS)
+    .eq('tenant_id', TENANT_ID);
 
   if (error) {
     // ponytail: não derruba a página se o Supabase falhar; loga e devolve vazio.
     console.error('[lancamentos] erro Supabase:', error.message);
     return [];
   }
-  return (data ?? []) as unknown as LancamentoRow[];
+  return data as LancamentoRow[];
+}
+
+/**
+ * Vínculo explícito lançamento -> landing, por id (migration 0005).
+ *
+ * View à parte de propósito: portal_lancamentos é criada no repo do dash, e
+ * acrescentar uma coluna lá exigiria reescrever a definição inteira. Cruzar duas
+ * listas por id em JS custa uma query e não arrisca a listagem.
+ *
+ * Falha (view ainda não criada, sem grant, Supabase fora) devolve mapa vazio: o
+ * slug volta a sair do nome, que é o comportamento de antes da 0004. Nunca
+ * derruba a página — daí o log ser aviso, não erro.
+ */
+async function fetchLandingSlugs(): Promise<Map<string, string>> {
+  const { data, error } = await supabase
+    .from('portal_landing_slugs')
+    .select('id, landing_slug')
+    .eq('tenant_id', TENANT_ID);
+
+  if (error) {
+    console.warn(
+      `[lancamentos] portal_landing_slugs indisponível (${error.message}) — ` +
+        'o link da landing sai do nome. Ver supabase/migrations/0005.',
+    );
+    return new Map();
+  }
+  return new Map(
+    (data ?? [])
+      .filter((r): r is { id: string; landing_slug: string } => Boolean(r.landing_slug))
+      .map((r) => [r.id, r.landing_slug]),
+  );
+}
+
+/** Lançamentos já com o vínculo explícito anexado, prontos para toCard/toListItem. */
+async function fetchRowsComLanding(): Promise<LancamentoRow[]> {
+  const [rows, slugs] = await Promise.all([fetchRows(), fetchLandingSlugs()]);
+  return rows.map((r) => ({ ...r, landing_slug: slugs.get(r.id) ?? null }));
 }
 
 export async function getLancamentos(): Promise<LancamentoCard[]> {
-  const rows = await fetchRows();
+  const rows = await fetchRowsComLanding();
   return rows
     .map(toCard)
     .sort((a, b) => {
@@ -188,11 +210,11 @@ export async function getLancamentos(): Promise<LancamentoCard[]> {
 // precisa enxergar landing_slug para dizer se o vínculo é explícito ou derivado
 // do nome. As páginas consomem os `to*` acima, não isto.
 export async function getLancamentosRows(): Promise<LancamentoRow[]> {
-  return fetchRows();
+  return fetchRowsComLanding();
 }
 
 // Itens da listagem /lotus-lancamentos (com campos de filtro).
 export async function getLancamentosList(): Promise<LancamentoListItem[]> {
-  const rows = await fetchRows();
+  const rows = await fetchRowsComLanding();
   return rows.map(toListItem);
 }
