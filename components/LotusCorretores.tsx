@@ -16,7 +16,6 @@ import { footerLegalLine } from '@/lib/site';
 import Link from 'next/link';
 import LotusHeader from './LotusHeader';
 import React, {
-  useEffect,
   useRef,
   useState,
   type CSSProperties,
@@ -198,9 +197,8 @@ type Broker = {
   squad: string;
   area: string;
   city: string;
-  creci: string;
-  rating: string;
-  reviews: number;
+  /** null = CRECI não informado no dashboard. */
+  creci: string | null;
   active: number;
   founder?: boolean;
   slot: string;
@@ -211,29 +209,45 @@ type Broker = {
 // Dados demo — usados só quando a página é renderizada sem brokers do banco
 // (fallback de compat). Em produção os corretores vêm de getBrokers().
 const BROKERS_FALLBACK: Broker[] = [
-  { id: 'erick', name: 'Erick Santos', first: 'Erick', squad: 'Alto Padrão', area: 'Jundiaí', city: 'Jundiaí', creci: 'CRECI 000000-F', rating: '5,0', reviews: 64, active: 12, founder: true, slot: 'c-erick' },
-  { id: 'marina', name: 'Marina Tavares', first: 'Marina', squad: 'Alto Padrão', area: 'Eloy Chaves', city: 'Jundiaí', creci: 'CRECI 000001-F', rating: '5,0', reviews: 48, active: 9, slot: 'c-marina' },
-  { id: 'rafael', name: 'Rafael Nunes', first: 'Rafael', squad: 'Lançamentos', area: 'Itupeva', city: 'Itupeva', creci: 'CRECI 000002-F', rating: '4,9', reviews: 37, active: 15, slot: 'c-rafael' },
-  { id: 'juliana', name: 'Juliana Prado', first: 'Juliana', squad: 'Popular', area: 'Medeiros', city: 'Jundiaí', creci: 'CRECI 000003-F', rating: '4,9', reviews: 52, active: 18, slot: 'c-juliana' },
-  { id: 'andre', name: 'André Salem', first: 'André', squad: 'Comercial', area: 'Centro', city: 'Jundiaí', creci: 'CRECI 000004-F', rating: '4,8', reviews: 29, active: 11, slot: 'c-andre' },
-  { id: 'beatriz', name: 'Beatriz Lima', first: 'Beatriz', squad: 'Lançamentos', area: 'Vinhedo', city: 'Vinhedo', creci: 'CRECI 000005-F', rating: '5,0', reviews: 33, active: 14, slot: 'c-beatriz' },
-  { id: 'thiago', name: 'Thiago Berto', first: 'Thiago', squad: 'Alto Padrão', area: 'Malota', city: 'Jundiaí', creci: 'CRECI 000006-F', rating: '4,9', reviews: 41, active: 8, slot: 'c-thiago' },
-  { id: 'carol', name: 'Carolina Reis', first: 'Carolina', squad: 'Popular', area: 'Anhangabaú', city: 'Jundiaí', creci: 'CRECI 000007-F', rating: '4,8', reviews: 45, active: 16, slot: 'c-carol' },
+  { id: 'erick', name: 'Erick Santos', first: 'Erick', squad: 'Alto Padrão', area: 'Jundiaí', city: 'Jundiaí', creci: 'CRECI 000000-F', active: 12, founder: true, slot: 'c-erick' },
+  { id: 'marina', name: 'Marina Tavares', first: 'Marina', squad: 'Alto Padrão', area: 'Eloy Chaves', city: 'Jundiaí', creci: 'CRECI 000001-F', active: 9, slot: 'c-marina' },
+  { id: 'rafael', name: 'Rafael Nunes', first: 'Rafael', squad: 'Lançamentos', area: 'Itupeva', city: 'Itupeva', creci: 'CRECI 000002-F', active: 15, slot: 'c-rafael' },
+  { id: 'juliana', name: 'Juliana Prado', first: 'Juliana', squad: 'Popular', area: 'Medeiros', city: 'Jundiaí', creci: 'CRECI 000003-F', active: 18, slot: 'c-juliana' },
+  { id: 'andre', name: 'André Salem', first: 'André', squad: 'Comercial', area: 'Centro', city: 'Jundiaí', creci: 'CRECI 000004-F', active: 11, slot: 'c-andre' },
+  { id: 'beatriz', name: 'Beatriz Lima', first: 'Beatriz', squad: 'Lançamentos', area: 'Vinhedo', city: 'Vinhedo', creci: 'CRECI 000005-F', active: 14, slot: 'c-beatriz' },
+  { id: 'thiago', name: 'Thiago Berto', first: 'Thiago', squad: 'Alto Padrão', area: 'Malota', city: 'Jundiaí', creci: 'CRECI 000006-F', active: 8, slot: 'c-thiago' },
+  { id: 'carol', name: 'Carolina Reis', first: 'Carolina', squad: 'Popular', area: 'Anhangabaú', city: 'Jundiaí', creci: 'CRECI 000007-F', active: 16, slot: 'c-carol' },
 ];
 
 // Campos que ainda não existem em tenant_brokers ficam com placeholder até
 // virem do banco (squad/area/creci/rating/reviews/active). Ver decisão de
 // escopo: nome+foto reais, resto placeholder.
 // CRECI real (só o número no banco) -> "CRECI <n>". Sem valor => placeholder.
-function formatCreci(creci: string | null): string {
+// `null` quando não há número: a linha some do card em vez de exibir um
+// travessão solto. Volta sozinha quando o CRECI for preenchido no dashboard.
+function formatCreci(creci: string | null): string | null {
   const c = (creci ?? '').trim();
-  if (!c) return 'CRECI —';
+  if (!c) return null;
   return /creci/i.test(c) ? c : 'CRECI ' + c;
 }
 
-// "1 imóvel ativo" / "N imóveis ativos".
-function imoveisAtivosLabel(n: number): string {
+// Enquanto os CRECI não estiverem cadastrados no dashboard, todos os corretores
+// aparecem. Virando `true`, só entram na listagem os que têm número — sem
+// precisar mexer no resto do componente.
+const EXIGIR_CRECI = false;
+
+const temCreci = (b: { creci: string | null }) => Boolean(b.creci);
+
+// "1 imóvel ativo" / "N imóveis ativos". Zero não vira texto: "0 imóveis
+// ativos" só chama atenção para um cadastro incompleto.
+function imoveisAtivosLabel(n: number): string | null {
+  if (n <= 0) return null;
   return n === 1 ? '1 imóvel ativo' : `${n} imóveis ativos`;
+}
+
+// Junta só o que existe, para não sobrar " · " pendurado.
+function linhaCredenciais(...partes: (string | null)[]): string {
+  return partes.filter(Boolean).join(' · ');
 }
 
 function realToBroker(b: {
@@ -251,8 +265,6 @@ function realToBroker(b: {
     area: 'Jundiaí e Itupeva',
     city: 'Jundiaí',
     creci: formatCreci(b.creci),
-    rating: '5,0',
-    reviews: 0,
     active: b.imoveisAtivos,
     slot: 'c-' + b.id,
     // O banco tem prioridade: o override local só entra quando photo_url é
@@ -442,8 +454,9 @@ export default function LotusCorretores({
   brokers?: { id: string; name: string; photoUrl: string | null; creci: string | null; imoveisAtivos: number }[];
 } = {}) {
   // Fonte dos corretores: banco (se veio algum) ou fallback demo.
-  const BROKERS: Broker[] =
+  const doBanco: Broker[] =
     brokers && brokers.length > 0 ? brokers.map(realToBroker) : BROKERS_FALLBACK;
+  const BROKERS: Broker[] = EXIGIR_CRECI ? doBanco.filter(temCreci) : doBanco;
 
   // state (espelha o `state` do dc-runtime)
   const [view, setView] = useState<'list' | 'profile'>('list');
@@ -491,20 +504,15 @@ export default function LotusCorretores({
     ...raw,
     wa,
     bio: conteudoRealDe(raw.name)?.bio ?? bioFor(raw),
-    chips: [raw.area, raw.squad, 'Casas', 'Apartamentos', raw.city, 'Avaliação gratuita'],
-    listings: [
-      { slot: raw.id + '-l1', price: 'R$ 1.890.000', title: 'Casa · ' + raw.area, specs: '4 suítes · 280 m²' },
-      { slot: raw.id + '-l2', price: 'R$ 980.000', title: 'Apartamento · ' + raw.area, specs: '3 dorms · 110 m²' },
-      { slot: raw.id + '-l3', price: 'R$ 2.450.000', title: 'Casa · ' + raw.area, specs: '4 suítes · 320 m²' },
-    ],
-    testimonials: [
-      { text: 'Atendimento impecável do início ao fim. Entendeu exatamente o que a gente queria e achou a casa certa.', name: 'Família Souza', where: 'comprou em ' + raw.area },
-      { text: 'Vendi meu imóvel rápido e pelo valor justo. Comunicação clara o tempo todo. Recomendo de olhos fechados.', name: 'Patrícia M.', where: 'vendeu em ' + raw.area },
-    ],
+    // `area` já traz a cidade e `squad` é fixo em "Especialista" — repetir os
+    // dois viraria chip duplicado.
+    chips: [raw.area, 'Casas', 'Apartamentos', 'Avaliação gratuita'],
   };
 
+  // A pergunta "Quem é o melhor corretor para X?" saiu junto com sua resposta:
+  // afirmava nota e "dezenas de famílias atendidas", números que não existem em
+  // lugar nenhum. Sobra o que é verificável.
   const pf = [
-    { q: 'Quem é o melhor corretor para ' + raw.area + '?', a: raw.first + ' é especialista em ' + raw.area + ' na Lotus Brokers, com nota ' + raw.rating + ' e dezenas de famílias atendidas na região.' },
     { q: 'Como falar com ' + raw.first + '?', a: 'Pelo botão de WhatsApp direto nesta página, pelo formulário de contato, ou agendando uma conversa. ' + raw.first + ' responde pessoalmente.' },
   ];
   const profileFaqs = pf.map((f, i) => ({
@@ -606,13 +614,14 @@ export default function LotusCorretores({
                       <div style={parseStyle('position:relative;aspect-ratio:1/1;background:#1d3a2c;')}>
                         <ImageSlot id={b.slot} src={b.photoUrl || undefined} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={b.name} initials={b.name} />
                         {b.founder && (<span style={parseStyle('position:absolute;top:12px;left:12px;background:#b18a4a;color:#15241c;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:30px;')}>Fundador</span>)}
-                        <span style={parseStyle('position:absolute;top:12px;right:12px;background:rgba(247,242,232,.92);color:#1d3a2c;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:30px;display:flex;align-items:center;gap:3px;')}><span style={parseStyle('color:#b18a4a;')}>★</span>{b.rating}</span>
                       </div>
                       <div style={parseStyle('padding:18px;display:flex;flex-direction:column;flex:1;')}>
                         <div style={parseStyle('font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#b18a4a;margin-bottom:7px;')}>{b.squad}</div>
                         <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:20px;color:#15241c;margin:0 0 4px;line-height:1.05;")}>{b.name}</h3>
                         <div style={parseStyle('font-size:13px;color:#3f6249;')}>Especialista em {b.area}</div>
-                        <div style={parseStyle('font-size:12px;color:#8aa593;margin-top:4px;')}>{b.creci} · {imoveisAtivosLabel(b.active)}</div>
+                        {linhaCredenciais(b.creci, imoveisAtivosLabel(b.active)) && (
+                          <div style={parseStyle('font-size:12px;color:#8aa593;margin-top:4px;')}>{linhaCredenciais(b.creci, imoveisAtivosLabel(b.active))}</div>
+                        )}
                         <div style={parseStyle('display:flex;gap:8px;margin-top:16px;')}>
                           <Hoverable as="button" onClick={() => openBroker(b.id)} baseStyle={parseStyle('flex:1;background:#1d3a2c;color:#f7f2e8;font-weight:600;font-size:13px;padding:10px;border:none;border-radius:9px;cursor:pointer;transition:background .2s;')} hoverStyle={parseStyle('background:#15241c')}>Ver perfil</Hoverable>
                           <a href={wa} target="_blank" rel="noopener" aria-label="WhatsApp" style={parseStyle('flex-shrink:0;width:40px;background:#25543b;border-radius:9px;display:flex;align-items:center;justify-content:center;')}><svg width="18" height="18" viewBox="0 0 24 24" fill="#f7f2e8"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Z"></path></svg></a>
@@ -664,11 +673,13 @@ export default function LotusCorretores({
             <div style={parseStyle('position:sticky;top:88px;')}>
               <div style={parseStyle('font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#b18a4a;margin-bottom:12px;')}>{sel.squad}</div>
               <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(32px,4vw,48px);color:#15241c;line-height:1.02;margin:0 0 10px;")}>{sel.name}</h1>
-              <div style={parseStyle('display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:20px;')}>
-                <span style={parseStyle('font-size:14.5px;color:#3f6249;')}>{sel.creci}</span>
-                <span style={parseStyle('display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:600;color:#15241c;')}><span style={parseStyle('color:#b18a4a;')}>★</span>{sel.rating} <span style={parseStyle('color:#8aa593;font-weight:400;')}>({sel.reviews} avaliações)</span></span>
-              </div>
-              <p style={parseStyle('font-size:15.5px;color:#3f6249;font-weight:300;line-height:1.55;margin:0 0 22px;')}>Especialista em <strong style={parseStyle('color:#15241c;font-weight:600;')}>{sel.area}</strong> · {sel.city} · {imoveisAtivosLabel(sel.active)}.</p>
+              {sel.creci && (
+                <div style={parseStyle('display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:20px;')}>
+                  <span style={parseStyle('font-size:14.5px;color:#3f6249;')}>{sel.creci}</span>
+                </div>
+              )}
+              {/* A cidade saiu: `area` já a contém ("Jundiaí e Itupeva · Jundiaí"). */}
+              <p style={parseStyle('font-size:15.5px;color:#3f6249;font-weight:300;line-height:1.55;margin:0 0 22px;')}>Especialista em <strong style={parseStyle('color:#15241c;font-weight:600;')}>{sel.area}</strong>{imoveisAtivosLabel(sel.active) ? ' · ' + imoveisAtivosLabel(sel.active) : ''}.</p>
               <div style={parseStyle('display:flex;flex-wrap:wrap;gap:10px;')}>
                 <a href={sel.wa} target="_blank" rel="noopener" style={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#25543b;color:#f7f2e8;font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:11px;')}><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Z"></path></svg>Falar no WhatsApp</a>
                 <Hoverable as="a" href="#agenda" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:11px;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Agendar conversa</Hoverable>
@@ -724,45 +735,10 @@ export default function LotusCorretores({
             </div>
           </section>
 
-          {/* imóveis do corretor */}
-          <section style={parseStyle('background:#f7f2e8;padding:80px 32px;')}>
-            <div style={parseStyle('max-width:1100px;margin:0 auto;')}>
-              <div style={parseStyle('display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:32px;')}>
-                <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(24px,3vw,36px);color:#15241c;margin:0;")}>Imóveis com {sel.first}</h2>
-                <a target="_top" href="/lotus-busca" style={parseStyle('display:inline-flex;align-items:center;gap:8px;color:#1d3a2c;font-weight:600;font-size:15px;border-bottom:1.5px solid #b18a4a;padding-bottom:3px;')}>Ver todos <span>→</span></a>
-              </div>
-              <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;')}>
-                {sel.listings.map((l, i) => (
-                  <Hoverable key={i} as="a" target="_top" href="/lotus-imovel" baseStyle={parseStyle('display:flex;flex-direction:column;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 16px 40px -32px rgba(21,36,28,.32);transition:transform .3s ease;')} hoverStyle={parseStyle('transform:translateY(-4px)')}>
-                    <div style={parseStyle('position:relative;aspect-ratio:4/3;background:#1d3a2c;')}><ImageSlot id={l.slot} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={l.title} /></div>
-                    <div style={parseStyle('padding:18px;')}>
-                      <div style={parseStyle("font-family:'Fraunces',serif;font-size:19px;color:#1d3a2c;")}>{l.price}</div>
-                      <div style={parseStyle('font-size:13px;font-weight:600;color:#15241c;margin-top:6px;')}>{l.title}</div>
-                      <div style={parseStyle('font-size:12.5px;color:#3f6249;margin-top:3px;')}>{l.specs}</div>
-                    </div>
-                  </Hoverable>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* depoimentos */}
-          <section style={parseStyle('background:#1d3a2c;padding:80px 32px;position:relative;overflow:hidden;')}>
-            <div style={parseStyle('position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'140\' height=\'140\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'.85\' numOctaves=\'2\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E");')}></div>
-            <div style={parseStyle('max-width:1100px;margin:0 auto;position:relative;')}>
-              <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(24px,3vw,36px);color:#f7f2e8;margin:0 0 36px;")}>Quem foi atendido por {sel.first}</h2>
-              <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;')}>
-                {sel.testimonials.map((t, i) => (
-                  <div key={i} style={parseStyle('background:rgba(247,242,232,.06);border:1px solid rgba(247,242,232,.12);border-radius:18px;padding:28px;')}>
-                    <div style={parseStyle('color:#cdab6e;font-size:16px;letter-spacing:3px;margin-bottom:12px;')}>★★★★★</div>
-                    <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.88);font-weight:300;line-height:1.6;margin:0 0 16px;')}>“{t.text}”</p>
-                    <div style={parseStyle('font-size:13.5px;font-weight:600;color:#f7f2e8;')}>{t.name}</div>
-                    <div style={parseStyle('font-size:12.5px;color:#8aa593;')}>{t.where}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+          {/* As seções "Imóveis com {first}" e "Quem foi atendido por {first}"
+              saíram: os três imóveis eram preços inventados apontando todos para
+              /lotus-imovel, e os dois depoimentos eram assinados por pessoas que
+              não existem. Voltam quando houver carteira e avaliações no banco. */}
 
           {/* agenda / contato */}
           <section id="agenda" style={parseStyle('background:#ece2cf;padding:80px 32px;')}>
