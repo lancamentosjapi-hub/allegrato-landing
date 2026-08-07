@@ -238,6 +238,13 @@ const EXIGIR_CRECI = false;
 
 const temCreci = (b: { creci: string | null }) => Boolean(b.creci);
 
+// A view portal_brokers não expõe squad: `realToBroker` preenche todos com
+// "Especialista". Isso deixava a tarja dourada idêntica em todo perfil e o
+// filtro de squad zerado — as quatro opções não achavam ninguém. Enquanto o
+// campo não existir no dashboard, tarja e filtro ficam fora. Virando `true`,
+// os dois voltam.
+const SQUAD_NO_DASH = false;
+
 // "1 imóvel ativo" / "N imóveis ativos". Zero não vira texto: "0 imóveis
 // ativos" só chama atenção para um cadastro incompleto.
 function imoveisAtivosLabel(n: number): string | null {
@@ -589,9 +596,11 @@ export default function LotusCorretores({
           <section style={parseStyle('max-width:1200px;margin:0 auto;padding:36px 32px 0;')}>
             <div style={parseStyle('display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;')}>
               <div style={parseStyle('display:flex;flex-wrap:wrap;gap:10px;align-items:center;')}>
-                <select className="lt-field" value={fSquad} onChange={(e) => setFSquad(e.target.value)}>
-                  <option value="any">Todos os squads</option><option value="Alto Padrão">Alto Padrão</option><option value="Lançamentos">Lançamentos</option><option value="Popular">Popular</option><option value="Comercial">Comercial</option>
-                </select>
+                {SQUAD_NO_DASH && (
+                  <select className="lt-field" value={fSquad} onChange={(e) => setFSquad(e.target.value)}>
+                    <option value="any">Todos os squads</option><option value="Alto Padrão">Alto Padrão</option><option value="Lançamentos">Lançamentos</option><option value="Popular">Popular</option><option value="Comercial">Comercial</option>
+                  </select>
+                )}
                 <select className="lt-field" value={fCity} onChange={(e) => setFCity(e.target.value)}>
                   <option value="any">Todas as cidades</option><option value="Jundiaí">Jundiaí</option><option value="Itupeva">Itupeva</option><option value="Vinhedo">Vinhedo</option>
                 </select>
@@ -616,7 +625,9 @@ export default function LotusCorretores({
                         {b.founder && (<span style={parseStyle('position:absolute;top:12px;left:12px;background:#b18a4a;color:#15241c;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:30px;')}>Fundador</span>)}
                       </div>
                       <div style={parseStyle('padding:18px;display:flex;flex-direction:column;flex:1;')}>
-                        <div style={parseStyle('font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#b18a4a;margin-bottom:7px;')}>{b.squad}</div>
+                        {SQUAD_NO_DASH && (
+                          <div style={parseStyle('font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#b18a4a;margin-bottom:7px;')}>{b.squad}</div>
+                        )}
                         <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:20px;color:#15241c;margin:0 0 4px;line-height:1.05;")}>{b.name}</h3>
                         <div style={parseStyle('font-size:13px;color:#3f6249;')}>Especialista em {b.area}</div>
                         {linhaCredenciais(b.creci, imoveisAtivosLabel(b.active)) && (
@@ -668,10 +679,11 @@ export default function LotusCorretores({
           <section style={parseStyle('max-width:1100px;margin:0 auto;padding:24px 32px 0;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;')}>
             <div style={parseStyle('position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:#1d3a2c;')}>
               <ImageSlot id={sel.slot} src={sel.photoUrl || undefined} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={sel.name} initials={sel.name} />
-              <button style={parseStyle('position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;background:rgba(247,242,232,.92);border:none;border-radius:40px;padding:10px 18px;font-size:13.5px;font-weight:600;color:#1d3a2c;cursor:pointer;')}><svg width="16" height="16" viewBox="0 0 24 24" fill="#1d3a2c"><path d="M8 5v14l11-7z"></path></svg>Vídeo de apresentação</button>
             </div>
             <div style={parseStyle('position:sticky;top:88px;')}>
-              <div style={parseStyle('font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#b18a4a;margin-bottom:12px;')}>{sel.squad}</div>
+              {SQUAD_NO_DASH && (
+                <div style={parseStyle('font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#b18a4a;margin-bottom:12px;')}>{sel.squad}</div>
+              )}
               <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(32px,4vw,48px);color:#15241c;line-height:1.02;margin:0 0 10px;")}>{sel.name}</h1>
               {sel.creci && (
                 <div style={parseStyle('display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:20px;')}>
