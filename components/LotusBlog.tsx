@@ -165,7 +165,10 @@ type Post = {
   body: BlocoArtigo[];
 };
 
-const POSTS: Post[] = [
+// Exportado para a home consumir os destaques (LotusHome importa e mostra os
+// três primeiros). Antes a home mantinha uma lista própria de posts escrita à
+// mão, que envelheceu: títulos que não existiam mais no blog e nenhuma capa.
+export const POSTS: Post[] = [
   {
     id: 'p00000', cat: 'Região', date: 'Ago 2026', read: '6 min', img: '/blog/bairro-caxambu.jpg', slot: 'blog-p00000', title: 'Bairro Caxambu: tradição, natureza e qualidade de vida em Jundiaí', excerpt: 'Conheça o bairro Caxambu, em Jundiaí, e descubra por que a região é uma das melhores opções para quem busca tranquilidade, qualidade de vida e valorização imobiliária.', author: 'Equipe Lotus', role: 'Squad de conteúdo',
     tldr: 'Na região norte de Jundiaí, o Caxambu mantém perfil residencial e rural — herança da imigração italiana e da produção de uvas — com acesso fácil ao centro e às rodovias. Reúne casas, sobrados, chácaras, terrenos e condomínios fechados, e atrai quem busca espaço e tranquilidade sem perder praticidade.',

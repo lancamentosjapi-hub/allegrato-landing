@@ -23,6 +23,7 @@ import React, {
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { developmentsFallback, type DevelopmentCard } from '@/lib/developments';
+import { POSTS } from './LotusBlog';
 import MobileMenu from './MobileMenu';
 
 // Chat do Atendimento Rápido — chunk só carrega quando o usuário abre o widget.
@@ -257,11 +258,10 @@ const neighborhoodsJundiai = [
 ];
 
 
-const posts = [
-  { title: 'Onde morar em Jundiaí em 2026: 5 bairros em ascensão', cat: 'Cidade', date: '12 jun 2026', read: '6 min', excerpt: 'Da Serra do Japi ao Anhangabaú: o que está valorizando e por quê, na visão de quem vive a região.', slot: 'lotus-post-1' },
-  { title: 'Comprar na planta vale a pena? O que olhar antes de assinar', cat: 'Mercado', date: '03 jun 2026', read: '8 min', excerpt: 'Tabela, entrega, reputação da construtora — o passo a passo que nossos especialistas usam.', slot: 'lotus-post-2' },
-  { title: 'Itupeva: a nova fronteira dos condomínios na Serra', cat: 'Bairros', date: '24 mai 2026', read: '5 min', excerpt: 'Por que famílias de Jundiaí e da capital estão escolhendo Itupeva para morar com mais verde.', slot: 'lotus-post-3' },
-];
+// Destaques do blog — os três artigos mais recentes, vindos da mesma fonte que
+// alimenta /lotus-blog. Manter uma lista própria aqui era o que fazia a home
+// exibir títulos que já não existiam e nenhuma capa.
+const posts = POSTS.slice(0, 3);
 
 const brokers: Array<{ name: string; squad: string; area: string; creci: string; slot: string; img?: string }> = [
   { name: 'Marina Tavares', squad: 'Alto Padrão', area: 'Eloy Chaves', creci: 'CRECI 000001-F', slot: 'lotus-broker-marina' },
@@ -870,7 +870,7 @@ export default function LotusHome({
             {posts.map((p, i) => (
               <Hoverable key={i} as="a" data-reveal="" baseStyle={parseStyle('cursor:default;display:flex;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(21,36,28,.32);transition:transform .35s ease, box-shadow .35s ease;')} hoverStyle={parseStyle('transform:translateY(-5px);box-shadow:0 30px 60px -32px rgba(21,36,28,.42)')}>
                 <div style={parseStyle('position:relative;aspect-ratio:16/10;background:#3f6249;')}>
-                  <ImageSlot id={p.slot} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={p.title} />
+                  <ImageSlot id={p.slot} src={p.img} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={p.title} />
                   <span style={parseStyle('position:absolute;top:14px;left:14px;background:rgba(247,242,232,.94);color:#1d3a2c;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 11px;border-radius:30px;')}>{p.cat}</span>
                 </div>
                 <div style={parseStyle('padding:24px;display:flex;flex-direction:column;flex:1;')}>
