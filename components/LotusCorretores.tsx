@@ -238,12 +238,13 @@ const EXIGIR_CRECI = false;
 
 const temCreci = (b: { creci: string | null }) => Boolean(b.creci);
 
-// A view portal_brokers não expõe squad: `realToBroker` preenche todos com
-// "Especialista". Isso deixava a tarja dourada idêntica em todo perfil e o
-// filtro de squad zerado — as quatro opções não achavam ninguém. Enquanto o
-// campo não existir no dashboard, tarja e filtro ficam fora. Virando `true`,
-// os dois voltam.
+// A view portal_brokers não expõe squad nem cidade: `realToBroker` preenche
+// todos com "Especialista" e "Jundiaí". O efeito era filtro que não filtra —
+// as quatro opções de squad e as cidades Itupeva/Vinhedo não achavam ninguém —
+// e uma tarja dourada idêntica em todo card e perfil. Enquanto os campos não
+// existirem no dashboard, os controles ficam fora. Virando as flags, voltam.
 const SQUAD_NO_DASH = false;
+const CIDADE_NO_DASH = false;
 
 // "1 imóvel ativo" / "N imóveis ativos". Zero não vira texto: "0 imóveis
 // ativos" só chama atenção para um cadastro incompleto.
@@ -601,9 +602,11 @@ export default function LotusCorretores({
                     <option value="any">Todos os squads</option><option value="Alto Padrão">Alto Padrão</option><option value="Lançamentos">Lançamentos</option><option value="Popular">Popular</option><option value="Comercial">Comercial</option>
                   </select>
                 )}
-                <select className="lt-field" value={fCity} onChange={(e) => setFCity(e.target.value)}>
-                  <option value="any">Todas as cidades</option><option value="Jundiaí">Jundiaí</option><option value="Itupeva">Itupeva</option><option value="Vinhedo">Vinhedo</option>
-                </select>
+                {CIDADE_NO_DASH && (
+                  <select className="lt-field" value={fCity} onChange={(e) => setFCity(e.target.value)}>
+                    <option value="any">Todas as cidades</option><option value="Jundiaí">Jundiaí</option><option value="Itupeva">Itupeva</option><option value="Vinhedo">Vinhedo</option>
+                  </select>
+                )}
               </div>
               <div style={parseStyle('position:relative;')}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8aa593" strokeWidth="2" style={parseStyle('position:absolute;left:14px;top:50%;transform:translateY(-50%);')}><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.2-3.2"></path></svg>
