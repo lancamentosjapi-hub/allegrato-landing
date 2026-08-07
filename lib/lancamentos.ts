@@ -271,10 +271,46 @@ const OCULTOS_ATE_TROCAR_CAPA = [
 const chaveNome = (nome: string) => nome.normalize('NFC').toLowerCase().trim().replace(/\s+/g, ' ');
 const ocultos = new Set(OCULTOS_ATE_TROCAR_CAPA.map(chaveNome));
 
+// CAPA CURADA — exceção deliberada à regra "o banco manda".
+//
+// Normalmente a capa vem da foto marcada como principal no dashboard, e o
+// portal só lê. Quando a Lotus escolhe a foto por aqui, o nome entra neste
+// mapa e o arquivo local passa a vencer o dashboard SÓ para esse
+// empreendimento — os demais seguem o banco.
+//
+// Isto cria uma segunda fonte da verdade: trocar a capa no dashboard não vai
+// surtir efeito em quem estiver listado aqui. É de propósito, e é temporário.
+// Ao arrumar a foto principal no dashboard, apagar a linha correspondente.
+//
+// Chave = nome do empreendimento como aparece no site. Valor = caminho em
+// public/ (a imagem precisa existir lá).
+const CAPAS_CURADAS: Record<string, string> = {
+  // 'Jardins do Horto': '/jardins-do-horto/a004.jpg',
+};
+
+const capasCuradas = new Map(Object.entries(CAPAS_CURADAS).map(([n, p]) => [chaveNome(n), p]));
+
+const comCapaCurada = <T extends { name: string; img: string | null }>(itens: T[]): T[] =>
+  itens.map((i) => {
+    const curada = capasCuradas.get(chaveNome(i.name));
+    return curada ? { ...i, img: curada } : i;
+  });
+
+// Ocultar era consequência da capa ruim. Ganhando capa curada, o motivo
+// desaparece e o empreendimento volta sozinho — sem precisar lembrar de tirar
+// o nome das duas listas.
+//
 // Aplicado no fim, depois do merge com as landings curadas: filtrar antes
 // deixaria o fallback reintroduzir o mesmo empreendimento por outro caminho.
 const semCapaRuim = <T extends { name: string }>(itens: T[]): T[] =>
-  itens.filter((i) => !ocultos.has(chaveNome(i.name)));
+  itens.filter((i) => {
+    const k = chaveNome(i.name);
+    return !ocultos.has(k) || capasCuradas.has(k);
+  });
+
+// Ordem: primeiro troca a capa, depois decide quem aparece.
+const publicaveis = <T extends { name: string; img: string | null }>(itens: T[]): T[] =>
+  semCapaRuim(comCapaCurada(itens));
 
 export async function getLancamentos(): Promise<LancamentoCard[]> {
   const rows = await fetchRowsComLanding();
@@ -303,7 +339,7 @@ export async function getLancamentos(): Promise<LancamentoCard[]> {
     href: d.href,
   }));
 
-  return semCapaRuim([...cards, ...daLanding]).sort((a, b) => {
+  return publicaveis([...cards, ...daLanding]).sort((a, b) => {
     const al = a.href ? 0 : 1;
     const bl = b.href ? 0 : 1;
     return al !== bl ? al - bl : a.name.localeCompare(b.name, 'pt-BR');
@@ -352,5 +388,5 @@ export async function getLancamentosList(): Promise<LancamentoListItem[]> {
     };
   });
 
-  return semCapaRuim([...itens, ...daLanding]);
+  return publicaveis([...itens, ...daLanding]);
 }
