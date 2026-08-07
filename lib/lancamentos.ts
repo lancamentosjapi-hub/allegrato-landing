@@ -234,6 +234,48 @@ function partesLocalizacao(location: string): { neighborhood: string; city: stri
   return { neighborhood: '', city: partes[0] ?? '' };
 }
 
+// OCULTAÇÃO TEMPORÁRIA — auditoria de capas de 07/08/2026.
+//
+// Estes 21 empreendimentos estão com foto de capa imprópria para vitrine:
+// cômodo isolado (lavabo, área de serviço, cozinha), decorado genérico que não
+// identifica o empreendimento, ou registro de obra/terraplenagem. A capa é a
+// foto marcada como principal no dashboard e o portal só lê — a correção é lá.
+//
+// Ficam fora da home e da listagem até a troca. Assim que a foto principal for
+// ajustada no dashboard, apagar o nome desta lista devolve o empreendimento.
+// Esvaziar a lista devolve todos.
+const OCULTOS_ATE_TROCAR_CAPA = [
+  'Lago Samambaia',
+  'Residencial Terras da Alvorada',
+  'Anhangabaú Design',
+  'Vitale Fernande',
+  'Altissimi',
+  'Resort Prime',
+  'Santorini',
+  'Diferenziato',
+  'Auten Jundiaí',
+  'Vila Itália',
+  'Altos da Avenida',
+  'Reserva Marajoara',
+  'Hub 9 de julho',
+  'Vallis',
+  'Terrace Serra do Japi',
+  'Gioviale',
+  'Reserva Castanheira',
+  'Maxx Santa Ângela',
+  'Mutton',
+  'Villagio Tunis',
+  'Portal dos Lagos',
+];
+
+const chaveNome = (nome: string) => nome.normalize('NFC').toLowerCase().trim().replace(/\s+/g, ' ');
+const ocultos = new Set(OCULTOS_ATE_TROCAR_CAPA.map(chaveNome));
+
+// Aplicado no fim, depois do merge com as landings curadas: filtrar antes
+// deixaria o fallback reintroduzir o mesmo empreendimento por outro caminho.
+const semCapaRuim = <T extends { name: string }>(itens: T[]): T[] =>
+  itens.filter((i) => !ocultos.has(chaveNome(i.name)));
+
 export async function getLancamentos(): Promise<LancamentoCard[]> {
   const rows = await fetchRowsComLanding();
   const cards = rows.map(toCard);
@@ -261,7 +303,7 @@ export async function getLancamentos(): Promise<LancamentoCard[]> {
     href: d.href,
   }));
 
-  return [...cards, ...daLanding].sort((a, b) => {
+  return semCapaRuim([...cards, ...daLanding]).sort((a, b) => {
     const al = a.href ? 0 : 1;
     const bl = b.href ? 0 : 1;
     return al !== bl ? al - bl : a.name.localeCompare(b.name, 'pt-BR');
@@ -310,5 +352,5 @@ export async function getLancamentosList(): Promise<LancamentoListItem[]> {
     };
   });
 
-  return [...itens, ...daLanding];
+  return semCapaRuim([...itens, ...daLanding]);
 }
