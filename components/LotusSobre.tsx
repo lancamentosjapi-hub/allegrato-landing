@@ -18,7 +18,6 @@ import { footerLegalLine } from '@/lib/site';
 import Link from 'next/link';
 import LotusHeader from './LotusHeader';
 import React, {
-  useEffect,
   useRef,
   useState,
   type CSSProperties,
@@ -182,6 +181,43 @@ const ENDERECO_ESCRITORIO = {
   busca: 'Avenida José Luiz Sereno, 655, Jardim Ermida II, Jundiaí, SP',
 };
 
+// Manifesto da Lotus. `destaque` = as frases que ganham o corpo serifado maior;
+// `ritmo` = a enumeração curta ("São recomeços. São despedidas."), que respira
+// em bloco próprio em vez de virar mais um parágrafo corrido.
+type BlocoManifesto =
+  | { tipo: 'destaque'; texto: string }
+  | { tipo: 'texto'; texto: string }
+  | { tipo: 'ritmo'; abertura: string; itens: string[] };
+
+const manifesto: BlocoManifesto[] = [
+  { tipo: 'destaque', texto: 'Há decisões que mudam um endereço. E há decisões que mudam uma vida.' },
+  { tipo: 'texto', texto: 'Comprar ou vender um imóvel não é apenas uma transação. É escolher onde uma família vai construir memórias. É transformar escolhas conscientes em patrimônio. É encerrar um ciclo para permitir que outro floresça.' },
+  { tipo: 'texto', texto: 'Estas são decisões grandes demais para serem conduzidas com pressa, pressão ou improviso.' },
+  {
+    tipo: 'ritmo',
+    abertura: 'Acreditamos que imóveis nunca são apenas imóveis.',
+    itens: ['São recomeços.', 'São despedidas.', 'São conquistas.', 'São a materialização de anos de trabalho, sonhos e coragem.'],
+  },
+  { tipo: 'texto', texto: 'Acreditamos que excelência é estar presente nos momentos que realmente importam. Para nós, cada imóvel possui um endereço, mas cada cliente possui uma história.' },
+  { tipo: 'texto', texto: 'Por isso, não tratamos pessoas como números ou oportunidades. Tratamos cada jornada com o respeito de quem compreende o peso financeiro e emocional de uma decisão imobiliária. Colocamos a escuta, a compreensão, a orientação e o cuidado no centro de cada atendimento.' },
+  { tipo: 'texto', texto: 'Nosso papel é interpretar desejos, esclarecer riscos, revelar possibilidades e conduzir cada cliente a uma decisão da qual continuará se orgulhando no futuro.' },
+  { tipo: 'texto', texto: 'O verdadeiro alto padrão não está apenas no valor do imóvel. Está na qualidade da condução, na atenção aos detalhes e na segurança sentida durante toda a jornada.' },
+  { tipo: 'destaque', texto: 'Como a flor que nos dá nome, acreditamos que grandes transformações podem nascer mesmo em meio à complexidade. Somos apaixonados por fazer grandes decisões florescerem.' },
+  { tipo: 'texto', texto: 'Uma imobiliária que não deseja apenas intermediar imóveis, mas elevar o padrão de como compradores e vendedores são tratados.' },
+  { tipo: 'texto', texto: 'Porque imóveis representam patrimônio. Mas as decisões tomadas ao redor deles representam vidas.' },
+];
+
+// As 7 Pétalas da Lótus.
+const valores = [
+  { nome: 'Confiança', texto: 'Toda relação começa pela credibilidade e é fortalecida pela transparência.' },
+  { nome: 'Estratégia', texto: 'Cada decisão imobiliária merece análise, conhecimento e planejamento.' },
+  { nome: 'Excelência', texto: 'A busca constante pela qualidade em cada detalhe e em cada atendimento.' },
+  { nome: 'Compromisso', texto: 'Estar presente antes, durante e depois da negociação.' },
+  { nome: 'Relacionamento', texto: 'Queremos ser a primeira escolha em cada novo capítulo da vida dos nossos clientes.' },
+  { nome: 'Evolução', texto: 'Aprender continuamente para entregar soluções cada vez melhores.' },
+  { nome: 'Legado', texto: 'Construir uma empresa que seja lembrada não pelos imóveis que vendeu, mas pela confiança que conquistou.' },
+];
+
 const pilares = [
   { num: '01', title: 'Especialista do bairro', text: 'Você é atendido por quem conhece a região de verdade — a rua, a escola, o preço justo daquele metro quadrado. Nada de generalista de tudo.' },
   { num: '02', title: 'Processo transparente', text: 'Método claro, boletim de acompanhamento e avaliação com dado (não com achismo). Você sempre sabe em que pé está a sua negociação.' },
@@ -243,62 +279,6 @@ export default function LotusSobre({
     '?text=' +
     encodeURIComponent('Oi! Vim pela página A Lotus e quero conhecer melhor o time de vocês.');
 
-  // --- contador de estatísticas (rAF + IntersectionObserver threshold .4) ---
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-    const reduce =
-      typeof window !== 'undefined' &&
-      window.matchMedia &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const wrap = root.querySelector<HTMLElement>('[data-stats]');
-    if (!wrap) return;
-
-    const run = () => {
-      wrap.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
-        const to = parseFloat(el.getAttribute('data-count') || '0');
-        const pre = el.getAttribute('data-prefix') || '';
-        const suf = el.getAttribute('data-suffix') || '';
-        const sep = !!el.getAttribute('data-sep');
-        const start = performance.now();
-        const fmt = (n: number) =>
-          sep ? Math.round(n).toLocaleString('pt-BR') : String(Math.round(n));
-        const tick = (now: number) => {
-          const p = Math.min(1, (now - start) / 1500);
-          const e = 1 - Math.pow(1 - p, 3);
-          el.textContent = pre + fmt(to * e) + suf;
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      });
-    };
-
-    if (reduce || !('IntersectionObserver' in window)) {
-      run();
-      return;
-    }
-    wrap.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
-      el.textContent =
-        (el.getAttribute('data-prefix') || '') + '0' + (el.getAttribute('data-suffix') || '');
-    });
-    let obs: IntersectionObserver | undefined = new IntersectionObserver(
-      (ents) => {
-        ents.forEach((en) => {
-          if (en.isIntersecting) {
-            run();
-            obs!.disconnect();
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-    obs.observe(wrap);
-    return () => {
-      if (obs) obs.disconnect();
-    };
-  }, []);
-
   // Derivados de render (renderVals()).
   const faqs = faqData.map((f, i) => ({
     q: f.q,
@@ -328,12 +308,42 @@ export default function LotusSobre({
       <section style={parseStyle('background:#15241c;padding:110px 32px;position:relative;overflow:hidden;')}>
         <div style={{ position: 'absolute', inset: 0, opacity: 0.05, mixBlendMode: 'overlay', pointerEvents: 'none', backgroundImage: NOISE_BG }}></div>
         <div style={parseStyle('max-width:760px;margin:0 auto;position:relative;')}>
-          <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#b18a4a;margin-bottom:28px;text-align:center;')}>Nossa tese</div>
+          <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#b18a4a;margin-bottom:28px;text-align:center;')}>Manifesto</div>
           <div style={parseStyle('display:flex;flex-direction:column;gap:26px;')}>
-            <p style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(22px,2.6vw,30px);line-height:1.3;color:#f7f2e8;margin:0;text-align:center;')}>A gente cansou do corretor que some depois do "oi", do catálogo jogado no WhatsApp e do "confia em mim que vale".</p>
-            <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.7;margin:0;')}>Então construímos o contrário. Na Lotus você fala com um <strong style={parseStyle('color:#cdab6e;font-weight:600;')}>especialista do seu bairro</strong> — alguém que conhece a rua que pega sol da manhã, a escola que tem vaga e o preço justo daquele metro quadrado. Processo transparente, do primeiro contato ao pós-chave. Sem sumiço, sem foto torta, sem achismo.</p>
-            <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.7;margin:0;')}>A tecnologia está em tudo — mas nos bastidores. Ela cuida do repetitivo para que o corretor cuide do que importa: <strong style={parseStyle('color:#cdab6e;font-weight:600;')}>você</strong>. <em style={parseStyle('font-style:italic;')}>Tecnologia em tudo, corretor onde importa.</em></p>
-            <p style={parseStyle('font-family:\'Fraunces\',serif;font-style:italic;font-weight:300;font-size:clamp(22px,2.8vw,32px);line-height:1.2;color:#cdab6e;margin:14px 0 0;text-align:center;')}>Não vendemos imóvel. Somos cúmplices de capítulos.</p>
+            {manifesto.map((b, i) =>
+              b.tipo === 'destaque' ? (
+                <p key={i} style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(22px,2.6vw,30px);line-height:1.3;color:#f7f2e8;margin:0;text-align:center;')}>{b.texto}</p>
+              ) : b.tipo === 'ritmo' ? (
+                <div key={i}>
+                  <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.7;margin:0 0 10px;')}>{b.abertura}</p>
+                  {b.itens.map((item, j) => (
+                    <p key={j} style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:19px;color:#cdab6e;line-height:1.5;margin:0;')}>{item}</p>
+                  ))}
+                </div>
+              ) : (
+                <p key={i} style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.7;margin:0;')}>{b.texto}</p>
+              )
+            )}
+            <p style={parseStyle('font-family:\'Fraunces\',serif;font-style:italic;font-weight:300;font-size:clamp(22px,2.8vw,32px);line-height:1.2;color:#cdab6e;margin:14px 0 0;text-align:center;')}>Grandes escolhas têm endereço.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* VALORES — AS 7 PÉTALAS */}
+      <section style={parseStyle('background:#ece2cf;padding:110px 32px;')}>
+        <div style={parseStyle('max-width:1200px;margin:0 auto;')}>
+          <div style={parseStyle('max-width:640px;margin-bottom:56px;')}>
+            <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Valores</div>
+            <h2 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(30px,4vw,48px);color:#15241c;line-height:1.06;letter-spacing:-.02em;margin:0;')}>As 7 Pétalas da Lótus.</h2>
+          </div>
+          <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;')}>
+            {valores.map((v, i) => (
+              <div key={i} style={parseStyle('background:#f7f2e8;border-radius:18px;padding:32px 30px;')}>
+                <div style={parseStyle('font-size:22px;line-height:1;margin-bottom:14px;')} aria-hidden="true">🌿</div>
+                <h3 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:400;font-size:21px;color:#15241c;margin:0 0 10px;')}>{v.nome}</h3>
+                <p style={parseStyle('font-size:14.5px;color:#3f6249;font-weight:300;line-height:1.6;margin:0;')}>{v.texto}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -407,16 +417,6 @@ export default function LotusSobre({
             <Hoverable as="a" href="/lotus-bairro" target="_top" baseStyle={parseStyle('background:rgba(247,242,232,.1);border:1px solid rgba(247,242,232,.22);color:#f7f2e8;font-size:14px;padding:9px 18px;border-radius:30px;transition:all .2s;')} hoverStyle={parseStyle('background:rgba(247,242,232,.18);border-color:#cdab6e')}>Valinhos</Hoverable>
             <Hoverable as="a" href="/lotus-bairro" target="_top" baseStyle={parseStyle('background:rgba(247,242,232,.1);border:1px solid rgba(247,242,232,.22);color:#f7f2e8;font-size:14px;padding:9px 18px;border-radius:30px;transition:all .2s;')} hoverStyle={parseStyle('background:rgba(247,242,232,.18);border-color:#cdab6e')}>Indaiatuba</Hoverable>
           </div>
-        </div>
-      </section>
-
-      {/* PROVA / NÚMEROS */}
-      <section style={parseStyle('background:#3f6249;padding:80px 32px;')}>
-        <div data-stats="" style={parseStyle('max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;text-align:center;')}>
-          <div><div data-count="15" data-prefix="+" style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(34px,4vw,50px);color:#f7f2e8;line-height:1;')}>+15</div><div style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.78);margin-top:8px;')}>anos de operação na região</div></div>
-          <div><div data-count="1200" data-prefix="+" data-sep="1" style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(34px,4vw,50px);color:#f7f2e8;line-height:1;')}>+1.200</div><div style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.78);margin-top:8px;')}>famílias atendidas</div></div>
-          <div><div data-count="38" data-suffix="%" style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(34px,4vw,50px);color:#f7f2e8;line-height:1;')}>38%</div><div style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.78);margin-top:8px;')}>mais rápido que a média de venda</div></div>
-          <div><div data-count="72" data-suffix=" NPS" style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(34px,4vw,50px);color:#f7f2e8;line-height:1;')}>72 NPS</div><div style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.78);margin-top:8px;')}>satisfação dos clientes</div></div>
         </div>
       </section>
 
