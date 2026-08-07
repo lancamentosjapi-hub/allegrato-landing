@@ -246,6 +246,7 @@ const ehCreciPlaceholder = (creci?: string) => !!creci && /CRECI\s*0{4,}/.test(c
 // exibir um travessão solto.
 const corretores: { name: string; role: string; creci?: string; slot: string; foto?: string }[] = [
   { name: 'Erick Ferrigatti', role: 'Fundador · Marketing e Estratégia', slot: 'corr-1', foto: '/corretores/erick-ferrigatti.jpg' },
+  { name: 'Mariana Mamede', role: 'Broker', slot: 'corr-mariana', foto: '/corretores/mariana-mamede.jpg' },
   { name: 'Marina Tavares', role: 'Alto Padrão · Eloy Chaves', creci: 'CRECI 000001-F', slot: 'corr-2' },
   { name: 'Rafael Nunes', role: 'Lançamentos · Itupeva', creci: 'CRECI 000002-F', slot: 'corr-3' },
   { name: 'Juliana Prado', role: 'Popular · Jundiaí', creci: 'CRECI 000003-F', slot: 'corr-4' },

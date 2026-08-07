@@ -302,6 +302,14 @@ function realToBroker(b: {
 type BlocoBio = string | { titulo: string; itens?: string[] };
 
 const CONTEUDO_REAL: Record<string, { bio?: BlocoBio[]; foto?: string }> = {
+  'mariana mamede': {
+    foto: '/corretores/mariana-mamede.jpg',
+    bio: [
+      'Minha trajetória no mercado imobiliário traduz o melhor da minha bagagem profissional. Ao longo da minha atuação, aplico a escuta atenta, a responsabilidade e o cuidado em cada detalhe para oferecer uma consultoria de excelência e absoluta transparência.',
+      'Compreendendo que cada negociação envolve um momento único de vida — seja uma conquista, uma reorganização patrimonial ou uma fase de transição —, conduzo o processo com clareza e empatia em cada etapa.',
+      'A constância desse trabalho focado no cliente se reflete em uma performance de destaque, reconhecida com premiações consecutivas nos últimos anos. Mais do que resultados, essas conquistas reafirmam meu compromisso de entregar segurança e clareza do primeiro contato à conclusão do negócio.',
+    ],
+  },
   'gabriele fávaro': {
     foto: '/corretores/gabriele-favaro.jpg',
     bio: [
