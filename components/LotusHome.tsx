@@ -399,58 +399,12 @@ export default function LotusHome({
       setReviewIndex((i) => (i + 1) % 6);
     }, 5000);
 
-    // --- stats counter (rAF + IO threshold .4) ---
-    let statsObs: IntersectionObserver | undefined;
-    const statsWrap = root.querySelector<HTMLElement>('[data-stats]');
-    if (statsWrap) {
-      const animateStats = () => {
-        statsWrap.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
-          const to = parseFloat(el.getAttribute('data-count') || '0');
-          const pre = el.getAttribute('data-prefix') || '';
-          const suf = el.getAttribute('data-suffix') || '';
-          const sep = !!el.getAttribute('data-sep');
-          const dur = 1500;
-          const start = performance.now();
-          const fmt = (n: number) =>
-            sep ? Math.round(n).toLocaleString('pt-BR') : String(Math.round(n));
-          const tick = (now: number) => {
-            const p = Math.min(1, (now - start) / dur);
-            const e = 1 - Math.pow(1 - p, 3);
-            el.textContent = pre + fmt(to * e) + suf;
-            if (p < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-        });
-      };
-      if (reduce || !('IntersectionObserver' in window)) {
-        animateStats();
-      } else {
-        statsWrap.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
-          el.textContent =
-            (el.getAttribute('data-prefix') || '') + '0' + (el.getAttribute('data-suffix') || '');
-        });
-        statsObs = new IntersectionObserver(
-          (ents) => {
-            ents.forEach((en) => {
-              if (en.isIntersecting) {
-                animateStats();
-                statsObs!.disconnect();
-              }
-            });
-          },
-          { threshold: 0.4 }
-        );
-        statsObs.observe(statsWrap);
-      }
-    }
-
     // --- cleanup (componentWillUnmount) ---
     return () => {
       window.removeEventListener('scroll', onScroll);
       if (io) io.disconnect();
       if (bannerTimer) clearInterval(bannerTimer);
       if (reviewTimerRef.current) clearInterval(reviewTimerRef.current);
-      if (statsObs) statsObs.disconnect();
       clearTimeout(revealFallback);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -673,29 +627,6 @@ export default function LotusHome({
                 <button key={i} onClick={d.go} aria-label="Ir para o banner" style={parseStyle(d.style)}></button>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ NÚMEROS ============ */}
-      <section style={parseStyle('background:#15241c;padding:52px 40px;position:relative;overflow:hidden;')}>
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.05, mixBlendMode: 'overlay', pointerEvents: 'none', backgroundImage: NOISE_BG }}></div>
-        <div data-stats="" style={parseStyle('max-width:1280px;margin:0 auto;position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px 24px;')}>
-          <div style={parseStyle('text-align:center;')}>
-            <div data-count="15" data-prefix="+" style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(32px,3.6vw,46px);line-height:1;color:#cdab6e;margin-bottom:8px;")}>+15</div>
-            <div style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.7);font-weight:300;')}>anos vivendo o mercado da região</div>
-          </div>
-          <div style={parseStyle('text-align:center;')}>
-            <div data-count="1200" data-prefix="+" data-sep="1" style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(32px,3.6vw,46px);line-height:1;color:#cdab6e;margin-bottom:8px;")}>+1.200</div>
-            <div style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.7);font-weight:300;')}>famílias que encontraram seu lugar</div>
-          </div>
-          <div style={parseStyle('text-align:center;')}>
-            <div data-count="480" data-prefix="R$ " data-suffix=" mi" style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(32px,3.6vw,46px);line-height:1;color:#cdab6e;margin-bottom:8px;")}>R$ 480 mi</div>
-            <div style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.7);font-weight:300;')}>em imóveis negociados com cuidado</div>
-          </div>
-          <div style={parseStyle('text-align:center;')}>
-            <div data-count="98" data-suffix="%" style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(32px,3.6vw,46px);line-height:1;color:#cdab6e;margin-bottom:8px;")}>98%</div>
-            <div style={parseStyle('font-size:13.5px;color:rgba(247,242,232,.7);font-weight:300;')}>dos clientes indicam a Lotus</div>
           </div>
         </div>
       </section>
