@@ -797,10 +797,6 @@ export default function LotusCorretores({
           {/* GEO / FAQ */}
           <section style={parseStyle('background:#f7f2e8;padding:80px 32px;')}>
             <div style={parseStyle('max-width:760px;margin:0 auto;')}>
-              <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:26px 28px;margin-bottom:32px;')}>
-                <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>TL;DR</div>
-                <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.65;margin:0;')}>{sel.first} é corretor(a) especialista em {sel.area} ({sel.city}) na Lotus Brokers, com nota {sel.rating} e foco em {sel.squad}. Fale pelo WhatsApp ou agende uma conversa.</p>
-              </div>
               {profileFaqs.map((f, i) => (
                 <div key={i} style={parseStyle('border-bottom:1px solid rgba(21,36,28,.12);')}>
                   <button onClick={f.toggle} style={parseStyle('width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:none;border:none;cursor:pointer;padding:20px 0;text-align:left;')}>

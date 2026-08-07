@@ -248,7 +248,13 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
         <div style={parseStyle('position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,36,28,.7),rgba(21,36,28,.92));')}></div>
         <div style={parseStyle('position:relative;max-width:980px;margin:0 auto;padding:100px 32px;text-align:center;')}>
           <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#cdab6e;margin-bottom:24px;')}>Lançamentos em Jundiaí e região</div>
-          <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(38px,5.4vw,68px);line-height:1.03;letter-spacing:-.02em;color:#f7f2e8;margin:0 0 22px;")}>Grandes escolhas começam <em style={parseStyle('font-style:italic;color:#cdab6e;')}>antes da chave.</em></h1>
+          {/* Duas linhas fixas em vez de quebra por acaso da largura: a primeira
+              carrega a ideia (a escolha), a segunda o momento (antes da chave).
+              A cor separa as duas — branco e bege. */}
+          <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(38px,5.4vw,68px);line-height:1.03;letter-spacing:-.02em;color:#fff;margin:0 0 22px;")}>
+            <span style={parseStyle('display:block;')}>Grandes escolhas</span>
+            <span style={parseStyle('display:block;color:#ece2cf;')}>começam antes da chave.</span>
+          </h1>
           <p style={parseStyle('font-size:clamp(16px,1.7vw,20px);color:rgba(247,242,232,.82);font-weight:300;line-height:1.55;max-width:620px;margin:0 auto;')}>Pré-lançamentos, imóveis em obras e prontos para morar, selecionados com critério pela Lotus. Compare localização, planta, condições e estágio da obra para escolher com clareza o melhor momento de avançar.</p>
         </div>
       </section>

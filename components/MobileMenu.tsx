@@ -123,7 +123,7 @@ export interface MobileMenuProps {
 
 export default function MobileMenu({
   whatsapp = WHATSAPP_DEFAULT,
-  cta = 'Falar com a LIA',
+  cta = 'Falar com um especialista',
   ctaHref,
 }: MobileMenuProps) {
   const [open, setOpen] = useState(false);

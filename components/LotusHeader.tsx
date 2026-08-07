@@ -13,7 +13,7 @@
  *
  * Uso:
  *   <LotusHeader active="comprar" whatsapp={whatsapp} />
- *   <LotusHeader active="blog" cta="Falar agora" />
+ *   <LotusHeader active="lancamentos" cta="Falar com um consultor" />
  *   <LotusHeader rightSlot={<MeuBotao />} />   // substitui o CTA padrão
  */
 
@@ -155,7 +155,7 @@ export interface LotusHeaderProps {
 export default function LotusHeader({
   active = null,
   whatsapp = WHATSAPP_DEFAULT,
-  cta = 'Falar com a LIA',
+  cta = 'Falar com um especialista',
   ctaHref,
   rightSlot,
   maxWidth = 1280,

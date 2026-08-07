@@ -724,7 +724,7 @@ export default function LotusBlog({
       <script type="application/ld+json" id="blog-posts-jsonld" />
 
       {/* HEADER */}
-      <LotusHeader active="blog" whatsapp={whatsapp} cta="Falar agora" />
+      <LotusHeader active="blog" whatsapp={whatsapp} />
 
       {/* ============ ÍNDICE ============ */}
       {isIndex && (
