@@ -32,7 +32,7 @@ export type Bairro = {
   heroImg: string;
   /** 4 mini-stats do topo. */
   stats: BairroStat[];
-  /** Parágrafo TL;DR do resumo. */
+  /** Parágrafo de resumo (bloco "Em resumo"). */
   tldr: string;
   /** Guia (6 blocos numerados). */
   guide: BairroGuideItem[];

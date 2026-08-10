@@ -373,13 +373,13 @@ export default function LotusCondominio({
         </div>
       </section>
 
-      {/* GEO / TL;DR + FAQ */}
+      {/* GEO / RESUMO + FAQ */}
       <section style={parseStyle('max-width:1200px;margin:0 auto;padding:72px 32px;display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:start;')}>
         <div>
           <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:16px;')}>Resumo do condomínio</div>
           <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3vw,38px);color:#15241c;line-height:1.08;margin:0 0 20px;")}>{nome} em poucas linhas.</h2>
           <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:26px 28px;')}>
-            <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>TL;DR</div>
+            <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>Em resumo</div>
             <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.65;margin:0;')}>{descricao}</p>
           </div>
         </div>

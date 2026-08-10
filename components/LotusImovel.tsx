@@ -583,7 +583,7 @@ export default function LotusImovel({
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:16px;')}>Resumo</div>
             <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(24px,2.8vw,34px);color:#15241c;margin:0 0 20px;line-height:1.1;")}>Este imóvel, em uma resposta.</h2>
             <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:24px;')}>
-              <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:10px;')}>TL;DR</div>
+              <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:10px;')}>Em resumo</div>
               <p style={parseStyle('font-size:15px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.6;margin:0;')}>{tipoLabel}{areaPrincipal ? ` de ${areaPrincipal} m²` : ''} em {bairro}, {cidade}{valorPrincipal ? ` por ${valorFmtStr}${valorSufixo}` : ''}{data.suites ? ` — ${data.suites} suítes` : (data.quartos ? ` — ${data.quartos} dormitórios` : '')}{data.vagas ? `, ${data.vagas} vagas` : ''}. Fale com a Lotus para conhecer os detalhes.</p>
             </div>
           </div>

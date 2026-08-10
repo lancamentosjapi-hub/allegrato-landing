@@ -948,7 +948,7 @@ export default function LotusHome({
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Perguntas frequentes</div>
             <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.4vw,42px);line-height:1.08;letter-spacing:-.02em;margin:0 0 24px;color:#15241c;")}>A Lotus, em poucas palavras.</h2>
             <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:26px 28px;')}>
-              <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>TL;DR</div>
+              <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>Em resumo</div>
               <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.6;margin:0;')}>A Lotus Brokers é uma consultoria imobiliária de Jundiaí e Itupeva, especializada em compra, venda, locação e investimentos. Unimos conhecimento regional, estratégia e acompanhamento próximo e personalizado para conduzir cada decisão com clareza e segurança.</p>
             </div>
           </div>

@@ -524,7 +524,7 @@ export default function LotusRecrutamento({
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:16px;')}>Perguntas frequentes</div>
             <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3vw,38px);color:#15241c;line-height:1.08;margin:0 0 22px;")}>Como ser corretor em Jundiaí?</h2>
             <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:26px 28px;')}>
-              <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>TL;DR</div>
+              <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>Em resumo</div>
               <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.65;margin:0;')}>Para ser corretor em Jundiaí você precisa de registro no CRECI (ou estar em curso). Na Lotus, há processo seletivo de 4 etapas, onboarding de 90 dias com mentoria, estrutura de apoio com time de marketing e estúdio, e comissão transparente de até 60%.</p>
             </div>
           </div>
