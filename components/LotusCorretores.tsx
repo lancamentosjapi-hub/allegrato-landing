@@ -231,10 +231,11 @@ function formatCreci(creci: string | null): string | null {
   return /creci/i.test(c) ? c : 'CRECI ' + c;
 }
 
-// Enquanto os CRECI não estiverem cadastrados no dashboard, todos os corretores
-// aparecem. Virando `true`, só entram na listagem os que têm número — sem
-// precisar mexer no resto do componente.
-const EXIGIR_CRECI = false;
+// Só entra na listagem quem tem CRECI cadastrado no dashboard. Ligado em
+// 07/08/2026, quando os nove corretores passaram a ter número — antes disso
+// exigir CRECI teria esvaziado a página. Um corretor novo sem número fica fora
+// do site até o cadastro ser completado.
+const EXIGIR_CRECI = true;
 
 const temCreci = (b: { creci: string | null }) => Boolean(b.creci);
 

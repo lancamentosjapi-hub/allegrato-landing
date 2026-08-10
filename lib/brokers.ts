@@ -38,23 +38,11 @@ type BrokerRow = {
 // No banco o Samir está cadastrado como "Samir Said" (não "Augusto").
 const OCULTOS = new Set(['reginaldo barbosa faleiros', 'samir said']);
 
-// A Lara e o Samir já foram cadastrados no dashboard, então o banco é a fonte
-// deles. Mirleine também saiu do banco, e o OCULTOS dela foi removido por ter
-// virado código morto.
-//
-// A Mariana ainda não tem cadastro em tenant_memberships — assim que tiver,
-// apagar a linha abaixo (o banco vence e o EXTRA seria descartado de qualquer
-// forma, mas manter aqui vira código morto). CRECI ainda não informado: com
-// `null` a linha some do card em vez de exibir um travessão.
-const EXTRAS: Broker[] = [
-  {
-    id: 'mariana-mamede',
-    name: 'Mariana Mamede',
-    photoUrl: '/corretores/mariana-mamede.jpg',
-    creci: null,
-    imoveisAtivos: 0,
-  },
-];
+// Vazio: Lara, Samir e Mariana já foram cadastrados no dashboard, então o banco
+// é a fonte deles. Mirleine também saiu do banco, e o OCULTOS dela foi removido
+// por ter virado código morto. Só volte a preencher aqui se precisar exibir
+// alguém antes do cadastro real — e esvazie assim que o cadastro existir.
+const EXTRAS: Broker[] = [];
 
 const chaveNome = (nome: string) => nome.normalize('NFC').toLowerCase().trim().replace(/\s+/g, ' ');
 
