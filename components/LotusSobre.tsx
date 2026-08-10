@@ -1,5 +1,6 @@
 'use client';
 import { footerLegalLine } from '@/lib/site';
+import { SQUADS } from '@/lib/squads';
 
 /**
  * LotusSobre — porte 1:1 de lotus-sobre/index.html (mecanismo dc-runtime) para React.
@@ -229,10 +230,6 @@ const pilares = [
 // eram placeholders com CRECI 000001-F..000004-F, e escolher quais dois manter
 // significaria republicar dado inventado. Para voltar a exibir um responsável,
 // basta acrescentar o nome real e reativar o bloco no `.map` abaixo.
-const squads = [
-  { title: 'Imóveis prontos', text: 'Casas e apartamentos prontos para morar: visita marcada, documentação conferida e negociação direta com o proprietário.' },
-  { title: 'Lançamentos', text: 'Quem conhece cada planta e a negociação com a construtora — da escolha à chave.' },
-];
 
 // `foto` é opcional: só o fundador tem imagem real por enquanto. Os demais
 // continuam sendo nomes fictícios de placeholder (ver IMAGENS-FALTANDO.md) e
@@ -393,11 +390,11 @@ export default function LotusSobre({
           </div>
           {/* squads grid */}
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:rgba(21,36,28,.12);border-radius:18px;overflow:hidden;')}>
-            {squads.map((s, i) => (
+            {SQUADS.map((s, i) => (
               <div key={i} style={parseStyle('background:#f7f2e8;padding:32px 28px;')}>
                 <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#b18a4a;margin-bottom:12px;')}>Squad</div>
-                <h3 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:400;font-size:21px;color:#15241c;margin:0 0 8px;')}>{s.title}</h3>
-                <p style={parseStyle('font-size:14px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>{s.text}</p>
+                <h3 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:400;font-size:21px;color:#15241c;margin:0 0 8px;')}>{s.nome}</h3>
+                <p style={parseStyle('font-size:14px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>{s.descricao}</p>
               </div>
             ))}
           </div>

@@ -1,5 +1,6 @@
 'use client';
 import { footerLegalLine } from '@/lib/site';
+import { SQUADS, nomesDosSquads } from '@/lib/squads';
 
 /**
  * LotusCorretores — porte 1:1 de lotus-corretores/index.html (mecanismo dc-runtime) para React.
@@ -586,7 +587,7 @@ export default function LotusCorretores({
                 <div style={parseStyle('background:rgba(247,242,232,.06);border:1px solid rgba(247,242,232,.12);border-radius:16px;padding:24px;')}>
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#cdab6e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={parseStyle('margin-bottom:14px;')}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.9"></path><path d="M16 3.1a4 4 0 0 1 0 7.8"></path></svg>
                   <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:18px;color:#f7f2e8;margin:0 0 8px;")}>Time em squads, não um faz-tudo</h3>
-                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>Alto Padrão, Lançamentos, Popular e Comercial — você sempre cai com quem é especialista no seu caso.</p>
+                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>{nomesDosSquads()} — você sempre cai com quem é especialista no seu caso.</p>
                 </div>
                 <div style={parseStyle('background:rgba(247,242,232,.06);border:1px solid rgba(247,242,232,.12);border-radius:16px;padding:24px;')}>
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#cdab6e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={parseStyle('margin-bottom:14px;')}><path d="M3 3v18h18"></path><path d="m7 14 3-4 3 3 5-7"></path></svg>
@@ -608,7 +609,8 @@ export default function LotusCorretores({
               <div style={parseStyle('display:flex;flex-wrap:wrap;gap:10px;align-items:center;')}>
                 {SQUAD_NO_DASH && (
                   <select className="lt-field" value={fSquad} onChange={(e) => setFSquad(e.target.value)}>
-                    <option value="any">Todos os squads</option><option value="Alto Padrão">Alto Padrão</option><option value="Lançamentos">Lançamentos</option><option value="Popular">Popular</option><option value="Comercial">Comercial</option>
+                    <option value="any">Todos os squads</option>
+                    {SQUADS.map((s) => (<option key={s.nome} value={s.nome}>{s.nome}</option>))}
                   </select>
                 )}
                 {CIDADE_NO_DASH && (

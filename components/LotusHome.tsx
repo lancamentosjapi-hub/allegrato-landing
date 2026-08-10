@@ -24,6 +24,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { developmentsFallback, type DevelopmentCard } from '@/lib/developments';
 import { POSTS } from './LotusBlog';
+import { SQUADS } from '@/lib/squads';
 import MobileMenu from './MobileMenu';
 
 // Chat do Atendimento Rápido — chunk só carrega quando o usuário abre o widget.
@@ -236,19 +237,6 @@ const DEPOIMENTOS_ATIVOS = false;
  * corretores REAIS vindos do Supabase. Reativar só com nome e CRECI verificáveis.
  */
 const PERFIS_PLACEHOLDER_ATIVOS = false;
-
-/**
- * Squads. `ativo: false` apenas OCULTA o card — o dado e a copy ficam aqui,
- * prontos para reativação (exceção autorizada na atualização de copy: exibir
- * somente Lançamentos e Residencial). Para voltar a exibir, troque para `true`;
- * o grid é `auto-fit`, então ele se reorganiza sozinho.
- */
-const squads = [
-  { num: '01', title: 'Squad Alto Padrão', desc: 'Imóveis de alto padrão conduzidos com profundidade, discrição e atenção a cada detalhe.', ativo: false },
-  { num: '02', title: 'Squad Lançamentos', desc: 'Quem conhece cada planta e a negociação com a construtora — da escolha à chave.', ativo: true },
-  { num: '03', title: 'Squad Residencial', desc: 'Casas e apartamentos para quem busca morar bem e construir patrimônio com segurança.', ativo: true },
-  { num: '04', title: 'Squad Comercial', desc: 'Salas, lojas e galpões na região, para quem investe ou expande o negócio.', ativo: false },
-];
 
 const neighborhoodsJundiai = [
   { name: 'Eloy Chaves', city: 'Jundiaí', count: '34 imóveis', bairroSlug: 'eloy-chaves', slot: 'lotus-bairro-eloy', img: '/bairros/eloy-chaves.jpg' },
@@ -720,11 +708,11 @@ export default function LotusHome({
             <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.7);font-weight:300;line-height:1.55;margin:0;')}>Cada jornada exige conhecimento específico. Por isso, nosso atendimento é organizado por especialidade, com consultores preparados para compreender o seu momento e conduzir cada etapa com profundidade.</p>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:rgba(247,242,232,.14);border-radius:18px;overflow:hidden;')}>
-            {squads.filter((s) => s.ativo).map((s, i) => (
+            {SQUADS.map((s, i) => (
               <div key={i} data-reveal="" style={parseStyle('background:#1d3a2c;padding:36px 30px;display:flex;flex-direction:column;')}>
                 <div style={parseStyle("font-family:'Fraunces',serif;font-size:40px;font-weight:300;color:#cdab6e;line-height:1;margin-bottom:18px;")}>{s.num}</div>
-                <h3 style={parseStyle('font-size:19px;font-weight:600;color:#f7f2e8;margin:0 0 10px;')}>{s.title}</h3>
-                <p style={parseStyle('font-size:14.5px;color:rgba(247,242,232,.66);font-weight:300;line-height:1.5;margin:0;')}>{s.desc}</p>
+                <h3 style={parseStyle('font-size:19px;font-weight:600;color:#f7f2e8;margin:0 0 10px;')}>Squad {s.nome}</h3>
+                <p style={parseStyle('font-size:14.5px;color:rgba(247,242,232,.66);font-weight:300;line-height:1.5;margin:0;')}>{s.descricao}</p>
               </div>
             ))}
           </div>
