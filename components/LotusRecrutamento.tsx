@@ -197,6 +197,11 @@ function CookieBanner() {
 // data-props default do <script data-props="{...whatsapp:{default:'5511926143393'}}">
 const WHATSAPP_DEFAULT = '5511926143393';
 
+// ID do vídeo de recrutamento no YouTube. Vazio = a seção inteira não é
+// renderizada. Preencher só quando houver vídeo real — antes disso o embed
+// ficava no ar com um placeholder.
+const VIDEO_RECRUTAMENTO = '';
+
 // this.VAGAS do Component
 const VAGAS = [
   { title: 'Corretor de imóveis com ou sem experiência', squad: 'Corretagem', city: 'Jundiaí · Itupeva', type: 'Treinamento completo', href: '#candidatar' },
@@ -337,19 +342,23 @@ export default function LotusRecrutamento({
         </div>
       </section>
 
-      {/* VÍDEO DE RECRUTAMENTO */}
-      <section style={parseStyle('background:#ece2cf;padding:90px 32px;')}>
-        <div style={parseStyle('max-width:980px;margin:0 auto;')}>
-          <div style={parseStyle('text-align:center;max-width:600px;margin:0 auto 40px;')}>
-            <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:16px;')}>Conheça a Lotus por dentro</div>
-            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.6vw,44px);color:#15241c;line-height:1.06;margin:0;")}>Veja como é fazer parte do time.</h2>
+      {/* VÍDEO DE RECRUTAMENTO — fora do ar.
+          O embed apontava para dQw4w9WgXcQ, um placeholder que ficou publicado
+          como "Vídeo de recrutamento Lotus Brokers". Para reativar: preencher
+          VIDEO_RECRUTAMENTO com o ID do vídeo no YouTube. */}
+      {VIDEO_RECRUTAMENTO && (
+        <section style={parseStyle('background:#ece2cf;padding:90px 32px;')}>
+          <div style={parseStyle('max-width:980px;margin:0 auto;')}>
+            <div style={parseStyle('text-align:center;max-width:600px;margin:0 auto 40px;')}>
+              <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:16px;')}>Conheça a Lotus por dentro</div>
+              <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.6vw,44px);color:#15241c;line-height:1.06;margin:0;")}>Veja como é fazer parte do time.</h2>
+            </div>
+            <div style={parseStyle('position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#1d3a2c;box-shadow:0 24px 60px -34px rgba(21,36,28,.5);')}>
+              <iframe src={`https://www.youtube.com/embed/${VIDEO_RECRUTAMENTO}`} title="Vídeo de recrutamento Lotus Brokers" style={parseStyle('position:absolute;inset:0;width:100%;height:100%;border:0;')} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            </div>
           </div>
-          <div style={parseStyle('position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#1d3a2c;box-shadow:0 24px 60px -34px rgba(21,36,28,.5);')}>
-            {/* Substitua o src abaixo pelo embed do seu vídeo do YouTube */}
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Vídeo de recrutamento Lotus Brokers" style={parseStyle('position:absolute;inset:0;width:100%;height:100%;border:0;')} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* O QUE A LOTUS OFERECE */}
       <section style={parseStyle('background:#f7f2e8;padding:100px 32px;')}>
