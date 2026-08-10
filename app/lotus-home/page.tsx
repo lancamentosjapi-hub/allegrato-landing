@@ -20,12 +20,9 @@ function toDevelopment(c: LancamentoCard): DevelopmentCard {
   };
 }
 
-// Na home, só entram empreendimentos com página própria. Sem landing, o card
-// mandava direto para o WhatsApp — a vitrine da home é para levar o visitante a
-// conhecer o empreendimento, não para pular a etapa e cair no atendimento.
-// Em /lotus-lancamentos eles continuam aparecendo: lá quem chega já está
-// procurando, e falar com alguém é um desfecho legítimo.
-const temPaginaPropria = (c: LancamentoCard) => Boolean(c.href);
+// A regra "só entra quem tem página própria" mudou de lugar: agora vale também
+// para /lotus-lancamentos, então mora em lib/lancamentos.ts e as duas páginas a
+// herdam. Mantê-la aqui viraria uma segunda cópia para divergir.
 
 export default async function LotusHomePage() {
   // Fonte = SÓ o banco (Supabase). Sem mock de fallback: a home mostra
@@ -34,7 +31,7 @@ export default async function LotusHomePage() {
   // e o componente cai no seu fallback interno — rede de segurança contra página
   // vazia, não completa a lista com mock.
   const cards = await getLancamentos();
-  const apresentaveis = cards.filter(isApresentavel).filter(temPaginaPropria).map(toDevelopment);
+  const apresentaveis = cards.filter(isApresentavel).map(toDevelopment);
   const developments = apresentaveis.length > 0 ? apresentaveis : undefined;
 
   return <LotusHome developments={developments} />;

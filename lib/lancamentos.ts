@@ -308,9 +308,17 @@ const semCapaRuim = <T extends { name: string }>(itens: T[]): T[] =>
     return !ocultos.has(k) || capasCuradas.has(k);
   });
 
+// Sem landing própria, o card só levava ao WhatsApp: o visitante clicava
+// esperando conhecer o empreendimento e caía no atendimento. Enquanto a página
+// não existir, o empreendimento fica fora da vitrine e da listagem.
+//
+// Criar a landing é o que o traz de volta — não há lista para editar aqui.
+const temPaginaPropria = <T extends { href: string | null }>(i: T) => Boolean(i.href);
+
 // Ordem: primeiro troca a capa, depois decide quem aparece.
-const publicaveis = <T extends { name: string; img: string | null }>(itens: T[]): T[] =>
-  semCapaRuim(comCapaCurada(itens));
+const publicaveis = <T extends { name: string; img: string | null; href: string | null }>(
+  itens: T[]
+): T[] => semCapaRuim(comCapaCurada(itens)).filter(temPaginaPropria);
 
 export async function getLancamentos(): Promise<LancamentoCard[]> {
   const rows = await fetchRowsComLanding();
