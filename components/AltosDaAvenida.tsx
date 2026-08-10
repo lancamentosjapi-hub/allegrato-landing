@@ -132,9 +132,9 @@ type Planta = {
 };
 
 const PLANTAS: Planta[] = [
-  { m: '58', dorms: '2 dormitórios', desc: 'Planta inteligente e funcional, com estar integrado à cozinha e varanda — perfeita para quem busca o primeiro lar com a qualidade Santa Angela.', features: ['2 dormitórios', 'Varanda', 'Estar integrado'], img: A + 'assets/planta_58.jpg' },
+  { m: '58', dorms: '2 dormitórios', desc: 'Planta inteligente e funcional, com estar integrado à cozinha e varanda, perfeita para quem busca o primeiro lar com a qualidade Santa Angela.', features: ['2 dormitórios', 'Varanda', 'Estar integrado'], img: A + 'assets/planta_58.jpg' },
   { m: '68', dorms: '2 dormitórios, sendo 1 suíte', desc: 'Mais espaço e conforto, com suíte, varanda e ambientes amplos e bem distribuídos para o dia a dia da família.', features: ['1 suíte', 'Varanda', 'Lavabo'], img: A + 'assets/planta_68.jpg' },
-  { m: '96', dorms: '3 dormitórios, sendo 1 suíte', desc: 'Três dormitórios, lavabo e varanda gourmet integrada ao living — espaço de sobra para receber e viver bem.', features: ['1 suíte', 'Varanda gourmet', 'Lavabo'], img: A + 'assets/planta_96.jpg' },
+  { m: '96', dorms: '3 dormitórios, sendo 1 suíte', desc: 'Três dormitórios, lavabo e varanda gourmet integrada ao living, espaço de sobra para receber e viver bem.', features: ['1 suíte', 'Varanda gourmet', 'Lavabo'], img: A + 'assets/planta_96.jpg' },
   { m: '105', dorms: '3 dormitórios + home office', desc: 'A planta mais completa: suíte com closet, home office e varanda gourmet. Pensada para quem não abre mão de espaço e sofisticação.', features: ['Suíte c/ closet', 'Home office', 'Varanda gourmet'], img: A + 'assets/planta_105.jpg' },
 ];
 
@@ -188,7 +188,7 @@ const DIF_COMUM = [
 const CERTS = ['PBQP-H 2018 · Nível A', 'ISO 9001:2015', 'NBR 15575 · Desempenho', 'NBR 9050 · Acessibilidade', 'NBR 16071 · Playground'];
 
 const FAQS = [
-  { q: 'Onde fica o Altos da Avenida?', a: 'Na Avenida Samuel Martins, Jardim do Lago, em Jundiaí/SP — a cerca de 10 minutos da Rodovia Anhanguera e 15 minutos do Centro de Jundiaí, com escolas, padarias, mercados, bares e restaurantes por perto.' },
+  { q: 'Onde fica o Altos da Avenida?', a: 'Na Avenida Samuel Martins, Jardim do Lago, em Jundiaí/SP, a cerca de 10 minutos da Rodovia Anhanguera e 15 minutos do Centro de Jundiaí, com escolas, padarias, mercados, bares e restaurantes por perto.' },
   { q: 'Quais são as metragens e plantas disponíveis?', a: 'São apartamentos de 58, 68, 96 e 105m², com opções de 2 ou 3 dormitórios e suíte. Fale com a Imobiliária Lotus Brokers para conferir a disponibilidade de cada torre.' },
   { q: 'O empreendimento tem área de lazer?', a: 'Sim, lazer completo: piscina adulto e infantil, academia, fitness externo, salão de festas, coworking, salão de jogos, espaço gamer, quadra poliesportiva, playground, espaço baby, espaço pet, bem-estar, 2 churrasqueiras e muito mais.' },
   { q: 'Qual é o status da obra?', a: 'O Altos da Avenida é um empreendimento da Construtora Santa Angela atualmente em construção. Consulte a Imobiliária Lotus Brokers para informações atualizadas sobre prazos.' },
@@ -442,7 +442,7 @@ export default function AltosDaAvenida({
     );
   const openPlanta = () =>
     openLightbox(
-      PLANTAS.map((p) => ({ src: p.img, alt: 'Planta do apartamento de ' + p.m + 'm² — ' + p.dorms })),
+      PLANTAS.map((p) => ({ src: p.img, alt: 'Planta do apartamento de ' + p.m + 'm², ' + p.dorms })),
       plantaIdx
     );
 
@@ -537,7 +537,7 @@ export default function AltosDaAvenida({
               <span data-reveal="" data-reveal-delay="160" style={parseStyle("display:block; font-family:'Cormorant Garamond',serif; font-size:clamp(58px,11vw,148px); font-weight:600; letter-spacing:-.01em;")}>Altos momentos</span>
             </h1>
             <p data-reveal="" data-reveal-delay="240" style={parseStyle('margin:30px 0 0; max-width:560px; font-size:clamp(16px,1.5vw,20px); line-height:1.65; color:rgba(255,255,255,.9); font-weight:400;')}>
-              Apartamentos de <strong style={parseStyle('font-weight:600;')}>58 a 105m²</strong>, com 2 ou 3 dormitórios e opção de suíte — numa das melhores localizações de Jundiaí, com lazer completo para toda a família.
+              Apartamentos de <strong style={parseStyle('font-weight:600;')}>58 a 105m²</strong>, com 2 ou 3 dormitórios e opção de suíte, numa das melhores localizações de Jundiaí, com lazer completo para toda a família.
             </p>
             <div data-reveal="" data-reveal-delay="320" style={parseStyle('display:flex; flex-wrap:wrap; gap:16px; margin-top:42px;')}>
               <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle("display:inline-flex; align-items:center; gap:11px; font-family:'Barlow Semi Condensed',sans-serif; font-size:16px; letter-spacing:.08em; text-transform:uppercase; color:#fff; text-decoration:none; background:#bd6a45; padding:18px 34px; border-radius:46px; box-shadow:0 14px 34px rgba(189,106,69,.42); transition:transform .3s, box-shadow .3s;")} hoverStyle={parseStyle('transform:translateY(-3px); box-shadow:0 20px 44px rgba(189,106,69,.55);')}>
@@ -550,7 +550,7 @@ export default function AltosDaAvenida({
           </div>
         </div>
 
-        {/* hero facts strip — no fluxo (margin-top:auto cola na base sem sobrepor o conteúdo) */}
+        {/* hero facts strip, no fluxo (margin-top:auto cola na base sem sobrepor o conteúdo) */}
         <div data-reveal="" data-reveal-delay="400" style={parseStyle('position:relative; z-index:3; margin-top:auto; background:rgba(13,33,25,.42); backdrop-filter:blur(6px); border-top:1px solid rgba(255,255,255,.14);')}>
           <div style={parseStyle('max-width:1340px; margin:0 auto; padding:0 clamp(20px,4vw,64px); display:flex; flex-wrap:wrap;')}>
             <div style={parseStyle('flex:1; min-width:160px; padding:22px 8px; display:flex; flex-direction:column; gap:3px; border-right:1px solid rgba(255,255,255,.12);')}>
@@ -586,7 +586,7 @@ export default function AltosDaAvenida({
               O Altos da Avenida nasceu com uma identidade visual de destaque, que se impõe com formas, volumes e cores. O <strong style={parseStyle('color:#173f31;')}>verde das fachadas</strong> dialoga com o maciço verde da Serra do Japi, enquanto os tons de cinza conversam com o cotidiano urbano de Jundiaí.
             </p>
             <p data-reveal="" data-reveal-delay="200" style={parseStyle('margin:18px 0 0; font-size:17px; line-height:1.8; color:#4a463f; max-width:540px;')}>
-              A implantação foi desenhada com fluxos não-ortogonais, que se deixam preencher por um paisagismo assinado com o conceito de <em>Land Art</em> — onde o grafismo dos jardins agrega valor artístico a cada caminho.
+              A implantação foi desenhada com fluxos não-ortogonais, que se deixam preencher por um paisagismo assinado com o conceito de <em>Land Art</em>, onde o grafismo dos jardins agrega valor artístico a cada caminho.
             </p>
             <div data-reveal="" data-reveal-delay="260" style={parseStyle('display:flex; gap:38px; margin-top:40px; flex-wrap:wrap;')}>
               <div data-counter="40" style={parseStyle('display:flex; flex-direction:column;')}>
@@ -626,7 +626,7 @@ export default function AltosDaAvenida({
               <span style={parseStyle('width:28px; height:1px; background:#e9b896;')}></span>
             </div>
             <h2 data-reveal="" data-reveal-delay="80" style={parseStyle("margin:0; font-family:'Cormorant Garamond',serif; font-size:clamp(34px,4.6vw,60px); font-weight:600; line-height:1.05;")}>No Jardim do Lago, perto<br />de tudo que importa</h2>
-            <p data-reveal="" data-reveal-delay="140" style={parseStyle('margin:24px auto 0; font-size:17px; line-height:1.75; color:rgba(255,255,255,.78); max-width:600px;')}>A Avenida Samuel Martins é um endereço tranquilo e prático, com fácil acesso à Rodovia Anhanguera (São Paulo–Campinas) e ao Centro de Jundiaí — uma das melhores cidades do país para se viver.</p>
+            <p data-reveal="" data-reveal-delay="140" style={parseStyle('margin:24px auto 0; font-size:17px; line-height:1.75; color:rgba(255,255,255,.78); max-width:600px;')}>A Avenida Samuel Martins é um endereço tranquilo e prático, com fácil acesso à Rodovia Anhanguera (São Paulo–Campinas) e ao Centro de Jundiaí, uma das melhores cidades do país para se viver.</p>
           </div>
           <div style={parseStyle('display:grid; grid-template-columns:repeat(3,1fr); gap:24px;')} data-grid-3="">
             <div data-reveal="" style={parseStyle('background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:4px; padding:38px 32px;')}>
@@ -837,7 +837,7 @@ export default function AltosDaAvenida({
               <span style={parseStyle("font-family:'Barlow Semi Condensed',sans-serif; font-size:13px; letter-spacing:.3em; text-transform:uppercase; color:#e9b896;")}>A Construtora</span>
             </div>
             <h2 data-reveal="" data-reveal-delay="80" style={parseStyle("margin:0; font-family:'Cormorant Garamond',serif; font-size:clamp(34px,4.6vw,58px); font-weight:600; line-height:1.05;")}>Há 40 anos realizando<br />sonhos em Jundiaí</h2>
-            <p data-reveal="" data-reveal-delay="140" style={parseStyle('margin:26px 0 0; font-size:17px; line-height:1.8; color:rgba(255,255,255,.8); max-width:560px;')}>A Construtora Santa Angela está presente em Jundiaí, Americana e Itatiba. Em constante transformação, evolui a cada projeto em observação, inovação e criatividade — acompanhando todas as fases da obra, do início à entrega das chaves.</p>
+            <p data-reveal="" data-reveal-delay="140" style={parseStyle('margin:26px 0 0; font-size:17px; line-height:1.8; color:rgba(255,255,255,.8); max-width:560px;')}>A Construtora Santa Angela está presente em Jundiaí, Americana e Itatiba. Em constante transformação, evolui a cada projeto em observação, inovação e criatividade, acompanhando todas as fases da obra, do início à entrega das chaves.</p>
             <p data-reveal="" data-reveal-delay="200" style={parseStyle('margin:16px 0 0; font-size:17px; line-height:1.8; color:rgba(255,255,255,.8); max-width:560px;')}>Com confiança, respeito e comprometimento, queremos que a sua família viva a melhor experiência num empreendimento Santa Angela.</p>
             <div data-reveal="" data-reveal-delay="260" style={parseStyle('display:flex; gap:48px; margin-top:38px; flex-wrap:wrap;')}>
               <div><span style={parseStyle("font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:600; color:#e9b896; line-height:1;")}>+40</span><span style={parseStyle("display:block; font-family:'Barlow Semi Condensed',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-top:6px;")}>anos de história</span></div>
@@ -874,10 +874,10 @@ export default function AltosDaAvenida({
               <label style={parseStyle('display:flex; flex-direction:column; gap:7px;')}><span style={parseStyle("font-family:'Barlow Semi Condensed',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#6f665b;")}>Metragem de interesse</span>
                 <select name="metragem" style={parseStyle("font-family:'Manrope',sans-serif; font-size:15px; padding:14px 16px; border:1px solid #e0d6c4; border-radius:6px; background:#faf7f0; color:#211f1c; outline:none;")}>
                   <option>Tenho interesse geral</option>
-                  <option>58m² — 2 dormitórios</option>
-                  <option>68m² — 2 dormitórios c/ suíte</option>
-                  <option>96m² — 3 dormitórios c/ suíte</option>
-                  <option>105m² — 3 dormitórios c/ suíte</option>
+                  <option>58m², 2 dormitórios</option>
+                  <option>68m², 2 dormitórios c/ suíte</option>
+                  <option>96m², 3 dormitórios c/ suíte</option>
+                  <option>105m², 3 dormitórios c/ suíte</option>
                 </select>
               </label>
               <Hoverable as="button" type="submit" baseStyle={parseStyle("margin-top:8px; display:inline-flex; align-items:center; justify-content:center; gap:11px; font-family:'Barlow Semi Condensed',sans-serif; font-size:16px; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:#bd6a45; border:none; padding:17px; border-radius:46px; cursor:pointer; box-shadow:0 12px 30px rgba(189,106,69,.35); transition:transform .3s, box-shadow .3s;")} hoverStyle={parseStyle('transform:translateY(-2px); box-shadow:0 18px 40px rgba(189,106,69,.5);')}>
@@ -965,7 +965,7 @@ export default function AltosDaAvenida({
             </div>
           </div>
           <p style={parseStyle('margin:26px 0 0; font-size:11.5px; line-height:1.7; color:rgba(255,255,255,.42); max-width:1000px;')}>Imagens meramente ilustrativas, sujeitas a alteração. As tonalidades das cores, formas e texturas podem sofrer alterações. Os móveis e utensílios são sugestões de decoração e não fazem parte do contrato de aquisição. As medidas dos apartamentos são internas e de face a face. Registro do Imóvel: Incorporação registrada na matrícula 155.214 no 2º Oficial de Registro de Imóveis de Jundiaí, em 24/05/21. Material informativo elaborado pela Imobiliária Lotus Brokers.</p>
-          <p style={parseStyle('margin:18px 0 0; font-size:12px; color:rgba(255,255,255,.5);')}>© 2026 Imobiliária Lotus Brokers · Altos da Avenida — Construtora Santa Angela.</p>
+          <p style={parseStyle('margin:18px 0 0; font-size:12px; color:rgba(255,255,255,.5);')}>© 2026 Imobiliária Lotus Brokers · Altos da Avenida, Construtora Santa Angela.</p>
         </div>
       </footer>
 

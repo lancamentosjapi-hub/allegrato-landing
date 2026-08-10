@@ -15,8 +15,8 @@ export type Lead = {
   name?: string;
   phone?: string;
   email?: string;
-  source: string; // "landing_allegrato" — sempre "landing_" + slug da rota
-  interest: string; // nome do empreendimento — "Allegrato Residencial"
+  source: string; // "landing_allegrato", sempre "landing_" + slug da rota
+  interest: string; // nome do empreendimento, "Allegrato Residencial"
   message?: string;
 };
 

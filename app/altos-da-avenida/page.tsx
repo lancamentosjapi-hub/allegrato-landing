@@ -5,7 +5,7 @@ import './altos-da-avenida.css';
 // Metadata portada do <head>/<helmet> de altos-da-avenida/index.html (paridade de SEO).
 export const metadata: Metadata = {
   title:
-    'Altos da Avenida — Apartamentos de 58 a 105m² em Jundiaí | Imobiliária Lotus Brokers',
+    'Altos da Avenida, Apartamentos de 58 a 105m² em Jundiaí | Imobiliária Lotus Brokers',
   description:
     'Altos da Avenida, em Jundiaí: apartamentos de 58, 68, 96 e 105m² com 2 ou 3 dormitórios e opção de suíte, no Jardim do Lago. Lazer completo, a 10 min da Anhanguera. Fale com a Imobiliária Lotus Brokers.',
   keywords:
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    title: 'Altos da Avenida — Viva os seus Altos momentos em Jundiaí',
+    title: 'Altos da Avenida, Viva os seus Altos momentos em Jundiaí',
     description:
       'Apartamentos de 58 a 105m² com lazer completo no Jardim do Lago, Jundiaí. Fale com a Imobiliária Lotus Brokers.',
   },

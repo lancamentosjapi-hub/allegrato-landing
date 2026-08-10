@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 const collectionLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'Lançamentos imobiliários em Jundiaí e Itupeva — Lotus Brokers',
+  name: 'Lançamentos imobiliários em Jundiaí e Itupeva, Lotus Brokers',
   description:
     'Todos os empreendimentos em lançamento e pré-lançamento acompanhados pela Lotus Brokers em Jundiaí, Itupeva e região, com filtros por preço, cidade e estágio de obra.',
 };

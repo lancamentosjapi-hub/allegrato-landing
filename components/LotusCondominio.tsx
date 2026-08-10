@@ -213,7 +213,7 @@ function buildFaq(data: CondominioRow) {
     {
       q: 'O condomínio é seguro?',
       a: data.infra_portaria_24h === true
-        ? 'Sim. Conta com portaria 24h e controle de acesso — um dos motivos da procura por famílias com crianças.'
+        ? 'Sim. Conta com portaria 24h e controle de acesso, um dos motivos da procura por famílias com crianças.'
         : 'A segurança é um dos pontos avaliados por quem procura o condomínio. Fale com o especialista da Lotus para detalhes sobre portaria e controle de acesso.',
     },
   ];
@@ -228,7 +228,7 @@ function buildGuide(data: CondominioRow) {
     {
       num: '1',
       title: 'Segurança que dá tranquilidade',
-      text: 'Condomínio fechado com controle de acesso — o tipo de lugar onde a família vive com mais tranquilidade no dia a dia.',
+      text: 'Condomínio fechado com controle de acesso, o tipo de lugar onde a família vive com mais tranquilidade no dia a dia.',
     },
     {
       num: '2',
@@ -243,7 +243,7 @@ function buildGuide(data: CondominioRow) {
     {
       num: '4',
       title: 'Variedade de unidades',
-      text: 'Unidades em diferentes metragens e configurações — a Lotus ajuda você a encontrar a que combina com o seu momento.',
+      text: 'Unidades em diferentes metragens e configurações, a Lotus ajuda você a encontrar a que combina com o seu momento.',
     },
     {
       num: '5',
@@ -429,11 +429,11 @@ export default function LotusCondominio({
             <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.6vw,44px);color:#15241c;line-height:1.06;margin:0;")}>Por dentro do condomínio.</h2>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;height:clamp(320px,42vw,500px);border-radius:20px;overflow:hidden;')}>
-            <div style={parseStyle('grid-row:span 2;position:relative;background:#1d3a2c;')}><ImageSlot id="cond-g1" src={fotoAt(0)} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={`${nome} — foto 1`} /></div>
-            <div style={parseStyle('position:relative;background:#3f6249;')}><ImageSlot id="cond-g2" src={fotoAt(1)} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={`${nome} — foto 2`} /></div>
-            <div style={parseStyle('position:relative;background:#3f6249;')}><ImageSlot id="cond-g3" src={fotoAt(2)} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={`${nome} — foto 3`} /></div>
-            <div style={parseStyle('position:relative;background:#3f6249;')}><ImageSlot id="cond-g4" src={fotoAt(3)} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={`${nome} — foto 4`} /></div>
-            <div style={parseStyle('position:relative;background:#3f6249;')}><ImageSlot id="cond-g5" src={fotoAt(4)} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={`${nome} — foto 5`} /></div>
+            <div style={parseStyle('grid-row:span 2;position:relative;background:#1d3a2c;')}><ImageSlot id="cond-g1" src={fotoAt(0)} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={`${nome}, foto 1`} /></div>
+            <div style={parseStyle('position:relative;background:#3f6249;')}><ImageSlot id="cond-g2" src={fotoAt(1)} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={`${nome}, foto 2`} /></div>
+            <div style={parseStyle('position:relative;background:#3f6249;')}><ImageSlot id="cond-g3" src={fotoAt(2)} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={`${nome}, foto 3`} /></div>
+            <div style={parseStyle('position:relative;background:#3f6249;')}><ImageSlot id="cond-g4" src={fotoAt(3)} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={`${nome}, foto 4`} /></div>
+            <div style={parseStyle('position:relative;background:#3f6249;')}><ImageSlot id="cond-g5" src={fotoAt(4)} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={`${nome}, foto 5`} /></div>
           </div>
         </div>
       </section>
@@ -496,7 +496,7 @@ export default function LotusCondominio({
         </div>
       </section>
 
-      {/* ESPECIALISTA — desativado: "Rafael Nunes" e o CRECI 000002-F são
+      {/* ESPECIALISTA, desativado: "Rafael Nunes" e o CRECI 000002-F são
           placeholders de pessoa fictícia. Seção preservada para reativação
           quando houver um corretor real responsável pelo condomínio. */}
       {false && (
@@ -507,7 +507,7 @@ export default function LotusCondominio({
           <div>
             <div style={parseStyle('font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>Especialista do condomínio</div>
             <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(24px,2.8vw,34px);color:#f7f2e8;margin:0 0 10px;line-height:1.1;")}>Rafael Nunes conhece o {nome} por dentro.</h2>
-            <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.8);font-weight:300;line-height:1.55;margin:0 0 20px;max-width:560px;')}>Especialista em condomínios de {cidade}, CRECI 000002-F. Sabe quais unidades têm as melhores posições e o que está disponível agora — antes de ir aos portais.</p>
+            <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.8);font-weight:300;line-height:1.55;margin:0 0 20px;max-width:560px;')}>Especialista em condomínios de {cidade}, CRECI 000002-F. Sabe quais unidades têm as melhores posições e o que está disponível agora, antes de ir aos portais.</p>
             <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:12px 24px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Falar com o Rafael <span>→</span></Hoverable>
           </div>
         </div>
@@ -518,7 +518,7 @@ export default function LotusCondominio({
       <section style={parseStyle('background:#ece2cf;padding:80px 32px;')}>
         <div style={parseStyle('max-width:880px;margin:0 auto;text-align:center;')}>
           <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3.4vw,42px);color:#15241c;margin:0 0 16px;line-height:1.08;")}>Tem um imóvel no {nome}? Descubra quanto vale.</h2>
-          <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;max-width:560px;margin:0 auto 30px;')}>Avaliação gratuita por quem conhece o condomínio de verdade — sem custo e sem compromisso.</p>
+          <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;max-width:560px;margin:0 auto 30px;')}>Avaliação gratuita por quem conhece o condomínio de verdade, sem custo e sem compromisso.</p>
           <Hoverable as="a" target="_top" href="/lotus-anunciar" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#1d3a2c;color:#f7f2e8;font-weight:600;font-size:16px;padding:15px 30px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:#15241c')}>Avaliar meu imóvel <span>→</span></Hoverable>
         </div>
       </section>

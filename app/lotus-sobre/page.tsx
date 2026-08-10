@@ -3,7 +3,7 @@ import LotusSobre from '@/components/LotusSobre';
 
 // Metadata portado do <helmet> do fonte estático (lotus-sobre/index.html).
 export const metadata: Metadata = {
-  title: 'A Lotus — Imobiliária de especialistas em Jundiaí e Itupeva | Lotus Brokers',
+  title: 'A Lotus: imobiliária de especialistas em Jundiaí e Itupeva | Lotus Brokers',
   description:
     'Conheça a Lotus Brokers: imobiliária moderna de Jundiaí e Itupeva, com time segmentado por especialidade e corretores que conhecem cada bairro.',
   alternates: {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     siteName: 'Lotus Brokers',
     type: 'website',
     url: 'https://www.lotusbrokers.com.br/lotus-sobre',
-    title: 'A Lotus — Imobiliária de especialistas em Jundiaí e Itupeva',
+    title: 'A Lotus: imobiliária de especialistas em Jundiaí e Itupeva',
     description:
       'Time consolidado, marca nova. Especialistas por bairro que te chamam pelo nome, em Jundiaí e Itupeva.',
     images: [

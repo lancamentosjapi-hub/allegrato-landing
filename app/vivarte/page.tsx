@@ -4,7 +4,7 @@ import Vivarte from '@/components/Vivarte';
 
 // Metadata portada do <helmet> de vivarte/index.html (paridade de SEO com o estático).
 export const metadata: Metadata = {
-  title: 'Vivarte Grand Alamedas | Apartamentos à venda em Jundiaí — Serra do Japi',
+  title: 'Vivarte Grand Alamedas | Apartamentos à venda em Jundiaí, Serra do Japi',
   description:
     'Vivarte Grand Alamedas: apartamentos de 2 e 3 dormitórios em Jundiaí, com vista para a Serra do Japi, ampla varanda e mais de 30 itens de lazer. Lançamento Grupo Diretiva. Agende sua visita.',
   keywords:

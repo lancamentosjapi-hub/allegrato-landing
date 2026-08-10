@@ -23,11 +23,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { id } = await params;
   const cond = await getCondominio(id);
   if (!cond) {
-    return { title: 'Condomínio — Lotus Brokers', robots: { index: false } };
+    return { title: 'Condomínio, Lotus Brokers', robots: { index: false } };
   }
   const cidade = cond.cidade || 'Jundiaí e Itupeva';
   const capa = (cond.fotos?.find((f) => f.isCapa) ?? cond.fotos?.[0])?.url;
-  const title = `${cond.nome}, ${cidade} — guia do condomínio e imóveis | Lotus Brokers`;
+  const title = `${cond.nome}, ${cidade}, guia do condomínio e imóveis | Lotus Brokers`;
   const description =
     cond.descricao_site?.trim() ||
     `Tudo sobre morar no ${cond.nome}, ${cidade}: estrutura, localização e imóveis disponíveis com o especialista da Lotus.`;
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       siteName: 'Lotus Brokers',
       type: 'website',
       url,
-      title: `Morar no ${cond.nome}, ${cidade} — guia da Lotus`,
+      title: `Morar no ${cond.nome}, ${cidade}, guia da Lotus`,
       description,
       images: capa ? [capa] : undefined,
     },

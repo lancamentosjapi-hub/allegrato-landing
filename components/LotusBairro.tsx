@@ -366,9 +366,9 @@ export default function LotusBairro({
         </div>
       </section>
 
-      {/* DADOS DO BAIRRO — só aparece quando há número real. Um bairro sem dado
+      {/* DADOS DO BAIRRO, só aparece quando há número real. Um bairro sem dado
           de mercado exibiria "Transparência de mercado" sobre uma faixa vazia
-          (ou sobre "R$ —"), que é o oposto do que a seção promete. */}
+          (ou sobre "R$ ,"), que é o oposto do que a seção promete. */}
       {bairro.dados.length > 0 && (
       <section style={parseStyle('background:#15241c;padding:80px 32px;position:relative;overflow:hidden;')}>
         <div style={parseStyle("position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;pointer-events:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\");")}></div>
@@ -399,7 +399,7 @@ export default function LotusBairro({
               <span key={i} style={parseStyle('background:rgba(247,242,232,.1);border:1px solid rgba(247,242,232,.2);color:rgba(247,242,232,.85);font-size:13px;padding:6px 13px;border-radius:30px;')}>{t}</span>
             ))}
           </div>
-          <p style={parseStyle('font-size:12px;color:rgba(247,242,232,.45);margin-top:24px;')}>Estimativas com base em anúncios e negociações da região nos últimos 12 meses. Valores ilustrativos — atualizados periodicamente pela Lotus.</p>
+          <p style={parseStyle('font-size:12px;color:rgba(247,242,232,.45);margin-top:24px;')}>Estimativas com base em anúncios e negociações da região nos últimos 12 meses. Valores ilustrativos, atualizados periodicamente pela Lotus.</p>
         </div>
       </section>
       )}
@@ -436,7 +436,7 @@ export default function LotusBairro({
           ) : (
             <div style={parseStyle('background:#1d3a2c;border-radius:18px;padding:44px 40px;text-align:center;')}>
               <div style={parseStyle("font-family:'Fraunces',serif;font-size:24px;color:#f7f2e8;margin-bottom:10px;")}>Ainda não temos imóvel anunciado em {nomeBairro}.</div>
-              <p style={parseStyle('font-size:15px;color:rgba(247,242,232,.72);font-weight:300;max-width:460px;margin:0 auto 22px;')}>Conte pra gente o que você procura — o especialista do bairro caça o imóvel certo pra você, inclusive fora do catálogo.</p>
+              <p style={parseStyle('font-size:15px;color:rgba(247,242,232,.72);font-weight:300;max-width:460px;margin:0 auto 22px;')}>Conte pra gente o que você procura, o especialista do bairro caça o imóvel certo pra você, inclusive fora do catálogo.</p>
               <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:12px 24px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Falar com o especialista <span>→</span></Hoverable>
             </div>
           )}
@@ -447,7 +447,7 @@ export default function LotusBairro({
       <section style={parseStyle('background:#ece2cf;padding:80px 32px;')}>
         <div style={parseStyle('max-width:880px;margin:0 auto;text-align:center;')}>
           <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3.4vw,42px);color:#15241c;margin:0 0 16px;line-height:1.08;")}>Tem um imóvel em {nomeBairro}? Descubra quanto vale.</h2>
-          <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;max-width:560px;margin:0 auto 30px;')}>Avaliação gratuita feita por quem conhece o bairro de verdade — sem custo e sem compromisso.</p>
+          <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;max-width:560px;margin:0 auto 30px;')}>Avaliação gratuita feita por quem conhece o bairro de verdade, sem custo e sem compromisso.</p>
           <Hoverable as="a" href="/lotus-anunciar" target="_top" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#1d3a2c;color:#f7f2e8;font-weight:600;font-size:16px;padding:15px 30px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:#15241c')}>Avaliar meu imóvel <span>→</span></Hoverable>
         </div>
       </section>

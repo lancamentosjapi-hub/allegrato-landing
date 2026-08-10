@@ -23,9 +23,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const bairro = getBairro(slug);
   if (!bairro) {
-    return { title: 'Bairro — Lotus Brokers', robots: { index: false } };
+    return { title: 'Bairro, Lotus Brokers', robots: { index: false } };
   }
-  const title = `Morar em ${bairro.nome}, ${bairro.cidade} — guia do bairro e imóveis | Lotus Brokers`;
+  const title = `Morar em ${bairro.nome}, ${bairro.cidade} : guia do bairro e imóveis | Lotus Brokers`;
   const description = bairro.tagline;
   const url = `${SITE}/lotus-bairro/${slug}`;
   return {
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       siteName: 'Lotus Brokers',
       type: 'website',
       url,
-      title: `Morar em ${bairro.nome}, ${bairro.cidade} — o guia da Lotus`,
+      title: `Morar em ${bairro.nome}, ${bairro.cidade}, o guia da Lotus`,
       description,
     },
     twitter: { card: 'summary_large_image' },

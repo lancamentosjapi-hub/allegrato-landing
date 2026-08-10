@@ -99,7 +99,7 @@ export default function SkyVideiras() {
               .
             </h1>
             <p className="hero-sub">
-              Apartamentos de 2 e 3 dormitórios, todos com suíte, de 56,96 m² a 83,31 m², com lazer completo no rooftop e vista para a Serra do Japi — no bairro mais desejado de Jundiaí.
+              Apartamentos de 2 e 3 dormitórios, todos com suíte, de 56,96 m² a 83,31 m², com lazer completo no rooftop e vista para a Serra do Japi, no bairro mais desejado de Jundiaí.
             </p>
             <div className="chips">
               <span className="chip">
@@ -180,10 +180,10 @@ export default function SkyVideiras() {
               2 e 3 dorms · todos com suíte · Jundiaí/SP
             </p>
             <h2 style={parseStyle('margin-top:8px')}>
-              Exclusividade, segurança e lazer de bom gosto — no melhor endereço da cidade.
+              Exclusividade, segurança e lazer de bom gosto, no melhor endereço da cidade.
             </h2>
             <p className="lead">
-              O SKY Videiras é a forma carinhosa que a SEBEL Empreendimentos encontrou para dizer "olá, Jundiaí, chegamos!". São cinco plantas únicas, pensadas para quem busca viver bem no bairro Quintas das Videiras — um dos mais desejados e de maior valorização da região.
+              O SKY Videiras é a forma carinhosa que a SEBEL Empreendimentos encontrou para dizer "olá, Jundiaí, chegamos!". São cinco plantas únicas, pensadas para quem busca viver bem no bairro Quintas das Videiras, um dos mais desejados e de maior valorização da região.
             </p>
             <ul className="difflist">
               <li>
@@ -194,7 +194,7 @@ export default function SkyVideiras() {
                   <b>
                     Todos os apartamentos com suíte
                   </b>
-                  {' '}— conforto pensado para a família.
+                  {' '}, conforto pensado para a família.
                 </span>
               </li>
               <li>
@@ -205,7 +205,7 @@ export default function SkyVideiras() {
                   <b>
                     Lazer completo no rooftop
                   </b>
-                  {' '}— a Serra do Japi para sempre no topo da sua vida.
+                  {' '}, a Serra do Japi para sempre no topo da sua vida.
                 </span>
               </li>
               <li>
@@ -555,7 +555,7 @@ export default function SkyVideiras() {
           <div className="loc-grid">
             <div data-reveal>
               <p className="addr">
-                📍 R. Profa. Adelaíde Pontes Laureano, 360 — Jd. Quintas das Videiras, Jundiaí/SP
+                📍 R. Profa. Adelaíde Pontes Laureano, 360, Jd. Quintas das Videiras, Jundiaí/SP
               </p>
               <ul className="poi">
                 <li>
@@ -677,12 +677,12 @@ export default function SkyVideiras() {
               SEBEL Empreendimentos: história que se faz também no presente.
             </h2>
             <p className="lead">
-              Na estrada desde os anos 80, a SEBEL atua com força no estado de São Paulo — do tradicional Edifício Maison Rodin a conjuntos habitacionais com mais de 600 unidades. Agora, chega a Jundiaí com o SKY Videiras.
+              Na estrada desde os anos 80, a SEBEL atua com força no estado de São Paulo, do tradicional Edifício Maison Rodin a conjuntos habitacionais com mais de 600 unidades. Agora, chega a Jundiaí com o SKY Videiras.
             </p>
             <blockquote className="quote">
               "Eu acredito que duas coisas são fundamentais: Responsabilidade e Qualidade."
               <cite>
-                João Carlos Custódio — Engenheiro e CEO, SEBEL Empreendimentos
+                João Carlos Custódio, Engenheiro e CEO, SEBEL Empreendimentos
               </cite>
             </blockquote>
           </div>
@@ -807,7 +807,7 @@ export default function SkyVideiras() {
                   ✓ Recebido!
                 </p>
                 <p className="sm">
-                  Abrimos o seu WhatsApp com a mensagem pronta — é só enviar. Nossa equipe responde em instantes.
+                  Abrimos o seu WhatsApp com a mensagem pronta, é só enviar. Nossa equipe responde em instantes.
                 </p>
               </div>
             </div>
@@ -835,7 +835,7 @@ export default function SkyVideiras() {
             </div>
           </div>
           <p className="legal">
-            Perspectivas artísticas, preliminares e meramente ilustrativas. As áreas comuns serão entregues equipadas e decoradas conforme Memorial Descritivo. Móveis, utensílios e itens de decoração são meramente ilustrativos. Metragens conforme boletário. Empreendimento sujeito a aprovação e registro de incorporação — [INSERIR DADOS DE INCORPORAÇÃO / Nº DE REGISTRO]. Realização: SEBEL Empreendimentos. CRECI [INSERIR].
+            Perspectivas artísticas, preliminares e meramente ilustrativas. As áreas comuns serão entregues equipadas e decoradas conforme Memorial Descritivo. Móveis, utensílios e itens de decoração são meramente ilustrativos. Metragens conforme boletário. Empreendimento sujeito a aprovação e registro de incorporação, [INSERIR DADOS DE INCORPORAÇÃO / Nº DE REGISTRO]. Realização: SEBEL Empreendimentos. CRECI [INSERIR].
           </p>
         </div>
       </footer>

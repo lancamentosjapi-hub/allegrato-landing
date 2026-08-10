@@ -56,7 +56,7 @@ function storage(): Storage | null {
   try {
     return window.sessionStorage;
   } catch {
-    return null; // modo privado/iframe sem storage — chat segue só em memória
+    return null; // modo privado/iframe sem storage, chat segue só em memória
   }
 }
 
@@ -161,7 +161,7 @@ export default function AtendimentoChat({ onClose }: { onClose: () => void }) {
   return (
     <div
       role="dialog"
-      aria-label="Atendimento Lotus — chat"
+      aria-label="Atendimento Lotus, chat"
       onKeyDown={(e) => {
         if (e.key === 'Escape') onClose();
       }}

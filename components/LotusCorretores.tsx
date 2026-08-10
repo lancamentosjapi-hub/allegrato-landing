@@ -308,7 +308,7 @@ const CONTEUDO_REAL: Record<string, { bio?: BlocoBio[]; foto?: string }> = {
     foto: '/corretores/mariana-mamede.jpg',
     bio: [
       'Minha trajetória no mercado imobiliário traduz o melhor da minha bagagem profissional. Ao longo da minha atuação, aplico a escuta atenta, a responsabilidade e o cuidado em cada detalhe para oferecer uma consultoria de excelência e absoluta transparência.',
-      'Compreendendo que cada negociação envolve um momento único de vida — seja uma conquista, uma reorganização patrimonial ou uma fase de transição —, conduzo o processo com clareza e empatia em cada etapa.',
+      'Compreendendo que cada negociação envolve um momento único de vida, seja uma conquista, uma reorganização patrimonial ou uma fase de transição ,, conduzo o processo com clareza e empatia em cada etapa.',
       'A constância desse trabalho focado no cliente se reflete em uma performance de destaque, reconhecida com premiações consecutivas nos últimos anos. Mais do que resultados, essas conquistas reafirmam meu compromisso de entregar segurança e clareza do primeiro contato à conclusão do negócio.',
     ],
   },
@@ -453,8 +453,8 @@ function conteudoRealDe(nome: string) {
 // quem ainda não tem bio própria em CONTEUDO_REAL.
 function bioFor(b: Broker): string[] {
   return [
-    'Comecei no mercado imobiliário porque gosto de gente — e descobri que a melhor parte de vender um imóvel é entender a história de quem vai morar nele. Há anos atendo ' + b.area + ' e conheço cada rua, cada escola, cada esquina que pega sol da manhã.',
-    'Meu jeito de trabalhar é simples: ouço primeiro, mostro só o que faz sentido pra você e fico do seu lado do começo ao fim. Sem pressão, sem catálogo jogado no WhatsApp — com dado de mercado de verdade e o cuidado que você merece.',
+    'Comecei no mercado imobiliário porque gosto de gente e descobri que a melhor parte de vender um imóvel é entender a história de quem vai morar nele. Há anos atendo ' + b.area + ' e conheço cada rua, cada escola, cada esquina que pega sol da manhã.',
+    'Meu jeito de trabalhar é simples: ouço primeiro, mostro só o que faz sentido pra você e fico do seu lado do começo ao fim. Sem pressão, sem catálogo jogado no WhatsApp, com dado de mercado de verdade e o cuidado que você merece.',
     'Se você procura (ou quer vender) em ' + b.area + ', me chama. A gente toma um café e eu te mostro a região pelo que ela tem de vivido.',
   ];
 }
@@ -572,12 +572,12 @@ export default function LotusCorretores({
                 <div style={parseStyle('background:rgba(247,242,232,.06);border:1px solid rgba(247,242,232,.12);border-radius:16px;padding:24px;')}>
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#cdab6e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={parseStyle('margin-bottom:14px;')}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                   <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:18px;color:#f7f2e8;margin:0 0 8px;")}>Especialistas por bairro e condomínio</h3>
-                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>Cada corretor domina o seu território — conhece as ruas, os condomínios e o preço justo daquele metro quadrado.</p>
+                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>Cada corretor domina o seu território, conhece as ruas, os condomínios e o preço justo daquele metro quadrado.</p>
                 </div>
                 <div style={parseStyle('background:rgba(247,242,232,.06);border:1px solid rgba(247,242,232,.12);border-radius:16px;padding:24px;')}>
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#cdab6e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={parseStyle('margin-bottom:14px;')}><path d="M22 10 12 5 2 10l10 5 10-5Z"></path><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5"></path></svg>
                   <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:18px;color:#f7f2e8;margin:0 0 8px;")}>Treinamento semanal</h3>
-                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>Todo time passa por capacitação toda semana — mercado, negociação e atendimento sempre afiados.</p>
+                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>Todo time passa por capacitação toda semana, mercado, negociação e atendimento sempre afiados.</p>
                 </div>
                 <div style={parseStyle('background:rgba(247,242,232,.06);border:1px solid rgba(247,242,232,.12);border-radius:16px;padding:24px;')}>
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#cdab6e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={parseStyle('margin-bottom:14px;')}><path d="m12 2 2.4 7.4H22l-6 4.4 2.3 7.2-6.3-4.6-6.3 4.6L8 13.8 2 9.4h7.6L12 2Z"></path></svg>
@@ -587,17 +587,17 @@ export default function LotusCorretores({
                 <div style={parseStyle('background:rgba(247,242,232,.06);border:1px solid rgba(247,242,232,.12);border-radius:16px;padding:24px;')}>
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#cdab6e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={parseStyle('margin-bottom:14px;')}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.9"></path><path d="M16 3.1a4 4 0 0 1 0 7.8"></path></svg>
                   <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:18px;color:#f7f2e8;margin:0 0 8px;")}>Time em squads, não um faz-tudo</h3>
-                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>{nomesDosSquads()} — você sempre cai com quem é especialista no seu caso.</p>
+                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>{nomesDosSquads()}: você sempre cai com quem é especialista no seu caso.</p>
                 </div>
                 <div style={parseStyle('background:rgba(247,242,232,.06);border:1px solid rgba(247,242,232,.12);border-radius:16px;padding:24px;')}>
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#cdab6e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={parseStyle('margin-bottom:14px;')}><path d="M3 3v18h18"></path><path d="m7 14 3-4 3 3 5-7"></path></svg>
                   <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:18px;color:#f7f2e8;margin:0 0 8px;")}>Metodologia que vende até 10x mais rápido</h3>
-                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>Trabalhamos com um modelo de negócios consagrado mundo afora, com processo e dado — que acelera a venda em até 10x frente ao jeito tradicional.</p>
+                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>Trabalhamos com um modelo de negócios consagrado mundo afora, com processo e dado, que acelera a venda em até 10x frente ao jeito tradicional.</p>
                 </div>
                 <div style={parseStyle('background:rgba(247,242,232,.06);border:1px solid rgba(247,242,232,.12);border-radius:16px;padding:24px;')}>
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#cdab6e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={parseStyle('margin-bottom:14px;')}><path d="m22 8-6 4 6 4V8Z"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg>
                   <h3 style={parseStyle("font-family:'Fraunces',serif;font-weight:400;font-size:18px;color:#f7f2e8;margin:0 0 8px;")}>Marketing, vídeo e foto profissionais</h3>
-                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>Equipe própria de marketing, gravação de vídeos e fotógrafos profissionais — que coloca cada corretor muito acima da média do mercado.</p>
+                  <p style={parseStyle('font-size:14px;color:rgba(247,242,232,.72);font-weight:300;line-height:1.55;margin:0;')}>Equipe própria de marketing, gravação de vídeos e fotógrafos profissionais, que coloca cada corretor muito acima da média do mercado.</p>
                 </div>
               </div>
             </div>
@@ -772,7 +772,7 @@ export default function LotusCorretores({
               <div>
                 <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#b18a4a;margin-bottom:16px;')}>Vamos conversar</div>
                 <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3.2vw,38px);color:#15241c;line-height:1.08;margin:0 0 16px;")}>Fale direto com {sel.first}.</h2>
-                <p style={parseStyle('font-size:16px;color:#3f6249;font-weight:300;line-height:1.6;margin:0 0 24px;')}>Conte o que você procura (ou o que quer vender) e {sel.first} responde pessoalmente — com a região na ponta da língua.</p>
+                <p style={parseStyle('font-size:16px;color:#3f6249;font-weight:300;line-height:1.6;margin:0 0 24px;')}>Conte o que você procura (ou o que quer vender) e {sel.first} responde pessoalmente, com a região na ponta da língua.</p>
                 <a href={sel.wa} target="_blank" rel="noopener" style={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#25543b;color:#f7f2e8;font-weight:600;font-size:15px;padding:14px 24px;border-radius:11px;')}><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Z"></path></svg>WhatsApp direto</a>
               </div>
               <div style={parseStyle('background:#fff;border-radius:18px;padding:30px;box-shadow:0 18px 44px -34px rgba(21,36,28,.3);')}>

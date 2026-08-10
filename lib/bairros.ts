@@ -70,7 +70,7 @@ const eloyChaves: Bairro = {
   guide: [
     { num: '1', title: 'Como é viver aqui', text: 'O Eloy Chaves se destaca pelo equilíbrio entre tranquilidade residencial e praticidade urbana. É um bairro de perfil familiar, com ruas arborizadas e rotina calma, mas com tudo o que o dia a dia pede a poucos minutos.' },
     { num: '2', title: 'História e formação', text: 'A origem do bairro está ligada à antiga Fazenda Ermida. A partir dela, a região cresceu de forma planejada e se consolidou como uma das áreas mais valorizadas de Jundiaí, com grande potencial imobiliário.' },
-    { num: '3', title: 'Comércio e serviços', text: 'O bairro oferece uma ampla rede de comércios e serviços: supermercados, farmácias, escolas, academias, restaurantes, agências bancárias e comércio diversificado — tudo dentro da própria região.' },
+    { num: '3', title: 'Comércio e serviços', text: 'O bairro oferece uma ampla rede de comércios e serviços: supermercados, farmácias, escolas, academias, restaurantes, agências bancárias e comércio diversificado, tudo dentro da própria região.' },
     { num: '4', title: 'Transporte e acessos', text: 'Com fácil acesso às Rodovias Anhanguera e Bandeirantes, é uma excelente opção para quem se desloca diariamente para outras regiões de Jundiaí, Campinas ou São Paulo.' },
     { num: '5', title: 'Lazer e natureza', text: 'Um grande diferencial é a proximidade com a Serra do Japi e com o Parque Botânico Eloy Chaves, que oferecem lazer ao ar livre, caminhadas, trilhas e descanso em meio ao verde.' },
     { num: '6', title: 'Condomínios e perfil imobiliário', text: 'A região abriga condomínios residenciais reconhecidos pela segurança e pela qualidade de vida. Para quem busca morar bem ou investir numa região sólida e em constante valorização, é uma das escolhas mais completas da cidade.' },
@@ -86,7 +86,7 @@ const eloyChaves: Bairro = {
     { q: 'Eloy Chaves é um bom bairro para famílias?', a: 'É um dos mais procurados por famílias em Jundiaí: ruas arborizadas e tranquilas, boas escolas a poucos minutos, comércio de bairro no dia a dia e a Serra do Japi e parques por perto.' },
     { q: 'Quanto custa morar em Eloy Chaves?', a: 'O m² para compra fica em torno de R$ 7.500. Casas variam de R$ 600 mil a R$ 2,5 milhões; apartamentos a partir de cerca de R$ 450 mil. Locação de casa parte de aproximadamente R$ 3.000/mês.' },
     { q: 'Quais condomínios existem em Eloy Chaves?', a: 'A região concentra condomínios de casas e loteamentos fechados, além de ruas residenciais abertas. Fale com a gente que indicamos o melhor para o seu perfil.' },
-    { q: 'Eloy Chaves é seguro?', a: 'É percebido como um dos bairros mais tranquilos de Jundiaí, com forte presença residencial e ruas movimentadas por moradores. Como em qualquer lugar, varia por trecho — a gente te orienta com honestidade.' },
+    { q: 'Eloy Chaves é seguro?', a: 'É percebido como um dos bairros mais tranquilos de Jundiaí, com forte presença residencial e ruas movimentadas por moradores. Como em qualquer lugar, varia por trecho, a gente te orienta com honestidade.' },
   ],
   mapQuery: 'Eloy Chaves, Jundiaí, SP',
   publicado: true,
@@ -98,7 +98,7 @@ const vianeloBonfiglioli: Bairro = {
   nome: 'Vianelo Bonfiglioli',
   cidade: 'Jundiaí',
   tagline:
-    'Numa região central de Jundiaí, um dos bairros mais tradicionais da cidade — infraestrutura consolidada, mobilidade privilegiada e ampla oferta de serviços.',
+    'Numa região central de Jundiaí, um dos bairros mais tradicionais da cidade, infraestrutura consolidada, mobilidade privilegiada e ampla oferta de serviços.',
   heroImg: '/bairros/vianelo-bonfiglioli.jpg',
   stats: [
     { value: 'Central', label: 'localização' },
@@ -113,7 +113,7 @@ const vianeloBonfiglioli: Bairro = {
     { num: '3', title: 'Comércio e serviços', text: 'A infraestrutura é um dos grandes pontos fortes da região: supermercados, farmácias, bancos, lotéricas, lojas, autopeças, concessionárias, escolas, restaurantes e serviços variados.' },
     { num: '4', title: 'Saúde', text: 'A região se destaca pela proximidade com hospitais importantes, como o Hospital Universitário, o Hospital Sobam e o Hospital Pitangueiras, além de UBS e clínicas especializadas.' },
     { num: '5', title: 'Transporte e acessos', text: 'A mobilidade é privilegiada, com fácil acesso à Rodovia Anhanguera, à Avenida Nove de Julho, à Avenida Dr. Odil Campos de Sáes, à Rua Messina e ao Terminal Rodoviário de Jundiaí.' },
-    { num: '6', title: 'Perfil imobiliário', text: 'Na região é possível encontrar casas tradicionais, edifícios residenciais, condomínios, apartamentos modernos e imóveis com perfil familiar e urbano — uma variedade que atende objetivos diferentes de moradia e investimento.' },
+    { num: '6', title: 'Perfil imobiliário', text: 'Na região é possível encontrar casas tradicionais, edifícios residenciais, condomínios, apartamentos modernos e imóveis com perfil familiar e urbano, uma variedade que atende objetivos diferentes de moradia e investimento.' },
   ],
   // Sem dados de mercado informados: a seção de números não é exibida enquanto
   // o array estiver vazio (ver LotusBairro). Preencher só com dado real.
@@ -134,7 +134,7 @@ const medeiros: Bairro = {
   nome: 'Medeiros',
   cidade: 'Jundiaí',
   tagline:
-    'Na região oeste de Jundiaí, um bairro em crescimento constante — ambiente calmo e arborizado, próximo à Serra do Japi, com forte potencial de valorização.',
+    'Na região oeste de Jundiaí, um bairro em crescimento constante, ambiente calmo e arborizado, próximo à Serra do Japi, com forte potencial de valorização.',
   heroImg: '/bairros/medeiros.jpg',
   stats: [
     { value: 'Oeste', label: 'região de Jundiaí' },
@@ -148,7 +148,7 @@ const medeiros: Bairro = {
     { num: '2', title: 'Condomínios e novos empreendimentos', text: 'Nos últimos anos o bairro recebeu diversos condomínios fechados e empreendimentos residenciais voltados para segurança, lazer e conforto, fortalecendo seu perfil de região planejada e promissora.' },
     { num: '3', title: 'Comércio e serviços', text: 'Apesar do perfil residencial, o bairro conta com comércios e serviços essenciais: mercearias, farmácias, escolas, academias, restaurantes e o Mini Shopping Sarapiranga, que oferece conveniência para o dia a dia.' },
     { num: '4', title: 'Transporte e acessos', text: 'Localização estratégica, com fácil acesso às Rodovias Anhanguera e Bandeirantes e conexão com cidades vizinhas como Itupeva, Louveira e Campinas. As avenidas Reynaldo Porcari e Juvenal Arantes facilitam o deslocamento interno e o acesso a outras regiões de Jundiaí.' },
-    { num: '5', title: 'Lazer e natureza', text: 'A proximidade com a Serra do Japi é um dos grandes atrativos, somada ao ambiente arborizado do próprio bairro — o que sustenta o estilo de vida mais tranquilo que atrai seus moradores.' },
+    { num: '5', title: 'Lazer e natureza', text: 'A proximidade com a Serra do Japi é um dos grandes atrativos, somada ao ambiente arborizado do próprio bairro, o que sustenta o estilo de vida mais tranquilo que atrai seus moradores.' },
     { num: '6', title: 'Potencial de valorização', text: 'Com qualidade de vida, infraestrutura em expansão e forte potencial de valorização, o Medeiros é uma excelente opção tanto para morar quanto para investir em Jundiaí.' },
   ],
   dados: [],
@@ -156,7 +156,7 @@ const medeiros: Bairro = {
   faq: [
     { q: 'Onde fica o Medeiros?', a: 'Na região oeste de Jundiaí, com acesso fácil às Rodovias Anhanguera e Bandeirantes e conexão com Itupeva, Louveira e Campinas.' },
     { q: 'O Medeiros é bom para famílias?', a: 'Sim. O ambiente calmo e arborizado, a proximidade com a Serra do Japi e a oferta de condomínios fechados com lazer atraem especialmente famílias e casais.' },
-    { q: 'Vale a pena investir no Medeiros?', a: 'O bairro reúne infraestrutura em expansão, novos empreendimentos e forte potencial de valorização — fatores que o tornam atrativo para investimento.' },
+    { q: 'Vale a pena investir no Medeiros?', a: 'O bairro reúne infraestrutura em expansão, novos empreendimentos e forte potencial de valorização, fatores que o tornam atrativo para investimento.' },
   ],
   mapQuery: 'Medeiros, Jundiaí, SP',
   publicado: true,
@@ -176,7 +176,7 @@ const caxambu: Bairro = {
     { value: 'Rota da Uva', label: 'roteiro turístico' },
   ],
   tldr:
-    'O Caxambu é um dos bairros mais tradicionais e charmosos de Jundiaí, na região norte da cidade. É conhecido pela herança italiana, pelas paisagens rurais, pela produção de uvas e por integrar a Rota da Uva — mantendo atmosfera tranquila mesmo perto das áreas urbanas.',
+    'O Caxambu é um dos bairros mais tradicionais e charmosos de Jundiaí, na região norte da cidade. É conhecido pela herança italiana, pelas paisagens rurais, pela produção de uvas e por integrar a Rota da Uva, mantendo atmosfera tranquila mesmo perto das áreas urbanas.',
   guide: [
     { num: '1', title: 'Como é viver aqui', text: 'Mesmo próximo às áreas urbanas, o Caxambu mantém uma atmosfera tranquila e acolhedora, ideal para quem busca contato com a natureza, mais privacidade e qualidade de vida.' },
     { num: '2', title: 'História e identidade', text: 'A história do bairro está diretamente ligada à imigração italiana e à tradição vitivinícola de Jundiaí. A região foi uma das pioneiras na produção de uvas e ainda hoje mantém viva essa identidade por meio de vinícolas, adegas, restaurantes típicos e propriedades rurais.' },

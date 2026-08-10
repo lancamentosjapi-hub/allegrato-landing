@@ -125,7 +125,7 @@ function PlanImg({ src, alt, style }: { src: string; alt: string; style?: CSSPro
           textAlign: 'center',
         }}
       >
-        {alt} — planta disponível sob consulta.
+        {alt}, planta disponível sob consulta.
       </div>
     );
   }
@@ -162,7 +162,7 @@ export default function DoppioJundiai() {
   const floors = plan.floors.map((f) => ({
     label: f.label,
     open: () => setPlanLb(f),
-    imgEl: <PlanImg src={f.img} alt={`Planta ${f.label} — ${plan.area}`} style={PLAN_IMG_STYLE} />,
+    imgEl: <PlanImg src={f.img} alt={`Planta ${f.label}, ${plan.area}`} style={PLAN_IMG_STYLE} />,
   }));
 
   const lbOpen = lightbox != null;
@@ -419,7 +419,7 @@ export default function DoppioJundiai() {
         {/* HERO */}
         <section style={parseStyle('position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:#140c06')} id="topo">
           <div style={parseStyle('position:absolute;inset:0;overflow:hidden')}>
-            <img style={parseStyle('width:100%;height:100%;object-fit:cover;object-position:72% center;transform:scale(1.12);animation:kenburns 22s ease-out forwards;will-change:transform')} id="lp-hero-img" src="/doppio-jundiai/a015.jpg" alt="Doppio Jundiaí ao entardecer, em Campos Elísios — perspectiva artística preliminar" />
+            <img style={parseStyle('width:100%;height:100%;object-fit:cover;object-position:72% center;transform:scale(1.12);animation:kenburns 22s ease-out forwards;will-change:transform')} id="lp-hero-img" src="/doppio-jundiai/a015.jpg" alt="Doppio Jundiaí ao entardecer, em Campos Elísios, perspectiva artística preliminar" />
           </div>
           <div style={parseStyle('position:absolute;inset:0;background:linear-gradient(to right,rgba(18,11,6,.86) 0%,rgba(18,11,6,.62) 26%,rgba(18,11,6,.22) 48%,transparent 64%)')}>
           </div>
@@ -553,7 +553,7 @@ export default function DoppioJundiai() {
                   .
                 </h2>
                 <p style={parseStyle('margin:32px 0 0;font-size:1.06rem;font-weight:300;line-height:1.85;color:rgba(240,230,214,.74);max-width:52ch')}>
-                  No Doppio Jundiaí, cada ambiente foi pensado para ampliar a luz, o olhar e as sensações. O pé-direito duplo não é apenas uma escolha arquitetônica — é uma expressão de liberdade, respiro e imponência.
+                  No Doppio Jundiaí, cada ambiente foi pensado para ampliar a luz, o olhar e as sensações. O pé-direito duplo não é apenas uma escolha arquitetônica, é uma expressão de liberdade, respiro e imponência.
                 </p>
                 <p style={parseStyle('margin:20px 0 0;font-size:1.06rem;font-weight:300;line-height:1.85;color:rgba(240,230,214,.74);max-width:52ch')}>
                   O design dialoga com o conforto. A sofisticação se revela em cada linha, cada textura, cada detalhe que transforma o morar em arte.
@@ -587,7 +587,7 @@ export default function DoppioJundiai() {
               </div>
               <div style={parseStyle('position:relative')} data-reveal="right">
                 <div style={parseStyle('position:relative;overflow:hidden;border-radius:4px;box-shadow:0 40px 90px -40px rgba(0,0,0,.8)')}>
-                  <img style={parseStyle('width:100%;height:clamp(420px,62vh,640px);object-fit:cover')} src="/doppio-jundiai/a017.jpg" alt="Living com pé-direito duplo de 5,60 m — perspectiva artística preliminar" loading="lazy" />
+                  <img style={parseStyle('width:100%;height:clamp(420px,62vh,640px);object-fit:cover')} src="/doppio-jundiai/a017.jpg" alt="Living com pé-direito duplo de 5,60 m, perspectiva artística preliminar" loading="lazy" />
                   <div style={parseStyle("position:absolute;left:22px;bottom:20px;font-family:'Jost',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:#f3ece0;background:rgba(20,12,6,.5);backdrop-filter:blur(6px);padding:9px 16px;border-radius:30px;border:1px solid rgba(231,205,156,.25)")}>
                     Living · pé-direito duplo 5,60 m
                   </div>
@@ -616,7 +616,7 @@ export default function DoppioJundiai() {
             <div className="g3">
               <div style={parseStyle('background:#fff;border:1px solid rgba(40,26,14,.08);border-radius:10px;overflow:hidden;display:flex;flex-direction:column')} data-reveal="" className="dif-card">
                 <div style={parseStyle('position:relative;height:196px;overflow:hidden')}>
-                  <img style={parseStyle('width:100%;height:100%;object-fit:cover')} src="/doppio-jundiai/a018.jpg" alt="Acesso e fachada do Doppio Jundiaí — perspectiva preliminar" loading="lazy" />
+                  <img style={parseStyle('width:100%;height:100%;object-fit:cover')} src="/doppio-jundiai/a018.jpg" alt="Acesso e fachada do Doppio Jundiaí, perspectiva preliminar" loading="lazy" />
                   <div style={parseStyle('position:absolute;inset:0;background:linear-gradient(to top,rgba(18,10,5,.9),rgba(18,10,5,.05) 62%)')}>
                   </div>
                   <div style={parseStyle("position:absolute;top:16px;left:16px;width:42px;height:42px;border-radius:50%;background:rgba(243,236,224,.94);display:grid;place-items:center;font-family:'Jost',sans-serif;color:#a8763c;font-size:14px;letter-spacing:.05em")}>
@@ -661,7 +661,7 @@ export default function DoppioJundiai() {
               </div>
               <div style={parseStyle('background:#fff;border:1px solid rgba(40,26,14,.08);border-radius:10px;overflow:hidden;display:flex;flex-direction:column')} data-reveal="" className="dif-card">
                 <div style={parseStyle('position:relative;height:196px;overflow:hidden')}>
-                  <img style={parseStyle('width:100%;height:100%;object-fit:cover')} src="/doppio-jundiai/a011.jpg" alt="Club House com piscina do Doppio Jundiaí — perspectiva preliminar" loading="lazy" />
+                  <img style={parseStyle('width:100%;height:100%;object-fit:cover')} src="/doppio-jundiai/a011.jpg" alt="Club House com piscina do Doppio Jundiaí, perspectiva preliminar" loading="lazy" />
                   <div style={parseStyle('position:absolute;inset:0;background:linear-gradient(to top,rgba(18,10,5,.9),rgba(18,10,5,.05) 62%)')}>
                   </div>
                   <div style={parseStyle("position:absolute;top:16px;left:16px;width:42px;height:42px;border-radius:50%;background:rgba(243,236,224,.94);display:grid;place-items:center;font-family:'Jost',sans-serif;color:#a8763c;font-size:14px;letter-spacing:.05em")}>
@@ -712,7 +712,7 @@ export default function DoppioJundiai() {
               </div>
               <div style={parseStyle('background:#fff;border:1px solid rgba(40,26,14,.08);border-radius:10px;overflow:hidden;display:flex;flex-direction:column')} data-reveal="" className="dif-card">
                 <div style={parseStyle('position:relative;height:196px;overflow:hidden')}>
-                  <img style={parseStyle('width:100%;height:100%;object-fit:cover')} src="/doppio-jundiai/a017.jpg" alt="Living com pé-direito duplo de 5,60 m — perspectiva preliminar" loading="lazy" />
+                  <img style={parseStyle('width:100%;height:100%;object-fit:cover')} src="/doppio-jundiai/a017.jpg" alt="Living com pé-direito duplo de 5,60 m, perspectiva preliminar" loading="lazy" />
                   <div style={parseStyle('position:absolute;inset:0;background:linear-gradient(to top,rgba(18,10,5,.9),rgba(18,10,5,.05) 62%)')}>
                   </div>
                   <div style={parseStyle("position:absolute;top:16px;left:16px;width:42px;height:42px;border-radius:50%;background:rgba(243,236,224,.94);display:grid;place-items:center;font-family:'Jost',sans-serif;color:#a8763c;font-size:14px;letter-spacing:.05em")}>
@@ -769,7 +769,7 @@ export default function DoppioJundiai() {
                 Mais de 20 experiências, a 12 metros do chão
               </h2>
               <p style={parseStyle('margin:24px 0 0;font-size:1.05rem;font-weight:300;line-height:1.8;color:rgba(240,230,214,.7);max-width:58ch')}>
-                Um refúgio urbano de mais de 1.700 m² no 4º pavimento: piscina, spa, fitness, club house e ambientes assinados — para viver o extraordinário todos os dias.
+                Um refúgio urbano de mais de 1.700 m² no 4º pavimento: piscina, spa, fitness, club house e ambientes assinados, para viver o extraordinário todos os dias.
               </p>
             </div>
           </div>
@@ -1066,7 +1066,7 @@ export default function DoppioJundiai() {
                   </span>
                 </h2>
                 <p style={parseStyle('margin:24px 0 30px;font-size:1.04rem;font-weight:300;line-height:1.8;color:rgba(240,230,214,.72);max-width:48ch')}>
-                  Av. Luiz Gonzaga Martins Guimarães, 725 — Campos Elísios, Jundiaí/SP. Acesso fácil a rodovias, clubes e gastronomia.
+                  Av. Luiz Gonzaga Martins Guimarães, 725, Campos Elísios, Jundiaí/SP. Acesso fácil a rodovias, clubes e gastronomia.
                 </p>
                 <div className="prox-list">
                   <div style={parseStyle('display:flex;align-items:center;gap:16px;padding:14px 0;border-top:1px solid rgba(231,205,156,.14)')}>
@@ -1166,7 +1166,7 @@ export default function DoppioJundiai() {
                   </div>
                 </a>
                 <div style={parseStyle('position:relative;overflow:hidden;border-radius:6px;border:1px solid rgba(231,205,156,.18);background:#0f0904')}>
-                  <iframe style={parseStyle('width:100%;height:250px;border:0;display:block')} title="Mapa — Doppio Jundiaí, Av. Luiz Gonzaga Martins Guimarães 725" src="https://www.openstreetmap.org/export/embed.html?bbox=-46.9255,-23.1955,-46.8855,-23.1695&layer=mapnik&marker=-23.1825203,-46.9055259" loading="lazy">
+                  <iframe style={parseStyle('width:100%;height:250px;border:0;display:block')} title="Mapa, Doppio Jundiaí, Av. Luiz Gonzaga Martins Guimarães 725" src="https://www.openstreetmap.org/export/embed.html?bbox=-46.9255,-23.1955,-46.8855,-23.1695&layer=mapnik&marker=-23.1825203,-46.9055259" loading="lazy">
                   </iframe>
                   <a style={parseStyle("position:absolute;right:14px;bottom:14px;font-family:'Jost',sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:10.5px;color:#1a0f06;background:linear-gradient(120deg,#caa067,#ecd4a4);padding:11px 17px;border-radius:30px;text-decoration:none;box-shadow:0 8px 22px -8px rgba(0,0,0,.6)")} href="https://www.google.com/maps/search/?api=1&query=-23.1825203,-46.9055259" target="_blank" rel="noopener">
                     Abrir no Google Maps →
@@ -1181,14 +1181,14 @@ export default function DoppioJundiai() {
           <div className="container">
             <div className="g2">
               <div style={parseStyle('overflow:hidden;border-radius:4px;box-shadow:0 40px 90px -45px rgba(0,0,0,.6)')} data-reveal="left">
-                <img style={parseStyle('width:100%;height:clamp(380px,56vh,560px);object-fit:cover')} src="/doppio-jundiai/a018.jpg" alt="Porte cochère do Doppio Jundiaí — perspectiva artística preliminar" loading="lazy" />
+                <img style={parseStyle('width:100%;height:clamp(380px,56vh,560px);object-fit:cover')} src="/doppio-jundiai/a018.jpg" alt="Porte cochère do Doppio Jundiaí, perspectiva artística preliminar" loading="lazy" />
               </div>
               <div data-reveal="right">
                 <div style={parseStyle("font-family:'Jost',sans-serif;text-transform:uppercase;letter-spacing:.34em;font-size:12px;color:#a8763c;margin-bottom:24px")}>
                   Assinaturas
                 </div>
                 <p style={parseStyle("font-family:'Jost',sans-serif;font-weight:200;font-size:clamp(1.4rem,2.4vw,2rem);line-height:1.4;color:#1f140c;margin:0 0 26px")}>
-                  "Nos traços da fachada, a intenção foi dissolver limites — aproximar o interior do exterior e fazer a arquitetura respirar junto com quem a habita."
+                  "Nos traços da fachada, a intenção foi dissolver limites, aproximar o interior do exterior e fazer a arquitetura respirar junto com quem a habita."
                 </p>
                 <div style={parseStyle('font-size:14px;color:#a8763c;letter-spacing:.04em;margin-bottom:40px')}>
                   Nivaldo Callegari · Arquiteto e Urbanista
@@ -1458,7 +1458,7 @@ export default function DoppioJundiai() {
               </div>
             </div>
             <p style={parseStyle('font-size:10.5px;line-height:1.7;color:rgba(240,230,214,.36);margin:26px 0 0;max-width:none')}>
-              Registro de Incorporação R.3 da matrícula 189.290, no 1º Oficial de Registro de Imóveis de Jundiaí/SP em 12/03/2026. MARINO JUNDIAI EMPREENDIMENTO IMOBILIARIO SPE LTDA, CNPJ nº 51.854.681/0001-96. Imagens e perspectivas são meramente ilustrativas, podendo sofrer alteração sem aviso prévio, inclusive quanto à forma, à cor, à textura e ao tamanho. Os acabamentos, a quantidade de móveis, os equipamentos e os utensílios serão entregues conforme o memorial descritivo. O porte da vegetação na entrega do empreendimento será de acordo com o projeto paisagístico e poderá apresentar diferença de tamanho. Comercialização: REM Consultoria e Vendas — CRECI J-33208 e Mediterrâneo Negócios Imobiliários Ltda CRECI 032134-J. MATERIAL PRELIMINAR, SUJEITO A ALTERAÇÕES. Produzido em 05/2026.
+              Registro de Incorporação R.3 da matrícula 189.290, no 1º Oficial de Registro de Imóveis de Jundiaí/SP em 12/03/2026. MARINO JUNDIAI EMPREENDIMENTO IMOBILIARIO SPE LTDA, CNPJ nº 51.854.681/0001-96. Imagens e perspectivas são meramente ilustrativas, podendo sofrer alteração sem aviso prévio, inclusive quanto à forma, à cor, à textura e ao tamanho. Os acabamentos, a quantidade de móveis, os equipamentos e os utensílios serão entregues conforme o memorial descritivo. O porte da vegetação na entrega do empreendimento será de acordo com o projeto paisagístico e poderá apresentar diferença de tamanho. Comercialização: REM Consultoria e Vendas, CRECI J-33208 e Mediterrâneo Negócios Imobiliários Ltda CRECI 032134-J. MATERIAL PRELIMINAR, SUJEITO A ALTERAÇÕES. Produzido em 05/2026.
             </p>
             <div style={parseStyle('font-size:11px;color:rgba(240,230,214,.3);margin-top:20px')}>
               © 2026 Doppio Jundiaí · Realização Construtora Marino & REM · Página por Imobiliária Japi Lançamentos.

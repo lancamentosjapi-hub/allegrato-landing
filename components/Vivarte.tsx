@@ -121,12 +121,12 @@ const amenityData: Amenity[] = [
 ];
 
 const faqData: Array<{ q: string; a: string }> = [
-  { q: 'Onde fica o Vivarte Grand Alamedas?', a: 'Na Av. Juvenal Arantes, s/n, em Jundiaí — SP, com vista permanente para o verde da Serra do Japi e fácil acesso.' },
+  { q: 'Onde fica o Vivarte Grand Alamedas?', a: 'Na Av. Juvenal Arantes, s/n, em Jundiaí, SP, com vista permanente para o verde da Serra do Japi e fácil acesso.' },
   { q: 'Quais são as opções de plantas?', a: 'São apartamentos de 2 dormitórios (1 suíte) com 65,18m² e de 3 dormitórios (1 suíte) com 78,35m², ambos com ampla varanda.' },
   { q: 'Quantas vagas de garagem?', a: 'A planta de 2 dormitórios conta com 1 vaga, e a de 3 dormitórios com 1 ou 2 vagas.' },
   { q: 'Quais itens de lazer estão disponíveis?', a: 'São mais de 30 itens, entre eles piscina adulto e infantil, quadra de areia, quadra gramada, beach lounge, fire place, sauna, cine open, pet place, fitness, academia ao ar livre, salão de festas, brinquedoteca e playground.' },
   { q: 'A varanda pode ser fechada ou integrada à sala?', a: 'Sim. As plantas têm previsão para fechamento da varanda e possibilidade de integrar a sala à varanda por meio de parede removível.' },
-  { q: 'Quem é a construtora responsável?', a: 'O Grupo Diretiva, com mais de 50 anos de experiência, certificação ISO 9001 e Nível A no PBQP-H de forma contínua desde 2004 — referência de qualidade no interior paulista.' },
+  { q: 'Quem é a construtora responsável?', a: 'O Grupo Diretiva, com mais de 50 anos de experiência, certificação ISO 9001 e Nível A no PBQP-H de forma contínua desde 2004, referência de qualidade no interior paulista.' },
   { q: 'Como faço para agendar uma visita?', a: 'Preencha o formulário desta página ou fale diretamente pelo WhatsApp. Nosso time entra em contato para apresentar o empreendimento e agendar sua visita.' },
 ];
 
@@ -583,14 +583,14 @@ export default function Vivarte({
               )}
               <p style={parseStyle('font-size:1.02rem;line-height:1.75;color:#5A5547;font-weight:300;margin:0 0 28px;max-width:50ch;')}>Ambientes pensados para a iluminação natural e a amplitude, com a possibilidade de integrar sala e varanda por parede removível. Diferenciais de série:</p>
               <div style={parseStyle('display:grid;grid-template-columns:1fr 1fr;gap:14px 26px;')}>
-                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>—</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Ampla varanda com previsão de fechamento</span></div>
-                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>—</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Sala integrável à varanda (parede removível)</span></div>
-                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>—</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Espaço para closet na suíte</span></div>
-                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>—</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Infraestrutura para ar-condicionado</span></div>
-                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>—</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Aquecimento de água nos banheiros</span></div>
-                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>—</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Bancada de mármore nos banheiros</span></div>
-                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>—</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Janelas com persianas integradas</span></div>
-                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>—</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Isolamento acústico entre unidades</span></div>
+                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>,</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Ampla varanda com previsão de fechamento</span></div>
+                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>,</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Sala integrável à varanda (parede removível)</span></div>
+                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>,</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Espaço para closet na suíte</span></div>
+                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>,</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Infraestrutura para ar-condicionado</span></div>
+                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>,</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Aquecimento de água nos banheiros</span></div>
+                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>,</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Bancada de mármore nos banheiros</span></div>
+                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>,</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Janelas com persianas integradas</span></div>
+                <div style={parseStyle('display:flex;gap:10px;align-items:flex-start;')}><span style={parseStyle('color:#93A074;margin-top:2px;')}>,</span><span style={parseStyle('font-size:.95rem;color:#3a382f;line-height:1.4;')}>Isolamento acústico entre unidades</span></div>
               </div>
               <Hoverable as="a" href="#contato" baseStyle={parseStyle('display:inline-flex;margin-top:34px;text-decoration:none;background:#1B2E22;color:#F6F1E6;padding:16px 34px;border-radius:2px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;transition:all .35s;')} hoverStyle={parseStyle('background:#A9743F;')}>Quero conhecer esta planta</Hoverable>
             </div>
@@ -607,11 +607,11 @@ export default function Vivarte({
               <span style={parseStyle('font-size:11px;letter-spacing:.4em;color:#AAB68F;text-transform:uppercase;')}>A localização</span>
             </div>
             <h2 data-reveal="" data-delay="80" style={parseStyle("font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2rem,4.4vw,3.7rem);line-height:1.04;color:#F6F1E6;margin:0 0 24px;text-wrap:balance;")}>Vista o verde da Serra como o seu ponto de partida.</h2>
-            <p data-reveal="" data-delay="140" style={parseStyle('font-size:1.06rem;line-height:1.8;color:rgba(246,241,230,.78);font-weight:300;margin:0 0 30px;max-width:50ch;')}>Em Jundiaí, interior paulista, o Vivarte Grand Alamedas nasce em uma posição privilegiada — com vista permanente para a Serra do Japi e fácil acesso pela Av. Juvenal Arantes.</p>
+            <p data-reveal="" data-delay="140" style={parseStyle('font-size:1.06rem;line-height:1.8;color:rgba(246,241,230,.78);font-weight:300;margin:0 0 30px;max-width:50ch;')}>Em Jundiaí, interior paulista, o Vivarte Grand Alamedas nasce em uma posição privilegiada, com vista permanente para a Serra do Japi e fácil acesso pela Av. Juvenal Arantes.</p>
             <div data-reveal="" data-delay="200" style={parseStyle('display:flex;flex-direction:column;gap:2px;background:rgba(246,241,230,.1);border:1px solid rgba(246,241,230,.12);')}>
               <div style={parseStyle('background:#142219;padding:20px 24px;display:flex;align-items:center;gap:16px;')}>
                 <span style={parseStyle("font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#A9743F;")}>◷</span>
-                <span style={parseStyle('font-size:.98rem;color:#F6F1E6;')}>Av. Juvenal Arantes, s/n — Jundiaí / SP</span>
+                <span style={parseStyle('font-size:.98rem;color:#F6F1E6;')}>Av. Juvenal Arantes, s/n, Jundiaí / SP</span>
               </div>
               <div style={parseStyle('background:#142219;padding:20px 24px;display:flex;align-items:center;gap:16px;')}>
                 <span style={parseStyle("font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#A9743F;")}>▲</span>
@@ -646,7 +646,7 @@ export default function Vivarte({
             <span style={parseStyle('font-size:11px;letter-spacing:.4em;color:#AAB68F;text-transform:uppercase;')}>A construtora</span>
           </div>
           <h2 data-reveal="" data-delay="80" style={parseStyle("font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2rem,4.6vw,3.9rem);line-height:1.05;color:#F6F1E6;margin:0 0 30px;max-width:20ch;text-wrap:balance;")}>Há mais de 50 anos transformando confiança em metros quadrados.</h2>
-          <p data-reveal="" data-delay="140" style={parseStyle('font-size:1.08rem;line-height:1.8;color:rgba(246,241,230,.78);font-weight:300;margin:0 0 50px;max-width:60ch;')}>Para o Grupo Diretiva, construir é mais do que erguer paredes — cada projeto é uma expressão de inovação e compromisso com a excelência. Com mais de cinco décadas de experiência e milhares de chaves entregues, a marca é referência de qualidade no interior paulista.</p>
+          <p data-reveal="" data-delay="140" style={parseStyle('font-size:1.08rem;line-height:1.8;color:rgba(246,241,230,.78);font-weight:300;margin:0 0 50px;max-width:60ch;')}>Para o Grupo Diretiva, construir é mais do que erguer paredes, cada projeto é uma expressão de inovação e compromisso com a excelência. Com mais de cinco décadas de experiência e milhares de chaves entregues, a marca é referência de qualidade no interior paulista.</p>
           <div data-reveal="" data-delay="200" style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:rgba(246,241,230,.14);border:1px solid rgba(246,241,230,.14);')}>
             <div style={parseStyle('background:#0E1A13;padding:30px 26px;')}>
               <div style={parseStyle("font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:#A9743F;line-height:1;")}>+50</div>
@@ -785,7 +785,7 @@ export default function Vivarte({
             <div>
               <div style={parseStyle('font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#93A074;margin-bottom:18px;')}>Atendimento</div>
               <Hoverable as="a" href={whatsappHref} target="_blank" rel="noopener" baseStyle={parseStyle('text-decoration:none;color:rgba(246,241,230,.7);font-size:.95rem;display:block;margin-bottom:11px;')} hoverStyle={parseStyle('color:#F6F1E6;')}>{display}</Hoverable>
-              <div style={parseStyle('font-size:.95rem;color:rgba(246,241,230,.7);margin-bottom:11px;')}>Av. Juvenal Arantes, s/n<br />Jundiaí — SP</div>
+              <div style={parseStyle('font-size:.95rem;color:rgba(246,241,230,.7);margin-bottom:11px;')}>Av. Juvenal Arantes, s/n<br />Jundiaí, SP</div>
               <Hoverable as="a" href="https://vivartegrand.com.br" target="_blank" rel="noopener" baseStyle={parseStyle('text-decoration:none;color:#AAB68F;font-size:.95rem;')} hoverStyle={parseStyle('color:#F6F1E6;')}>vivartegrand.com.br</Hoverable>
             </div>
             <div>
@@ -797,7 +797,7 @@ export default function Vivarte({
             </div>
           </div>
           <div style={parseStyle('padding-top:30px;display:flex;flex-direction:column;gap:14px;')}>
-            <p style={parseStyle('font-size:11px;line-height:1.7;color:rgba(246,241,230,.4);font-weight:300;margin:0;max-width:none;')}>Imagens e perspectivas meramente ilustrativas. Os móveis, equipamentos e utensílios utilizados nas perspectivas são mera sugestão de decoração e não fazem parte do contrato de compra e venda. O empreendimento só será comercializado após a expedição do Registro de Incorporação do imóvel. Incorporadora responsável: DJL-4 Incorporações Imobiliárias LTDA. — CNPJ 12.983.536/0001-53. Intermediação imobiliária: {agencyName} — {creci}.</p>
+            <p style={parseStyle('font-size:11px;line-height:1.7;color:rgba(246,241,230,.4);font-weight:300;margin:0;max-width:none;')}>Imagens e perspectivas meramente ilustrativas. Os móveis, equipamentos e utensílios utilizados nas perspectivas são mera sugestão de decoração e não fazem parte do contrato de compra e venda. O empreendimento só será comercializado após a expedição do Registro de Incorporação do imóvel. Incorporadora responsável: DJL-4 Incorporações Imobiliárias LTDA., CNPJ 12.983.536/0001-53. Intermediação imobiliária: {agencyName}, {creci}.</p>
             <div style={parseStyle('font-size:11px;color:rgba(246,241,230,.35);')}>© Vivarte Grand Alamedas · Empreendimento Grupo Diretiva.</div>
           </div>
         </div>

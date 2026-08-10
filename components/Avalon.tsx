@@ -99,7 +99,7 @@ export default function Avalon() {
               .
             </h1>
             <p className="hero-sub">
-              Apartamentos de 78,5 e 108 m², 2 e 3 dormitórios com suíte, com 19 áreas de lazer e piscina coberta e aquecida — um refúgio urbano planejado com a excelência F A Oliva.
+              Apartamentos de 78,5 e 108 m², 2 e 3 dormitórios com suíte, com 19 áreas de lazer e piscina coberta e aquecida, um refúgio urbano planejado com a excelência F A Oliva.
             </p>
             <div className="chips">
               <span className="chip">
@@ -183,7 +183,7 @@ export default function Avalon() {
               Conforto e exclusividade: o lugar que você buscava para chamar de lar.
             </h2>
             <p className="lead">
-              O Avalon Residencial foi desenvolvido com cuidado em cada detalhe, convidando você e sua família a desfrutar de um refúgio urbano planejado com a excelência F A Oliva. Localização privilegiada, sofisticação e qualidade de vida — uma nova referência em Jundiaí.
+              O Avalon Residencial foi desenvolvido com cuidado em cada detalhe, convidando você e sua família a desfrutar de um refúgio urbano planejado com a excelência F A Oliva. Localização privilegiada, sofisticação e qualidade de vida, uma nova referência em Jundiaí.
             </p>
             <ul className="difflist">
               <li>
@@ -194,7 +194,7 @@ export default function Avalon() {
                   <b>
                     Personalização flexível
                   </b>
-                  {' '}— sala ampliada ou 1, 2 ou 3 suítes (blocos 1 e 4).
+                  {' '}, sala ampliada ou 1, 2 ou 3 suítes (blocos 1 e 4).
                 </span>
               </li>
               <li>
@@ -227,7 +227,7 @@ export default function Avalon() {
                   <b>
                     Lazer completo
                   </b>
-                  {' '}— 19 áreas, com piscina coberta e aquecida.
+                  {' '}, 19 áreas, com piscina coberta e aquecida.
                 </span>
               </li>
             </ul>
@@ -317,7 +317,7 @@ export default function Avalon() {
             </div>
           </div>
           <p className="foot-notes">
-            Também: Sistema VDI (tubulação seca para dados), tubulação flexível de água Pex/Pert, banheiros com nicho embutido, varanda com piso nivelado e integração com a área interna, janelas tipo persiana com Blackout e possibilidade de ar-condicionado cassete ou split na sala e nos quartos. 1 a 6 — Consulte o Memorial Descritivo para condições e limitações técnicas.
+            Também: Sistema VDI (tubulação seca para dados), tubulação flexível de água Pex/Pert, banheiros com nicho embutido, varanda com piso nivelado e integração com a área interna, janelas tipo persiana com Blackout e possibilidade de ar-condicionado cassete ou split na sala e nos quartos. 1 a 6, Consulte o Memorial Descritivo para condições e limitações técnicas.
           </p>
         </div>
       </section>
@@ -629,13 +629,13 @@ export default function Avalon() {
               No coração de Jundiaí, perto de tudo.
             </h2>
             <p className="lead">
-              O Avalon Residencial está em uma região com fácil acesso às principais avenidas e rodovias da cidade, cercado de comércios, serviços e conveniências — um endereço com grande potencial de valorização.
+              O Avalon Residencial está em uma região com fácil acesso às principais avenidas e rodovias da cidade, cercado de comércios, serviços e conveniências, um endereço com grande potencial de valorização.
             </p>
           </div>
           <div className="loc-grid">
             <div data-reveal>
               <p className="addr">
-                📍 Rua Maria José Maia de Toledo — Vila Hortolândia, Jundiaí/SP
+                📍 Rua Maria José Maia de Toledo, Vila Hortolândia, Jundiaí/SP
               </p>
               <ul className="poi">
                 <li>
@@ -675,12 +675,12 @@ export default function Avalon() {
               F A Oliva: mais de 70 anos construindo confiança para morar bem.
             </h2>
             <p className="lead">
-              Fundada em 1955, a F A Oliva é hoje uma das principais incorporadoras do interior de São Paulo. São mais de 9,5 mil unidades residenciais entregues em Jundiaí e outras cinco cidades da região — uma marca sólida, reconhecida pela qualidade dos produtos e pela entrega garantida de seus empreendimentos.
+              Fundada em 1955, a F A Oliva é hoje uma das principais incorporadoras do interior de São Paulo. São mais de 9,5 mil unidades residenciais entregues em Jundiaí e outras cinco cidades da região, uma marca sólida, reconhecida pela qualidade dos produtos e pela entrega garantida de seus empreendimentos.
             </p>
             <blockquote className="quote">
               "Confiança para morar bem."
               <cite>
-                F A Oliva — Incorporadora e Construtora
+                F A Oliva, Incorporadora e Construtora
               </cite>
             </blockquote>
           </div>
@@ -887,7 +887,7 @@ export default function Avalon() {
                   ✓ Recebido!
                 </p>
                 <p className="sm">
-                  Abrimos o seu WhatsApp com a mensagem pronta — é só enviar. Nossa equipe responde em instantes.
+                  Abrimos o seu WhatsApp com a mensagem pronta, é só enviar. Nossa equipe responde em instantes.
                 </p>
               </div>
             </div>
@@ -915,7 +915,7 @@ export default function Avalon() {
             </div>
           </div>
           <p className="legal">
-            Perspectivas artísticas, meramente ilustrativas. Móveis, utensílios e itens de decoração não fazem parte do Memorial Descritivo. *Incluso box na garagem, com áreas de 3 a 5 m². Áreas privativas de 105 m² e 75,5 m²; unidades Garden de 143,1 m² e 103,8 m². Empreendimento sujeito a aprovação e registro de incorporação — [INSERIR DADOS DE INCORPORAÇÃO / Nº DE REGISTRO]. Realização: F A Oliva. CRECI [INSERIR]. Consulte o Memorial Descritivo.
+            Perspectivas artísticas, meramente ilustrativas. Móveis, utensílios e itens de decoração não fazem parte do Memorial Descritivo. *Incluso box na garagem, com áreas de 3 a 5 m². Áreas privativas de 105 m² e 75,5 m²; unidades Garden de 143,1 m² e 103,8 m². Empreendimento sujeito a aprovação e registro de incorporação, [INSERIR DADOS DE INCORPORAÇÃO / Nº DE REGISTRO]. Realização: F A Oliva. CRECI [INSERIR]. Consulte o Memorial Descritivo.
           </p>
         </div>
       </footer>

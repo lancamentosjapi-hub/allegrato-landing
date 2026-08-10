@@ -514,12 +514,12 @@ export default function AutenJundiai() {
             {
               src: dayImg.currentSrc || dayImg.src,
               alt: dayImg.alt,
-              cap: 'Perspectiva ilustrada da fachada — Vista 1',
+              cap: 'Perspectiva ilustrada da fachada, Vista 1',
             },
             {
               src: nightImg.currentSrc || nightImg.src,
               alt: nightImg.alt,
-              cap: 'Perspectiva ilustrada da fachada — Vista 2',
+              cap: 'Perspectiva ilustrada da fachada, Vista 2',
             },
           ];
           const isNight = fa!.classList.contains('is-night');
@@ -559,7 +559,7 @@ export default function AutenJundiai() {
     <div className="auten-root" ref={rootRef}>
       {/* ============ HEADER ============ */}
       <header className="site-header" id="header">
-        <a href="#topo" className="brand-lockup" aria-label="Auten Jundiaí — início">
+        <a href="#topo" className="brand-lockup" aria-label="Auten Jundiaí, início">
           <img className="logo-white" src={IMG('a006.png')} alt="Auten Jundiaí" />
           <img className="logo-color" src={IMG('a001.png')} alt="Auten Jundiaí" />
         </a>
@@ -660,7 +660,7 @@ export default function AutenJundiai() {
             <div className="eyebrow-row"><span className="rule"></span><span className="overline">O empreendimento</span></div>
             <h2 className="display">Uma identidade única no horizonte de Jundiaí.</h2>
             <p>Com uma fachada autêntica e moderna, projetada especialmente para este projeto por <strong>Ronaldo Rezende</strong>, o Auten Jundiaí redefine o horizonte da cidade e cria uma identidade única no cenário urbano.</p>
-            <p>Todo o empreendimento foi concebido com assinatura nos projetos arquitetônico, de interiores e de paisagismo — uma entrega de alto nível que oferece uma experiência completa de viver bem. Com apenas <strong>74 unidades</strong>, o projeto foi pensado para proporcionar mais privacidade, tranquilidade e valorização do imóvel.</p>
+            <p>Todo o empreendimento foi concebido com assinatura nos projetos arquitetônico, de interiores e de paisagismo, uma entrega de alto nível que oferece uma experiência completa de viver bem. Com apenas <strong>74 unidades</strong>, o projeto foi pensado para proporcionar mais privacidade, tranquilidade e valorização do imóvel.</p>
             <div className="signatures">
               <div className="sig"><div className="role">Arquitetura</div><div className="name">Fernando Rivaben &amp; Nivaldo Callegari</div></div>
               <div className="sig"><div className="role">Fachada</div><div className="name">Ronaldo Rezende</div></div>
@@ -711,7 +711,7 @@ export default function AutenJundiai() {
             <div className="diff-card" data-reveal="">
               <div className="diff-num">01</div>
               <h3>Exclusividade real</h3>
-              <p>Apenas 74 unidades em um condomínio fechado vertical — mais privacidade, tranquilidade e valorização do imóvel.</p>
+              <p>Apenas 74 unidades em um condomínio fechado vertical, mais privacidade, tranquilidade e valorização do imóvel.</p>
             </div>
             <div className="diff-card" data-reveal="">
               <div className="diff-num">02</div>
@@ -736,7 +736,7 @@ export default function AutenJundiai() {
             <div className="diff-card" data-reveal="">
               <div className="diff-num">06</div>
               <h3>Até 4 vagas</h3>
-              <p>Único empreendimento da região nessas metragens com até 4 vagas de garagem — 100% cobertas e demarcadas por apartamento.</p>
+              <p>Único empreendimento da região nessas metragens com até 4 vagas de garagem, 100% cobertas e demarcadas por apartamento.</p>
             </div>
           </div>
         </div>
@@ -837,7 +837,7 @@ export default function AutenJundiai() {
           <div data-reveal="">
             <div className="eyebrow-row"><span className="rule"></span><span className="overline">Por dentro</span></div>
             <h2 className="display" style={{ maxWidth: '18ch' }}>Ambientes integrados, luz natural e alto padrão.</h2>
-            <p className="lede" style={{ marginTop: '20px' }}>Plantas modernas com ambientes integrados, varanda gourmet com churrasqueira e acabamentos escolhidos com rigor — do mármore das suítes ao porcelanato 90×90.</p>
+            <p className="lede" style={{ marginTop: '20px' }}>Plantas modernas com ambientes integrados, varanda gourmet com churrasqueira e acabamentos escolhidos com rigor, do mármore das suítes ao porcelanato 90×90.</p>
           </div>
           <div className="int-grid">
             <figure className="int int-wide" data-reveal="">
@@ -923,7 +923,7 @@ export default function AutenJundiai() {
             <div className="addr-card" data-reveal="">
               <div className="overline">Endereço</div>
               <h3>Rua Ida Luchesi Gomes de Camargo, 177</h3>
-              <p className="full">Anhangabaú — Jundiaí / SP</p>
+              <p className="full">Anhangabaú, Jundiaí / SP</p>
               <p className="hl">Bairro nobre, a 3 minutos da Rua do Retiro, com fácil acesso às principais rodovias que conectam Jundiaí a São Paulo.</p>
               <a className="btn btn-light js-wpp" href="#" data-msg="Olá! Quero saber mais sobre a localização do Auten Jundiaí.">Falar com um consultor</a>
             </div>
@@ -952,7 +952,7 @@ export default function AutenJundiai() {
             <div className="eyebrow-row"><span className="rule"></span><span className="overline">Quem constrói</span></div>
             <h2 className="display">Auten Incorporadora &amp; Grupo Cataguá.</h2>
             <p>A Auten faz parte do Grupo Cataguá Soluções Imobiliárias, que desde 1986 atua no mercado da construção civil. Com quase 40 anos de trajetória, é referência em desenvolvimento imobiliário no interior paulista.</p>
-            <p>Criada em 2022, a Auten destaca-se ao pensar no alto padrão de ponta a ponta — do método construtivo aos acabamentos, louças e metais, escolhidos com rigor para proporcionar sofisticação e durabilidade.</p>
+            <p>Criada em 2022, a Auten destaca-se ao pensar no alto padrão de ponta a ponta, do método construtivo aos acabamentos, louças e metais, escolhidos com rigor para proporcionar sofisticação e durabilidade.</p>
             <div className="builder-tags">
               <span className="tag">Terrace Serra do Japi · Jundiaí</span>
               <span className="tag">Auten Paulínia · Paulínia</span>
@@ -975,7 +975,7 @@ export default function AutenJundiai() {
             <h2 className="display">Os números do projeto.</h2>
           </div>
           <div className="ficha-grid">
-            <div className="ficha-cell" data-reveal=""><div className="fl">Endereço</div><div className="fv"><strong>Rua Ida Luchesi Gomes de Camargo, 177</strong><br />Anhangabaú — Jundiaí / SP</div></div>
+            <div className="ficha-cell" data-reveal=""><div className="fl">Endereço</div><div className="fv"><strong>Rua Ida Luchesi Gomes de Camargo, 177</strong><br />Anhangabaú, Jundiaí / SP</div></div>
             <div className="ficha-cell" data-reveal=""><div className="fl">Área do terreno</div><div className="fv"><strong>5.083,50 m²</strong></div></div>
             <div className="ficha-cell" data-reveal=""><div className="fl">Total de unidades</div><div className="fv"><strong>74 unidades</strong> · 02 penthouses</div></div>
             <div className="ficha-cell" data-reveal=""><div className="fl">Torre 01</div><div className="fv"><strong>Térreo + 12</strong><br />24 residências suspensas · 2 por andar</div></div>
@@ -1036,7 +1036,7 @@ export default function AutenJundiai() {
           </div>
           <p className="legal">O &quot;Auten Jundiaí&quot; é um empreendimento imobiliário aprovado pela Prefeitura Municipal de Jundiaí/SP, através da Lei nº 9.321 de 2019, pelo Processo de Aprovação SAEPRO 2025/355. A incorporação imobiliária encontra-se devidamente registrada sob o R. 8 na matrícula nº 42.826, do 1º Cartório de Registro de Imóveis da Comarca de Jundiaí/SP, em conformidade com a Lei nº 4.591/64. Todas as imagens deste material são meramente ilustrativas, podendo sofrer alterações durante a compatibilização técnica. A vegetação que compõe o paisagismo é ilustrativa e representa o porte adulto de referência das espécies. O projeto será executado de acordo com o memorial descritivo.</p>
           <div className="copyr">
-            <span>© 2026 Auten Incorporadora — Grupo Cataguá Soluções Imobiliárias.</span>
+            <span>© 2026 Auten Incorporadora, Grupo Cataguá Soluções Imobiliárias.</span>
             <span>Material de divulgação · Página desenvolvida por Lotus Brokers.</span>
           </div>
         </div>

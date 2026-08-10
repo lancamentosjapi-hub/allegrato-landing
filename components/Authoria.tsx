@@ -743,7 +743,7 @@ export default function Authoria() {
 
           <div className="hero-inner wrap">
             <span className="hero-badge" data-reveal="">
-              <span className="dot"></span> Lançamento · Jundiaí — SP
+              <span className="dot"></span> Lançamento · Jundiaí, SP
             </span>
             <div className="hero-logo-wrap" data-reveal="" style={{ '--rd': '.08s' } as React.CSSProperties}>
               <img src="/authoria/a003.png" alt="Authoria by Tebas" className="hero-logo-img" />
@@ -758,7 +758,7 @@ export default function Authoria() {
                 <span>Suítes</span>
               </div>
               <div className="sp">
-                <b>137—211</b>
+                <b>137,211</b>
                 <span>m² privativos</span>
               </div>
               <div className="sp">
@@ -1049,7 +1049,7 @@ export default function Authoria() {
                 <figure className="car-slide" data-n="Living integrado · 4 suítes" data-c="Decorado">
                   <img
                     src="/authoria/a001.jpg"
-                    alt="Perspectiva ilustrada — Living integrado · 4 suítes"
+                    alt="Perspectiva ilustrada, Living integrado · 4 suítes"
                     loading="lazy"
                   />
                   <span className="plus">
@@ -1065,7 +1065,7 @@ export default function Authoria() {
                 <figure className="car-slide" data-n="Living &amp; jantar · 3 suítes" data-c="Decorado">
                   <img
                     src="/authoria/a011.jpg"
-                    alt="Perspectiva ilustrada — Living &amp; jantar · 3 suítes"
+                    alt="Perspectiva ilustrada, Living &amp; jantar · 3 suítes"
                     loading="lazy"
                   />
                   <span className="plus">
@@ -1081,7 +1081,7 @@ export default function Authoria() {
                 <figure className="car-slide" data-n="Varanda gourmet" data-c="Ambiente">
                   <img
                     src="/authoria/a000.jpg"
-                    alt="Perspectiva ilustrada — Varanda gourmet"
+                    alt="Perspectiva ilustrada, Varanda gourmet"
                     loading="lazy"
                   />
                   <span className="plus">
@@ -1097,7 +1097,7 @@ export default function Authoria() {
                 <figure className="car-slide" data-n="Hall de entrada" data-c="Ambiente">
                   <img
                     src="/authoria/a024.jpg"
-                    alt="Perspectiva ilustrada — Hall de entrada"
+                    alt="Perspectiva ilustrada, Hall de entrada"
                     loading="lazy"
                   />
                   <span className="plus">
@@ -1113,7 +1113,7 @@ export default function Authoria() {
                 <figure className="car-slide" data-n="Lounge social" data-c="Ambiente">
                   <img
                     src="/authoria/a014.jpg"
-                    alt="Perspectiva ilustrada — Lounge social"
+                    alt="Perspectiva ilustrada, Lounge social"
                     loading="lazy"
                   />
                   <span className="plus">
@@ -1129,7 +1129,7 @@ export default function Authoria() {
                 <figure className="car-slide" data-n="Vaga box privativa" data-c="Detalhe">
                   <img
                     src="/authoria/a027.jpg"
-                    alt="Perspectiva ilustrada — Vaga box privativa"
+                    alt="Perspectiva ilustrada, Vaga box privativa"
                     loading="lazy"
                   />
                   <span className="plus">
@@ -1185,7 +1185,7 @@ export default function Authoria() {
 
             <div className="lazer-grid" id="lazerGrid">
               <figure className="tile s-6 r-2" data-cat="agua" data-n="Piscinas adulto &amp; infantil" data-c="Águas">
-                <img src="/authoria/a005.jpg" alt="Perspectiva ilustrada — Piscinas adulto &amp; infantil" loading="lazy" />
+                <img src="/authoria/a005.jpg" alt="Perspectiva ilustrada, Piscinas adulto &amp; infantil" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1197,7 +1197,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-3 r-2" data-cat="agua" data-n="Piscina coberta" data-c="Águas">
-                <img src="/authoria/a020.jpg" alt="Perspectiva ilustrada — Piscina coberta" loading="lazy" />
+                <img src="/authoria/a020.jpg" alt="Perspectiva ilustrada, Piscina coberta" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1209,7 +1209,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-3" data-cat="social" data-n="Gourmet" data-c="Social">
-                <img src="/authoria/a000.jpg" alt="Perspectiva ilustrada — Gourmet" loading="lazy" />
+                <img src="/authoria/a000.jpg" alt="Perspectiva ilustrada, Gourmet" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1221,7 +1221,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-3" data-cat="esporte" data-n="Beach tennis" data-c="Esporte">
-                <img src="/authoria/a021.jpg" alt="Perspectiva ilustrada — Beach tennis" loading="lazy" />
+                <img src="/authoria/a021.jpg" alt="Perspectiva ilustrada, Beach tennis" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1233,7 +1233,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-4" data-cat="esporte" data-n="Fitness" data-c="Esporte">
-                <img src="/authoria/a015.jpg" alt="Perspectiva ilustrada — Fitness" loading="lazy" />
+                <img src="/authoria/a015.jpg" alt="Perspectiva ilustrada, Fitness" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1245,7 +1245,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-4" data-cat="bem" data-n="Yoga &amp; pilates" data-c="Bem-estar">
-                <img src="/authoria/a017.jpg" alt="Perspectiva ilustrada — Yoga &amp; pilates" loading="lazy" />
+                <img src="/authoria/a017.jpg" alt="Perspectiva ilustrada, Yoga &amp; pilates" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1257,7 +1257,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-4" data-cat="agua" data-n="SPA &amp; relaxamento" data-c="Águas">
-                <img src="/authoria/a018.jpg" alt="Perspectiva ilustrada — SPA &amp; relaxamento" loading="lazy" />
+                <img src="/authoria/a018.jpg" alt="Perspectiva ilustrada, SPA &amp; relaxamento" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1269,7 +1269,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-3" data-cat="bem" data-n="Sauna" data-c="Bem-estar">
-                <img src="/authoria/a010.jpg" alt="Perspectiva ilustrada — Sauna" loading="lazy" />
+                <img src="/authoria/a010.jpg" alt="Perspectiva ilustrada, Sauna" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1281,7 +1281,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-3" data-cat="bem" data-n="Beauty" data-c="Bem-estar">
-                <img src="/authoria/a022.jpg" alt="Perspectiva ilustrada — Beauty" loading="lazy" />
+                <img src="/authoria/a022.jpg" alt="Perspectiva ilustrada, Beauty" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1293,7 +1293,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-6 r-2" data-cat="social" data-n="Salão de festas" data-c="Social">
-                <img src="/authoria/a012.jpg" alt="Perspectiva ilustrada — Salão de festas" loading="lazy" />
+                <img src="/authoria/a012.jpg" alt="Perspectiva ilustrada, Salão de festas" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1305,7 +1305,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-3" data-cat="bem" data-n="Espaço massagem" data-c="Bem-estar">
-                <img src="/authoria/a008.jpg" alt="Perspectiva ilustrada — Espaço massagem" loading="lazy" />
+                <img src="/authoria/a008.jpg" alt="Perspectiva ilustrada, Espaço massagem" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1317,7 +1317,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-3" data-cat="social" data-n="Praça zen" data-c="Social">
-                <img src="/authoria/a026.jpg" alt="Perspectiva ilustrada — Praça zen" loading="lazy" />
+                <img src="/authoria/a026.jpg" alt="Perspectiva ilustrada, Praça zen" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1329,7 +1329,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-4" data-cat="kids" data-n="Brinquedoteca" data-c="Família">
-                <img src="/authoria/a016.jpg" alt="Perspectiva ilustrada — Brinquedoteca" loading="lazy" />
+                <img src="/authoria/a016.jpg" alt="Perspectiva ilustrada, Brinquedoteca" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1341,7 +1341,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-4" data-cat="kids" data-n="Playground" data-c="Família">
-                <img src="/authoria/a019.jpg" alt="Perspectiva ilustrada — Playground" loading="lazy" />
+                <img src="/authoria/a019.jpg" alt="Perspectiva ilustrada, Playground" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1353,7 +1353,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-4" data-cat="kids" data-n="Lazer juvenil" data-c="Família">
-                <img src="/authoria/a006.jpg" alt="Perspectiva ilustrada — Lazer juvenil" loading="lazy" />
+                <img src="/authoria/a006.jpg" alt="Perspectiva ilustrada, Lazer juvenil" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1365,7 +1365,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-4" data-cat="trab" data-n="Coworking" data-c="Trabalho">
-                <img src="/authoria/a004.jpg" alt="Perspectiva ilustrada — Coworking" loading="lazy" />
+                <img src="/authoria/a004.jpg" alt="Perspectiva ilustrada, Coworking" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1377,7 +1377,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-4" data-cat="social" data-n="Praça central" data-c="Social">
-                <img src="/authoria/a013.jpg" alt="Perspectiva ilustrada — Praça central" loading="lazy" />
+                <img src="/authoria/a013.jpg" alt="Perspectiva ilustrada, Praça central" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1389,7 +1389,7 @@ export default function Authoria() {
                 </figcaption>
               </figure>
               <figure className="tile s-4" data-cat="trab" data-n="Mini market" data-c="Trabalho">
-                <img src="/authoria/a007.jpg" alt="Perspectiva ilustrada — Mini market" loading="lazy" />
+                <img src="/authoria/a007.jpg" alt="Perspectiva ilustrada, Mini market" loading="lazy" />
                 <span className="plus">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.3">
                     <path d="M6.5 1v11M1 6.5h11"></path>
@@ -1442,7 +1442,7 @@ export default function Authoria() {
                 </ul>
                 <div className="loc-addr">
                   <span className="lab">Endereço do empreendimento</span>
-                  <div className="val">Rua Ernesto Rappa — Jardim Santa Teresa, Jundiaí/SP</div>
+                  <div className="val">Rua Ernesto Rappa, Jardim Santa Teresa, Jundiaí/SP</div>
                 </div>
               </div>
               <div className="loc-figure" data-reveal="" style={{ '--rd': '.1s' } as React.CSSProperties}>
@@ -1720,7 +1720,7 @@ export default function Authoria() {
               <p>
                 Rua Ernesto Rappa, 232
                 <br />
-                Jardim Santa Teresa — Jundiaí/SP
+                Jardim Santa Teresa, Jundiaí/SP
               </p>
               <a href="#contato" data-cta="">
                 Agende sua visita
@@ -1732,7 +1732,7 @@ export default function Authoria() {
           </div>
           <div className="ft-legal">
             <p>
-              Authoria by Tebas — Incorporação registrada conforme R.04, Matrícula 179.898, do 2º
+              Authoria by Tebas, Incorporação registrada conforme R.04, Matrícula 179.898, do 2º
               Oficial de Registro de Imóveis, Títulos e Documentos e Civil de Pessoas Jurídicas da
               Comarca de Jundiaí, em 18 de abril de 2023. Imagens preliminares e perspectivas
               ilustradas, sujeitas a alterações sem aviso prévio. O paisagismo retratado reflete o porte

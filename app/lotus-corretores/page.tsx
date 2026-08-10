@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     url: 'https://www.lotusbrokers.com.br/lotus-corretores',
     title: 'Corretores especialistas da Lotus',
     description:
-      'Gente que conhece cada esquina de Jundiaí e Itupeva — e te chama pelo nome. Fale com o especialista do seu bairro.',
+      'Gente que conhece cada esquina de Jundiaí e Itupeva e te chama pelo nome. Fale com o especialista do seu bairro.',
     images: [
       'https://i.postimg.cc/nzx1wvHM/Chat-GPT-Image-25-de-jun-de-2026-14-04-13.png',
     ],

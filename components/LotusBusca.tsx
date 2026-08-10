@@ -375,7 +375,7 @@ export default function LotusBusca({
           {/* conversational */}
           <div style={parseStyle('display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(21,36,28,.14);border-radius:14px;padding:7px 7px 7px 18px;box-shadow:0 12px 30px -24px rgba(21,36,28,.4);')}>
             <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C20.5 9 20.5 16 16 22.5 11.5 16 11.5 9 16 2.5Z" fill="#cdab6e"></path><path d="M27.5 8.5C22.5 11 18.2 15 16 22.5 22 21.2 26.3 16.8 27.5 8.5Z" fill="#8aa593"></path><path d="M4.5 8.5C9.5 11 13.8 15 16 22.5 10 21.2 5.7 16.8 4.5 8.5Z" fill="#cdab6e" opacity=".85"></path></svg>
-            <input ref={searchRef} type="text" placeholder="Descreva o imóvel que você procura — ex.: casa com 4 suítes perto da Serra do Japi até R$ 2,5 mi" style={parseStyle('flex:1;border:none;outline:none;background:transparent;font-size:15.5px;color:#15241c;padding:9px 0;')} onKeyDown={onSearchKey} />
+            <input ref={searchRef} type="text" placeholder="Descreva o imóvel que você procura, ex.: casa com 4 suítes perto da Serra do Japi até R$ 2,5 mi" style={parseStyle('flex:1;border:none;outline:none;background:transparent;font-size:15.5px;color:#15241c;padding:9px 0;')} onKeyDown={onSearchKey} />
             <Hoverable as="button" onClick={parseAndSearch} baseStyle={parseStyle('flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:11px 20px;border:none;border-radius:10px;cursor:pointer;transition:background .2s;')} hoverStyle={parseStyle('background:#a07a3c')}>
               Buscar
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.2-3.2"></path></svg>
@@ -443,7 +443,7 @@ export default function LotusBusca({
                   as="a"
                   href={r.href}
                   target="_top"
-                  aria-label={'Ver ' + r.type + ' em ' + r.neighborhood + ', ' + r.city + ' — ' + r.price}
+                  aria-label={'Ver ' + r.type + ' em ' + r.neighborhood + ', ' + r.city + ', ' + r.price}
                   id={'card-' + r.id}
                   onMouseEnter={r.onEnter}
                   onMouseLeave={r.onLeave}
@@ -478,8 +478,8 @@ export default function LotusBusca({
           {/* empty state / wishlist */}
           {noResults && (
             <div style={parseStyle('background:#1d3a2c;border-radius:20px;padding:48px 40px;text-align:center;')}>
-              <div style={parseStyle("font-family:'Fraunces',serif;font-size:26px;color:#f7f2e8;margin-bottom:10px;")}>Nenhum imóvel nesse filtro — ainda.</div>
-              <p style={parseStyle('font-size:15px;color:rgba(247,242,232,.72);font-weight:300;max-width:440px;margin:0 auto 22px;')}>Descreva o imóvel dos seus sonhos e a gente caça pra você — inclusive fora do catálogo.</p>
+              <div style={parseStyle("font-family:'Fraunces',serif;font-size:26px;color:#f7f2e8;margin-bottom:10px;")}>Nenhum imóvel nesse filtro, ainda.</div>
+              <p style={parseStyle('font-size:15px;color:rgba(247,242,232,.72);font-weight:300;max-width:440px;margin:0 auto 22px;')}>Descreva o imóvel dos seus sonhos e a gente caça pra você, inclusive fora do catálogo.</p>
               <button onClick={clearChips} style={parseStyle('background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:12px 24px;border:none;border-radius:40px;cursor:pointer;')}>Limpar filtros</button>
             </div>
           )}
@@ -488,7 +488,7 @@ export default function LotusBusca({
           <div style={parseStyle('margin-top:28px;background:#ece2cf;border-radius:18px;padding:28px 30px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;')}>
             <div style={parseStyle('max-width:520px;')}>
               <div style={parseStyle("font-family:'Fraunces',serif;font-size:21px;color:#15241c;line-height:1.1;margin-bottom:6px;")}>Não achou o imóvel certo?</div>
-              <p style={parseStyle('font-size:14px;color:#3f6249;font-weight:300;margin:0;')}>Salve esta busca e a gente te avisa quando entrar algo no seu critério — ou descreve o sonho que um especialista caça pra você.</p>
+              <p style={parseStyle('font-size:14px;color:#3f6249;font-weight:300;margin:0;')}>Salve esta busca e a gente te avisa quando entrar algo no seu critério, ou descreve o sonho que um especialista caça pra você.</p>
             </div>
             <Hoverable as="button" onClick={toggleSaved} baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#1d3a2c;color:#f7f2e8;font-weight:600;font-size:14.5px;padding:13px 24px;border:none;border-radius:40px;cursor:pointer;white-space:nowrap;transition:background .2s;')} hoverStyle={parseStyle('background:#15241c')}>Salvar esta busca <span>→</span></Hoverable>
           </div>

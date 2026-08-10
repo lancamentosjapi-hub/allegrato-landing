@@ -1174,7 +1174,7 @@ export default function Vigore() {
           <div
             data-reveal=""
             data-lb={`${IMG}a11.jpg`}
-            data-cap="Voo de pássaro — área de lazer completa"
+            data-cap="Voo de pássaro, área de lazer completa"
             style={parseStyle(
               'position:relative;border-radius:22px;overflow:hidden;cursor:pointer;margin-bottom:22px;opacity:0;transform:translateY(34px);transition:all .9s cubic-bezier(.16,.84,.44,1) .1s'
             )}
@@ -1481,7 +1481,7 @@ export default function Vigore() {
               </div>
               <div
                 data-lb={`${IMG}a00.jpg`}
-                data-cap="Planta tipo — 2 dormitórios (perspectiva ilustrativa)"
+                data-cap="Planta tipo, 2 dormitórios (perspectiva ilustrativa)"
                 style={parseStyle(
                   'cursor:pointer;border-radius:12px;overflow:hidden;background:#f3eee6'
                 )}
@@ -1962,7 +1962,7 @@ export default function Vigore() {
                 "font-family:'Hanken Grotesk';font-size:14px;color:#8a8073;margin-bottom:22px"
               )}
             >
-              É rápido — leva menos de um minuto.
+              É rápido, leva menos de um minuto.
             </p>
             <div style={parseStyle('display:flex;flex-direction:column;gap:14px')}>
               <FocusableInput
@@ -2118,14 +2118,14 @@ export default function Vigore() {
                       "font-family:'Hanken Grotesk';font-size:14px;color:rgba(255,255,255,.7)"
                     )}
                   >
-                    Av. Nami Azém, 1093 — Colônia
+                    Av. Nami Azém, 1093, Colônia
                   </span>
                   <span
                     style={parseStyle(
                       "font-family:'Hanken Grotesk';font-size:14px;color:rgba(255,255,255,.7)"
                     )}
                   >
-                    Jundiaí — São Paulo
+                    Jundiaí, São Paulo
                   </span>
                 </div>
               </div>
@@ -2150,7 +2150,7 @@ export default function Vigore() {
               "font-family:'Hanken Grotesk';font-size:12px;color:rgba(255,255,255,.4);margin-top:22px"
             )}
           >
-            © 2026 Imobiliária Lotus Brokers — Todos os direitos reservados.
+            © 2026 Imobiliária Lotus Brokers, Todos os direitos reservados.
           </p>
         </div>
       </footer>

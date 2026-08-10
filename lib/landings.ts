@@ -46,7 +46,7 @@ export function landingSlugs(): Set<string> {
     console.error('[landings] não foi possível ler app/:', err);
   }
   if (slugs.length === 0) {
-    console.error('[landings] nenhuma landing encontrada em app/ — cards vão cair no contato');
+    console.error('[landings] nenhuma landing encontrada em app/, cards vão cair no contato');
   }
   cache = new Set(slugs);
   return cache;

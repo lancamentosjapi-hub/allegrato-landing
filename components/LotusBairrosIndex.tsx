@@ -122,10 +122,10 @@ export default function LotusBairrosIndex({
       <section style={parseStyle('max-width:1200px;margin:0 auto;padding:64px 32px 40px;')}>
         <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:16px;')}>Guias de bairro</div>
         <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,5vw,58px);line-height:1.03;letter-spacing:-.02em;color:#15241c;margin:0 0 16px;max-width:760px;")}>
-          Escolha o bairro certo — não só o imóvel certo.
+          Escolha o bairro certo, não só o imóvel certo.
         </h1>
         <p style={parseStyle('font-size:clamp(16px,1.6vw,19px);color:#3f6249;font-weight:300;line-height:1.55;max-width:620px;margin:0;')}>
-          Guias honestos de cada bairro de Jundiaí e Itupeva: como é o dia a dia, escolas, comércio, lazer e a faixa de preço — com quem conhece cada rua.
+          Guias honestos de cada bairro de Jundiaí e Itupeva: como é o dia a dia, escolas, comércio, lazer e a faixa de preço, com quem conhece cada rua.
         </p>
       </section>
 
@@ -150,7 +150,7 @@ export default function LotusBairrosIndex({
       <section style={parseStyle('background:#ece2cf;padding:72px 32px;')}>
         <div style={parseStyle('max-width:820px;margin:0 auto;text-align:center;')}>
           <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3.2vw,40px);color:#15241c;margin:0 0 16px;line-height:1.08;")}>Não sabe por onde começar?</h2>
-          <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;max-width:540px;margin:0 auto 30px;')}>Conte pra gente o seu momento — a Lotus indica o bairro que combina com o seu jeito de viver, sem custo e sem compromisso.</p>
+          <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;max-width:540px;margin:0 auto 30px;')}>Conte pra gente o seu momento, a Lotus indica o bairro que combina com o seu jeito de viver, sem custo e sem compromisso.</p>
           <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#1d3a2c;color:#f7f2e8;font-weight:600;font-size:16px;padding:15px 30px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:#15241c')}>Falar com um especialista <span>→</span></Hoverable>
         </div>
       </section>

@@ -5,7 +5,7 @@ import LotusRecrutamento from '@/components/LotusRecrutamento';
 // TODO go-live: trocar canonical/og:url para o domínio final, remover noindex e publicar sitemap.
 export const metadata: Metadata = {
   title:
-    'Seja um corretor Lotus em Jundiaí e Itupeva — carreira | Lotus Brokers',
+    'Seja um corretor Lotus em Jundiaí e Itupeva: carreira | Lotus Brokers',
   description:
     'Carreira de corretor na Lotus: comissão transparente, mentoria, segurança jurídica e marketing que faz o especialista voar. Em Jundiaí e Itupeva.',
   alternates: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: 'Lotus Brokers',
     type: 'website',
     url: 'https://www.lotusbrokers.com.br/lotus-recrutamento',
-    title: 'Seja um corretor Lotus — carreira de especialista',
+    title: 'Seja um corretor Lotus, carreira de especialista',
     description:
       'Vendedor de imóveis é commodity. Especialista é escolha. Construa sua carreira com estrutura, mentoria e marketing premium.',
     images: [

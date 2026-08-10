@@ -21,7 +21,7 @@ export type ChatMessage = {
   id: string;
   role: ChatRole;
   content: string;
-  createdAt: string; // ISO — string para serializar em sessionStorage sem conversão
+  createdAt: string; // ISO, string para serializar em sessionStorage sem conversão
   status?: 'sending' | 'sent' | 'error';
   attachments?: ChatAttachment[];
 };

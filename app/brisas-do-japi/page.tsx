@@ -8,7 +8,7 @@ export const viewport: Viewport = { themeColor: '#123c47' };
 // Metadata portada do <helmet> do index.html original (valores EXATOS).
 export const metadata: Metadata = {
   title:
-    'Brisas do Japi — Apartamentos e Studios em Jundiaí | Minha Casa Minha Vida',
+    'Brisas do Japi, Apartamentos e Studios em Jundiaí | Minha Casa Minha Vida',
   description:
     'Brisas do Japi: studios e apartamentos de 2 dormitórios com varanda, lazer completo e vista da Serra do Japi no Bairro Medeiros, Jundiaí. Novo Minha Casa Minha Vida. Agende sua visita.',
   keywords:
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://www.lotusbrokers.com.br/brisas-do-japi' },
   openGraph: {
     type: 'website',
-    title: 'Brisas do Japi — Apartamentos em Jundiaí | Minha Casa Minha Vida',
+    title: 'Brisas do Japi, Apartamentos em Jundiaí | Minha Casa Minha Vida',
     description:
       'Studios e apartamentos de 2 dorms com varanda, +17 itens de lazer e vista da Serra do Japi no Bairro Medeiros, Jundiaí.',
     images: [

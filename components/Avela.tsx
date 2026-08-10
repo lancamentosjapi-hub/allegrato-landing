@@ -502,7 +502,7 @@ export default function Avela({
               A beleza do campo<br /><span style={parseStyle("font-family:'Playfair Display',serif;font-style:italic;font-weight:500;color:#F0C98A;")}>no coração da cidade</span>
             </h1>
             <p style={parseStyle('color:rgba(255,255,255,.92);font-size:clamp(16px,1.7vw,20px);line-height:1.6;max-width:600px;margin:0 0 32px;animation:avUp .9s .3s both;')}>
-              Apartamentos de 2 e 3 dormitórios, de <strong style={parseStyle('font-weight:700;color:#fff;')}>66 a 87 m²</strong>, com gardens privativos e mais de 12 espaços de lazer — cercados de natureza, a minutos de tudo.
+              Apartamentos de 2 e 3 dormitórios, de <strong style={parseStyle('font-weight:700;color:#fff;')}>66 a 87 m²</strong>, com gardens privativos e mais de 12 espaços de lazer, cercados de natureza, a minutos de tudo.
             </p>
             <div style={parseStyle('display:flex;flex-wrap:wrap;gap:13px;margin-bottom:36px;animation:avUp .9s .42s both;')}>
               <span style={parseStyle(S.heroChip)}>2 e 3 dormitórios</span>
@@ -576,7 +576,7 @@ export default function Avela({
               O <strong style={parseStyle('color:#2b2820;')}>Avelã Vila Residencial</strong> nasce em Itupeva para quem quer viver perto da natureza sem abrir mão da praticidade. Aqui, a arquitetura aconchegante encontra amplas áreas verdes, gardens privativos e um clube de lazer completo para a família toda.
             </p>
             <p style={parseStyle('font-size:17px;line-height:1.7;color:#5b5648;margin:0 0 30px;')}>
-              São apartamentos planejados, com plantas funcionais e adaptáveis, em uma vila pensada para conviver — com a tranquilidade do interior e a cidade a poucos minutos.
+              São apartamentos planejados, com plantas funcionais e adaptáveis, em uma vila pensada para conviver, com a tranquilidade do interior e a cidade a poucos minutos.
             </p>
             <div style={parseStyle('display:flex;flex-wrap:wrap;gap:14px;')}>
               <div style={parseStyle(S.featurePill)}><CheckIcon size={18} stroke="#5E7B4E" sw="2.2" />Plantas adaptáveis</div>
@@ -605,7 +605,7 @@ export default function Avela({
               Um clube de lazer completo, todos os dias
             </h2>
             <p style={parseStyle('font-size:17px;line-height:1.65;color:rgba(255,255,255,.9);margin:0;')}>
-              Mais de 12 ambientes pensados para todas as idades — do mergulho na piscina ao fim de tarde na casa de campo.
+              Mais de 12 ambientes pensados para todas as idades, do mergulho na piscina ao fim de tarde na casa de campo.
             </p>
           </div>
 
@@ -700,7 +700,7 @@ export default function Avela({
           <div data-reveal="up" style={parseStyle('max-width:640px;margin:0 0 50px;')}>
             <div style={parseStyle(S.eyebrowLight)}><span style={parseStyle(S.eyebrowLeaf)}></span>Localização</div>
             <h2 style={parseStyle("font-family:'Zilla Slab',serif;font-weight:600;font-size:clamp(30px,4.4vw,52px);line-height:1.06;margin:0 0 16px;color:#fff;text-wrap:balance;")}>A minutos de tudo o que importa</h2>
-            <p style={parseStyle('font-size:17px;line-height:1.65;color:rgba(246,242,233,.8);margin:0;')}>Em Itupeva, na região metropolitana de Jundiaí — cercado de natureza, perto de comércio, lazer e das principais rodovias do estado.</p>
+            <p style={parseStyle('font-size:17px;line-height:1.65;color:rgba(246,242,233,.8);margin:0;')}>Em Itupeva, na região metropolitana de Jundiaí, cercado de natureza, perto de comércio, lazer e das principais rodovias do estado.</p>
           </div>
 
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(34px,5vw,64px);align-items:start;')}>

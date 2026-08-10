@@ -307,7 +307,7 @@ export default function Maita() {
           <b>
             Obras iniciadas
           </b>
-          {' '}· Maitá Residencial — Jundiaí/SP
+          {' '}· Maitá Residencial, Jundiaí/SP
         </span>
         <span className="dot">
         </span>
@@ -382,7 +382,7 @@ export default function Maita() {
       {/* ============ HERO ============ */}
       <section className="hero" id="topo">
         <div className="hero__bg">
-          <img src="/maita/a004.jpg" alt="Pássaros em voo sobre tons de esmeralda — conceito Maitá Residencial" />
+          <img src="/maita/a004.jpg" alt="Pássaros em voo sobre tons de esmeralda, conceito Maitá Residencial" />
         </div>
         <div className="flock" aria-hidden="true">
         </div>
@@ -392,7 +392,7 @@ export default function Maita() {
               <span className="rule">
               </span>
               <span>
-                Maitá Residencial · Jundiaí — SP
+                Maitá Residencial · Jundiaí, SP
               </span>
             </div>
             <h1>
@@ -435,7 +435,7 @@ export default function Maita() {
           </div>
           <aside className="hero__card" data-px="-30">
             <div className="frame">
-              <img src="/maita/a007.jpg" alt="Fachada do Maitá Residencial — imagem ilustrativa" />
+              <img src="/maita/a007.jpg" alt="Fachada do Maitá Residencial, imagem ilustrativa" />
               <span className="tag">
                 Fachada · Imagem ilustrativa
               </span>
@@ -622,7 +622,7 @@ export default function Maita() {
               </h2>
             </div>
             <p style={parseStyle('--d:140;color:rgba(246,242,233,.82)')} className="lead" data-reveal="" data-d="140">
-              Mais de uma dezena de espaços pensados para o bem-estar de toda a família — do lazer ao trabalho, da rotina ao descanso.
+              Mais de uma dezena de espaços pensados para o bem-estar de toda a família, do lazer ao trabalho, da rotina ao descanso.
             </p>
           </div>
           <div className="lazer__feature">
@@ -836,13 +836,13 @@ export default function Maita() {
                   id="plantaImg"
                   className="fade-swap"
                   src={planta.img}
-                  alt={`Planta ${planta.t} — ${planta.m} m²`}
+                  alt={`Planta ${planta.t}, ${planta.m} m²`}
                 />
               ) : (
                 /* O material de origem não trouxe esta planta; melhor um aviso
                    honesto do que uma imagem quebrada. Ver IMAGENS-FALTANDO.md. */
                 <div className="plantas__note" style={parseStyle('text-align:center;padding:2.4rem 1.2rem')}>
-                  Planta de {planta.m} m² disponível sob consulta — fale com um especialista.
+                  Planta de {planta.m} m² disponível sob consulta, fale com um especialista.
                 </div>
               )}
             </div>
@@ -958,7 +958,7 @@ export default function Maita() {
                 <strong>
                   Vila Marlene
                 </strong>
-                {' '}— Jundiaí/SP. Bairro arborizado, em valorização e muito bem conectado.{' '}
+                , Jundiaí/SP. Bairro arborizado, em valorização e muito bem conectado.{' '}
                 <em className="it">
                   Endereço completo no atendimento.
                 </em>
@@ -1108,7 +1108,7 @@ export default function Maita() {
             </ul>
           </div>
           <div className="local__map" data-reveal="scale">
-            <iframe title="Mapa — região da Vila Marlene, Jundiaí/SP" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Vila%20Marlene%2C%20Jundia%C3%AD%20-%20SP&t=m&z=14&output=embed">
+            <iframe title="Mapa, região da Vila Marlene, Jundiaí/SP" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Vila%20Marlene%2C%20Jundia%C3%AD%20-%20SP&t=m&z=14&output=embed">
             </iframe>
           </div>
         </div>
@@ -1159,7 +1159,7 @@ export default function Maita() {
               A história da Mac Lucer começou com a visão de futuro de uma família. Em 2014, com o{' '} Residencial Olívio Boa, a construtora entrou definitivamente no mercado imobiliário de Jundiaí e região.
             </p>
             <p>
-              Em 2019, o Altíssimi Residencial tornou-se um marco — 90% vendido em um único fim de semana. De lá para cá, a Mac Lucer conquistou um espaço cada vez maior, presente hoje em Jundiaí e nas cidades ao redor.
+              Em 2019, o Altíssimi Residencial tornou-se um marco, 90% vendido em um único fim de semana. De lá para cá, a Mac Lucer conquistou um espaço cada vez maior, presente hoje em Jundiaí e nas cidades ao redor.
             </p>
             <div className="seller">
               <span className="badge">
@@ -1299,7 +1299,7 @@ export default function Maita() {
             <div>
               <img className="footer__logo" src="/maita/a013.png" alt="Maitá Residencial" />
               <p style={parseStyle('max-width:38ch')}>
-                Maitá Residencial — apartamentos de 2 e 3 dormitórios em Jundiaí/SP. Comercialização{' '}
+                Maitá Residencial, apartamentos de 2 e 3 dormitórios em Jundiaí/SP. Comercialização{' '}
                 <strong>
                   Japi Lançamentos
                 </strong>
@@ -1379,7 +1379,7 @@ export default function Maita() {
                 </li>
               </ul>
               <p style={parseStyle('margin-top:1rem;font-size:.84rem;opacity:.7')}>
-                Vila Marlene — Jundiaí/SP. Endereço completo e tour no atendimento.
+                Vila Marlene, Jundiaí/SP. Endereço completo e tour no atendimento.
               </p>
             </div>
           </div>

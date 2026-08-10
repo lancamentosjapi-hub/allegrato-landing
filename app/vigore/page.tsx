@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title:
     'Residencial Vigóre | Apartamentos de 2 dormitórios com lazer completo no Colônia, Jundiaí',
   description:
-    'Residencial Vigóre — apartamentos de 53 a 54 m², 2 dormitórios e lazer completo no bairro Colônia, em Jundiaí/SP. 3 torres, 280 unidades. A partir de R$ 395.948,71. Agende sua visita ao decorado.',
+    'Residencial Vigóre, apartamentos de 53 a 54 m², 2 dormitórios e lazer completo no bairro Colônia, em Jundiaí/SP. 3 torres, 280 unidades. A partir de R$ 395.948,71. Agende sua visita ao decorado.',
   keywords: [
     'Residencial Vigóre',
     'apartamento Jundiaí',

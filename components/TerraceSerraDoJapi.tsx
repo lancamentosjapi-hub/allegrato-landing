@@ -526,7 +526,7 @@ export default function TerraceSerraDoJapi() {
         <div className="hero__scrim"></div>
         <div className="hero__inner container">
           <span className="eyebrow hero__eyebrow">
-            Jardim das Samambaias · Jundiaí — SP
+            Jardim das Samambaias · Jundiaí, SP
           </span>
           <h1 className="hero__title">
             Terrace<span className="ital">Serra do Japi</span>
@@ -586,7 +586,7 @@ export default function TerraceSerraDoJapi() {
                 />
               </div>
               <figcaption>
-                Serra do Japi — remanescente de Mata Atlântica · Imagem
+                Serra do Japi, remanescente de Mata Atlântica · Imagem
                 ilustrativa
               </figcaption>
             </figure>
@@ -600,13 +600,13 @@ export default function TerraceSerraDoJapi() {
               <p className="lead reveal d2">
                 A Serra do Japi é uma amostra da exuberante Mata Atlântica no
                 interior de São Paulo. Sua rica biodiversidade encanta pela
-                paisagem deslumbrante — e, daqui, ela é sua todos os dias.
+                paisagem deslumbrante, e, daqui, ela é sua todos os dias.
               </p>
               <p className="reveal d3">
                 Localizada entre Jundiaí, Cabreúva, Pirapora do Bom Jesus e
                 Cajamar, está a apenas 60 km da capital. Uma localização
                 privilegiada que garante fácil acesso, serviços e infraestrutura
-                — sem abrir mão da tranquilidade.
+               , sem abrir mão da tranquilidade.
               </p>
             </div>
           </div>
@@ -626,7 +626,7 @@ export default function TerraceSerraDoJapi() {
               </h2>
               <p className="lead reveal d2">
                 Ano após ano, a cidade aparece entre as mais bem colocadas no
-                ranking nacional das melhores cidades para se viver —
+                ranking nacional das melhores cidades para se viver ,
                 conquistando o topo no último ano.
               </p>
               <p className="reveal d3">
@@ -1529,7 +1529,7 @@ export default function TerraceSerraDoJapi() {
               planta
             </h2>
             <p className="lead">
-              Plantas racionais, confortáveis e de dimensões generosas — todas
+              Plantas racionais, confortáveis e de dimensões generosas, todas
               com ambientes abertos e integrados. Cada torre tem a sua metragem
               e oferece duas opções de planta, para o seu jeito de morar. Toque
               em uma planta para ampliar.
@@ -1567,7 +1567,7 @@ export default function TerraceSerraDoJapi() {
                     className="plan-img"
                     data-lb=""
                     data-full="web/img/p52_0.jpg"
-                    data-name="Torre 1 · 157 m² — Opção A"
+                    data-name="Torre 1 · 157 m², Opção A"
                     data-cat="Plantas"
                   >
                     <img
@@ -1587,7 +1587,7 @@ export default function TerraceSerraDoJapi() {
                     className="plan-img"
                     data-lb=""
                     data-full="web/img/p52_1.jpg"
-                    data-name="Torre 1 · 157 m² — Opção B"
+                    data-name="Torre 1 · 157 m², Opção B"
                     data-cat="Plantas"
                   >
                     <img
@@ -1611,7 +1611,7 @@ export default function TerraceSerraDoJapi() {
                     className="plan-img"
                     data-lb=""
                     data-full="web/img/p53_0.jpg"
-                    data-name="Torre 2 · 203 m² — Opção A"
+                    data-name="Torre 2 · 203 m², Opção A"
                     data-cat="Plantas"
                   >
                     <img
@@ -1632,7 +1632,7 @@ export default function TerraceSerraDoJapi() {
                     className="plan-img"
                     data-lb=""
                     data-full="web/img/p53_1.jpg"
-                    data-name="Torre 2 · 203 m² — Opção B"
+                    data-name="Torre 2 · 203 m², Opção B"
                     data-cat="Plantas"
                   >
                     <img
@@ -1649,7 +1649,7 @@ export default function TerraceSerraDoJapi() {
                   <div className="opt-label">
                     <span className="o">Opção A</span>
                     <span className="d">
-                      173 m² privativos · 4 dormitórios — 2 suítes e 2
+                      173 m² privativos · 4 dormitórios, 2 suítes e 2
                       dormitórios (1 home office)
                     </span>
                   </div>
@@ -1657,7 +1657,7 @@ export default function TerraceSerraDoJapi() {
                     className="plan-img"
                     data-lb=""
                     data-full="web/img/p54_0.jpg"
-                    data-name="Torre 3 · 173 m² — Opção A"
+                    data-name="Torre 3 · 173 m², Opção A"
                     data-cat="Plantas"
                   >
                     <img
@@ -1677,7 +1677,7 @@ export default function TerraceSerraDoJapi() {
                     className="plan-img"
                     data-lb=""
                     data-full="web/img/p54_1.jpg"
-                    data-name="Torre 3 · 173 m² — Opção B"
+                    data-name="Torre 3 · 173 m², Opção B"
                     data-cat="Plantas"
                   >
                     <img
@@ -2121,7 +2121,7 @@ export default function TerraceSerraDoJapi() {
               <p className="lead reveal d2">
                 Desenvolver projetos autênticos, com a tradição e a expertise de
                 37 anos. A localização privilegiada é um dos nossos principais
-                pilares — acreditamos que existe o lugar certo para colecionar
+                pilares, acreditamos que existe o lugar certo para colecionar
                 as melhores memórias.
               </p>
               <p className="reveal d3" style={{ color: 'var(--txt-invert-soft)' }}>

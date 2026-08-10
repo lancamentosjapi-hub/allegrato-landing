@@ -132,9 +132,9 @@ const DIF_CONDO = [
 ];
 
 const FICHA = [
-  { k: 'TORRES', v: '4 torres — Blocos 1 e 2 (térreo + 6 pavimentos); Blocos 3 e 4 (térreo + 5). 8 unidades por pavimento.' },
-  { k: 'UNIDADES', v: '208 no total: 80 de 3 dorms. (78,15 m²), 100 de 2 dorms. (62,25 m²), 24 de 2 dorms. (66,25 m²) e 4 de 1 dorm. Garden — além das versões Garden de cada tipologia.' },
-  { k: 'VAGAS', v: '416 vagas — 2 cobertas em subsolo por apartamento (1 dorm.: 1 vaga coberta).' },
+  { k: 'TORRES', v: '4 torres, Blocos 1 e 2 (térreo + 6 pavimentos); Blocos 3 e 4 (térreo + 5). 8 unidades por pavimento.' },
+  { k: 'UNIDADES', v: '208 no total: 80 de 3 dorms. (78,15 m²), 100 de 2 dorms. (62,25 m²), 24 de 2 dorms. (66,25 m²) e 4 de 1 dorm. Garden, além das versões Garden de cada tipologia.' },
+  { k: 'VAGAS', v: '416 vagas, 2 cobertas em subsolo por apartamento (1 dorm.: 1 vaga coberta).' },
   { k: 'TERRENO', v: '17.150,76 m² de área de terreno.' },
   { k: 'ÁREA CONSTRUÍDA', v: '28.886,54 m².' },
   { k: 'SISTEMA CONSTRUTIVO', v: 'Alvenaria estrutural.' },
@@ -144,14 +144,14 @@ const FICHA = [
 ];
 
 const FAQS = [
-  { q: 'Onde fica o Best View Residence?', a: 'Na Av. Dermival Bernardes Siqueira, 3813, no Swiss Park, um dos melhores bairros de Campinas/SP — com localização estratégica e fácil acesso às conveniências da cidade.' },
+  { q: 'Onde fica o Best View Residence?', a: 'Na Av. Dermival Bernardes Siqueira, 3813, no Swiss Park, um dos melhores bairros de Campinas/SP, com localização estratégica e fácil acesso às conveniências da cidade.' },
   { q: 'Quais são as opções de apartamento?', a: 'Apartamentos de 2 dormitórios (62,25 m² e 66,25 m²) e 3 dormitórios (78,15 m²), todos com suíte, além de unidades Garden com área externa privativa (incluindo Garden de 89,4 m²). São 208 unidades em 4 torres.' },
   { q: 'Todas as unidades têm suíte?', a: 'Sim. Todas as unidades do Best View possuem suíte.' },
   { q: 'Quantas vagas de garagem tem cada apartamento?', a: 'Cada apartamento conta com 2 vagas cobertas em subsolo (exceto as unidades de 1 dormitório, com 1 vaga coberta). O condomínio ainda oferece estacionamento para visitantes e 4 vagas de uso comum com estação de recarga para carros elétricos de 7.400 W.' },
   { q: 'O que o lazer do condomínio oferece?', a: 'São 22 itens de lazer equipados e decorados*: piscinas adulto com prainha e infantil, solarium, academia, salão de festas, churrasqueira gourmet com forno, churrasqueira bar com chopeira, deck de churrasqueiras, coworking, brinquedoteca, playground, quadra recreativa, espaço pet, horta dos aromas, pergolado com espelho d’água, gazebos, praça linear, lavanderia e sala delivery, entre outros. *Consulte o memorial descritivo.' },
   { q: 'Quem é a construtora do Best View?', a: 'O Best View é uma realização da F A Oliva, empresa de Jundiaí (SP) fundada em 1955, com mais de 8 mil unidades entregues, mais de 110 torres construídas e mais de 3,5 milhões de m² construídos. A construção é da Urbitec Construções, braço construtivo da F A Oliva.' },
   { q: 'Os apartamentos são preparados para automação e ar-condicionado?', a: 'Sim. As unidades são preparadas para automação (apartamento inteligente) e possuem preparação para pontos de ar-condicionado na sala e nos dormitórios. Equipamentos e instalação são contratados pelo cliente.' },
-  { q: 'Como falo com um consultor?', a: 'A Lotus Brokers atende pelo WhatsApp +55 11 92614-3393 ou pelo formulário desta página — resposta rápida, sem compromisso.' },
+  { q: 'Como falo com um consultor?', a: 'A Lotus Brokers atende pelo WhatsApp +55 11 92614-3393 ou pelo formulário desta página, resposta rápida, sem compromisso.' },
 ];
 
 type LbState = { src: string; alt: string; t: string; bg?: string; sub?: string };
@@ -443,7 +443,7 @@ export default function BestViewResidence() {
                 </span>
               </h2>
               <p style={parseStyle('margin: 22px 0 0; font-size: 16px; line-height: 1.85; color: #D8CCC2; font-weight: 400;')}>
-                Imagine um lugar onde o conforto, a conveniência e a tranquilidade se fundem para criar o lar dos seus sonhos. Uma vida repleta de tranquilidade e conforto é o que te espera no Best View — um verdadeiro refúgio urbano, com uma vista privilegiada.
+                Imagine um lugar onde o conforto, a conveniência e a tranquilidade se fundem para criar o lar dos seus sonhos. Uma vida repleta de tranquilidade e conforto é o que te espera no Best View, um verdadeiro refúgio urbano, com uma vista privilegiada.
               </p>
               <p style={parseStyle('margin: 16px 0 0; font-size: 16px; line-height: 1.85; color: #D8CCC2; font-weight: 400;')}>
                 Aqui, você e sua família podem desfrutar de tudo o que torna o viver mais prazeroso. A verdadeira experiência de viver bem.
@@ -688,7 +688,7 @@ export default function BestViewResidence() {
                 </span>
               </h2>
               <p style={parseStyle('margin: 20px 0 0; font-size: 16px; line-height: 1.85; color: #E4D9CF;')}>
-                A F A Oliva traz a sua experiência para um dos melhores bairros de Campinas. O Swiss Park proporciona um estilo de vida com qualidade, bem-estar e sofisticação — localização estratégica, com fácil acesso a todas as conveniências da cidade.
+                A F A Oliva traz a sua experiência para um dos melhores bairros de Campinas. O Swiss Park proporciona um estilo de vida com qualidade, bem-estar e sofisticação, localização estratégica, com fácil acesso a todas as conveniências da cidade.
               </p>
               <p style={parseStyle('margin: 16px 0 0; font-size: 16px; line-height: 1.85; color: #E4D9CF;')}>
                 Um refúgio perfeito para quem busca equilíbrio entre conforto, modernidade e natureza. Segurança e praticidade para você e sua família.
@@ -700,7 +700,7 @@ export default function BestViewResidence() {
                 <p style={parseStyle('margin: 6px 0 0; font-size: 18px; font-weight: 600; color: #F4EFE7;')}>
                   Av. Dermival Bernardes Siqueira, 3813
                   <br />
-                  Swiss Park — Campinas/SP
+                  Swiss Park, Campinas/SP
                 </p>
               </div>
               <Hoverable as="a" baseStyle={parseStyle('display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; border: 1px solid rgba(233,215,168,.5); color: #E9D7A8; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: .05em; padding: 15px 28px; border-radius: 999px; transition: all .18s ease;')} hoverStyle={parseStyle('border-color: #E9D7A8; background: rgba(233,215,168,.08);')} href="https://www.google.com/maps/search/?api=1&query=Av.+Dermival+Bernardes+Siqueira,+3813,+Swiss+Park,+Campinas+-+SP" target="_blank" rel="noopener">
@@ -768,7 +768,7 @@ export default function BestViewResidence() {
                 </span>
               </h2>
               <p style={parseStyle('margin: 20px 0 0; font-size: 16px; line-height: 1.85; color: #D8CCC2;')}>
-                A F A Oliva é uma empresa de Jundiaí (SP), conhecida por seu padrão de qualidade. Fundada em 1955, nasceu do propósito de construir moradias de qualidade — e desde então participa da realização do sonho do imóvel próprio, com qualidade e pontualidade. A construção é realizada pela Urbitec Construções, seu braço construtivo.
+                A F A Oliva é uma empresa de Jundiaí (SP), conhecida por seu padrão de qualidade. Fundada em 1955, nasceu do propósito de construir moradias de qualidade e desde então participa da realização do sonho do imóvel próprio, com qualidade e pontualidade. A construção é realizada pela Urbitec Construções, seu braço construtivo.
               </p>
             </div>
             <div style={parseStyle('margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 26px;')} data-counters="true">
@@ -847,7 +847,7 @@ export default function BestViewResidence() {
                 Fale com a Lotus Brokers
               </h2>
               <p style={parseStyle('margin: 20px 0 0; font-size: 16px; line-height: 1.85; color: #D8CCC2;')}>
-                Deixe seus dados e um consultor da Lotus Brokers entrará em contato para apresentar o Best View Residence — plantas, disponibilidade e condições, sem compromisso.
+                Deixe seus dados e um consultor da Lotus Brokers entrará em contato para apresentar o Best View Residence, plantas, disponibilidade e condições, sem compromisso.
               </p>
               <Hoverable as="a" baseStyle={parseStyle('display: inline-flex; align-items: center; gap: 12px; margin-top: 30px; color: #E9D7A8; text-decoration: none; font-weight: 700; font-size: 17px; letter-spacing: .02em; border-bottom: 1px solid rgba(233,215,168,.5); padding-bottom: 6px; transition: all .18s ease;')} hoverStyle={parseStyle('border-color: #E9D7A8;')} href={waLink} target="_blank" rel="noopener">
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -929,7 +929,7 @@ export default function BestViewResidence() {
                     REALIZAÇÃO E CONSTRUÇÃO
                   </p>
                   <p style={parseStyle('margin: 0; font-size: 14px; color: #D8CCC2; line-height: 1.8;')}>
-                    F A Oliva — desde 1955
+                    F A Oliva, desde 1955
                     <br />
                     Urbitec Construções
                   </p>
@@ -941,13 +941,13 @@ export default function BestViewResidence() {
                   <p style={parseStyle('margin: 0; font-size: 14px; color: #D8CCC2; line-height: 1.8;')}>
                     Av. Dermival Bernardes Siqueira, 3813
                     <br />
-                    Swiss Park — Campinas/SP
+                    Swiss Park, Campinas/SP
                   </p>
                 </div>
               </div>
             </div>
             <p style={parseStyle('margin: 50px 0 0; padding-top: 26px; border-top: 1px solid rgba(162,163,126,.15); font-size: 10.5px; line-height: 1.8; color: #7d6f67; text-wrap: pretty;')}>
-              Projeto protocolado na Prefeitura do Município de Campinas em 02/05/2023, sob o número 2019/11/17074. Todas as imagens deste material são meramente ilustrativas e estão sujeitas a adequações. As perspectivas retratam o projeto paisagístico com vegetação em fase adulta, estágio que será alcançado com a ação do tempo. Material para pesquisa de mercado. A comercialização será realizada após o registro da incorporação no Registro de Imóveis. Intermediação: Lotus Brokers — Negócios imobiliários.
+              Projeto protocolado na Prefeitura do Município de Campinas em 02/05/2023, sob o número 2019/11/17074. Todas as imagens deste material são meramente ilustrativas e estão sujeitas a adequações. As perspectivas retratam o projeto paisagístico com vegetação em fase adulta, estágio que será alcançado com a ação do tempo. Material para pesquisa de mercado. A comercialização será realizada após o registro da incorporação no Registro de Imóveis. Intermediação: Lotus Brokers, Negócios imobiliários.
             </p>
           </div>
         </footer>

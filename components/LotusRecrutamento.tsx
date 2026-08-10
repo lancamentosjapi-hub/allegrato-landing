@@ -209,20 +209,20 @@ const VAGAS = [
 ];
 
 const ofertas = [
-  { icon: '60%', title: 'Comissão até 60%', text: 'Tabela transparente, sem letra miúda. Você sabe exatamente quanto ganha em cada negócio — e ganha de verdade.' },
+  { icon: '60%', title: 'Comissão até 60%', text: 'Tabela transparente, sem letra miúda. Você sabe exatamente quanto ganha em cada negócio e ganha de verdade.' },
   { icon: 'U', title: 'Universidade Lotus', text: 'Formação contínua e certificação por segmento. Você evolui toda semana, não só quando dá tempo.' },
   { icon: '★', title: 'Mentoria com broker', text: 'Acompanhamento de quem já formou referências da região. Alguém do seu lado, não só cobrando meta.' },
   { icon: '◎', title: 'Estrutura + estúdio', text: 'Time de marketing, fotógrafo e estúdio de vídeo prontos pra te fazer voar. Você foca no relacionamento.' },
-  { icon: '↗', title: 'Carreira por especialidade', text: 'Você vira a referência do seu bairro ou squad — não mais um nome perdido numa lista de corretores.' },
+  { icon: '↗', title: 'Carreira por especialidade', text: 'Você vira a referência do seu bairro ou squad, não mais um nome perdido numa lista de corretores.' },
   { icon: '◐', title: 'PDI mensal + cultura', text: 'Plano de desenvolvimento individual todo mês, numa equipe que se respeita e cresce junto.' },
 ];
 
 const jornada = [
-  { step: '1', tag: 'Você se candidata', title: 'Candidatura', text: 'Preenche o formulário aqui embaixo. Sem mistério, sem indicação obrigatória — só você e o seu potencial.' },
+  { step: '1', tag: 'Você se candidata', title: 'Candidatura', text: 'Preenche o formulário aqui embaixo. Sem mistério, sem indicação obrigatória, só você e o seu potencial.' },
   { step: '2', tag: '4 etapas', title: 'Processo seletivo', text: 'Conversa inicial, fit cultural, case prático e papo com a liderança. A gente quer te conhecer de verdade.' },
-  { step: '3', tag: 'D+7 a D+90', title: 'Onboarding de 90 dias', text: 'Trilha estruturada com marcos em D+7, D+15, D+30, D+60 e D+90 — você não é jogado na água sozinho.' },
+  { step: '3', tag: 'D+7 a D+90', title: 'Onboarding de 90 dias', text: 'Trilha estruturada com marcos em D+7, D+15, D+30, D+60 e D+90, você não é jogado na água sozinho.' },
   { step: '4', tag: 'O primeiro marco', title: 'Sua 1ª venda', text: 'Com método, mentoria e estrutura, sua primeira venda vem mais rápido do que você imagina.' },
-  { step: '5', tag: 'O destino', title: 'Especialista-âncora do bairro', text: 'Você vira a referência da sua região — o nome que as famílias procuram quando pensam em comprar ou vender.' },
+  { step: '5', tag: 'O destino', title: 'Especialista-âncora do bairro', text: 'Você vira a referência da sua região, o nome que as famílias procuram quando pensam em comprar ou vender.' },
 ];
 
 const depo = [
@@ -325,7 +325,7 @@ export default function LotusRecrutamento({
           <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#cdab6e;margin-bottom:24px;')}>Carreira na Lotus</div>
           <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(38px,5.4vw,68px);line-height:1.02;letter-spacing:-.02em;color:#f7f2e8;margin:0 0 22px;max-width:840px;")}>Pare de ser mais um. Vire o <em style={parseStyle('font-style:italic;color:#cdab6e;')}>especialista do seu bairro.</em></h1>
           <p style={parseStyle('font-size:clamp(16px,1.7vw,20px);color:rgba(247,242,232,.82);font-weight:300;line-height:1.55;max-width:600px;margin:0 0 14px;')}>Mentoria de quem formou os melhores corretores da região, estrutura que te tira do braçal e comissão de verdade. Em Jundiaí e Itupeva.</p>
-          <p style={parseStyle('font-size:clamp(15px,1.5vw,18px);color:#cdab6e;font-weight:400;line-height:1.5;max-width:600px;margin:0 0 32px;')}>Com ou sem experiência — a gente oferece treinamento completo para te transformar num corretor de ponta.</p>
+          <p style={parseStyle('font-size:clamp(15px,1.5vw,18px);color:#cdab6e;font-weight:400;line-height:1.5;max-width:600px;margin:0 0 32px;')}>Com ou sem experiência, a gente oferece treinamento completo para te transformar num corretor de ponta.</p>
           <div style={parseStyle('display:flex;flex-wrap:wrap;gap:14px;')}>
             <Hoverable as="a" href="#candidatar" baseStyle={parseStyle('background:#b18a4a;color:#15241c;font-weight:600;font-size:16px;padding:15px 30px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Quero ser corretor</Hoverable>
             <Hoverable as="a" href="#outras-vagas" baseStyle={parseStyle('background:transparent;border:1.5px solid rgba(247,242,232,.4);color:#f7f2e8;font-weight:600;font-size:16px;padding:15px 30px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:rgba(247,242,232,.1)')}>Outras vagas (adm, financeiro, marketing)</Hoverable>
@@ -342,7 +342,7 @@ export default function LotusRecrutamento({
         </div>
       </section>
 
-      {/* VÍDEO DE RECRUTAMENTO — fora do ar.
+      {/* VÍDEO DE RECRUTAMENTO, fora do ar.
           O embed apontava para dQw4w9WgXcQ, um placeholder que ficou publicado
           como "Vídeo de recrutamento Lotus Brokers". Para reativar: preencher
           VIDEO_RECRUTAMENTO com o ID do vídeo no YouTube. */}
@@ -446,7 +446,7 @@ export default function LotusRecrutamento({
             ))}
           </div>
           <div style={parseStyle('margin-top:24px;background:#ece2cf;border-radius:16px;padding:28px 30px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;')}>
-            <div><div style={parseStyle("font-family:'Fraunces',serif;font-size:20px;color:#15241c;margin-bottom:4px;")}>Não achou a sua vaga?</div><p style={parseStyle('font-size:14px;color:#3f6249;margin:0;font-weight:300;')}>Entre para o banco de talentos — a gente te chama quando abrir.</p></div>
+            <div><div style={parseStyle("font-family:'Fraunces',serif;font-size:20px;color:#15241c;margin-bottom:4px;")}>Não achou a sua vaga?</div><p style={parseStyle('font-size:14px;color:#3f6249;margin:0;font-weight:300;')}>Entre para o banco de talentos, a gente te chama quando abrir.</p></div>
             <Hoverable as="a" href="#candidatar" baseStyle={parseStyle('background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:12px 24px;border-radius:40px;white-space:nowrap;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Entrar no banco de talentos</Hoverable>
           </div>
         </div>
@@ -479,7 +479,7 @@ export default function LotusRecrutamento({
                   </div>
                   <input className="lt-field" type="email" required placeholder="E-mail" />
                   <div style={parseStyle('display:grid;grid-template-columns:1fr 1fr;gap:12px;')}>
-                    <select className="lt-field"><option value="">CRECI — tem?</option><option>Tenho CRECI ativo</option><option>Estou em curso</option><option>Ainda não tenho</option></select>
+                    <select className="lt-field"><option value="">Tem CRECI?</option><option>Tenho CRECI ativo</option><option>Estou em curso</option><option>Ainda não tenho</option></select>
                     <select className="lt-field"><option value="">Experiência</option><option>Sem experiência (quero aprender)</option><option>Até 2 anos</option><option>2 a 5 anos</option><option>Mais de 5 anos</option></select>
                   </div>
                   <input className="lt-field" type="text" placeholder="LinkedIn ou portfólio (opcional)" />

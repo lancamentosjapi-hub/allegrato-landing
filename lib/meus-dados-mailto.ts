@@ -11,7 +11,7 @@ export interface MeusDadosInput {
 // quando o backend do doc 8b (consent_log) existir.
 export function buildMeusDadosMailto(input: MeusDadosInput): string {
   const to = 'atendimento@lotusbrokers.com.br';
-  const subject = `Pedido LGPD — ${input.direito}`;
+  const subject = `Pedido LGPD, ${input.direito}`;
   const body = [
     `Nome: ${input.nome}`,
     `E-mail: ${input.email}`,

@@ -200,7 +200,7 @@ export default function VisttaCastanho() {
           email: data.email,
           source: 'landing_vistta-castanho',
           interest: 'Vistta Castanho',
-          message: [data.interesse, data.mensagem].filter(Boolean).join(' — '),
+          message: [data.interesse, data.mensagem].filter(Boolean).join(', '),
         });
         let msg =
           'Olá! Tenho interesse no *Vistta Castanho* (loteamento fechado no Castanho, Jundiaí).';
@@ -402,7 +402,7 @@ export default function VisttaCastanho() {
           <div className="hero-grid">
             <div className="hero-copy">
               <span className="eyebrow reveal">
-                Loteamento Fechado · Castanho, Jundiaí — SP
+                Loteamento Fechado · Castanho, Jundiaí, SP
               </span>
               <h1 className="display reveal d1">
                 Vistta Castanho
@@ -518,7 +518,7 @@ export default function VisttaCastanho() {
             <span className="dot"></span>Fibra óptica &amp; Wi-Fi
           </div>
           <div className="it">
-            <span className="dot"></span>Castanho · Jundiaí — SP
+            <span className="dot"></span>Castanho · Jundiaí, SP
           </div>
           <div className="it">
             <span className="dot"></span>Loteamento fechado
@@ -542,7 +542,7 @@ export default function VisttaCastanho() {
             <span className="dot"></span>Fibra óptica &amp; Wi-Fi
           </div>
           <div className="it">
-            <span className="dot"></span>Castanho · Jundiaí — SP
+            <span className="dot"></span>Castanho · Jundiaí, SP
           </div>
         </div>
       </div>
@@ -558,7 +558,7 @@ export default function VisttaCastanho() {
             <p className="reveal d2">
               O Vistta Castanho é moderno e compacto nos espaços individuais, magnífico e completo
               em infraestrutura. Ideal para quem busca o máximo de privacidade, lazer e conveniência
-              — para aproveitar a vida com mais qualidade, sem precisar sair do condomínio.
+             , para aproveitar a vida com mais qualidade, sem precisar sair do condomínio.
             </p>
             <blockquote className="quote reveal d2">
               “Oferecemos empreendimentos para pessoas que desejam aproveitar o que a vida tem de
@@ -690,7 +690,7 @@ export default function VisttaCastanho() {
               </div>
               <h3>Localização estratégica</h3>
               <p>
-                No bairro do Castanho, em Jundiaí, entre São Paulo e Campinas — o melhor de duas
+                No bairro do Castanho, em Jundiaí, entre São Paulo e Campinas, o melhor de duas
                 grandes regiões.
               </p>
             </article>
@@ -715,7 +715,7 @@ export default function VisttaCastanho() {
               começa por aqui
             </h2>
             <p style={{ color: 'var(--text-cream-mut)' }}>
-              Pressione play e percorra o Vistta Castanho — do lago ao clube, da natureza à
+              Pressione play e percorra o Vistta Castanho, do lago ao clube, da natureza à
               conveniência.
             </p>
           </div>
@@ -740,7 +740,7 @@ export default function VisttaCastanho() {
         <div className="wrap">
           <div className="sec-head reveal">
             <span className="eyebrow lead">Lazer &amp; Clube</span>
-            <h2 className="display">A vida é uma festa — e o clube é o seu cenário</h2>
+            <h2 className="display">A vida é uma festa e o clube é o seu cenário</h2>
             <p>
               Explore todas as possibilidades de lazer em meio à natureza, com estrutura completa e
               acessível para todas as idades.
@@ -856,7 +856,7 @@ export default function VisttaCastanho() {
             <h2 className="display reveal d1">Sua conexão com a natureza, à flor da pele</h2>
             <p className="reveal d2">
               Um projeto de paisagismo confortável e multiespécies, com arborização urbana que
-              floresce em diferentes épocas do ano — primavera para sempre.
+              floresce em diferentes épocas do ano, primavera para sempre.
             </p>
             <div className="nat-list reveal d2">
               <div className="row">
@@ -912,7 +912,7 @@ export default function VisttaCastanho() {
                   <h4>O Loteamento</h4>
                   <p>
                     Prolongamento da Avenida Benedito Chrispim, Avenida Marginal do Loteamento
-                    Applausi Castanho — Castanho, Jundiaí — SP.
+                    Applausi Castanho, Castanho, Jundiaí, SP.
                   </p>
                 </div>
               </div>
@@ -935,7 +935,7 @@ export default function VisttaCastanho() {
           </div>
           <div className="loc-map reveal d2">
             <iframe
-              title="Mapa — Castanho, Jundiaí — SP"
+              title="Mapa, Castanho, Jundiaí, SP"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               src="https://www.google.com/maps?q=Castanho,+Jundia%C3%AD+-+SP&output=embed"
@@ -977,7 +977,7 @@ export default function VisttaCastanho() {
                 <div>
                   <div className="lbl">Localização</div>
                   <div className="val">
-                    Castanho, Jundiaí — SP · entre São Paulo e Campinas
+                    Castanho, Jundiaí, SP · entre São Paulo e Campinas
                   </div>
                 </div>
               </div>
@@ -1031,7 +1031,7 @@ export default function VisttaCastanho() {
             <div className="foot-brand">
               <p>
                 Atendimento de qualidade na comercialização do Vistta Castanho, loteamento fechado
-                no Castanho, em Jundiaí — SP.
+                no Castanho, em Jundiaí, SP.
               </p>
             </div>
             <div className="foot-col">
@@ -1050,7 +1050,7 @@ export default function VisttaCastanho() {
               <p>
                 Loteamento: Prol. Av. Benedito Chrispim
                 <br />
-                Castanho — Jundiaí — SP
+                Castanho, Jundiaí, SP
               </p>
             </div>
           </div>

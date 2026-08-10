@@ -6,15 +6,15 @@ import { listBairros } from '@/lib/bairros';
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.lotusbrokers.com.br';
 
 export const metadata: Metadata = {
-  title: 'Bairros de Jundiaí e Itupeva — guias por bairro | Lotus Brokers',
+  title: 'Bairros de Jundiaí e Itupeva: guias por bairro | Lotus Brokers',
   description:
-    'Guias honestos dos bairros de Jundiaí e Itupeva: como é o dia a dia, escolas, comércio, lazer e faixa de preço — com o especialista da Lotus.',
+    'Guias honestos dos bairros de Jundiaí e Itupeva: como é o dia a dia, escolas, comércio, lazer e faixa de preço, com o especialista da Lotus.',
   alternates: { canonical: `${SITE}/lotus-bairro` },
   openGraph: {
     siteName: 'Lotus Brokers',
     type: 'website',
     url: `${SITE}/lotus-bairro`,
-    title: 'Bairros de Jundiaí e Itupeva — guias da Lotus',
+    title: 'Bairros de Jundiaí e Itupeva, guias da Lotus',
     description:
       'Escolha o bairro certo, não só o imóvel certo. Guias por bairro de Jundiaí e Itupeva.',
   },

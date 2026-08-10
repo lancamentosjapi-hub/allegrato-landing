@@ -4,7 +4,7 @@ import DoppioJundiai from '@/components/DoppioJundiai';
 
 // Metadata portada do <helmet> do fonte estático.
 export const metadata: Metadata = {
-  title: 'Doppio Jundiaí | Alto Padrão em Campos Elísios — 156 a 442 m²',
+  title: 'Doppio Jundiaí | Alto Padrão em Campos Elísios, 156 a 442 m²',
   description:
     'Doppio Jundiaí: apartamentos de alto padrão de 156 a 442 m² no Jardim Campos Elísios, com living de pé-direito duplo de 5,60 m, gardens e coberturas duplex.',
   keywords:
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    title: 'Doppio Jundiaí — Alto padrão em Campos Elísios',
+    title: 'Doppio Jundiaí, Alto padrão em Campos Elísios',
     description:
       'Living com pé-direito duplo de 5,60 m. De 156 a 442 m², em Jundiaí/SP.',
     images: ['/doppio-jundiai/a015.jpg'],

@@ -40,13 +40,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { codigo } = await params;
   const imovel = await getImovel(codigo);
   if (!imovel) {
-    return { title: 'Imóvel — Lotus Brokers', robots: { index: false } };
+    return { title: 'Imóvel, Lotus Brokers', robots: { index: false } };
   }
   const titulo = tituloDe(imovel);
   const cidade = imovel.cidade || 'Jundiaí e Itupeva';
   const local = imovel.bairro ? `${imovel.bairro}, ${cidade}` : cidade;
   const capa = capaDe(imovel);
-  const title = `${titulo} — à venda | Lotus Brokers`;
+  const title = `${titulo}, à venda | Lotus Brokers`;
   const description =
     imovel.descricao?.trim()?.slice(0, 200) ||
     `${titulo} em ${local}. Conheça os detalhes, agende uma visita e fale com o especialista da Lotus.`;

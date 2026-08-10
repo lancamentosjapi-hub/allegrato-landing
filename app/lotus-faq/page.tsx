@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     siteName: 'Lotus Brokers',
     type: 'website',
     url: 'https://www.lotusbrokers.com.br/lotus-faq',
-    title: 'Perguntas frequentes — Lotus Brokers',
+    title: 'Perguntas frequentes, Lotus Brokers',
     description:
       'Tudo que você precisa saber antes de comprar, vender ou alugar em Jundiaí e Itupeva, respondido sem enrolação.',
     images: [

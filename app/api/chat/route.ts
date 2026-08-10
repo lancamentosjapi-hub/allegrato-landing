@@ -21,7 +21,7 @@ const TIMEOUT_MS = 60_000;
 // Códigos de erro da LIA → texto que o visitante lê.
 const FRIENDLY: Record<string, string> = {
   timeout: 'Demorei mais que o normal 😅 pode repetir?',
-  conversation_busy: 'Ainda estou terminando a resposta anterior — só um instante 🌿',
+  conversation_busy: 'Ainda estou terminando a resposta anterior, só um instante 🌿',
   rate_limited: 'Recebi muitas mensagens seguidas. Aguarde alguns segundos e tente de novo.',
   message_too_long: 'Essa mensagem ficou muito longa. Pode resumir um pouco?',
   empty_message: 'Não recebi sua mensagem. Pode escrever de novo?',

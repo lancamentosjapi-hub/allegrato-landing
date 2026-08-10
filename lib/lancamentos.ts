@@ -189,7 +189,7 @@ async function fetchLandingSlugs(): Promise<Map<string, string>> {
 
   if (error) {
     console.warn(
-      `[lancamentos] portal_landing_slugs indisponível (${error.message}) — ` +
+      `[lancamentos] portal_landing_slugs indisponível (${error.message}), ` +
         'o link da landing sai do nome. Ver supabase/migrations/0005.',
     );
     return new Map();

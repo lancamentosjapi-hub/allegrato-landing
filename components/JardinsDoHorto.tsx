@@ -147,7 +147,7 @@ const difUnidades = ['Pé direito de 2,70m', 'Esquadrias de alumínio sob medida
 const qualidade = ['PBQP-H Nível A', 'ISO 9001:2015', 'NBR 15575 · Desempenho', 'NBR 9050 · Acessibilidade'];
 
 const faqs = [
-  { q: 'Onde fica o Jardins do Horto?', a: 'Na Rua Irineu de Toledo, nº 225, no bairro Horto Florestal, em Jundiaí/SP — ao lado do Maxi Shopping Jundiaí e próximo aos Parques da Cidade, Jardim Botânico e Sesc Jundiaí.' },
+  { q: 'Onde fica o Jardins do Horto?', a: 'Na Rua Irineu de Toledo, nº 225, no bairro Horto Florestal, em Jundiaí/SP, ao lado do Maxi Shopping Jundiaí e próximo aos Parques da Cidade, Jardim Botânico e Sesc Jundiaí.' },
   { q: 'Quais são as metragens e plantas disponíveis?', a: 'São apartamentos de 72,19m² (2 dormitórios) e 95,32m² (3 dormitórios), em plantas que privilegiam conforto e funcionalidade.' },
   { q: 'Quantas torres e unidades terá o empreendimento?', a: 'São 2 torres, totalizando 268 unidades, com térreo + 16 pavimentos tipo e 4 elevadores por torre.' },
   { q: 'Como funcionam as vagas de garagem?', a: 'O empreendimento conta com 495 vagas vinculadas, distribuídas entre o Edifício Garagem e a implantação.' },
@@ -438,7 +438,7 @@ export default function JardinsDoHorto({
 
       {/* ============ HERO ============ */}
       <section id="topo" data-screen-label="Hero" style={parseStyle('position:relative; min-height:680px; height:90vh; max-height:900px; display:flex; align-items:flex-end; overflow:hidden; background:#1C1A17;')}>
-        <img data-hero-img="" src={IMG + 'a004.jpg'} alt="Fachada do Jardins do Horto ao pôr do sol — duas torres no Horto Florestal, Jundiaí" style={parseStyle('position:absolute; top:-6%; left:0; width:100%; height:112%; object-fit:cover; will-change:transform; transform:scale(1.12);')} />
+        <img data-hero-img="" src={IMG + 'a004.jpg'} alt="Fachada do Jardins do Horto ao pôr do sol, duas torres no Horto Florestal, Jundiaí" style={parseStyle('position:absolute; top:-6%; left:0; width:100%; height:112%; object-fit:cover; will-change:transform; transform:scale(1.12);')} />
         <div style={parseStyle('position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,17,14,.62) 0%, rgba(20,17,14,.22) 34%, rgba(20,17,14,.30) 60%, rgba(20,17,14,.92) 100%);')}></div>
         <div style={parseStyle('position:absolute; inset:0; background:linear-gradient(96deg, rgba(20,17,14,.66) 0%, rgba(20,17,14,.30) 38%, rgba(20,17,14,0) 66%);')}></div>
         <div style={parseStyle('position:absolute; top:0; left:0; right:0; height:200px; background:linear-gradient(180deg, rgba(15,12,10,.6) 0%, rgba(15,12,10,0) 100%);')}></div>
@@ -518,7 +518,7 @@ export default function JardinsDoHorto({
             <div style={parseStyle('font-size:13px; letter-spacing:.24em; text-transform:uppercase; font-weight:600; color:#C75D40; margin-bottom:22px;')}>Localização</div>
             <h2 style={parseStyle("margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(32px,4.4vw,60px); line-height:1.05;")}>No coração do <span style={parseStyle('font-style:italic; color:#C75D40;')}>Horto Florestal</span></h2>
             <p style={parseStyle('font-size:17px; line-height:1.7; color:#4A4239; margin:24px 0 0; max-width:46ch;')}>
-              Infraestrutura completa de comércio, serviços e lazer, ao lado de um dos shoppings mais tradicionais da cidade — com acesso rápido às principais avenidas e rodovias de Jundiaí.
+              Infraestrutura completa de comércio, serviços e lazer, ao lado de um dos shoppings mais tradicionais da cidade, com acesso rápido às principais avenidas e rodovias de Jundiaí.
             </p>
             <div style={parseStyle('display:flex; align-items:flex-start; gap:14px; margin:30px 0; padding:20px 22px; background:#FBF7F0; border:1px solid rgba(32,29,25,.08); border-radius:14px;')}>
               <span style={parseStyle('color:#C75D40; font-size:22px; line-height:1.2;')}>◍</span>
@@ -556,18 +556,18 @@ export default function JardinsDoHorto({
 
           <div data-panel="72" data-reveal="" style={parseStyle('opacity:0; transform:translateY(30px); transition:opacity .9s ease, transform .9s ease; display:grid; grid-template-columns:1.25fr .75fr; gap:clamp(28px,4vw,56px); align-items:center; margin-top:46px;')} data-planta-grid="">
             <div style={parseStyle('background:#FBF7F0; border:1px solid rgba(32,29,25,.08); border-radius:20px; padding:26px; box-shadow:0 30px 60px -40px rgba(32,29,25,.4);')}>
-              <img src={IMG + 'a006.png'} alt="Planta humanizada do apartamento de 72m² (2 dormitórios) — Jardins do Horto" loading="lazy" style={parseStyle('width:100%; display:block;')} />
+              <img src={IMG + 'a006.png'} alt="Planta humanizada do apartamento de 72m² (2 dormitórios), Jardins do Horto" loading="lazy" style={parseStyle('width:100%; display:block;')} />
             </div>
             <div>
               <div style={parseStyle("font-family:'Cormorant Garamond',serif; font-size:clamp(44px,6vw,72px); line-height:1; color:#201D19;")}>72<span style={parseStyle('font-size:.42em; vertical-align:super; color:#C75D40;')}>m²</span></div>
               <div style={parseStyle('color:#6c6459; font-size:15px; margin-top:6px; letter-spacing:.02em;')}>72,19m² privativos · final 08</div>
               <div style={parseStyle('height:1px; background:rgba(32,29,25,.1); margin:24px 0;')}></div>
               <ul style={parseStyle('list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;')}>
-                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>—</span> 2 dormitórios</li>
-                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>—</span> Pé direito de 2,70m</li>
-                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>—</span> Bancadas em mármore e granito</li>
-                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>—</span> Esquadrias de alumínio sob medida</li>
-                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>—</span> Infra. para ar-condicionado</li>
+                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>,</span> 2 dormitórios</li>
+                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>,</span> Pé direito de 2,70m</li>
+                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>,</span> Bancadas em mármore e granito</li>
+                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>,</span> Esquadrias de alumínio sob medida</li>
+                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>,</span> Infra. para ar-condicionado</li>
               </ul>
               <Hoverable as="a" href="#contato" baseStyle={parseStyle('display:inline-block; margin-top:30px; text-decoration:none; background:#201D19; color:#fff; font-weight:700; font-size:15px; padding:15px 28px; border-radius:100px; transition:background .25s ease;')} hoverStyle={parseStyle('background:#C75D40;')}>Quero esta planta</Hoverable>
             </div>
@@ -575,18 +575,18 @@ export default function JardinsDoHorto({
 
           <div data-panel="95" data-reveal="" style={parseStyle('opacity:0; transform:translateY(30px); transition:opacity .9s ease, transform .9s ease; display:none; grid-template-columns:1.25fr .75fr; gap:clamp(28px,4vw,56px); align-items:center; margin-top:46px;')}>
             <div style={parseStyle('background:#FBF7F0; border:1px solid rgba(32,29,25,.08); border-radius:20px; padding:26px; box-shadow:0 30px 60px -40px rgba(32,29,25,.4);')}>
-              <img src={IMG + 'a007.png'} alt="Planta humanizada do apartamento de 95m² (3 dormitórios) — Jardins do Horto" loading="lazy" style={parseStyle('width:100%; display:block;')} />
+              <img src={IMG + 'a007.png'} alt="Planta humanizada do apartamento de 95m² (3 dormitórios), Jardins do Horto" loading="lazy" style={parseStyle('width:100%; display:block;')} />
             </div>
             <div>
               <div style={parseStyle("font-family:'Cormorant Garamond',serif; font-size:clamp(44px,6vw,72px); line-height:1; color:#201D19;")}>95<span style={parseStyle('font-size:.42em; vertical-align:super; color:#C75D40;')}>m²</span></div>
               <div style={parseStyle('color:#6c6459; font-size:15px; margin-top:6px; letter-spacing:.02em;')}>95,32m² privativos · final 01</div>
               <div style={parseStyle('height:1px; background:rgba(32,29,25,.1); margin:24px 0;')}></div>
               <ul style={parseStyle('list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;')}>
-                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>—</span> 3 dormitórios</li>
-                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>—</span> Pé direito de 2,70m</li>
-                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>—</span> Bancadas em mármore e granito</li>
-                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>—</span> Tratamento acústico no contrapiso</li>
-                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>—</span> Infra. para automação e Wi-Fi</li>
+                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>,</span> 3 dormitórios</li>
+                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>,</span> Pé direito de 2,70m</li>
+                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>,</span> Bancadas em mármore e granito</li>
+                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>,</span> Tratamento acústico no contrapiso</li>
+                <li style={parseStyle('display:flex; gap:12px; font-size:15px; color:#3a342d;')}><span style={parseStyle('color:#C75D40; font-weight:700;')}>,</span> Infra. para automação e Wi-Fi</li>
               </ul>
               <Hoverable as="a" href="#contato" baseStyle={parseStyle('display:inline-block; margin-top:30px; text-decoration:none; background:#201D19; color:#fff; font-weight:700; font-size:15px; padding:15px 28px; border-radius:100px; transition:background .25s ease;')} hoverStyle={parseStyle('background:#C75D40;')}>Quero esta planta</Hoverable>
             </div>
@@ -681,7 +681,7 @@ export default function JardinsDoHorto({
             <div style={parseStyle('font-size:13px; letter-spacing:.24em; text-transform:uppercase; font-weight:600; color:#F09080; margin-bottom:24px;')}>Realização · Santa Angela</div>
             <h2 style={parseStyle("margin:0; color:#F6F1E9; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(30px,4.4vw,58px); line-height:1.1;")}>Há mais de 40 anos realizando o sonho de morar bem</h2>
             <p style={parseStyle('color:rgba(246,241,233,.82); font-size:17px; line-height:1.75; margin:28px 0 0;')}>
-              Presente em Jundiaí, Americana e Itatiba, a Construtora Santa Angela acompanha todas as fases de cada empreendimento — do início dos projetos à entrega das chaves. Com confiança, respeito e comprometimento, queremos que sua família viva a melhor experiência.
+              Presente em Jundiaí, Americana e Itatiba, a Construtora Santa Angela acompanha todas as fases de cada empreendimento, do início dos projetos à entrega das chaves. Com confiança, respeito e comprometimento, queremos que sua família viva a melhor experiência.
             </p>
             <p style={parseStyle("color:#F09080; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(22px,3vw,32px); margin:34px 0 0;")}>&quot;O brilho do interior é ter você.&quot;</p>
           </div>

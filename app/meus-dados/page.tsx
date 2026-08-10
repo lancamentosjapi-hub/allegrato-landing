@@ -95,7 +95,7 @@ export default function MeusDadosPage() {
       </header>
       <main>
         <h1>Seus dados são seus</h1>
-        <p className="upd">Exercício de direitos LGPD — Lotus Brokers</p>
+        <p className="upd">Exercício de direitos LGPD | Lotus Brokers</p>
         <p>
           Conforme o art. 18 da Lei Geral de Proteção de Dados (Lei nº 13.709/2018), você pode
           solicitar a qualquer momento o exercício dos seus direitos sobre os dados pessoais que

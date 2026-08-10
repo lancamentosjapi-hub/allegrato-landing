@@ -133,18 +133,18 @@ const GAL: GalItem[] = [
 
 type LbItem = { src: string; cap: string };
 const PLANTAS: LbItem[] = [
-  { src: 'assets/plantas/p1-10279.png', cap: '102,79 m² · 3 dormitórios (1 suíte) + escritório · 2 vagas — Torre A' },
-  { src: 'assets/plantas/p2-9462.png', cap: '94,62 m² · 3 dormitórios (1 suíte) · 2 vagas — Torre B' },
-  { src: 'assets/plantas/p3-7627.png', cap: '76,27 m² · 2 suítes + lavabo · 1 vaga — Torre A' },
-  { src: 'assets/plantas/p4-6596.png', cap: '65,96 m² · 2 dormitórios (1 suíte) · 1 vaga — Torre B' },
+  { src: 'assets/plantas/p1-10279.png', cap: '102,79 m² · 3 dormitórios (1 suíte) + escritório · 2 vagas, Torre A' },
+  { src: 'assets/plantas/p2-9462.png', cap: '94,62 m² · 3 dormitórios (1 suíte) · 2 vagas, Torre B' },
+  { src: 'assets/plantas/p3-7627.png', cap: '76,27 m² · 2 suítes + lavabo · 1 vaga, Torre A' },
+  { src: 'assets/plantas/p4-6596.png', cap: '65,96 m² · 2 dormitórios (1 suíte) · 1 vaga, Torre B' },
 ];
 
 type ObraItem = { u: string; c: string };
 const OBRA: ObraItem[] = [
-  { u: 'https://maclucer.com.br/wp-content/uploads/2026/05/WhatsApp-Image-2026-04-29-at-08.43.46.jpeg', c: 'Obra Manawa — 05/2026' },
-  { u: 'https://maclucer.com.br/wp-content/uploads/2026/05/WhatsApp-Image-2026-04-29-at-08.44.28.jpeg', c: 'Obra Manawa — 05/2026' },
-  { u: 'https://maclucer.com.br/wp-content/uploads/2026/05/WhatsApp-Image-2026-04-29-at-08.44.49.jpeg', c: 'Obra Manawa — 05/2026' },
-  { u: 'https://maclucer.com.br/wp-content/uploads/2026/02/1.jpg', c: 'Obra Manawa — 02/2026' },
+  { u: 'https://maclucer.com.br/wp-content/uploads/2026/05/WhatsApp-Image-2026-04-29-at-08.43.46.jpeg', c: 'Obra Manawa, 05/2026' },
+  { u: 'https://maclucer.com.br/wp-content/uploads/2026/05/WhatsApp-Image-2026-04-29-at-08.44.28.jpeg', c: 'Obra Manawa, 05/2026' },
+  { u: 'https://maclucer.com.br/wp-content/uploads/2026/05/WhatsApp-Image-2026-04-29-at-08.44.49.jpeg', c: 'Obra Manawa, 05/2026' },
+  { u: 'https://maclucer.com.br/wp-content/uploads/2026/02/1.jpg', c: 'Obra Manawa, 02/2026' },
 ];
 
 /* Ordem do lightbox: galeria (14) -> plantas (4) -> obra (4). Igual ao a006.js. */
@@ -362,7 +362,7 @@ export default function Manawa() {
       {/* ============ HERO ============ */}
       <section className="hero" id="topo">
         <div className="hero-bg">
-          <img src="/manawa/a005.png" alt="Fachada do Manawa Residencial em Jundiaí — duas torres residenciais" />
+          <img src="/manawa/a005.png" alt="Fachada do Manawa Residencial em Jundiaí, duas torres residenciais" />
         </div>
         <div className="wrap hero-inner">
           <div className="hero-card">
@@ -419,7 +419,7 @@ export default function Manawa() {
             <div className="diff-card">
               <div className="ic"><IconBed /></div>
               <h3>2 e 3 dormitórios</h3>
-              <p>Opções com suíte — e plantas com 2 suítes e lavabo ou 3 dormitórios com escritório.</p>
+              <p>Opções com suíte e plantas com 2 suítes e lavabo ou 3 dormitórios com escritório.</p>
             </div>
             <div className="diff-card">
               <div className="ic"><IconCar /></div>
@@ -439,7 +439,7 @@ export default function Manawa() {
             <div className="diff-card">
               <div className="ic"><IconShield /></div>
               <h3>Construção certificada</h3>
-              <p>Edificação em alvenaria estrutural e empresa certificada pelo PBQP-H — qualidade e durabilidade.</p>
+              <p>Edificação em alvenaria estrutural e empresa certificada pelo PBQP-H, qualidade e durabilidade.</p>
             </div>
           </div>
         </div>
@@ -470,7 +470,7 @@ export default function Manawa() {
             <p>
               Áreas de lazer e infraestrutura completas: espaços para relaxamento e atividades ao ar
               livre, piscinas, áreas de jogos e muito mais. Um condomínio de 2 torres e 158 unidades, em
-              terreno de 6.490,90 m². Venha conhecer o Manawa Residencial — o prazer de viver o agora.
+              terreno de 6.490,90 m². Venha conhecer o Manawa Residencial, o prazer de viver o agora.
             </p>
             <div className="about-sign">Manawa · viver o agora</div>
           </div>
@@ -500,7 +500,7 @@ export default function Manawa() {
               >
                 <FallbackImg
                   src={GAL_BASE + g.f + '.jpg'}
-                  alt={g.c + ' — Manawa Residencial'}
+                  alt={g.c + ', Manawa Residencial'}
                   ph={g.c}
                 />
                 <figcaption>{g.c}</figcaption>
@@ -522,47 +522,47 @@ export default function Manawa() {
             </div>
             <p className="lead">
               Apartamentos de 65,96 a 102,79 m², com opções de 2 e 3 dormitórios. Clique em uma planta
-              para ampliar — e solicite a tabela completa com a nossa equipe.
+              para ampliar e solicite a tabela completa com a nossa equipe.
             </p>
           </div>
           <div className="plan-figs reveal">
             <figure className="plan-fig" data-plan="0" onClick={() => openLightbox(PLAN_OFFSET + 0)}>
               <div className="plan-fig-img">
-                <img src="/manawa/a002.png" alt="Planta 102,79 m² — 3 dormitórios com suíte e escritório, Torre A, Manawa Residencial" />
+                <img src="/manawa/a002.png" alt="Planta 102,79 m², 3 dormitórios com suíte e escritório, Torre A, Manawa Residencial" />
               </div>
               <figcaption>
                 <div className="pf-m">102,79 m²</div>
-                <div className="pf-d">3 dormitórios · 1 suíte · escritório · 2 vagas — Torre A</div>
+                <div className="pf-d">3 dormitórios · 1 suíte · escritório · 2 vagas, Torre A</div>
                 <span className="pf-zoom"><IconExpand /> Ampliar planta</span>
               </figcaption>
             </figure>
             <figure className="plan-fig" data-plan="1" onClick={() => openLightbox(PLAN_OFFSET + 1)}>
               <div className="plan-fig-img">
-                <img src="/manawa/a000.png" alt="Planta 94,62 m² — 3 dormitórios com suíte, Torre B, Manawa Residencial" />
+                <img src="/manawa/a000.png" alt="Planta 94,62 m², 3 dormitórios com suíte, Torre B, Manawa Residencial" />
               </div>
               <figcaption>
                 <div className="pf-m">94,62 m²</div>
-                <div className="pf-d">3 dormitórios · 1 suíte · 2 vagas — Torre B</div>
+                <div className="pf-d">3 dormitórios · 1 suíte · 2 vagas, Torre B</div>
                 <span className="pf-zoom"><IconExpand /> Ampliar planta</span>
               </figcaption>
             </figure>
             <figure className="plan-fig" data-plan="2" onClick={() => openLightbox(PLAN_OFFSET + 2)}>
               <div className="plan-fig-img">
-                <img src="/manawa/a001.png" alt="Planta 76,27 m² — 2 suítes com lavabo, Torre A, Manawa Residencial" />
+                <img src="/manawa/a001.png" alt="Planta 76,27 m², 2 suítes com lavabo, Torre A, Manawa Residencial" />
               </div>
               <figcaption>
                 <div className="pf-m">76,27 m²</div>
-                <div className="pf-d">2 suítes · lavabo · 1 vaga — Torre A</div>
+                <div className="pf-d">2 suítes · lavabo · 1 vaga, Torre A</div>
                 <span className="pf-zoom"><IconExpand /> Ampliar planta</span>
               </figcaption>
             </figure>
             <figure className="plan-fig" data-plan="3" onClick={() => openLightbox(PLAN_OFFSET + 3)}>
               <div className="plan-fig-img">
-                <img src="/manawa/a004.png" alt="Planta 65,96 m² — 2 dormitórios com suíte, Torre B, Manawa Residencial" />
+                <img src="/manawa/a004.png" alt="Planta 65,96 m², 2 dormitórios com suíte, Torre B, Manawa Residencial" />
               </div>
               <figcaption>
                 <div className="pf-m">65,96 m²</div>
-                <div className="pf-d">2 dormitórios · 1 suíte · 1 vaga — Torre B</div>
+                <div className="pf-d">2 dormitórios · 1 suíte · 1 vaga, Torre B</div>
                 <span className="pf-zoom"><IconExpand /> Ampliar planta</span>
               </figcaption>
             </figure>
@@ -599,7 +599,7 @@ export default function Manawa() {
                 </div>
                 <div className="tl-item">
                   <div className="tl-dot done"></div>
-                  <div className="tl-body"><b>Projeto aprovado na Prefeitura</b><span>Alvará de Execução de Obra SAEPRO nº 151/2024 — Jundiaí.</span></div>
+                  <div className="tl-body"><b>Projeto aprovado na Prefeitura</b><span>Alvará de Execução de Obra SAEPRO nº 151/2024, Jundiaí.</span></div>
                 </div>
                 <div className="tl-item">
                   <div className="tl-dot done"></div>
@@ -745,9 +745,9 @@ export default function Manawa() {
               <div className="field">
                 <label htmlFor="interesse">Tenho interesse em</label>
                 <select ref={interesseRef} id="interesse" name="interesse" defaultValue="2 dormitórios (65 m²)">
-                  <option value="2 dormitórios (65 m²)">2 dormitórios — 65 m²</option>
-                  <option value="3 dormitórios">3 dormitórios — a partir de 84 m²</option>
-                  <option value="3 dormitórios ampliado (102 m²)">3 dormitórios ampliado — 102 m²</option>
+                  <option value="2 dormitórios (65 m²)">2 dormitórios, 65 m²</option>
+                  <option value="3 dormitórios">3 dormitórios, a partir de 84 m²</option>
+                  <option value="3 dormitórios ampliado (102 m²)">3 dormitórios ampliado, 102 m²</option>
                   <option value="Ainda estou decidindo">Ainda estou decidindo</option>
                 </select>
               </div>

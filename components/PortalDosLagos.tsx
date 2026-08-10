@@ -164,7 +164,7 @@ export default function PortalDosLagos() {
           message: inter,
         });
         const msg =
-          '*Novo contato — Portal dos Lagos*\n\n' +
+          '*Novo contato, Portal dos Lagos*\n\n' +
           '👤 Nome: ' + nome + '\n' +
           '📱 Telefone: ' + tel + '\n' +
           (email ? '✉️ E-mail: ' + email + '\n' : '') +
@@ -328,9 +328,9 @@ export default function PortalDosLagos() {
               </div>
             </div>
           </div>
-          <p className="eyebrow on-dark reveal in" data-d="1">Jundiaí · SP {' '}—{' '} Lançamento</p>
+          <p className="eyebrow on-dark reveal in" data-d="1">Jundiaí · SP {' '},{' '} Lançamento</p>
           <h1 className="reveal in" data-d="1" id="heroH1"><span className="script">Respire a leveza da vida</span> em um loteamento feito para você</h1>
-          <p className="hero__sub reveal in" data-d="2">Um verdadeiro clube imerso na natureza, com lagos, áreas verdes e infraestrutura de alto padrão — a 45 minutos da capital paulista, no coração de Jundiaí.</p>
+          <p className="hero__sub reveal in" data-d="2">Um verdadeiro clube imerso na natureza, com lagos, áreas verdes e infraestrutura de alto padrão, a 45 minutos da capital paulista, no coração de Jundiaí.</p>
           <div className="hero__cta reveal in" data-d="3">
             <a className="btn btn--lg" href="#contato" data-cta="hero">Quero saber valores <span className="ar">→</span></a>
             <a className="btn btn--ghost btn--lg" href="#localizacao">Ver localização</a>
@@ -365,7 +365,7 @@ export default function PortalDosLagos() {
             <p className="eyebrow">O empreendimento</p>
             <h2 className="h-sec"><span className="script">Um clube</span> para viver todos os dias</h2>
             <p className="lede">No Portal dos Lagos, cada espaço e cada caminho levam a um lugar único, projetado para encantar. Quadras, piscina, campo, academia ao ar livre e pet place compõem um verdadeiro clube imerso em uma área repleta de natureza.</p>
-            <p style={{ marginTop: '16px', color: 'var(--ink-soft)' }}>Árvores e palmeiras exóticas surpreendem com diferentes cores e texturas, enquanto trilhas e praças desenham formas orgânicas — dando ao passeio um tom de descobertas e novas sensações.</p>
+            <p style={{ marginTop: '16px', color: 'var(--ink-soft)' }}>Árvores e palmeiras exóticas surpreendem com diferentes cores e texturas, enquanto trilhas e praças desenham formas orgânicas, dando ao passeio um tom de descobertas e novas sensações.</p>
             <div className="ticks">
               <div className="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M20 6 9 17l-5-5"></path></svg> Lotes para você construir o projeto dos seus sonhos</div>
               <div className="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M20 6 9 17l-5-5"></path></svg> Natureza, lagos e paisagismo assinado em todo o entorno</div>
@@ -392,7 +392,7 @@ export default function PortalDosLagos() {
             <div className="copy reveal" data-d="1">
               <p className="eyebrow">Localização</p>
               <h2 className="h-sec">Jundiaí, a cidade perfeita para <span className="script">qualidade de vida</span></h2>
-              <p className="lede">A cidade fica a 45 minutos da capital paulista, no eixo entre São Paulo e Campinas — localização ideal para quem busca qualidade de vida sem perder as oportunidades da capital.</p>
+              <p className="lede">A cidade fica a 45 minutos da capital paulista, no eixo entre São Paulo e Campinas, localização ideal para quem busca qualidade de vida sem perder as oportunidades da capital.</p>
               <p style={{ marginTop: '16px', color: 'var(--ink-soft)' }}>Mais do que uma boa localização, Jundiaí tem história para contar: a Rota da Uva é ideal para os amantes do bom vinho e da boa comida, e a cidade é cercada pela Serra do Japi, onde é possível conhecer de perto a exuberância da Mata Atlântica.</p>
               <div className="dist-grid">
                 <div className="dist"><div className="dist__t">Rod. Anhanguera</div><div className="dist__v">22 min<small>aprox. 11,1 km</small></div></div>
@@ -625,7 +625,7 @@ export default function PortalDosLagos() {
           <div className="faq-list reveal" data-d="1">
             <div className="faq-item">
               <button className="faq-q">Onde fica o Portal dos Lagos? <span className="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"></path></svg></span></button>
-              <div className="faq-a"><div className="faq-a__in">Em Jundiaí/SP, a cerca de 45 minutos da capital paulista, no eixo entre São Paulo e Campinas — próximo à Serra do Japi e à Rota da Uva, com fácil acesso às principais rodovias da região.</div></div>
+              <div className="faq-a"><div className="faq-a__in">Em Jundiaí/SP, a cerca de 45 minutos da capital paulista, no eixo entre São Paulo e Campinas, próximo à Serra do Japi e à Rota da Uva, com fácil acesso às principais rodovias da região.</div></div>
             </div>
             <div className="faq-item">
               <button className="faq-q">É um loteamento fechado com portaria? <span className="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"></path></svg></span></button>
@@ -633,7 +633,7 @@ export default function PortalDosLagos() {
             </div>
             <div className="faq-item">
               <button className="faq-q">Quais itens de lazer fazem parte do clube? <span className="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"></path></svg></span></button>
-              <div className="faq-a"><div className="faq-a__in">Piscina adulto e infantil, quadras de tênis e beach tênis, campo gramado, espaço fitness, salão de festas, espaço gourmet, churrasqueiras, brinquedoteca, pet place, praças, pista de caminhada e mais — são +17 itens de lazer.</div></div>
+              <div className="faq-a"><div className="faq-a__in">Piscina adulto e infantil, quadras de tênis e beach tênis, campo gramado, espaço fitness, salão de festas, espaço gourmet, churrasqueiras, brinquedoteca, pet place, praças, pista de caminhada e mais, são +17 itens de lazer.</div></div>
             </div>
             <div className="faq-item">
               <button className="faq-q">Quem são as empresas responsáveis? <span className="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"></path></svg></span></button>

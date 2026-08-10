@@ -124,7 +124,7 @@ const tipoRaw: Tipo[] = [
   { area: '34', title: 'Studio', desc: 'Studio com varanda e vaga de garagem.', tag: '1 ambiente', delay: 0, plantaSrc: p34 },
   { area: '49', title: '2 Dormitórios', desc: '2 dormitórios com varanda e vaga de garagem.', tag: '2 dorms', delay: 80, plantaSrc: p49 },
   { area: '52', title: '2 Dorms · 1 Suíte', desc: '2 dormitórios (1 suíte) com varanda e vaga.', tag: 'com suíte', delay: 160, plantaSrc: p52 },
-  { area: '66', title: '2 Dorms · 1 Suíte', desc: '2 dormitórios (1 suíte) com varanda e vaga — maior planta.', tag: 'maior planta', delay: 240, plantaSrc: p66 },
+  { area: '66', title: '2 Dorms · 1 Suíte', desc: '2 dormitórios (1 suíte) com varanda e vaga, maior planta.', tag: 'maior planta', delay: 240, plantaSrc: p66 },
 ];
 
 const lazerNames = [
@@ -158,7 +158,7 @@ const locPoints = [
 const faqsData = [
   { q: 'Quantas torres e unidades tem o condomínio?', a: 'O Brisas do Japi é um condomínio vertical com 9 torres e 920 unidades no total, em uma área de 29.000m².' },
   { q: 'O Brisas do Japi aceita o Minha Casa Minha Vida?', a: 'Sim. O empreendimento se enquadra no Novo Minha Casa Minha Vida. Faça uma simulação de financiamento com nossos corretores e descubra suas condições.' },
-  { q: 'Quais são os tamanhos das unidades?', a: 'Studio de 34m² e apartamentos de 2 dormitórios de 49m², 52m² (1 suíte) e 66m² (1 suíte) — todos com varanda e vaga.' },
+  { q: 'Quais são os tamanhos das unidades?', a: 'Studio de 34m² e apartamentos de 2 dormitórios de 49m², 52m² (1 suíte) e 66m² (1 suíte), todos com varanda e vaga.' },
   { q: 'Onde fica o empreendimento?', a: 'No Bairro Medeiros, em Jundiaí/SP, com vista para a Serra do Japi e infraestrutura completa por perto. Entre em contato para agendar uma visita guiada.' },
   { q: 'Os apartamentos têm vaga de garagem?', a: 'Sim, todas as tipologias incluem vaga. O condomínio ainda conta com 44 vagas para visitantes.' },
   { q: 'Quais são as áreas de lazer?', a: 'São mais de 17 itens, incluindo piscinas, academia, coworking, beach tennis, salões de festa, pet agility e mais de 5.500m² de áreas ajardinadas.' },
@@ -319,7 +319,7 @@ export default function BrisasDoJapi({
 
   const tipologias = tipoRaw.map((t) => ({
     ...t,
-    zoom: () => setZoom({ src: t.plantaSrc, label: 'Planta ' + t.area + 'm² — ' + t.title }),
+    zoom: () => setZoom({ src: t.plantaSrc, label: 'Planta ' + t.area + 'm², ' + t.title }),
   }));
 
   const gallery = galleryRaw.map((g, i) => ({
@@ -387,7 +387,7 @@ export default function BrisasDoJapi({
             <span style={parseStyle('color:#e8dcc0;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;')}>Lançamento · Bairro Medeiros</span>
           </div>
           <h1 data-reveal="" data-reveal-delay="80" style={parseStyle("font-family:'Bricolage Grotesque',sans-serif;font-weight:700;color:#fff;font-size:clamp(42px,6.4vw,88px);line-height:1.02;letter-spacing:-.02em;margin:0 0 24px;max-width:16ch;text-wrap:balance;")}>Sinta novos ares no Brisas do Japi</h1>
-          <p data-reveal="" data-reveal-delay="160" style={parseStyle('color:rgba(238,244,243,.92);font-size:clamp(16px,1.5vw,20px);line-height:1.6;max-width:56ch;margin:0 0 38px;')}>Studios e apartamentos de 2 dormitórios com varanda, lazer completo e a vista da Serra do Japi. Um projeto VVC de 29.000m² em Jundiaí — agora pelo Novo Minha Casa Minha Vida.</p>
+          <p data-reveal="" data-reveal-delay="160" style={parseStyle('color:rgba(238,244,243,.92);font-size:clamp(16px,1.5vw,20px);line-height:1.6;max-width:56ch;margin:0 0 38px;')}>Studios e apartamentos de 2 dormitórios com varanda, lazer completo e a vista da Serra do Japi. Um projeto VVC de 29.000m² em Jundiaí, agora pelo Novo Minha Casa Minha Vida.</p>
           <div data-reveal="" data-reveal-delay="240" style={parseStyle('display:flex;gap:14px;flex-wrap:wrap;align-items:center;')}>
             <Hoverable as="a" href="#contato" baseStyle={parseStyle('background:#c8a45c;color:#152730;text-decoration:none;font-size:16px;font-weight:700;padding:17px 34px;border-radius:100px;box-shadow:0 14px 34px rgba(200,164,92,.4);transition:transform .25s ease, box-shadow .25s ease;')} hoverStyle={parseStyle('transform:translateY(-3px);box-shadow:0 20px 44px rgba(200,164,92,.5);')}>Receber valores e condições</Hoverable>
             <Hoverable as="a" href={heroCta} target="_blank" rel="noopener" baseStyle={parseStyle('background:rgba(255,255,255,.08);color:#fff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 30px;border-radius:100px;border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(6px);transition:background .25s ease;')} hoverStyle={parseStyle('background:rgba(255,255,255,.18);')}>Falar no WhatsApp</Hoverable>
@@ -419,7 +419,7 @@ export default function BrisasDoJapi({
         <div data-reveal="">
           <div style={parseStyle('color:#b88f3f;font-size:13px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;margin-bottom:18px;')}>O empreendimento</div>
           <h2 style={parseStyle("font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(30px,4.2vw,52px);line-height:1.08;letter-spacing:-.02em;margin:0 0 22px;color:#152730;")}>Um bairro tranquilo, perto de tudo e com vista para a serra</h2>
-          <p style={parseStyle('font-size:17px;line-height:1.7;color:#4c5a61;margin:0 0 18px;')}>O Brisas do Japi é o novo projeto da VVC Construtora no Bairro Medeiros, em Jundiaí. Cada detalhe foi pensado para aproveitar a excelente área de 29.000m² no centro do bairro — um lugar tranquilo e perto de escolas, supermercados, restaurantes e posto de saúde.</p>
+          <p style={parseStyle('font-size:17px;line-height:1.7;color:#4c5a61;margin:0 0 18px;')}>O Brisas do Japi é o novo projeto da VVC Construtora no Bairro Medeiros, em Jundiaí. Cada detalhe foi pensado para aproveitar a excelente área de 29.000m² no centro do bairro, um lugar tranquilo e perto de escolas, supermercados, restaurantes e posto de saúde.</p>
           <p style={parseStyle('font-size:17px;line-height:1.7;color:#4c5a61;margin:0;')}>Todos os apartamentos possuem varanda para você desfrutar a brisa que vem da Serra do Japi. E com o Novo Minha Casa Minha Vida, ficou ainda mais fácil realizar o seu sonho.</p>
         </div>
         <div data-reveal="" data-reveal-delay="120" style={parseStyle('position:relative;')}>
@@ -444,7 +444,7 @@ export default function BrisasDoJapi({
             {tipologias.map((t, i) => (
               <Hoverable key={i} data-reveal="" data-reveal-delay={String(t.delay)} baseStyle={parseStyle('border:1px solid rgba(16,52,62,.12);border-radius:16px;overflow:hidden;background:#f9faf8;display:flex;flex-direction:column;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;')} hoverStyle={parseStyle('transform:translateY(-6px);box-shadow:0 22px 48px rgba(16,52,62,.14);border-color:rgba(200,164,92,.6);')}>
                 <button onClick={t.zoom} style={parseStyle('border:none;padding:0;cursor:zoom-in;display:block;width:100%;aspect-ratio:3/2;background:#eef1ec;border-bottom:1px solid rgba(16,52,62,.08);position:relative;overflow:hidden;')}>
-                  <img src={t.plantaSrc} alt={`Planta ${t.area}m² — ${t.title}, Brisas do Japi`} loading="lazy" style={parseStyle('width:100%;height:100%;object-fit:contain;display:block;padding:14px;box-sizing:border-box;transition:transform .4s ease;')} />
+                  <img src={t.plantaSrc} alt={`Planta ${t.area}m², ${t.title}, Brisas do Japi`} loading="lazy" style={parseStyle('width:100%;height:100%;object-fit:contain;display:block;padding:14px;box-sizing:border-box;transition:transform .4s ease;')} />
                   <span style={parseStyle('position:absolute;bottom:11px;right:11px;background:rgba(16,52,62,.88);color:#fff;font-size:11px;font-weight:700;letter-spacing:.02em;padding:7px 13px;border-radius:100px;pointer-events:none;')}>＋ Ampliar planta</span>
                 </button>
                 <div style={parseStyle('padding:26px;display:flex;flex-direction:column;flex:1;')}>
@@ -501,7 +501,7 @@ export default function BrisasDoJapi({
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;')}>
             {gallery.map((g, i) => (
               <Hoverable key={i} as="button" onClick={g.open} baseStyle={parseStyle('position:relative;border:none;padding:0;cursor:pointer;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:#dfe4e2;display:block;width:100%;box-shadow:0 8px 24px rgba(16,52,62,.1);transition:transform .35s ease, box-shadow .35s ease;')} hoverStyle={parseStyle('transform:translateY(-5px);box-shadow:0 22px 46px rgba(16,52,62,.2);')}>
-                <img src={g.src} alt={`${g.label} — Brisas do Japi, Jundiaí`} loading="lazy" style={parseStyle('width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;')} />
+                <img src={g.src} alt={`${g.label}, Brisas do Japi, Jundiaí`} loading="lazy" style={parseStyle('width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;')} />
                 <span style={parseStyle('position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(8,24,30,.78));')}></span>
                 <span style={parseStyle("position:absolute;left:18px;bottom:16px;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:16px;text-align:left;text-shadow:0 2px 8px rgba(0,0,0,.4);")}>{g.label}</span>
               </Hoverable>
@@ -680,7 +680,7 @@ export default function BrisasDoJapi({
             <div>
               <div style={parseStyle("font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:22px;color:#fff;")}>Brisas do Japi</div>
               <div style={parseStyle('font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#c8a45c;margin-top:6px;')}>Jundiaí · Bairro Medeiros</div>
-              <p style={parseStyle('font-size:14px;line-height:1.6;margin:18px 0 0;max-width:34ch;')}>Bairro Medeiros — Jundiaí/SP. Entre em contato para agendar sua visita com um corretor.</p>
+              <p style={parseStyle('font-size:14px;line-height:1.6;margin:18px 0 0;max-width:34ch;')}>Bairro Medeiros, Jundiaí/SP. Entre em contato para agendar sua visita com um corretor.</p>
             </div>
             <div>
               <div style={parseStyle('color:#fff;font-weight:700;font-size:14px;margin-bottom:14px;')}>Empreendimento</div>

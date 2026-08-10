@@ -561,7 +561,7 @@ export default function GranVilleSantoAngelo() {
           <a
             className="brand"
             href="#inicio"
-            aria-label="Gran Ville Santo Angelo — início"
+            aria-label="Gran Ville Santo Angelo, início"
           >
             <img
               className="brand__logo brand__logo--cream"
@@ -636,7 +636,7 @@ export default function GranVilleSantoAngelo() {
         <div className="hero__content">
           <div className="wrap">
             <span className="hero__kicker">
-              Gran Ville Santo Angelo — Itupeva · SP
+              Gran Ville Santo Angelo, Itupeva · SP
             </span>
             <h1 className="hero__title">
               Acalente sua alma,
@@ -644,7 +644,7 @@ export default function GranVilleSantoAngelo() {
               aconchegue sua <em>natureza</em>.
             </h1>
             <p className="hero__lede">
-              O novo bairro planejado da GP, em uma região privilegiada —
+              O novo bairro planejado da GP, em uma região privilegiada ,
               abraçando a essência da Mata Atlântica.
             </p>
             <div className="hero__cta">
@@ -715,7 +715,7 @@ export default function GranVilleSantoAngelo() {
                 style={{ marginTop: '1.6rem', maxWidth: '48ch' }}
               >
                 Contemplando as espécies nativas e o ecossistema para nos
-                inspirar a viver bem — com tons terrosos e esverdeados que trazem
+                inspirar a viver bem, com tons terrosos e esverdeados que trazem
                 os elementos da natureza viva para dentro do empreendimento.
               </p>
               <div className="tag-row">
@@ -775,7 +775,7 @@ export default function GranVilleSantoAngelo() {
               <p className="muted">
                 Itupeva tornou-se o refúgio de quem deseja mais tranquilidade e,
                 ao mesmo tempo, ter próximos os benefícios de uma metrópole.
-                Vizinha a Jundiaí — uma das melhores cidades do Brasil para se
+                Vizinha a Jundiaí, uma das melhores cidades do Brasil para se
                 viver, com escolas de alto padrão, shoppings e um dos maiores
                 IDHs do país.
               </p>
@@ -873,7 +873,7 @@ export default function GranVilleSantoAngelo() {
             </h2>
             <p className="lead">
               Arquitetura contemporânea e as tendências do novo urbanismo são a
-              base da concepção do Gran Ville Santo Angelo — integrando o
+              base da concepção do Gran Ville Santo Angelo, integrando o
               empreendimento ao seu entorno e à natureza.
             </p>
           </div>
@@ -1053,7 +1053,7 @@ export default function GranVilleSantoAngelo() {
                 Naturalmente bela.
               </h2>
               <p className="lead">
-                As estruturas seguem as cores e tonalidades da natureza — tons
+                As estruturas seguem as cores e tonalidades da natureza, tons
                 terrosos e esverdeados, em busca do equilíbrio entre as
                 construções e o seu redor.
               </p>
@@ -1076,7 +1076,7 @@ export default function GranVilleSantoAngelo() {
               className="lead reveal"
               style={{ marginTop: '.8rem', maxWidth: '52ch' }}
             >
-              Estudos de implantação das casas-referência nos lotes — clique para
+              Estudos de implantação das casas-referência nos lotes, clique para
               ampliar.
             </p>
             <div className="plantas reveal">
@@ -1649,12 +1649,12 @@ export default function GranVilleSantoAngelo() {
               <img
                 className="main"
                 src={`${IMG}/a015.jpg`}
-                alt="Casa Pôr do Sol — projeto de referência"
+                alt="Casa Pôr do Sol, projeto de referência"
               />
               <img
                 className="alt"
                 src={`${IMG}/a025.jpg`}
-                alt="Casa Pôr do Sol — área de piscina"
+                alt="Casa Pôr do Sol, área de piscina"
               />
               <span className="casa__lote">Lote 04 · Quadra M</span>
               <div className="casa__c">
@@ -1669,12 +1669,12 @@ export default function GranVilleSantoAngelo() {
               <img
                 className="main"
                 src={`${IMG}/a028.jpg`}
-                alt="Casa Suspensa — projeto de referência"
+                alt="Casa Suspensa, projeto de referência"
               />
               <img
                 className="alt"
                 src={`${IMG}/a022.jpg`}
-                alt="Casa Suspensa — área de piscina"
+                alt="Casa Suspensa, área de piscina"
               />
               <span className="casa__lote">Lote 03 · Quadra M</span>
               <div className="casa__c">
@@ -1687,12 +1687,12 @@ export default function GranVilleSantoAngelo() {
               <img
                 className="main"
                 src={`${IMG}/a023.jpg`}
-                alt="Casa Luz — projeto de referência"
+                alt="Casa Luz, projeto de referência"
               />
               <img
                 className="alt"
                 src={`${IMG}/a018.jpg`}
-                alt="Casa Luz — área de piscina"
+                alt="Casa Luz, área de piscina"
               />
               <span className="casa__lote">Lote 16 · Quadra H</span>
               <div className="casa__c">
@@ -1707,12 +1707,12 @@ export default function GranVilleSantoAngelo() {
               <img
                 className="main"
                 src={`${IMG}/a026.jpg`}
-                alt="Casa Jardim — projeto de referência"
+                alt="Casa Jardim, projeto de referência"
               />
               <img
                 className="alt"
                 src={`${IMG}/a031.jpg`}
-                alt="Casa Jardim — área de piscina"
+                alt="Casa Jardim, área de piscina"
               />
               <span className="casa__lote">Lote 31 · Quadra E</span>
               <div className="casa__c">
@@ -1727,12 +1727,12 @@ export default function GranVilleSantoAngelo() {
               <img
                 className="main"
                 src={`${IMG}/a034.jpg`}
-                alt="Casa Cristal — projeto de referência"
+                alt="Casa Cristal, projeto de referência"
               />
               <img
                 className="alt"
                 src={`${IMG}/a027.jpg`}
-                alt="Casa Cristal — área de piscina"
+                alt="Casa Cristal, área de piscina"
               />
               <span className="casa__lote">Lote 26 · Quadra R</span>
               <div className="casa__c">
@@ -1745,12 +1745,12 @@ export default function GranVilleSantoAngelo() {
               <img
                 className="main"
                 src={`${IMG}/a013.jpg`}
-                alt="Casa Valentina — projeto de referência"
+                alt="Casa Valentina, projeto de referência"
               />
               <img
                 className="alt"
                 src={`${IMG}/a017.jpg`}
-                alt="Casa Valentina — área de piscina"
+                alt="Casa Valentina, área de piscina"
               />
               <span className="casa__lote">Lotes 15 e 16 · Quadra N</span>
               <div className="casa__c">
@@ -1787,7 +1787,7 @@ export default function GranVilleSantoAngelo() {
                 Com mais de 39 anos, desempenhamos um papel fundamental no
                 desenvolvimento urbano inteligente, sustentável e alinhado às
                 tendências globais. Somos referência em projetos planejados na
-                região metropolitana de São Paulo — e chegamos a Itupeva há mais
+                região metropolitana de São Paulo e chegamos a Itupeva há mais
                 de 10 anos, em 2012, com o Gran Ville São Venâncio.
               </p>
               <div className="gp__stats">
@@ -1982,7 +1982,7 @@ export default function GranVilleSantoAngelo() {
                   <div>
                     <div className="chan__l">Central de Vendas</div>
                     <div className="chan__v">
-                      Rod. Mario Tonolli, 415 — Itupeva-SP
+                      Rod. Mario Tonolli, 415, Itupeva-SP
                     </div>
                   </div>
                 </div>
@@ -2149,7 +2149,7 @@ export default function GranVilleSantoAngelo() {
               >
                 Rod. Mario Tonolli, 415
                 <br />
-                Itupeva — SP
+                Itupeva, SP
               </span>
             </div>
           </div>

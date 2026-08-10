@@ -45,7 +45,7 @@ const DIF_TEXTOS = [
 const PLANTAS = {
   '95': {
     img: '/odeon/a009.jpg',
-    alt: 'Planta do apartamento de 95,85 m² — apto. + box: 100 m²',
+    alt: 'Planta do apartamento de 95,85 m², apto. + box: 100 m²',
     area: '95,85',
     sub: 'Apto. + box: 100 m²',
     features: [
@@ -58,7 +58,7 @@ const PLANTAS = {
   },
   '112': {
     img: '/odeon/a003.jpg',
-    alt: 'Planta do apartamento de 112,3 m² — apto. + box: 116 m²',
+    alt: 'Planta do apartamento de 112,3 m², apto. + box: 116 m²',
     area: '112,3',
     sub: 'Apto. + box: 116 m²',
     features: [
@@ -234,7 +234,7 @@ export default function Odeon() {
 
   const visiveis = GALERIA.filter((g) => filtro === 'todos' || g.un === filtro).map((g) => ({
     ...g,
-    alt: `Foto do decorado de ${g.unidade} — ${g.label}`,
+    alt: `Foto do decorado de ${g.unidade}, ${g.label}`,
   }));
   const carIndex = Math.min(carIndexRaw, visiveis.length - 1);
   const carItem = visiveis[carIndex];
@@ -334,7 +334,7 @@ export default function Odeon() {
       interest: 'Odeon Residencial',
       message: interesse,
     });
-    const txt = `Olá! Sou ${nome} (${telefone}). ${interesse} — Odeon Residencial, Jundiaí.`;
+    const txt = `Olá! Sou ${nome} (${telefone}). ${interesse}, Odeon Residencial, Jundiaí.`;
     window.open(buildWhats(txt), '_blank', 'noopener');
   };
   const ctaClick = () => {};
@@ -380,7 +380,7 @@ export default function Odeon() {
         <section style={parseStyle('position: relative; min-height: 100svh; background: #F4F0E9; display: flex; flex-direction: column; overflow: hidden;')} id="topo" data-screen-label="Hero">
           <div style={parseStyle('max-width: 1080px; margin: 0 auto; box-sizing: border-box; width: 100%; padding: 118px 28px 0; text-align: center; animation: odn-fadeup .9s .15s cubic-bezier(.2,.6,.2,1) both;')}>
             <p style={parseStyle('margin: 0 0 18px; color: #C08A4E; font-size: 12.5px; font-weight: 700; letter-spacing: 0.34em; text-transform: uppercase;')}>
-              Jundiaí · SP — Portal do Paraíso II
+              Jundiaí · SP, Portal do Paraíso II
             </p>
             <h1 style={parseStyle('margin: 0; color: #2E3B4E; font-size: clamp(44px, 5.6vw, 84px); font-weight: 300; line-height: 1.02; letter-spacing: -0.015em; text-wrap: balance;')}>
               Relaxe, respire e{' '}
@@ -491,7 +491,7 @@ export default function Odeon() {
               </h2>
             </div>
             <p style={parseStyle('margin: 0; color: #5A6272; font-size: 17px; font-weight: 300; line-height: 1.7;')}>
-              Do mergulho na piscina coberta com hidro ao happy hour no sportbar — tudo entregue decorado e equipado, sem custo extra de implantação para os moradores.
+              Do mergulho na piscina coberta com hidro ao happy hour no sportbar, tudo entregue decorado e equipado, sem custo extra de implantação para os moradores.
             </p>
           </div>
           <div style={parseStyle('display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px;')}>
@@ -555,7 +555,7 @@ export default function Odeon() {
             </div>
             <div style={parseStyle('display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 22px;')}>
               <figure style={parseStyle('margin: 0; position: relative; overflow: hidden; border-radius: 3px; aspect-ratio: 4/3;')} data-reveal="true">
-                <Hoverable as="img" baseStyle={parseStyle('width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.6,.2,1);')} hoverStyle={{ transform: 'scale(1.045)' }} src="/odeon/a007.jpg" alt="Varanda gourmet integrada à cozinha — decorado de 112,3 m²" loading="lazy" />
+                <Hoverable as="img" baseStyle={parseStyle('width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.6,.2,1);')} hoverStyle={{ transform: 'scale(1.045)' }} src="/odeon/a007.jpg" alt="Varanda gourmet integrada à cozinha, decorado de 112,3 m²" loading="lazy" />
                 <figcaption style={parseStyle('position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 22px 18px; background: linear-gradient(transparent, rgba(30,39,56,.78)); color: #fff; font-size: 15px; font-weight: 500;')}>
                   Varanda gourmet integrada{' '}
                   <span style={parseStyle('display: block; font-size: 11px; font-weight: 400; color: rgba(255,255,255,.6); margin-top: 4px;')}>
@@ -564,7 +564,7 @@ export default function Odeon() {
                 </figcaption>
               </figure>
               <figure style={parseStyle('margin: 0; position: relative; overflow: hidden; border-radius: 3px; aspect-ratio: 4/3;')} data-reveal="true">
-                <Hoverable as="img" baseStyle={parseStyle('width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.6,.2,1);')} hoverStyle={{ transform: 'scale(1.045)' }} src="/odeon/a004.jpg" alt="Cozinha com ilha e cuba dupla — decorado de 112,3 m²" loading="lazy" />
+                <Hoverable as="img" baseStyle={parseStyle('width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.6,.2,1);')} hoverStyle={{ transform: 'scale(1.045)' }} src="/odeon/a004.jpg" alt="Cozinha com ilha e cuba dupla, decorado de 112,3 m²" loading="lazy" />
                 <figcaption style={parseStyle('position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 22px 18px; background: linear-gradient(transparent, rgba(30,39,56,.78)); color: #fff; font-size: 15px; font-weight: 500;')}>
                   Cozinha com ilha e cuba dupla{' '}
                   <span style={parseStyle('display: block; font-size: 11px; font-weight: 400; color: rgba(255,255,255,.6); margin-top: 4px;')}>
@@ -573,7 +573,7 @@ export default function Odeon() {
                 </figcaption>
               </figure>
               <figure style={parseStyle('margin: 0; position: relative; overflow: hidden; border-radius: 3px; aspect-ratio: 4/3;')} data-reveal="true">
-                <Hoverable as="img" baseStyle={parseStyle('width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.6,.2,1);')} hoverStyle={{ transform: 'scale(1.045)' }} src="/odeon/a006.jpg" alt="Suíte com closet — decorado de 112,3 m²" loading="lazy" />
+                <Hoverable as="img" baseStyle={parseStyle('width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.6,.2,1);')} hoverStyle={{ transform: 'scale(1.045)' }} src="/odeon/a006.jpg" alt="Suíte com closet, decorado de 112,3 m²" loading="lazy" />
                 <figcaption style={parseStyle('position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 22px 18px; background: linear-gradient(transparent, rgba(30,39,56,.78)); color: #fff; font-size: 15px; font-weight: 500;')}>
                   Suíte com closet{' '}
                   <span style={parseStyle('display: block; font-size: 11px; font-weight: 400; color: rgba(255,255,255,.6); margin-top: 4px;')}>
@@ -807,7 +807,7 @@ export default function Odeon() {
                   </em>
                 </h2>
                 <p style={parseStyle('margin: 0 0 30px; color: #5A6272; font-size: 17px; font-weight: 300; line-height: 1.75;')}>
-                  O Odeon nasce no Portal do Paraíso II, cercado pelo verde da região e a poucos minutos da infraestrutura consolidada de Jundiaí — uma das cidades com melhor qualidade de vida do interior paulista.
+                  O Odeon nasce no Portal do Paraíso II, cercado pelo verde da região e a poucos minutos da infraestrutura consolidada de Jundiaí, uma das cidades com melhor qualidade de vida do interior paulista.
                 </p>
                 <Hoverable as="a" baseStyle={parseStyle('display: inline-block; background: #2E3B4E; color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 16px 30px; border-radius: 2px; transition: background .25s;')} hoverStyle={{ background: '#C08A4E' }} href="#contato" onClick={ctaClick}>
                   Como chegar

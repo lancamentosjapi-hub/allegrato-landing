@@ -5,7 +5,7 @@ import './auten-jundiai.css';
 // Metadata portada do <head> de auten-jundiai/index.html (paridade de SEO com o estático).
 export const metadata: Metadata = {
   title:
-    'Auten Jundiaí | Apartamentos de 128 a 264 m² no Anhangabaú — Até 4 Suítes e 4 Vagas',
+    'Auten Jundiaí | Apartamentos de 128 a 264 m² no Anhangabaú, Até 4 Suítes e 4 Vagas',
   description:
     'Auten Jundiaí: alto padrão no Anhangabaú, a 3 min da Rua do Retiro. Apartamentos de 128 a 264 m², até 4 suítes e 4 vagas, +20 itens de lazer e apenas 74 unidades. Agende sua visita.',
   keywords: [
@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     'apartamento 4 vagas',
     'Rua do Retiro',
   ],
-  authors: [{ name: 'Auten Incorporadora — Grupo Cataguá' }],
+  authors: [{ name: 'Auten Incorporadora, Grupo Cataguá' }],
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.lotusbrokers.com.br/auten-jundiai' },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
     siteName: 'Auten Jundiaí',
-    title: 'Auten Jundiaí | Alto padrão no Anhangabaú — até 4 suítes e 4 vagas',
+    title: 'Auten Jundiaí | Alto padrão no Anhangabaú, até 4 suítes e 4 vagas',
     description:
       'Apartamentos de 128 a 264 m², +20 itens de lazer e apenas 74 unidades. Um projeto que nasceu para ser um marco na sua vida.',
     images: ['/auten-jundiai/a002.jpg'],
@@ -42,7 +42,7 @@ const apartmentLd = {
   numberOfAccommodationUnits: 74,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Rua Ida Luchesi Gomes de Camargo, 177 — Anhangabaú',
+    streetAddress: 'Rua Ida Luchesi Gomes de Camargo, 177, Anhangabaú',
     addressLocality: 'Jundiaí',
     addressRegion: 'SP',
     addressCountry: 'BR',
@@ -68,7 +68,7 @@ const apartmentLd = {
   ],
   developer: {
     '@type': 'Organization',
-    name: 'Auten Incorporadora — Grupo Cataguá Soluções Imobiliárias',
+    name: 'Auten Incorporadora, Grupo Cataguá Soluções Imobiliárias',
   },
 };
 

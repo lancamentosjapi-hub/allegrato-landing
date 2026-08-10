@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     siteName: 'Lotus Brokers',
     type: 'website',
     url: 'https://www.lotusbrokers.com.br/lotus-busca',
-    title: 'Comprar e alugar imóveis em Jundiaí e Itupeva — Lotus Brokers',
+    title: 'Comprar e alugar imóveis em Jundiaí e Itupeva, Lotus Brokers',
     description:
       'Casas, apartamentos, coberturas e terrenos em Jundiaí, Itupeva e região, curados pelo especialista do bairro.',
     images: [

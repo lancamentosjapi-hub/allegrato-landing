@@ -173,11 +173,11 @@ function buildFaq(data: ImovelRow) {
   return [
     {
       q: 'O imóvel aceita financiamento?',
-      a: `A maioria dos imóveis aceita financiamento bancário. A Lotus acompanha a simulação e a aprovação com você — fale com o especialista para confirmar as condições deste ${tipoLabel}.`,
+      a: `A maioria dos imóveis aceita financiamento bancário. A Lotus acompanha a simulação e a aprovação com você, fale com o especialista para confirmar as condições deste ${tipoLabel}.`,
     },
     {
       q: 'Como agendar uma visita?',
-      a: 'É só preencher o formulário ao lado ou chamar no WhatsApp — o especialista combina o melhor horário com você.',
+      a: 'É só preencher o formulário ao lado ou chamar no WhatsApp, o especialista combina o melhor horário com você.',
     },
     {
       q: `Por que morar em ${local}?`,
@@ -248,7 +248,7 @@ export default function LotusImovel({
   const numFotos = fotos.length;
   const fotoUrl = (i: number): string | undefined => fotos[i]?.url;
   const fotoLegenda = (i: number): string =>
-    fotos[i]?.legenda || `${titulo} — foto ${i + 1}`;
+    fotos[i]?.legenda || `${titulo}, foto ${i + 1}`;
 
   // Mosaico: sempre 5 slots (layout idêntico ao estático); slots sem foto ficam
   // no gradiente placeholder. Overlay "+N fotos" só quando há mais que 5.
@@ -303,7 +303,7 @@ export default function LotusImovel({
   const photosView = fotos.map((f, idx) => ({
     lbId: 'imovel-foto-' + (idx + 1),
     src: f.url,
-    label: f.legenda || `${titulo} — foto ${idx + 1}`,
+    label: f.legenda || `${titulo}, foto ${idx + 1}`,
     style:
       'position:absolute;inset:0;opacity:' +
       (idx === li ? '1' : '0') +
@@ -480,7 +480,7 @@ export default function LotusImovel({
         </div>
       </section>
 
-      {/* TOUR 3D / VÍDEO — só quando o imóvel tem tour_virtual ou link_video */}
+      {/* TOUR 3D / VÍDEO, só quando o imóvel tem tour_virtual ou link_video */}
       {(data.tour_virtual || data.link_video) && (
         <section id="tour" style={parseStyle('background:#15241c;padding:80px 32px;')}>
           <div style={parseStyle('max-width:1080px;margin:0 auto;text-align:center;')}>
@@ -550,7 +550,7 @@ export default function LotusImovel({
           </div>
           <div style={parseStyle('display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid rgba(177,138,74,.35);border-radius:14px;padding:18px 22px;margin-top:20px;')}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b18a4a" strokeWidth="1.8" style={parseStyle('flex-shrink:0;margin-top:1px;')}><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 7.5h.01"></path></svg>
-            <p style={parseStyle('font-size:13.5px;color:#3f6249;font-weight:400;line-height:1.55;margin:0;')}><strong style={parseStyle('color:#15241c;')}>Isto é apenas uma simulação, sem valor de proposta ou compromisso</strong> — serve só para você ter uma base do valor da parcela, calculada pela <strong style={parseStyle('color:#15241c;')}>Tabela Price</strong>. As condições reais (taxa, prazo e aprovação) dependem de <strong style={parseStyle('color:#15241c;')}>análise de crédito</strong> do banco e variam por perfil. Para uma avaliação de verdade, <strong style={parseStyle('color:#15241c;')}>fale com um corretor da Lotus</strong> — a gente te acompanha do cálculo à aprovação.</p>
+            <p style={parseStyle('font-size:13.5px;color:#3f6249;font-weight:400;line-height:1.55;margin:0;')}><strong style={parseStyle('color:#15241c;')}>Isto é apenas uma simulação, sem valor de proposta ou compromisso</strong>, serve só para você ter uma base do valor da parcela, calculada pela <strong style={parseStyle('color:#15241c;')}>Tabela Price</strong>. As condições reais (taxa, prazo e aprovação) dependem de <strong style={parseStyle('color:#15241c;')}>análise de crédito</strong> do banco e variam por perfil. Para uma avaliação de verdade, <strong style={parseStyle('color:#15241c;')}>fale com um corretor da Lotus</strong>, a gente te acompanha do cálculo à aprovação.</p>
           </div>
         </div>
       </section>
@@ -584,7 +584,7 @@ export default function LotusImovel({
             <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(24px,2.8vw,34px);color:#15241c;margin:0 0 20px;line-height:1.1;")}>Este imóvel, em uma resposta.</h2>
             <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:24px;')}>
               <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:10px;')}>Em resumo</div>
-              <p style={parseStyle('font-size:15px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.6;margin:0;')}>{tipoLabel}{areaPrincipal ? ` de ${areaPrincipal} m²` : ''} em {bairro}, {cidade}{valorPrincipal ? ` por ${valorFmtStr}${valorSufixo}` : ''}{data.suites ? ` — ${data.suites} suítes` : (data.quartos ? ` — ${data.quartos} dormitórios` : '')}{data.vagas ? `, ${data.vagas} vagas` : ''}. Fale com a Lotus para conhecer os detalhes.</p>
+              <p style={parseStyle('font-size:15px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.6;margin:0;')}>{tipoLabel}{areaPrincipal ? ` de ${areaPrincipal} m²` : ''} em {bairro}, {cidade}{valorPrincipal ? ` por ${valorFmtStr}${valorSufixo}` : ''}{data.suites ? `, ${data.suites} suítes` : (data.quartos ? `, ${data.quartos} dormitórios` : '')}{data.vagas ? `, ${data.vagas} vagas` : ''}. Fale com a Lotus para conhecer os detalhes.</p>
             </div>
           </div>
           <div>

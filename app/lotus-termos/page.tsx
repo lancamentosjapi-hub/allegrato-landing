@@ -6,16 +6,16 @@ import { footerLegalLine } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Termos de Uso | Lotus Brokers',
   description:
-    'Termos de Uso do site da Lotus Brokers — condições de utilização e informações sobre imóveis e serviços.',
+    'Termos de Uso do site da Lotus Brokers, condições de utilização e informações sobre imóveis e serviços.',
   alternates: {
     canonical: 'https://www.lotusbrokers.com.br/lotus-termos',
   },
   openGraph: {
     type: 'website',
     url: 'https://www.lotusbrokers.com.br/lotus-termos',
-    title: 'Termos de Uso — Lotus Brokers',
+    title: 'Termos de Uso, Lotus Brokers',
     description:
-      'Termos de Uso do site da Lotus Brokers — condições de utilização e informações sobre imóveis e serviços.',
+      'Termos de Uso do site da Lotus Brokers, condições de utilização e informações sobre imóveis e serviços.',
     images: [
       'https://i.postimg.cc/nzx1wvHM/Chat-GPT-Image-25-de-jun-de-2026-14-04-13.png',
     ],

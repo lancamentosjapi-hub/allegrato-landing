@@ -15,14 +15,14 @@ export const metadata: Metadata = {
   ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
   title: 'Imóveis, lançamentos e bairros em Jundiaí e Itupeva | Lotus Brokers',
   description:
-    'Lotus Brokers — imobiliária moderna de Jundiaí e Itupeva, voltada para um atendimento de excelência. Lançamentos, casas, apartamentos e terrenos com especialistas que conhecem cada bairro.',
+    'Lotus Brokers, imobiliária moderna de Jundiaí e Itupeva, voltada para um atendimento de excelência. Lançamentos, casas, apartamentos e terrenos com especialistas que conhecem cada bairro.',
   alternates: { canonical: 'https://www.lotusbrokers.com.br/lotus-home' },
   openGraph: {
     siteName: 'Lotus Brokers',
     type: 'website',
     url: 'https://www.lotusbrokers.com.br/lotus-home',
     locale: 'pt_BR',
-    title: 'Lotus Brokers — Imóveis em Jundiaí e Itupeva',
+    title: 'Lotus Brokers, Imóveis em Jundiaí e Itupeva',
     description:
       'Imobiliária moderna de Jundiaí e Itupeva, com atendimento de excelência. Lançamentos e revenda com especialistas de cada bairro.',
     images: [

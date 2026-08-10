@@ -176,7 +176,7 @@ const diferenciais = [
   { t: 'Som ambiente', d: 'Sistema de som nas churrasqueiras e no salão de festas.' },
   { t: 'Wi-Fi nas áreas de lazer', d: 'Infraestrutura para conectividade em todo o lazer.' },
   { t: 'Wi-Fi nos apartamentos', d: 'Preparação para internet em todas as unidades.' },
-  { t: 'Tomadas acima do mercado', d: 'Quantidade de pontos superior ao padrão — vide memorial.' },
+  { t: 'Tomadas acima do mercado', d: 'Quantidade de pontos superior ao padrão, vide memorial.' },
 ];
 
 const nearby = [
@@ -235,7 +235,7 @@ export default function MaxxSantaAngela({
 
   // Render context (renderVals do script) — valores derivados EXATOS.
   const gold = '#B0894E';
-  void gold; // presente no script; sem uso direto no markup — mantido por fidelidade.
+  void gold; // presente no script; sem uso direto no markup, mantido por fidelidade.
   const wa = whatsappNumber || '5511926143393';
   const waLink =
     'https://wa.me/' +
@@ -489,7 +489,7 @@ export default function MaxxSantaAngela({
               <span style={parseStyle('font-size:11.5px;letter-spacing:.32em;font-weight:700;color:#B0894E')}>O EMPREENDIMENTO</span>
             </div>
             <h2 style={parseStyle("font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.08;margin:0;color:#2B2521")}>Um lugar cercado de<br />diversão, cultura e<br /><em style={parseStyle('color:#B0894E')}>conveniência.</em></h2>
-            <p style={parseStyle('font-size:16.5px;line-height:1.75;color:#5e5347;margin:28px 0 0;max-width:520px')}>O <strong style={parseStyle('color:#2B2521')}>Maxx Santa Angela</strong> fica pertinho do Maxi Shopping Jundiaí, um dos mais tradicionais shoppings da cidade. Por perto também estão o SESC Jundiaí, o Jardim Botânico e muitos serviços — supermercados, lojas, bancos e escolas.</p>
+            <p style={parseStyle('font-size:16.5px;line-height:1.75;color:#5e5347;margin:28px 0 0;max-width:520px')}>O <strong style={parseStyle('color:#2B2521')}>Maxx Santa Angela</strong> fica pertinho do Maxi Shopping Jundiaí, um dos mais tradicionais shoppings da cidade. Por perto também estão o SESC Jundiaí, o Jardim Botânico e muitos serviços, supermercados, lojas, bancos e escolas.</p>
             <p style={parseStyle('font-size:16.5px;line-height:1.75;color:#5e5347;margin:18px 0 0;max-width:520px')}>Arte, lazer e comodidade você encontra junto com o Maxx. <strong style={parseStyle('color:#2B2521')}>More pertinho de quem você gosta.</strong></p>
             <div style={parseStyle('display:flex;flex-wrap:wrap;gap:12px;margin-top:34px')}>
               {chips.map((c, i) => (
@@ -674,7 +674,7 @@ export default function MaxxSantaAngela({
               <span style={parseStyle('font-size:11.5px;letter-spacing:.32em;font-weight:700;color:#B0894E')}>LOCALIZAÇÃO</span>
             </div>
             <h2 style={parseStyle("font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.08;margin:0;color:#2B2521")}>No coração de tudo<br />o que importa.</h2>
-            <p style={parseStyle('font-size:16px;line-height:1.7;color:#5e5347;margin:22px 0 30px')}>Rua João Tonini, 400 — Vila Galvão, Jundiaí/SP.</p>
+            <p style={parseStyle('font-size:16px;line-height:1.7;color:#5e5347;margin:22px 0 30px')}>Rua João Tonini, 400, Vila Galvão, Jundiaí/SP.</p>
             <div style={parseStyle('display:flex;flex-direction:column')}>
               {nearby.map((n, i) => (
                 <div key={i} data-reveal="" style={parseStyle('opacity:0;transform:translateX(-16px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;gap:18px;padding:17px 0;border-bottom:1px solid rgba(43,37,33,.1)')}>
@@ -700,7 +700,7 @@ export default function MaxxSantaAngela({
           <div data-reveal="" style={parseStyle('opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)')}>
             <img src="https://santaangelaconstrutora.com.br/wp-content/uploads/2022/11/logo-01.png" alt="Santa Angela Construtora" style={parseStyle('height:58px;width:auto;margin:0 auto 30px;display:block;opacity:.96')} />
             <span style={parseStyle('font-size:11.5px;letter-spacing:.32em;font-weight:700;color:#D9B877')}>A CONSTRUTORA MAIS CONFIÁVEL DA REGIÃO</span>
-            <h2 style={parseStyle("font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(26px,3.6vw,46px);line-height:1.2;margin:22px auto 0;max-width:780px")}>Há mais de 40 anos construindo lares — e a confiança de milhares de famílias.</h2>
+            <h2 style={parseStyle("font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(26px,3.6vw,46px);line-height:1.2;margin:22px auto 0;max-width:780px")}>Há mais de 40 anos construindo lares e a confiança de milhares de famílias.</h2>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:44px')} data-statgrid="">
             <div data-reveal="" style={parseStyle('opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)')}>
@@ -775,8 +775,8 @@ export default function MaxxSantaAngela({
                 <svg width="30" height="34" viewBox="0 0 100 112" fill="none" stroke="currentColor" strokeWidth="4.4" strokeLinejoin="round" strokeLinecap="round"><rect x="13" y="26" width="26" height="78"></rect><rect x="61" y="26" width="26" height="78"></rect><polyline points="39,26 50,64 61,26"></polyline></svg>
                 <span style={parseStyle('display:flex;flex-direction:column;line-height:1')}><span style={parseStyle("font-family:'Bodoni Moda',serif;font-weight:700;font-size:22px;letter-spacing:.16em;padding-left:.16em")}>MAXX</span><span style={parseStyle('font-size:8.5px;letter-spacing:.42em;margin-top:3px;color:#9a8a72;font-weight:600')}>SANTA ANGELA</span></span>
               </div>
-              <p style={parseStyle('font-size:14px;line-height:1.7;margin:22px 0 0;max-width:340px')}>Rua João Tonini, 400 — Vila Galvão, Jundiaí/SP.</p>
-              <p style={parseStyle('font-size:14px;line-height:1.7;margin:14px 0 0;max-width:340px')}><strong style={parseStyle('color:#F6F1E8')}>Vendas:</strong> Casa Santa Angela, Av. Antônio Frederico Ozanan, 7600 — atrás do Burger King Latorre.</p>
+              <p style={parseStyle('font-size:14px;line-height:1.7;margin:22px 0 0;max-width:340px')}>Rua João Tonini, 400, Vila Galvão, Jundiaí/SP.</p>
+              <p style={parseStyle('font-size:14px;line-height:1.7;margin:14px 0 0;max-width:340px')}><strong style={parseStyle('color:#F6F1E8')}>Vendas:</strong> Casa Santa Angela, Av. Antônio Frederico Ozanan, 7600, atrás do Burger King Latorre.</p>
             </div>
             <div>
               <h4 style={parseStyle('font-size:12px;letter-spacing:.26em;color:#D9B877;font-weight:700;margin:0 0 18px')}>CONTATO</h4>
@@ -792,7 +792,7 @@ export default function MaxxSantaAngela({
             </div>
           </div>
           <p style={parseStyle('font-size:11px;line-height:1.7;color:#7d7163;margin:48px 0 0;border-top:1px solid rgba(255,255,255,.08);padding-top:28px')}>Incorporação imobiliária registrada conforme R.7 da matrícula nº 163.077 do 1º Cartório de Registro de Imóveis de Jundiaí, em 13 de fevereiro de 2020. Todas as imagens são perspectivas digitais do empreendimento, razão pela qual as informações constantes no Memorial de Incorporação e nos contratos de promessa de compra e venda prevalecerão sobre as imagens divulgadas neste material. As árvores estão em sua perspectiva adulta, podendo haver variação de tamanho na entrega. Objetos de decoração, mobiliário e equipamentos retratados não fazem parte da entrega das unidades nem das áreas comuns.</p>
-          <p style={parseStyle('font-size:12px;color:#7d7163;margin:22px 0 0')}>Maxx Santa Angela · Santa Angela Construtora — material publicitário sem valor contratual.</p>
+          <p style={parseStyle('font-size:12px;color:#7d7163;margin:22px 0 0')}>Maxx Santa Angela · Santa Angela Construtora, material publicitário sem valor contratual.</p>
           <p style={parseStyle('font-size:12.5px;color:#cabfae;margin:10px 0 0;font-weight:700;letter-spacing:.02em')}>Página desenvolvida pela <span style={parseStyle('color:#D9B877')}>Imobiliária Lotus Brokers</span>.</p>
         </div>
       </footer>

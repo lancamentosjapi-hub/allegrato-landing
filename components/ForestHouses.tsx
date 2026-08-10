@@ -347,7 +347,7 @@ export default function ForestHouses() {
       {/* ====================== NAV ====================== */}
       <header className="nav" id="nav" data-screen-label="Navegação">
         <div className="container nav__inner">
-          <a href="#top" className="nav__brand" aria-label="Lotus Brokers — início">
+          <a href="#top" className="nav__brand" aria-label="Lotus Brokers, início">
             <span className="bmark">Japi</span>
             <span className="bsub">Lançamentos</span>
           </a>
@@ -379,7 +379,7 @@ export default function ForestHouses() {
           <div className="container hero__inner">
             <p className="eyebrow hero__eyebrow" data-reveal="" style={{ '--d': '80ms' } as React.CSSProperties}>Casas em condomínio · Louveira / SP</p>
             <h1 className="display" data-reveal="" style={{ '--d': '180ms' } as React.CSSProperties}>Forest Houses<span className="accent">Viver é natural.</span></h1>
-            <p className="hero__sub" data-reveal="" style={{ '--d': '320ms' } as React.CSSProperties}>Um estilo de vida moderno, conectado à natureza — a apenas 2 km do centro de Louveira. Natural, moderno e funcional.</p>
+            <p className="hero__sub" data-reveal="" style={{ '--d': '320ms' } as React.CSSProperties}>Um estilo de vida moderno, conectado à natureza, a apenas 2 km do centro de Louveira. Natural, moderno e funcional.</p>
             <div className="hero__specs" data-reveal="" style={{ '--d': '440ms' } as React.CSSProperties}>
               <span className="hero__chip"><b>147 m²</b></span>
               <span className="hero__chip"><b>200 m²</b></span>
@@ -414,7 +414,7 @@ export default function ForestHouses() {
                 <span className="w">moderno,</span>
                 <span className="w"><b>funcional.</b></span>
               </div>
-              <p className="lead" data-reveal="" style={{ '--d': '240ms', marginTop: '32px' } as React.CSSProperties}>Forest Houses nasce do encontro entre arquitetura contemporânea e o verde que o cerca. Volumes limpos, madeira natural e amplas sacadas desenham casas pensadas para integrar os ambientes — e a sua rotina — à paisagem.</p>
+              <p className="lead" data-reveal="" style={{ '--d': '240ms', marginTop: '32px' } as React.CSSProperties}>Forest Houses nasce do encontro entre arquitetura contemporânea e o verde que o cerca. Volumes limpos, madeira natural e amplas sacadas desenham casas pensadas para integrar os ambientes e a sua rotina, à paisagem.</p>
               <div data-reveal="" style={{ '--d': '360ms', marginTop: '36px' } as React.CSSProperties}>
                 <a href="#fachadas" className="textlink">Ver fachadas e renders <span className="ar">→</span></a>
               </div>
@@ -425,7 +425,7 @@ export default function ForestHouses() {
               </div>
               <div className="intro__badge" data-reveal="" style={{ '--d': '300ms' } as React.CSSProperties}>
                 <div className="n">3</div>
-                <div className="t">Suítes, todas com sacada — incluindo a suíte casal com closet</div>
+                <div className="t">Suítes, todas com sacada, incluindo a suíte casal com closet</div>
               </div>
             </div>
           </div>
@@ -442,14 +442,14 @@ export default function ForestHouses() {
                   <span>Tecnologia</span><span>Economia</span><span>Conforto</span>
                 </div>
               </div>
-              <p className="lead" data-reveal="" style={{ '--d': '200ms' } as React.CSSProperties}>Cada casa entrega uma base completa de infraestrutura — do cabeamento à automação — para você morar com mais conforto, eficiência e tranquilidade desde o primeiro dia.</p>
+              <p className="lead" data-reveal="" style={{ '--d': '200ms' } as React.CSSProperties}>Cada casa entrega uma base completa de infraestrutura, do cabeamento à automação, para você morar com mais conforto, eficiência e tranquilidade desde o primeiro dia.</p>
             </div>
 
             <div className="tech__grid">
               <article className="tech__item" data-reveal="" style={{ '--d': '0ms' } as React.CSSProperties}>
                 <span className="num">01</span>
                 <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M3 18h18M5 18V9m14 9V9M3 9l9-5 9 5M9 18v-4h6v4" /></svg>
-                <div><h3>Fiação subterrânea</h3><p>Cabeamento sob o solo — sem postes ou fios aparentes na paisagem.</p></div>
+                <div><h3>Fiação subterrânea</h3><p>Cabeamento sob o solo, sem postes ou fios aparentes na paisagem.</p></div>
               </article>
               <article className="tech__item" data-reveal="" style={{ '--d': '90ms' } as React.CSSProperties}>
                 <span className="num">02</span>
@@ -482,7 +482,7 @@ export default function ForestHouses() {
               <div data-reveal="">
                 <p className="eyebrow">Tecnologia invisível</p>
                 <h3 className="h-lg" style={{ marginTop: '16px', color: 'var(--sand)' }}>O que você não vê, valoriza o que você vive.</h3>
-                <p className="lead" style={{ marginTop: '20px' }}>A fiação subterrânea e os pontos de carga elétrica são planejados desde o projeto — preservando a vista, a segurança e a estética do condomínio.</p>
+                <p className="lead" style={{ marginTop: '20px' }}>A fiação subterrânea e os pontos de carga elétrica são planejados desde o projeto, preservando a vista, a segurança e a estética do condomínio.</p>
               </div>
               <div className="frame" data-reveal="" style={{ '--d': '120ms' } as React.CSSProperties}>
                 <img src="/forest-houses/a013.jpg" alt="Ilustração técnica da fiação subterrânea e ponto de carga elétrica do Forest Houses" loading="lazy" />
@@ -499,7 +499,7 @@ export default function ForestHouses() {
                 <p className="eyebrow" data-reveal="">Galeria · Fachadas</p>
                 <h2 className="h-xl" data-reveal="" style={{ '--d': '120ms', marginTop: '18px' } as React.CSSProperties}>Arquitetura que<br />conversa com a mata.</h2>
               </div>
-              <p className="lead" data-reveal="" style={{ '--d': '200ms' } as React.CSSProperties}>Linhas horizontais, branco arquitetônico e madeira — perspectivas artísticas do condomínio.</p>
+              <p className="lead" data-reveal="" style={{ '--d': '200ms' } as React.CSSProperties}>Linhas horizontais, branco arquitetônico e madeira, perspectivas artísticas do condomínio.</p>
             </div>
 
             <div className="mosaic">
@@ -581,18 +581,18 @@ export default function ForestHouses() {
               </div>
               <div className="plans__viewer">
                 <div className="plans__panel active" data-panel="terreo">
-                  <button className="plan-fig" data-img="/forest-houses/a008.jpg" data-cap="Planta piso térreo — Tipo 1" aria-label="Ampliar planta do piso térreo">
+                  <button className="plan-fig" data-img="/forest-houses/a008.jpg" data-cap="Planta piso térreo, Tipo 1" aria-label="Ampliar planta do piso térreo">
                     <img src="/forest-houses/a008.jpg" alt="Planta do piso térreo da casa Tipo 1 do Forest Houses" loading="lazy" />
                     <span className="plan-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M11 8v6M8 11h6" /><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg> Ampliar</span>
                   </button>
-                  <div className="cap"><span>Planta piso térreo — Tipo 1</span><span>Clique para ampliar</span></div>
+                  <div className="cap"><span>Planta piso térreo, Tipo 1</span><span>Clique para ampliar</span></div>
                 </div>
                 <div className="plans__panel" data-panel="superior">
-                  <button className="plan-fig" data-img="/forest-houses/a006.jpg" data-cap="Planta piso superior — 3 suítes" aria-label="Ampliar planta do piso superior">
+                  <button className="plan-fig" data-img="/forest-houses/a006.jpg" data-cap="Planta piso superior, 3 suítes" aria-label="Ampliar planta do piso superior">
                     <img src="/forest-houses/a006.jpg" alt="Planta do piso superior com 3 suítes" loading="lazy" />
                     <span className="plan-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M11 8v6M8 11h6" /><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg> Ampliar</span>
                   </button>
-                  <div className="cap"><span>Planta piso superior — 3 suítes</span><span>Clique para ampliar</span></div>
+                  <div className="cap"><span>Planta piso superior, 3 suítes</span><span>Clique para ampliar</span></div>
                 </div>
               </div>
             </div>
@@ -609,7 +609,7 @@ export default function ForestHouses() {
                 <p className="eyebrow" data-reveal="">Lazer</p>
                 <h2 className="h-xl" data-reveal="" style={{ '--d': '120ms', marginTop: '18px' } as React.CSSProperties}>Completo por natureza.</h2>
               </div>
-              <p className="lead" data-reveal="" style={{ '--d': '200ms' } as React.CSSProperties}>Mais de 30 mil m² dedicados ao convívio e ao verde — um clube a céu aberto, do beach tennis às piscinas, dentro de casa.</p>
+              <p className="lead" data-reveal="" style={{ '--d': '200ms' } as React.CSSProperties}>Mais de 30 mil m² dedicados ao convívio e ao verde, um clube a céu aberto, do beach tennis às piscinas, dentro de casa.</p>
             </div>
 
             <div className="lazer__stats">
@@ -655,7 +655,7 @@ export default function ForestHouses() {
               <div className="loc__list" data-reveal="" style={{ '--d': '280ms' } as React.CSSProperties}>
                 <div className="dist">
                   <div className="km">2<span className="u">km</span></div>
-                  <div className="place"><div className="p">Louveira — Centro</div><div className="s">Comércio, serviços e o dia a dia ao lado</div></div>
+                  <div className="place"><div className="p">Louveira, Centro</div><div className="s">Comércio, serviços e o dia a dia ao lado</div></div>
                   <div className="time">4 min</div>
                 </div>
                 <div className="dist">
@@ -676,7 +676,7 @@ export default function ForestHouses() {
               </div>
             </div>
             <div className="loc__map" data-reveal="">
-              <iframe title="Mapa de Louveira / SP — Forest Houses" src="https://www.google.com/maps?q=Louveira,+S%C3%A3o+Paulo,+Brasil&z=13&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+              <iframe title="Mapa de Louveira / SP, Forest Houses" src="https://www.google.com/maps?q=Louveira,+S%C3%A3o+Paulo,+Brasil&z=13&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
               <a className="loc__maplink" href="https://www.google.com/maps/search/?api=1&query=Louveira+SP" target="_blank" rel="noopener">
                 <span className="dot" /> Abrir no Google Maps →
               </a>
@@ -739,7 +739,7 @@ export default function ForestHouses() {
           <div className="footer__top">
             <div className="footer__brand">
               <div className="bmark">Forest Houses</div>
-              <p>Casas em condomínio em Louveira/SP. Natural, moderno e funcional — um estilo de vida conectado à natureza.</p>
+              <p>Casas em condomínio em Louveira/SP. Natural, moderno e funcional, um estilo de vida conectado à natureza.</p>
             </div>
             <div className="footer__col">
               <h4>Navegar</h4>
@@ -751,7 +751,7 @@ export default function ForestHouses() {
               <a href="#localizacao">Localização</a>
             </div>
             <div className="footer__col">
-              <h4>Contato — Lotus Brokers</h4>
+              <h4>Contato, Lotus Brokers</h4>
               <a href="https://wa.me/5511926143393" target="_blank" rel="noopener">WhatsApp (11) 92614-3393</a>
               <a href="tel:+5511926143393">Ligar: (11) 92614-3393</a>
               <p>Louveira / SP</p>

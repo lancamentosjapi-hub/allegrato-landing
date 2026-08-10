@@ -348,7 +348,7 @@ export default function ResortPrime() {
               Engordadouro · Jundiaí / SP
             </span>
             <h1 className="reveal d1">Viva o estilo de vida Resort,<span className="script">todos os dias.</span></h1>
-            <p className="hero__lead reveal d2">Um verdadeiro refúgio onde cada detalhe foi pensado para a sua família sentir o conforto de um resort de verdade — lazer, bem-estar e exclusividade, o ano inteiro.</p>
+            <p className="hero__lead reveal d2">Um verdadeiro refúgio onde cada detalhe foi pensado para a sua família sentir o conforto de um resort de verdade, lazer, bem-estar e exclusividade, o ano inteiro.</p>
             <div className="hero__pills reveal d3">
               <span className="hero__pill"><b>4</b> Torres</span>
               <span className="hero__pill"><b>618</b> Unidades</span>
@@ -409,19 +409,19 @@ export default function ResortPrime() {
             <img src="/resort-prime/a009.jpg" alt="Vista aérea do Resort Prime Santa Angela no bairro Engordadouro" />
             <div className="loc__addr">
               <span className="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
-              <div><b>Av. Caetano Gornati</b><span>Engordadouro — Jundiaí / SP</span></div>
+              <div><b>Av. Caetano Gornati</b><span>Engordadouro, Jundiaí / SP</span></div>
             </div>
           </div>
           <div className="loc__copy">
             <span className="eyebrow reveal">Seu novo endereço</span>
             <h2 className="reveal d1">No melhor do Engordadouro, em Jundiaí</h2>
-            <p className="reveal d2" style={{ color: 'var(--muted)', fontSize: '1.05rem', marginTop: '18px' }}>Uma região em crescimento que combina tranquilidade e contato com a natureza, sem perder o acesso à infraestrutura urbana — qualidade de vida para toda a família.</p>
+            <p className="reveal d2" style={{ color: 'var(--muted)', fontSize: '1.05rem', marginTop: '18px' }}>Uma região em crescimento que combina tranquilidade e contato com a natureza, sem perder o acesso à infraestrutura urbana, qualidade de vida para toda a família.</p>
             <ul className="loc__list">
               <li className="reveal d2"><span className="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 20h10M10 20V9l5-4 5 4v11M3 20V13l4-3"></path></svg></span><div><b>Parque Engordadouro</b><span>Áreas verdes e lazer ao ar livre pertinho de casa.</span></div></li>
               <li className="reveal d3"><span className="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 17V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10M2 17h20M7 21h10"></path></svg></span><div><b>Anhanguera e Bandeirantes</b><span>Fácil acesso às principais rodovias da região.</span></div></li>
               <li className="reveal d4"><span className="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg></span><div><b>Escolas e comércio pujante</b><span>Bairro seguro e completo para o dia a dia.</span></div></li>
             </ul>
-            <iframe className="map-embed reveal" title="Mapa — Av. Caetano Gornati, Engordadouro, Jundiaí" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Av.%20Caetano%20Gornati%2C%20Engordadouro%2C%20Jundia%C3%AD%20-%20SP&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+            <iframe className="map-embed reveal" title="Mapa, Av. Caetano Gornati, Engordadouro, Jundiaí" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Av.%20Caetano%20Gornati%2C%20Engordadouro%2C%20Jundia%C3%AD%20-%20SP&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
           </div>
         </div>
       </section>
@@ -432,7 +432,7 @@ export default function ResortPrime() {
           <div className="shead center reveal">
             <span className="eyebrow center">Lazer de resort no seu dia a dia</span>
             <h2>Completo, moderno e pensado para conviver</h2>
-            <p>Espaços projetados para promover interação, movimento e momentos em família — a comodidade de um resort, com organização e segurança o ano inteiro.</p>
+            <p>Espaços projetados para promover interação, movimento e momentos em família, a comodidade de um resort, com organização e segurança o ano inteiro.</p>
           </div>
 
           <div className="gallery reveal d1">
@@ -516,9 +516,9 @@ export default function ResortPrime() {
             <span className="celtica-badge reveal"><span className="dot"></span>Parceria exclusiva</span>
             <span className="eyebrow reveal d1" style={{ color: 'var(--terra-soft)' }}>Saúde e relaxamento integrados</span>
             <h2 className="reveal d1">O 1º condomínio em Jundiaí com a Academia Céltica</h2>
-            <p className="reveal d2" style={{ color: 'rgba(255,255,255,0.78)', fontSize: '1.05rem', marginTop: '16px' }}>Um Complexo Fitness completo: academia moderna, espaço beleza, áreas de pilates e yoga, piscina coberta aquecida e vestiários acessíveis. E mais — a renomada academia Céltica, exclusiva e customizada, dentro do condomínio.</p>
+            <p className="reveal d2" style={{ color: 'rgba(255,255,255,0.78)', fontSize: '1.05rem', marginTop: '16px' }}>Um Complexo Fitness completo: academia moderna, espaço beleza, áreas de pilates e yoga, piscina coberta aquecida e vestiários acessíveis. E mais, a renomada academia Céltica, exclusiva e customizada, dentro do condomínio.</p>
             <ul className="benefits reveal d2">
-              <li><span className="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 6 9 17l-5-5"></path></svg></span><span><b style={{ fontFamily: 'var(--ff-head)' }}>Profissional dedicado</b> — 50 horas semanais à disposição.</span></li>
+              <li><span className="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 6 9 17l-5-5"></path></svg></span><span><b style={{ fontFamily: 'var(--ff-head)' }}>Profissional dedicado</b>, 50 horas semanais à disposição.</span></li>
               <li><span className="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 6 9 17l-5-5"></path></svg></span><span>Treinos individualizados para os usuários da academia.</span></li>
               <li><span className="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 6 9 17l-5-5"></path></svg></span><span>Metodologias de uma Equipe Técnica Multidisciplinar.</span></li>
               <li><span className="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 6 9 17l-5-5"></path></svg></span><span>Qualificação trimestral dos equipamentos com laudos.</span></li>
@@ -533,9 +533,9 @@ export default function ResortPrime() {
         <div className="wrap split split--rev">
           <div className="split__media reveal">
             <div className="media-stack">
-              <img className="m1" src="/resort-prime/a013.jpg" alt="Club Prime — piscina privativa" data-lb="images/club-pool.jpg" data-cap="Club Prime — Piscina privativa" />
-              <img src="/resort-prime/a022.jpg" alt="Club Prime — área gourmet" data-lb="images/gourmet-pool.jpg" data-cap="Club Prime — Espaço Gourmet" />
-              <img src="/resort-prime/a017.jpg" alt="Club Prime — lazer" data-lb="images/pool-gourmet-play.jpg" data-cap="Club Prime — Lazer e convivência" />
+              <img className="m1" src="/resort-prime/a013.jpg" alt="Club Prime, piscina privativa" data-lb="images/club-pool.jpg" data-cap="Club Prime, Piscina privativa" />
+              <img src="/resort-prime/a022.jpg" alt="Club Prime, área gourmet" data-lb="images/gourmet-pool.jpg" data-cap="Club Prime, Espaço Gourmet" />
+              <img src="/resort-prime/a017.jpg" alt="Club Prime, lazer" data-lb="images/pool-gourmet-play.jpg" data-cap="Club Prime, Lazer e convivência" />
             </div>
           </div>
           <div className="split__copy">
@@ -562,37 +562,37 @@ export default function ResortPrime() {
               <a href="#agende" className="btn btn-primary reveal d2" style={{ marginTop: '24px' }}>Quero ver as plantas disponíveis</a>
             </div>
             <div className="plans-top__media reveal d1">
-              <img src="/resort-prime/a007.jpg" alt="Apartamento decorado do Resort Prime Santa Angela" data-lb="images/decor-dining.jpg" data-cap="Apartamento decorado — perspectiva ilustrada" />
+              <img src="/resort-prime/a007.jpg" alt="Apartamento decorado do Resort Prime Santa Angela" data-lb="images/decor-dining.jpg" data-cap="Apartamento decorado, perspectiva ilustrada" />
             </div>
           </div>
 
           <div className="plan-grid">
-            <div className="plan-figure reveal" data-lb="images/plan-94.png" data-cap="Planta — 94 m²">
+            <div className="plan-figure reveal" data-lb="images/plan-94.png" data-cap="Planta, 94 m²">
               <div className="plan-figure__img"><img src="/resort-prime/a024.png" alt="Planta humanizada do apartamento de 94 m²" /></div>
               <div className="plan-figure__cap"><span className="m">94<sup>m²</sup></span><span className="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"></path></svg>Torres A e B</span></div>
             </div>
-            <div className="plan-figure reveal d1" data-lb="images/plan-101.png" data-cap="Planta — 101 m²">
+            <div className="plan-figure reveal d1" data-lb="images/plan-101.png" data-cap="Planta, 101 m²">
               <div className="plan-figure__img"><img src="/resort-prime/a025.png" alt="Planta humanizada do apartamento de 101 m²" /></div>
               <div className="plan-figure__cap"><span className="m">101<sup>m²</sup></span><span className="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"></path></svg>Torres A e B</span></div>
             </div>
-            <div className="plan-figure reveal d2" data-lb="images/plan-109.png" data-cap="Planta — 109 m²">
+            <div className="plan-figure reveal d2" data-lb="images/plan-109.png" data-cap="Planta, 109 m²">
               <div className="plan-figure__img"><img src="/resort-prime/a023.png" alt="Planta humanizada do apartamento de 109 m²" /></div>
               <div className="plan-figure__cap"><span className="m">109<sup>m²</sup></span><span className="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"></path></svg>Torres A e B</span></div>
             </div>
-            <div className="plan-figure reveal" data-lb="images/plan-112.png" data-cap="Planta — 112 m²">
+            <div className="plan-figure reveal" data-lb="images/plan-112.png" data-cap="Planta, 112 m²">
               <div className="plan-figure__img"><img src="/resort-prime/a026.png" alt="Planta humanizada do apartamento de 112 m²" /></div>
               <div className="plan-figure__cap"><span className="m">112<sup>m²</sup></span><span className="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"></path></svg>Torres A e B</span></div>
             </div>
-            <div className="plan-figure reveal d1" data-lb="images/plan-68.png" data-cap="Planta — 68 m²">
+            <div className="plan-figure reveal d1" data-lb="images/plan-68.png" data-cap="Planta, 68 m²">
               <div className="plan-figure__img"><img src="/resort-prime/a019.png" alt="Planta humanizada do apartamento de 68 m²" /></div>
               <div className="plan-figure__cap"><span className="m">68<sup>m²</sup></span><span className="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"></path></svg>Torres C e D</span></div>
             </div>
-            <div className="plan-figure reveal d2" data-lb="images/plan-110.png" data-cap="Planta — 110 m²">
+            <div className="plan-figure reveal d2" data-lb="images/plan-110.png" data-cap="Planta, 110 m²">
               <div className="plan-figure__img"><img src="/resort-prime/a021.png" alt="Planta humanizada do apartamento de 110 m²" /></div>
               <div className="plan-figure__cap"><span className="m">110<sup>m²</sup></span><span className="z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"></path></svg>Torres C e D</span></div>
             </div>
           </div>
-          <p className="reveal" style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.82rem', marginTop: '22px' }}>Plantas humanizadas — imagens meramente ilustrativas. Clique para ampliar.</p>
+          <p className="reveal" style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.82rem', marginTop: '22px' }}>Plantas humanizadas, imagens meramente ilustrativas. Clique para ampliar.</p>
         </div>
       </section>
 
@@ -602,7 +602,7 @@ export default function ResortPrime() {
           <div className="shead center reveal">
             <span className="eyebrow center">Diferenciais Prime</span>
             <h2>Tecnologia e conforto em cada detalhe</h2>
-            <p>Um ambiente onde inovação e bem-estar se encontram — pensado para a praticidade do seu dia a dia.</p>
+            <p>Um ambiente onde inovação e bem-estar se encontram, pensado para a praticidade do seu dia a dia.</p>
           </div>
 
           <div className="diff-grid">
@@ -614,12 +614,12 @@ export default function ResortPrime() {
             <div className="diff-card reveal d1">
               <div className="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path></svg></div>
               <h3>Sistema Vedaporta</h3>
-              <p>Mais um benefício Santa Angela: veda a porta fechada contra insetos, poeira, água e luz — com maior eficiência térmica e acústica.</p>
+              <p>Mais um benefício Santa Angela: veda a porta fechada contra insetos, poeira, água e luz, com maior eficiência térmica e acústica.</p>
             </div>
             <div className="diff-card reveal d2">
               <div className="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18V5l12-2v13M9 13l12-2"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></div>
               <h3>Automação Full Control</h3>
-              <p>Iluminação automatizada instalada e funcionando. Programe luzes e ambientes — inclusive por comando de voz — com o conceito de casa inteligente.</p>
+              <p>Iluminação automatizada instalada e funcionando. Programe luzes e ambientes, inclusive por comando de voz, com o conceito de casa inteligente.</p>
             </div>
           </div>
 
@@ -692,7 +692,7 @@ export default function ResortPrime() {
           <div className="footer__top">
             <div>
               <span className="logo-img"><img src="/resort-prime/a000.png" alt="Santa Angela Construtora" /></span>
-              <p style={{ marginTop: '16px' }}>Resort Prime Santa Angela — o lugar onde sua família encontra o equilíbrio perfeito entre lazer, conforto e exclusividade, todos os dias.</p>
+              <p style={{ marginTop: '16px' }}>Resort Prime Santa Angela, o lugar onde sua família encontra o equilíbrio perfeito entre lazer, conforto e exclusividade, todos os dias.</p>
             </div>
             <div>
               <h4>Navegue</h4>
@@ -709,7 +709,7 @@ export default function ResortPrime() {
               <ul className="footer__links">
                 <li><a href="https://wa.me/5511926143393" target="_blank" rel="noopener">WhatsApp: +55 11 92614-3393</a></li>
                 <li>Av. Caetano Gornati</li>
-                <li>Engordadouro — Jundiaí / SP</li>
+                <li>Engordadouro, Jundiaí / SP</li>
                 <li><a href="https://santaangelaconstrutora.com.br" target="_blank" rel="noopener">santaangelaconstrutora.com.br</a></li>
               </ul>
             </div>

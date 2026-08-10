@@ -7,7 +7,7 @@ export const viewport: Viewport = { themeColor: '#2A3826' };
 
 export const metadata: Metadata = {
   title:
-    'Gran Ville Santo Angelo — Loteamento de Alto Padrão em Itupeva-SP | Novo Urbanismo',
+    'Gran Ville Santo Angelo, Loteamento de Alto Padrão em Itupeva-SP | Novo Urbanismo',
   description:
     'Gran Ville Santo Angelo: o novo bairro planejado em Itupeva-SP. 450 mil m² com 200 mil m² de Mata Atlântica preservada, clube privativo, complexo esportivo e lotes a partir de 360 m². Novo urbanismo da GP Desenvolvimento Urbano.',
   keywords:
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_BR',
     siteName: 'Gran Ville Santo Angelo',
-    title: 'Gran Ville Santo Angelo — Loteamento de Alto Padrão em Itupeva-SP',
+    title: 'Gran Ville Santo Angelo, Loteamento de Alto Padrão em Itupeva-SP',
     description:
       'O novo bairro planejado em Itupeva. 450 mil m², 200 mil m² de Mata Atlântica preservada, clube privativo e lotes a partir de 360 m².',
     images: ['img/hero-portaria.jpg'],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gran Ville Santo Angelo — Itupeva-SP',
+    title: 'Gran Ville Santo Angelo, Itupeva-SP',
     description:
       'O novo bairro planejado em Itupeva. Novo urbanismo, clube privativo e Mata Atlântica preservada.',
     images: ['img/hero-portaria.jpg'],

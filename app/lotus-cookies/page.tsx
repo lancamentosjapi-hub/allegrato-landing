@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     'Política de Cookies da Lotus Brokers: tipos de cookies, finalidade e como controlar o consentimento.',
   alternates: { canonical: 'https://www.lotusbrokers.com.br/lotus-cookies' },
   openGraph: {
-    title: 'Política de Cookies — Lotus Brokers',
+    title: 'Política de Cookies, Lotus Brokers',
     description:
       'Política de Cookies da Lotus Brokers: tipos de cookies, finalidade e como controlar o consentimento.',
     type: 'website',
@@ -93,7 +93,7 @@ export default function LotusCookiesPage() {
         <p>
           No primeiro acesso, você pode <strong>aceitar todos</strong> ou{' '}
           <strong>recusar os não-essenciais</strong> pelo banner de cookies. Você
-          também pode bloquear cookies nas configurações do seu navegador — parte
+          também pode bloquear cookies nas configurações do seu navegador, parte
           do site pode deixar de funcionar como esperado.
         </p>
         <h2>4. Consentimento</h2>

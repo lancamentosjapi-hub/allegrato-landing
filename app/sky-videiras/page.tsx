@@ -20,7 +20,7 @@ const montserrat = Montserrat({
 
 // Metadata portada do <head> do fonte estático.
 export const metadata: Metadata = {
-  title: 'SKY Videiras — Apartamentos 2 e 3 dorms com suíte em Jundiaí',
+  title: 'SKY Videiras, Apartamentos 2 e 3 dorms com suíte em Jundiaí',
   description:
     'SKY Videiras, da SEBEL Empreendimentos. Apartamentos de 2 e 3 dormitórios com suíte, de 56,96 a 83,31 m², lazer completo no rooftop com vista para a Serra do Japi. Jd. Quintas das Videiras, Jundiaí/SP. Obras iniciadas.',
   keywords:
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    title: 'SKY Videiras — Jd. Quintas das Videiras, Jundiaí/SP',
+    title: 'SKY Videiras, Jd. Quintas das Videiras, Jundiaí/SP',
     description:
       'De 56,96 a 83,31 m², 2 e 3 dormitórios com suíte e lazer no rooftop com vista para a Serra do Japi.',
     images: ['/sky-videiras/a001.jpg'],

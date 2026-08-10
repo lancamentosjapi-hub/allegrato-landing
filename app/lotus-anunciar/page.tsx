@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const serviceJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Avaliação e venda de imóveis — Lotus Brokers',
+  name: 'Avaliação e venda de imóveis, Lotus Brokers',
   serviceType: 'Intermediação imobiliária e avaliação',
   areaServed: ['Jundiaí', 'Itupeva', 'Vinhedo', 'Valinhos'],
   provider: { '@type': 'RealEstateAgent', name: 'Lotus Brokers' },
@@ -58,7 +58,7 @@ const faqJsonLd = {
       name: 'Preciso dar exclusividade?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A Gestão Exclusiva é o modelo que rende mais — foco total, marketing premium e boletim semanal. Mas a decisão é sua; o especialista explica as opções.',
+        text: 'A Gestão Exclusiva é o modelo que rende mais, foco total, marketing premium e boletim semanal. Mas a decisão é sua; o especialista explica as opções.',
       },
     },
   ],

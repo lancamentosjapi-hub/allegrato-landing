@@ -14,7 +14,7 @@ export const SITE = {
   nome: 'Lotus Brokers',
   creciPj: 'CRECI PJ 00000-J', // TODO: número real do CRECI PJ
   cnpj: 'CNPJ 00.000.000/0001-00', // TODO: CNPJ real
-  regiao: 'Jundiaí · Itupeva — SP',
+  regiao: 'Jundiaí · Itupeva · SP',
   ano: 2026,
 } as const;
 

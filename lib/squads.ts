@@ -28,7 +28,7 @@ export const SQUADS: Squad[] = [
     num: '02',
     nome: 'Lançamentos',
     descricao:
-      'Quem conhece cada planta e a negociação com a construtora — da escolha à chave.',
+      'Quem conhece cada planta e a negociação com a construtora, da escolha à chave.',
   },
 ];
 

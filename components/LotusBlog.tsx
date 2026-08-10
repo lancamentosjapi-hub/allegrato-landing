@@ -171,7 +171,7 @@ type Post = {
 export const POSTS: Post[] = [
   {
     id: 'p00000', cat: 'Região', date: 'Ago 2026', read: '6 min', img: '/blog/bairro-caxambu.jpg', slot: 'blog-p00000', title: 'Bairro Caxambu: tradição, natureza e qualidade de vida em Jundiaí', excerpt: 'Conheça o bairro Caxambu, em Jundiaí, e descubra por que a região é uma das melhores opções para quem busca tranquilidade, qualidade de vida e valorização imobiliária.', author: 'Equipe Lotus', role: 'Squad de conteúdo',
-    tldr: 'Na região norte de Jundiaí, o Caxambu mantém perfil residencial e rural — herança da imigração italiana e da produção de uvas — com acesso fácil ao centro e às rodovias. Reúne casas, sobrados, chácaras, terrenos e condomínios fechados, e atrai quem busca espaço e tranquilidade sem perder praticidade.',
+    tldr: 'Na região norte de Jundiaí, o Caxambu mantém perfil residencial e rural, herança da imigração italiana e da produção de uvas, com acesso fácil ao centro e às rodovias. Reúne casas, sobrados, chácaras, terrenos e condomínios fechados, e atrai quem busca espaço e tranquilidade sem perder praticidade.',
     body: [
       'O Caxambu é um dos bairros mais tradicionais de Jundiaí e se destaca por oferecer um estilo de vida que combina tranquilidade, contato com a natureza e excelente infraestrutura. Conhecido por sua forte influência da imigração italiana e pela produção de uvas e vinhos, o bairro preserva seu charme histórico ao mesmo tempo em que acompanha o crescimento imobiliário da cidade.',
       'Nos últimos anos, a região passou a atrair cada vez mais famílias e investidores interessados em morar em um ambiente mais calmo, sem abrir mão da praticidade de estar próximo ao centro e às principais vias de acesso.',
@@ -242,7 +242,7 @@ export const POSTS: Post[] = [
       { itens: ['Complementar a entrada', 'Reduzir o saldo financiado', 'Amortizar parcelas futuras'] },
       'Essa alternativa costuma reduzir significativamente o valor financiado.',
       { titulo: 'Sistemas de amortização', nivel: 3 },
-      'Entre os principais sistemas utilizados estão o SAC e a Tabela Price. No SAC (Sistema de Amortização Constante), as parcelas começam maiores e diminuem ao longo do contrato — é uma opção bastante escolhida por quem busca pagar menos juros ao longo do financiamento.',
+      'Entre os principais sistemas utilizados estão o SAC e a Tabela Price. No SAC (Sistema de Amortização Constante), as parcelas começam maiores e diminuem ao longo do contrato, é uma opção bastante escolhida por quem busca pagar menos juros ao longo do financiamento.',
       'Na Tabela Price, as parcelas tendem a permanecer mais estáveis durante boa parte do contrato. É indicada para quem prefere maior previsibilidade no orçamento mensal.',
       { titulo: 'Quais documentos normalmente são necessários?' },
       'Embora possa haver pequenas variações entre as instituições financeiras, normalmente são solicitados:',
@@ -318,7 +318,7 @@ export const POSTS: Post[] = [
   },
   {
     id: 'p000', cat: 'Mercado', date: 'Ago 2026', read: '8 min', img: '/blog/tendencias-lancamentos-jundiai.jpg', slot: 'blog-p000', title: 'Por que Jundiaí continua atraindo novos empreendimentos?', excerpt: 'Infraestrutura de lazer completa, plantas funcionais, sustentabilidade e tecnologia: as tendências que moldam os lançamentos imobiliários da cidade.', author: 'Equipe Lotus', role: 'Squad de conteúdo',
-    tldr: 'Os lançamentos em Jundiaí seguem sete tendências claras: infraestrutura de lazer completa, plantas mais funcionais, soluções sustentáveis, tecnologia de segurança e gestão, valorização de bairros em expansão, foco em qualidade de vida e projetos desenhados para diferentes perfis de comprador — de jovens profissionais a investidores.',
+    tldr: 'Os lançamentos em Jundiaí seguem sete tendências claras: infraestrutura de lazer completa, plantas mais funcionais, soluções sustentáveis, tecnologia de segurança e gestão, valorização de bairros em expansão, foco em qualidade de vida e projetos desenhados para diferentes perfis de comprador, de jovens profissionais a investidores.',
     body: [
       'Jundiaí reúne características que favorecem o crescimento do setor imobiliário e mantêm a cidade entre os destinos mais procurados por famílias e investidores.',
       'Sua localização estratégica entre São Paulo e Campinas, a excelente infraestrutura urbana e a qualidade de vida fazem com que novos lançamentos sejam planejados para atender uma demanda crescente por imóveis modernos e bem localizados.',
@@ -400,7 +400,7 @@ export const POSTS: Post[] = [
   },
   {
     id: 'p00', cat: 'Guia', date: 'Ago 2026', read: '9 min', img: '/blog/imovel-na-planta.jpg', slot: 'blog-p00', title: 'Como comprar imóvel na planta com segurança? Guia completo para investir com tranquilidade em Jundiaí', excerpt: 'Saiba mais sobre como comprar imóvel na planta com segurança e descubra oportunidades, tendências e informações relevantes para quem busca imóveis em Jundiaí.', author: 'Equipe Lotus', role: 'Squad de conteúdo',
-    tldr: 'Comprar na planta compensa quando há preparo: pesquise a construtora, leia o memorial descritivo, confirme o registro da incorporação, avalie a localização e planeje o orçamento além do preço do imóvel — entrada, ITBI, registro e o financiamento do saldo após a entrega das chaves.',
+    tldr: 'Comprar na planta compensa quando há preparo: pesquise a construtora, leia o memorial descritivo, confirme o registro da incorporação, avalie a localização e planeje o orçamento além do preço do imóvel, entrada, ITBI, registro e o financiamento do saldo após a entrega das chaves.',
     body: [
       'Comprar um imóvel na planta pode ser uma excelente oportunidade para quem deseja conquistar a casa própria ou investir em um patrimônio com alto potencial de valorização. Além de oferecer condições de pagamento mais flexíveis, os lançamentos imobiliários costumam reunir projetos modernos, infraestrutura completa e localização estratégica.',
       'No entanto, para que a compra seja realmente vantajosa, é fundamental tomar alguns cuidados antes de assinar o contrato.',
@@ -554,13 +554,13 @@ export const POSTS: Post[] = [
   },
   {
     id: 'p1', cat: 'Mercado', date: 'Jun 2026', read: '7 min', img: '/forest-houses/a000.jpg', slot: 'blog-p1', title: 'Onde morar em Jundiaí em 2026: 5 bairros em ascensão', excerpt: 'A cidade cresce para além do centro. Veja os bairros que combinam infraestrutura, verde e valorização.', author: 'Equipe Lotus', role: 'Squad de conteúdo',
-    tldr: 'Eloy Chaves, Medeiros, Malota, Jardim do Lago e a região do Engordadouro combinam infraestrutura consolidada, áreas verdes e procura crescente — e concentram boa parte das buscas por imóveis em Jundiaí em 2026.',
+    tldr: 'Eloy Chaves, Medeiros, Malota, Jardim do Lago e a região do Engordadouro combinam infraestrutura consolidada, áreas verdes e procura crescente e concentram boa parte das buscas por imóveis em Jundiaí em 2026.',
     body: [
-      'Jundiaí sempre foi uma cidade de bairros fortes — cada um com identidade própria. Mas nos últimos anos, alguns deles passaram a concentrar a atenção de quem busca qualidade de vida sem abrir mão de estar perto de tudo.',
+      'Jundiaí sempre foi uma cidade de bairros fortes, cada um com identidade própria. Mas nos últimos anos, alguns deles passaram a concentrar a atenção de quem busca qualidade de vida sem abrir mão de estar perto de tudo.',
       'Eloy Chaves segue como o queridinho das famílias: ruas arborizadas, escolas por perto e a Serra do Japi a dez minutos. Medeiros cresce com condomínios novos e comércio de bairro cada vez mais completo. A Malota atrai quem quer casas maiores e tranquilidade.',
-      'O Jardim do Lago e a região do Engordadouro entram na lista pela combinação de preço ainda acessível com localização estratégica — perto dos acessos e do centro.',
+      'O Jardim do Lago e a região do Engordadouro entram na lista pela combinação de preço ainda acessível com localização estratégica, perto dos acessos e do centro.',
       'O que esses bairros têm em comum? Infraestrutura pronta, verde de verdade e liquidez: imóveis bem precificados nessas regiões não ficam muito tempo no mercado.',
-      'Se você está pensando em comprar (ou vender) em um deles, converse com um especialista que conhece cada rua — é isso que muda o resultado da negociação.',
+      'Se você está pensando em comprar (ou vender) em um deles, converse com um especialista que conhece cada rua, é isso que muda o resultado da negociação.',
     ],
   },
   {
@@ -569,49 +569,49 @@ export const POSTS: Post[] = [
     body: [
       'A pergunta mais comum de quem quer comprar o primeiro imóvel continua sendo a mesma: "será que o banco aprova?". A boa notícia é que a aprovação depende menos de sorte e mais de preparo.',
       'O primeiro passo é entender a regra dos 30%: os bancos esperam que a parcela não comprometa mais do que cerca de um terço da renda familiar bruta. Somar a renda de duas pessoas no mesmo financiamento é permitido e muito comum.',
-      'O segundo é a documentação: comprovantes de renda organizados, declaração de imposto de renda em dia e nome limpo. Trabalhadores autônomos conseguem financiar, sim — com extratos e histórico bem apresentados.',
-      'Terceiro: compare. A diferença de taxa entre bancos pode significar dezenas de milhares de reais ao longo do contrato. Vale simular em pelo menos três instituições — ou pedir para a Lotus fazer isso por você.',
+      'O segundo é a documentação: comprovantes de renda organizados, declaração de imposto de renda em dia e nome limpo. Trabalhadores autônomos conseguem financiar, sim, com extratos e histórico bem apresentados.',
+      'Terceiro: compare. A diferença de taxa entre bancos pode significar dezenas de milhares de reais ao longo do contrato. Vale simular em pelo menos três instituições, ou pedir para a Lotus fazer isso por você.',
       'Por fim, faça a pré-aprovação antes de se apaixonar por um imóvel. Com o crédito aprovado, você negocia com força de comprador à vista.',
     ],
   },
   {
     id: 'p3', cat: 'Região', date: 'Mai 2026', read: '5 min', img: '/terrace-serra-do-japi/a000.jpg', slot: 'blog-p3', title: 'Serra do Japi: o que ter a serra por perto muda no seu dia', excerpt: 'Mais que paisagem: como a reserva influencia clima, lazer e valorização dos bairros vizinhos.', author: 'Equipe Lotus', role: 'Squad de conteúdo',
-    tldr: 'A Serra do Japi é uma das maiores reservas de mata atlântica do interior paulista. Morar perto dela significa clima mais ameno, trilhas e lazer de fim de semana — e bairros vizinhos historicamente mais valorizados.',
+    tldr: 'A Serra do Japi é uma das maiores reservas de mata atlântica do interior paulista. Morar perto dela significa clima mais ameno, trilhas e lazer de fim de semana e bairros vizinhos historicamente mais valorizados.',
     body: [
       'Quem mora em Jundiaí fala da Serra do Japi com a naturalidade de quem fala de um vizinho querido. Mas o impacto dela no dia a dia vai muito além da vista bonita.',
       'Primeiro, o clima: as áreas próximas da serra são visivelmente mais frescas no verão. Segundo, o lazer: trilhas, cachoeiras e estradas de terra para pedalar a minutos de casa.',
-      'E há o efeito no mercado: bairros na região da serra — como Eloy Chaves e Malota, e os condomínios de Itupeva — mantêm procura constante justamente por essa combinação de natureza com cidade.',
+      'E há o efeito no mercado: bairros na região da serra, como Eloy Chaves e Malota, e os condomínios de Itupeva, mantêm procura constante justamente por essa combinação de natureza com cidade.',
       'Para quem vem de fora, é o argumento que resume a mudança: qualidade de vida que não depende de viajar no fim de semana.',
     ],
   },
   {
     id: 'p4', cat: 'Cidade', date: 'Mai 2026', read: '4 min', img: '/gran-ville-santo-angelo/a000.jpg', slot: 'blog-p4', title: 'Itupeva em crescimento: por que a cidade atrai novas famílias', excerpt: 'Condomínios, indústria e a serra ao lado: o retrato de uma das cidades que mais crescem na região.', author: 'Equipe Lotus', role: 'Squad de conteúdo',
-    tldr: 'Itupeva cresce puxada por condomínios de casas, novos empregos e preço mais acessível que o de Jundiaí, mantendo acesso rápido à Anhanguera — perfil ideal para famílias que querem espaço.',
+    tldr: 'Itupeva cresce puxada por condomínios de casas, novos empregos e preço mais acessível que o de Jundiaí, mantendo acesso rápido à Anhanguera, perfil ideal para famílias que querem espaço.',
     body: [
-      'Itupeva vive um momento raro: cresce em população, em empregos e em infraestrutura ao mesmo tempo — sem perder o jeito de cidade tranquila.',
+      'Itupeva vive um momento raro: cresce em população, em empregos e em infraestrutura ao mesmo tempo, sem perder o jeito de cidade tranquila.',
       'O motor são os condomínios de casas. Famílias que buscavam espaço e segurança encontraram na cidade lotes maiores e um custo de vida mais leve que o dos grandes centros.',
       'A localização ajuda: acesso direto à Anhanguera, Jundiaí ao lado e Campinas e São Paulo a distâncias viáveis para o trabalho híbrido.',
       'Para quem investe, o raciocínio é simples: cidade em crescimento, com demanda real de moradia, tende a valorizar. Para quem vai morar, o argumento é ainda melhor: qualidade de vida agora, não daqui a dez anos.',
     ],
   },
   {
-    id: 'p5', cat: 'Guia', date: 'Abr 2026', read: '5 min', img: '/vistta-castanho/a000.jpg', slot: 'blog-p5', title: 'Vender um imóvel: os 5 erros que mais atrasam a venda', excerpt: 'Do preço errado à foto escura — o que segura um imóvel no mercado e como evitar.', author: 'Equipe Lotus', role: 'Squad de conteúdo',
-    tldr: 'Os erros que mais atrasam uma venda: preço fora do mercado, fotos ruins, anúncio genérico, visitas sem filtro e documentação desorganizada. Todos têm solução — e ela começa pela avaliação correta.',
+    id: 'p5', cat: 'Guia', date: 'Abr 2026', read: '5 min', img: '/vistta-castanho/a000.jpg', slot: 'blog-p5', title: 'Vender um imóvel: os 5 erros que mais atrasam a venda', excerpt: 'Do preço errado à foto escura, o que segura um imóvel no mercado e como evitar.', author: 'Equipe Lotus', role: 'Squad de conteúdo',
+    tldr: 'Os erros que mais atrasam uma venda: preço fora do mercado, fotos ruins, anúncio genérico, visitas sem filtro e documentação desorganizada. Todos têm solução e ela começa pela avaliação correta.',
     body: [
-      'Um imóvel que demora para vender quase nunca tem um problema — tem um conjunto de pequenos erros que se somam.',
+      'Um imóvel que demora para vender quase nunca tem um problema, tem um conjunto de pequenos erros que se somam.',
       'O primeiro e mais grave é o preço fora da realidade. Imóvel caro demais não gera visita; e sem visita, não há negociação. A avaliação com comparáveis reais do bairro resolve isso de saída.',
-      'O segundo é a apresentação: fotos escuras, tortas ou de celular derrubam o interesse antes mesmo da leitura do anúncio. Fotografia profissional não é luxo — é conversão.',
+      'O segundo é a apresentação: fotos escuras, tortas ou de celular derrubam o interesse antes mesmo da leitura do anúncio. Fotografia profissional não é luxo, é conversão.',
       'Depois vêm o anúncio genérico (que não conta a história do imóvel), as visitas sem filtro (curiosos consomem seu tempo e desgastam o imóvel) e a documentação desorganizada, que trava a negociação na reta final.',
       'A boa notícia: todos os cinco têm solução, e ela começa por uma avaliação honesta. Se quiser, a Lotus faz a sua gratuitamente.',
     ],
   },
   {
-    id: 'p6', cat: 'Mercado', date: 'Abr 2026', read: '6 min', img: '/vigore/a00.jpg', slot: 'blog-p6', title: 'Comprar na planta ou pronto: qual faz mais sentido pra você', excerpt: 'Preço, prazo, personalização e risco — a comparação honesta entre os dois caminhos.', author: 'Equipe Lotus', role: 'Squad de conteúdo',
-    tldr: 'Na planta: melhor preço de entrada, pagamento diluído e valorização até a chave — mas exige esperar a obra. Pronto: mudança imediata e o que você vê é o que você leva — mas o preço já embute a valorização. A escolha depende do seu prazo e momento.',
+    id: 'p6', cat: 'Mercado', date: 'Abr 2026', read: '6 min', img: '/vigore/a00.jpg', slot: 'blog-p6', title: 'Comprar na planta ou pronto: qual faz mais sentido pra você', excerpt: 'Preço, prazo, personalização e risco, a comparação honesta entre os dois caminhos.', author: 'Equipe Lotus', role: 'Squad de conteúdo',
+    tldr: 'Na planta: melhor preço de entrada, pagamento diluído e valorização até a chave, mas exige esperar a obra. Pronto: mudança imediata e o que você vê é o que você leva, mas o preço já embute a valorização. A escolha depende do seu prazo e momento.',
     body: [
       'É uma das dúvidas mais comuns de quem chega até a gente: "compro na planta ou um imóvel pronto?". A resposta certa depende de uma pergunta anterior: quando você precisa morar?',
       'Se a mudança pode esperar dois ou três anos, a planta costuma render mais: o preço de tabela de lançamento é menor, a entrada é diluída durante a obra e a valorização até a entrega vem como bônus.',
-      'Se a necessidade é imediata — casamento, mudança de cidade, filho a caminho — o imóvel pronto vence: você vê exatamente o que está comprando e resolve a vida agora.',
+      'Se a necessidade é imediata, casamento, mudança de cidade, filho a caminho, o imóvel pronto vence: você vê exatamente o que está comprando e resolve a vida agora.',
       'Há ainda o meio-termo: empreendimentos em fase final de obra, que unem prazo curto com condições de construtora.',
       'O importante é decidir com dado, não com ansiedade. Um especialista que conhece os dois mercados te ajuda a colocar os números lado a lado.',
     ],
@@ -737,7 +737,7 @@ export default function LotusBlog({
             <div style={{ ...parseStyle('position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;pointer-events:none;'), backgroundImage: NOISE_BG }}></div>
             <div style={parseStyle('position:relative;max-width:820px;margin:0 auto;padding:84px 32px;text-align:center;')}>
               <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#cdab6e;margin-bottom:22px;')}>Blog Lotus</div>
-              <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,5vw,60px);line-height:1.03;letter-spacing:-.02em;color:#f7f2e8;margin:0 0 18px;")}>Nossa cidade, nosso mercado — <em style={parseStyle('font-style:italic;color:#cdab6e;')}>contado por quem vive aqui.</em></h1>
+              <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,5vw,60px);line-height:1.03;letter-spacing:-.02em;color:#f7f2e8;margin:0 0 18px;")}>Nossa cidade, nosso mercado, <em style={parseStyle('font-style:italic;color:#cdab6e;')}>contado por quem vive aqui.</em></h1>
               <p style={parseStyle('font-size:clamp(15px,1.6vw,19px);color:rgba(247,242,232,.82);font-weight:300;line-height:1.5;max-width:560px;margin:0 auto;')}>Notícias de Jundiaí e Itupeva, mercado imobiliário sem juridiquês e a vida na região da Serra do Japi.</p>
             </div>
           </section>
@@ -866,7 +866,7 @@ export default function LotusBlog({
             <div style={parseStyle('margin-top:40px;background:#ece2cf;border-radius:18px;padding:28px 30px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;')}>
               <div style={parseStyle('max-width:440px;')}>
                 <div style={parseStyle("font-family:'Fraunces',serif;font-size:20px;color:#15241c;margin-bottom:5px;")}>Quer conversar sobre isso com um especialista?</div>
-                <p style={parseStyle('font-size:14px;color:#3f6249;font-weight:300;margin:0;')}>O time da Lotus vive esse mercado todos os dias — chama a gente.</p>
+                <p style={parseStyle('font-size:14px;color:#3f6249;font-weight:300;margin:0;')}>O time da Lotus vive esse mercado todos os dias, chama a gente.</p>
               </div>
               <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('background:#1d3a2c;color:#f7f2e8;font-weight:600;font-size:14.5px;padding:13px 26px;border-radius:40px;white-space:nowrap;transition:background .2s;')} hoverStyle={parseStyle('background:#15241c')}>Falar no WhatsApp</Hoverable>
             </div>

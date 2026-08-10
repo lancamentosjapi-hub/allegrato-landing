@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: 'https://www.lotusbrokers.com.br/lotus-privacidade',
-    title: 'Política de Privacidade (LGPD) — Lotus Brokers',
+    title: 'Política de Privacidade (LGPD), Lotus Brokers',
     description:
       'Política de Privacidade da Lotus Brokers, conforme a LGPD: quais dados coletamos, por quê e seus direitos.',
     images: [
@@ -78,13 +78,13 @@ export default function LotusPrivacidadePage() {
         </div>
         <p>
           A Lotus Brokers ("Lotus", "nós") respeita a sua privacidade e trata seus dados pessoais
-          conforme a Lei nº 13.709/2018 (Lei Geral de Proteção de Dados — LGPD). Esta política
+          conforme a Lei nº 13.709/2018 (Lei Geral de Proteção de Dados, LGPD). Esta política
           explica quais dados coletamos, por que, e quais são os seus direitos.
         </p>
         <h2>1. Quem somos</h2>
         <p>
           A Lotus Brokers é uma imobiliária que atua em Jundiaí, Itupeva e região, e utiliza
-          tecnologia — inclusive inteligência artificial — para dar suporte ao atendimento e à
+          tecnologia, inclusive inteligência artificial, para dar suporte ao atendimento e à
           consultoria imobiliária. Razão social, CNPJ, CRECI-PJ e endereço completos: [⬜].
         </p>
         <h2>2. O que este documento faz</h2>
@@ -98,7 +98,7 @@ export default function LotusPrivacidadePage() {
           Coletamos dados de identificação e contato (nome, e-mail, telefone/WhatsApp),
           preferências de busca e histórico de interações, dados de navegação e cookies (ver
           Política de Cookies). Em negociações em andamento, podemos coletar documentos como CPF e
-          RG; em propostas, dados financeiros — sempre restritos ao necessário para aquela etapa.
+          RG; em propostas, dados financeiros, sempre restritos ao necessário para aquela etapa.
         </p>
         <h2>4. Por que coletamos (finalidades)</h2>
         <p>
@@ -149,7 +149,7 @@ export default function LotusPrivacidadePage() {
             A <strong>LIA</strong> é nossa assistente virtual de atendimento: você pode pedir para
             falar com um atendente humano a qualquer momento da conversa. A{' '}
             <strong>VISÃO</strong> gera uma pontuação (scoring) de leads usada apenas como
-            priorização interna do nosso trabalho — ela <strong>não</strong> toma decisões
+            priorização interna do nosso trabalho, ela <strong>não</strong> toma decisões
             automatizadas com efeitos jurídicos ou impacto significativo sobre você. Conforme o
             art. 20 da LGPD, você tem direito à revisão humana de decisões baseadas unicamente em
             tratamento automatizado; para solicitá-la, fale conosco pelo e-mail{' '}
@@ -180,7 +180,7 @@ export default function LotusPrivacidadePage() {
           <a href="/meus-dados">/meus-dados</a>.
         </p>
         <p>
-          <strong>Histórico de versões:</strong> v1.0 — 27 de julho de 2026 — versão inicial.
+          <strong>Histórico de versões:</strong> v1.0 · 27 de julho de 2026 · versão inicial.
         </p>
         <p style={{ marginTop: '40px' }}>
           <a href="../lotus-home/">← Voltar para a Lotus Brokers</a>

@@ -250,7 +250,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
           <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#cdab6e;margin-bottom:24px;')}>Lançamentos em Jundiaí e região</div>
           {/* Duas linhas fixas em vez de quebra por acaso da largura: a primeira
               carrega a ideia (a escolha), a segunda o momento (antes da chave).
-              A cor separa as duas — branco e bege. */}
+              A cor separa as duas, branco e bege. */}
           <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(38px,5.4vw,68px);line-height:1.03;letter-spacing:-.02em;color:#fff;margin:0 0 22px;")}>
             <span style={parseStyle('display:block;')}>Grandes escolhas</span>
             <span style={parseStyle('display:block;color:#ece2cf;')}>começam antes da chave.</span>
@@ -264,7 +264,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
         <div style={parseStyle('max-width:1200px;margin:0 auto;')}>
           <div style={parseStyle('max-width:640px;margin-bottom:48px;')}>
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Antes de comprar na planta</div>
-            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.6vw,44px);color:#15241c;line-height:1.06;margin:0 0 16px;")}>Um lançamento é uma oportunidade — quando bem escolhido.</h2>
+            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.6vw,44px);color:#15241c;line-height:1.06;margin:0 0 16px;")}>Um lançamento é uma oportunidade, quando bem escolhido.</h2>
             <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>Comprar na planta pode oferecer condições diferenciadas, menores custos, mais opções de unidade e potencial de valorização. Mas uma boa escolha depende do preço, da construtora, do projeto e do seu objetivo.</p>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;')}>
@@ -341,7 +341,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
                             quebra em duas linhas nos cards de CTA longo ("Ver este
                             empreendimento"). Deixamos quebrar: forçar uma linha só
                             (nowrap) estoura o card, que é overflow:hidden, e corta o
-                            texto no mobile. Encurtar o CTA resolve — depende da Lotus. */}
+                            texto no mobile. Encurtar o CTA resolve, depende da Lotus. */}
                         <div>
                           {e.price && <div style={parseStyle('font-size:11.5px;color:#8aa593;')}>A partir de</div>}
                           <div style={parseStyle("font-family:'Fraunces',serif;font-size:20px;color:#1d3a2c;")}>{e.price ?? 'Valor sob consulta'}</div>
@@ -358,7 +358,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
             <>
               <div style={parseStyle('background:#ece2cf;border-radius:20px;padding:56px 40px;text-align:center;')}>
                 <div style={parseStyle("font-family:'Fraunces',serif;font-size:24px;color:#15241c;margin-bottom:10px;")}>Nenhum lançamento nesse filtro.</div>
-                <p style={parseStyle('font-size:15px;color:#3f6249;font-weight:300;max-width:420px;margin:0 auto 22px;')}>Conta pra gente o que você procura — temos lançamentos chegando que ainda nem foram divulgados.</p>
+                <p style={parseStyle('font-size:15px;color:#3f6249;font-weight:300;max-width:420px;margin:0 auto 22px;')}>Conta pra gente o que você procura, temos lançamentos chegando que ainda nem foram divulgados.</p>
                 <button onClick={clearFilters} style={parseStyle('background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:12px 24px;border:none;border-radius:40px;cursor:pointer;')}>Limpar filtros</button>
               </div>
             </>

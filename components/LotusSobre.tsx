@@ -220,10 +220,10 @@ const valores = [
 ];
 
 const pilares = [
-  { num: '01', title: 'Especialista do bairro', text: 'Você é atendido por quem conhece a região de verdade — a rua, a escola, o preço justo daquele metro quadrado. Nada de generalista de tudo.' },
+  { num: '01', title: 'Especialista do bairro', text: 'Você é atendido por quem conhece a região de verdade, a rua, a escola, o preço justo daquele metro quadrado. Nada de generalista de tudo.' },
   { num: '02', title: 'Processo transparente', text: 'Método claro, boletim de acompanhamento e avaliação com dado (não com achismo). Você sempre sabe em que pé está a sua negociação.' },
   { num: '03', title: 'Cuidado que respeita seu tempo', text: 'Sem catálogo jogado no WhatsApp. A gente filtra, organiza e só te apresenta o que faz sentido para o seu momento.' },
-  { num: '04', title: 'Pós-chave de verdade', text: 'A relação não acaba na assinatura. A gente continua por perto — porque cliente bem cuidado vira o próximo capítulo (e a próxima indicação).' },
+  { num: '04', title: 'Pós-chave de verdade', text: 'A relação não acaba na assinatura. A gente continua por perto, porque cliente bem cuidado vira o próximo capítulo (e a próxima indicação).' },
 ];
 
 // Dois squads. O corretor de cada card saiu junto com os nomes fictícios:
@@ -253,7 +253,7 @@ const corretores: { name: string; role: string; creci?: string; slot: string; fo
 
 const faqData = [
   { q: 'Quem é a Lotus Brokers?', a: 'Uma imobiliária moderna de Jundiaí e Itupeva, com equipe de corretores segmentada por especialidade e por bairro. Atende lançamentos e revenda com atendimento humano e processo transparente.' },
-  { q: 'A Lotus é uma imobiliária nova?', a: 'Marca nova, time consolidado. A operação atua há mais de uma década na região e renasceu como Lotus — a mesma gente que já conhece cada bairro.' },
+  { q: 'A Lotus é uma imobiliária nova?', a: 'Marca nova, time consolidado. A operação atua há mais de uma década na região e renasceu como Lotus, a mesma gente que já conhece cada bairro.' },
   { q: 'O que torna o atendimento de vocês diferente?', a: 'Você fala com um especialista do seu bairro, não com um corretor que tenta dar conta de tudo. A estrutura cuida do repetitivo; o corretor cuida de você, do primeiro contato ao pós-chave.' },
 ];
 
@@ -327,7 +327,7 @@ export default function LotusSobre({
         </div>
       </section>
 
-      {/* VALORES — AS 7 PÉTALAS */}
+      {/* VALORES, AS 7 PÉTALAS */}
       <section style={parseStyle('background:#ece2cf;padding:110px 32px;')}>
         <div style={parseStyle('max-width:1200px;margin:0 auto;')}>
           <div style={parseStyle('max-width:640px;margin-bottom:56px;')}>
@@ -372,7 +372,7 @@ export default function LotusSobre({
           <div style={parseStyle('max-width:640px;margin-bottom:48px;')}>
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>A equipe</div>
             <h2 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(30px,4vw,48px);color:#15241c;line-height:1.06;letter-spacing:-.02em;margin:0 0 16px;')}>Especialistas, não generalistas.</h2>
-            <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>A gente organiza o time em squads — cada um domina o seu terreno. Você nunca cai no corretor que tenta dar conta de tudo.</p>
+            <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>A gente organiza o time em squads, cada um domina o seu terreno. Você nunca cai no corretor que tenta dar conta de tudo.</p>
           </div>
           {/* fundador */}
           {/* `align-items:start` (não `center`): com a bio real o texto passou a
@@ -407,7 +407,7 @@ export default function LotusSobre({
         <div style={parseStyle('max-width:1000px;margin:0 auto;position:relative;text-align:center;')}>
           <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#cdab6e;margin-bottom:20px;')}>Nossa região</div>
           <h2 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(28px,3.6vw,46px);color:#f7f2e8;line-height:1.08;letter-spacing:-.02em;margin:0 0 22px;')}>Daqui. De verdade.</h2>
-          <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.7;max-width:680px;margin:0 auto 36px;')}>Jundiaí e Itupeva são o nosso chão — e a gente também atende Vinhedo, Valinhos e Indaiatuba. Serra do Japi, vinhedos, condomínios e ruas arborizadas: a gente conhece a região pelo que ela tem de vivido, não só pelo que cabe num anúncio.</p>
+          <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.7;max-width:680px;margin:0 auto 36px;')}>Jundiaí e Itupeva são o nosso chão e a gente também atende Vinhedo, Valinhos e Indaiatuba. Serra do Japi, vinhedos, condomínios e ruas arborizadas: a gente conhece a região pelo que ela tem de vivido, não só pelo que cabe num anúncio.</p>
           <div style={parseStyle('display:flex;flex-wrap:wrap;gap:10px;justify-content:center;')}>
             <Hoverable as="a" href="/lotus-bairro" target="_top" baseStyle={parseStyle('background:rgba(247,242,232,.1);border:1px solid rgba(247,242,232,.22);color:#f7f2e8;font-size:14px;padding:9px 18px;border-radius:30px;transition:all .2s;')} hoverStyle={parseStyle('background:rgba(247,242,232,.18);border-color:#cdab6e')}>Jundiaí</Hoverable>
             <Hoverable as="a" href="/lotus-bairro" target="_top" baseStyle={parseStyle('background:rgba(247,242,232,.1);border:1px solid rgba(247,242,232,.22);color:#f7f2e8;font-size:14px;padding:9px 18px;border-radius:30px;transition:all .2s;')} hoverStyle={parseStyle('background:rgba(247,242,232,.18);border-color:#cdab6e')}>Itupeva</Hoverable>
@@ -426,7 +426,7 @@ export default function LotusSobre({
             <h2 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(26px,3vw,38px);color:#15241c;line-height:1.08;margin:0 0 22px;')}>Quem é a Lotus, em uma resposta.</h2>
             <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:26px 28px;')}>
               <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdab6e;margin-bottom:12px;')}>Em resumo</div>
-              <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.65;margin:0;')}>A Lotus Brokers é uma imobiliária moderna de Jundiaí e Itupeva, com equipe de corretores segmentada por especialidade e por bairro. Atende lançamentos e revenda com atendimento humano e processo transparente — de R$ 500 mil a R$ 5 milhões.</p>
+              <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.65;margin:0;')}>A Lotus Brokers é uma imobiliária moderna de Jundiaí e Itupeva, com equipe de corretores segmentada por especialidade e por bairro. Atende lançamentos e revenda com atendimento humano e processo transparente, de R$ 500 mil a R$ 5 milhões.</p>
             </div>
           </div>
           <div>
@@ -454,7 +454,7 @@ export default function LotusSobre({
           <div style={parseStyle('display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:48px;')}>
             <div style={parseStyle('max-width:640px;')}>
               <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Nossos corretores</div>
-              <h2 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(30px,4vw,48px);color:#15241c;line-height:1.06;letter-spacing:-.02em;margin:0;')}>Gente que conhece cada esquina — e te chama pelo nome.</h2>
+              <h2 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(30px,4vw,48px);color:#15241c;line-height:1.06;letter-spacing:-.02em;margin:0;')}>Gente que conhece cada esquina e te chama pelo nome.</h2>
             </div>
             <Link href="/lotus-home#corretores" style={parseStyle('display:inline-flex;align-items:center;gap:8px;color:#1d3a2c;font-weight:600;font-size:15px;border-bottom:1.5px solid #b18a4a;padding-bottom:3px;white-space:nowrap;')}>Ver na página inicial <span>→</span></Link>
           </div>
@@ -479,7 +479,7 @@ export default function LotusSobre({
           <div style={parseStyle('max-width:640px;margin-bottom:48px;')}>
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Venha tomar um café</div>
             <h2 style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(30px,4vw,48px);color:#15241c;line-height:1.06;letter-spacing:-.02em;margin:0 0 16px;')}>Nosso escritório em Jundiaí.</h2>
-            <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>A porta está aberta. Passe para conhecer o time, conversar sobre o seu momento e tomar um café — sem compromisso.</p>
+            <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>A porta está aberta. Passe para conhecer o time, conversar sobre o seu momento e tomar um café, sem compromisso.</p>
           </div>
           {/* A galeria de fotos do escritório saiu: eram slots vazios (só um
               render de landing no destaque). No lugar, o mapa ocupa a largura

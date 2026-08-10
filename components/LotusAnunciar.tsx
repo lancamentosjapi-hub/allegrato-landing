@@ -178,10 +178,10 @@ const COMPS: Record<string, number> = {
 };
 
 const metodo = [
-  { num: '1', title: 'Avaliação com dado (ACM)', text: 'Análise Comparativa de Mercado com 3 imóveis reais do seu bairro — preço justo, não chute.' },
+  { num: '1', title: 'Avaliação com dado (ACM)', text: 'Análise Comparativa de Mercado com 3 imóveis reais do seu bairro, preço justo, não chute.' },
   { num: '2', title: 'Marketing premium', text: 'Fotografia profissional, tour 3D e drone. Seu imóvel aparece bem em todos os canais certos.' },
   { num: '3', title: 'Visitas qualificadas', text: 'Só leva à sua porta quem tem perfil real de compra. Seu tempo (e o do imóvel) é respeitado.' },
-  { num: '4', title: 'Relatório mensal', text: 'Você recebe o status do seu imóvel todo mês — visitas, propostas e ajustes — sem precisar perguntar.' },
+  { num: '4', title: 'Relatório mensal', text: 'Você recebe o status do seu imóvel todo mês (visitas, propostas e ajustes), sem precisar perguntar.' },
   { num: '5', title: 'Negociação por especialista', text: 'Quem conhece o mercado negocia por você, defendendo o melhor preço com argumento e dado.' },
   { num: '6', title: 'Pós-venda de verdade', text: 'Documentação, cartório e financiamento acompanhados até a chave passar de mão. Sem você se perder.' },
 ];
@@ -204,7 +204,7 @@ const exclusiva = [
 ];
 
 const depo = [
-  { initial: 'S', name: 'Sandra M.', where: 'vendeu em Eloy Chaves', text: 'Vendi em 41 dias, acima do que eu esperava. O boletim semanal me deixou tranquila — eu sempre sabia o que estava acontecendo.' },
+  { initial: 'S', name: 'Sandra M.', where: 'vendeu em Eloy Chaves', text: 'Vendi em 41 dias, acima do que eu esperava. O boletim semanal me deixou tranquila, eu sempre sabia o que estava acontecendo.' },
   { initial: 'C', name: 'Carlos e Vera', where: 'venderam no Anhangabaú', text: 'As fotos e o tour fizeram diferença real. Só apareceu gente séria pra visitar. Negociação redonda, sem dor de cabeça.' },
   { initial: 'J', name: 'João P.', where: 'vendeu em Itupeva', text: 'Tinha tentado sozinho por meses. Com a Lotus, em duas semanas já tinha proposta. Especialista que conhece o bairro faz toda a diferença.' },
 ];
@@ -388,7 +388,7 @@ export default function LotusAnunciar({
           <div>
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#cdab6e;margin-bottom:24px;')}>Vender com a Lotus</div>
             <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(36px,4.6vw,60px);line-height:1.04;letter-spacing:-.02em;color:#f7f2e8;margin:0 0 22px;")}>Quanto vale o seu imóvel?<br /><em style={parseStyle('font-style:italic;color:#cdab6e;')}>Descubra em minutos.</em></h1>
-            <p style={parseStyle('font-size:clamp(16px,1.6vw,19px);color:rgba(247,242,232,.82);font-weight:300;line-height:1.55;max-width:480px;margin:0 0 28px;')}>Avaliação com dado real do mercado de Jundiaí e Itupeva — e um especialista do seu bairro para vender pelo melhor preço, sem você passar por isso sozinho.</p>
+            <p style={parseStyle('font-size:clamp(16px,1.6vw,19px);color:rgba(247,242,232,.82);font-weight:300;line-height:1.55;max-width:480px;margin:0 0 28px;')}>Avaliação com dado real do mercado de Jundiaí e Itupeva e um especialista do seu bairro para vender pelo melhor preço, sem você passar por isso sozinho.</p>
             <div style={parseStyle('display:flex;flex-wrap:wrap;gap:14px;align-items:center;')}>
               <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid rgba(247,242,232,.4);color:#f7f2e8;font-weight:600;font-size:15px;padding:13px 24px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:rgba(247,242,232,.1)')}>Falar com um especialista</Hoverable>
               <div style={parseStyle('display:flex;align-items:center;gap:8px;font-size:13.5px;color:rgba(247,242,232,.7);')}><span style={parseStyle('width:7px;height:7px;border-radius:50%;background:#8aa593;')}></span>Avaliação gratuita e sem compromisso</div>
@@ -457,11 +457,11 @@ export default function LotusAnunciar({
                     <div style={parseStyle('display:grid;grid-template-columns:1fr 1fr;gap:12px;')}>
                       <div>
                         <label style={parseStyle('display:block;font-size:13px;font-weight:600;color:#3f6249;margin-bottom:7px;')}>Dormitórios</label>
-                        <select className="lt-field" value={f.dorms} onChange={(e) => setFVal('dorms', e.target.value)}><option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4+</option></select>
+                        <select className="lt-field" value={f.dorms} onChange={(e) => setFVal('dorms', e.target.value)}><option value="0">,</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4+</option></select>
                       </div>
                       <div>
                         <label style={parseStyle('display:block;font-size:13px;font-weight:600;color:#3f6249;margin-bottom:7px;')}>Vagas</label>
-                        <select className="lt-field" value={f.vagas} onChange={(e) => setFVal('vagas', e.target.value)}><option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3+</option></select>
+                        <select className="lt-field" value={f.vagas} onChange={(e) => setFVal('vagas', e.target.value)}><option value="0">,</option><option value="1">1</option><option value="2">2</option><option value="3">3+</option></select>
                       </div>
                     </div>
                     <div>
@@ -509,7 +509,7 @@ export default function LotusAnunciar({
                     <div style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(24px,3vw,30px);color:#1d3a2c;line-height:1.2;")}>{low}</div>
                     <div style={parseStyle('font-size:13px;color:#8aa593;margin:4px 0;')}>até</div>
                     <div style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.6vw,38px);color:#1d3a2c;line-height:1.1;")}>{high}</div>
-                    <p style={parseStyle('font-size:13.5px;color:#3f6249;margin:16px 0 0;line-height:1.5;')}>Com base em <strong>{comps} imóveis comparáveis</strong> em {f.bairro}. <strong style={parseStyle('color:#15241c;')}>Isto é apenas uma estimativa.</strong> Para uma avaliação realista do seu imóvel, fale com um corretor especialista — é de graça.</p>
+                    <p style={parseStyle('font-size:13.5px;color:#3f6249;margin:16px 0 0;line-height:1.5;')}>Com base em <strong>{comps} imóveis comparáveis</strong> em {f.bairro}. <strong style={parseStyle('color:#15241c;')}>Isto é apenas uma estimativa.</strong> Para uma avaliação realista do seu imóvel, fale com um corretor especialista, é de graça.</p>
                     <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('display:block;margin-top:20px;background:#b18a4a;color:#15241c;font-weight:600;font-size:15px;padding:15px;border-radius:11px;transition:background .2s;')} hoverStyle={parseStyle('background:#a07a3c')}>Quero uma avaliação precisa com especialista</Hoverable>
                     <button onClick={restart} style={parseStyle('margin-top:12px;background:none;border:none;color:#8aa593;font-size:13px;font-weight:600;cursor:pointer;text-decoration:underline;')}>Refazer estimativa</button>
                   </div>
@@ -547,7 +547,7 @@ export default function LotusAnunciar({
           <div style={parseStyle('text-align:center;max-width:640px;margin:0 auto 48px;')}>
             <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#cdab6e;margin-bottom:18px;')}>Gestão Exclusiva</div>
             <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.6vw,44px);color:#f7f2e8;line-height:1.08;margin:0 0 16px;")}>Você assina e dorme tranquilo.</h2>
-            <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.6;margin:0;')}>Foco total no seu imóvel, plano de marketing premium, equipe especialista e comunicação semanal — sem você precisar perguntar.</p>
+            <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.6;margin:0;')}>Foco total no seu imóvel, plano de marketing premium, equipe especialista e comunicação semanal, sem você precisar perguntar.</p>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:1fr 1fr;gap:20px;')}>
             <div style={parseStyle('background:rgba(247,242,232,.06);border:1px solid rgba(247,242,232,.14);border-radius:18px;padding:32px;')}>
@@ -573,8 +573,8 @@ export default function LotusAnunciar({
       <section style={parseStyle('background:#3f6249;padding:80px 32px;')}>
         <div data-stats="" style={parseStyle('max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:36px;text-align:center;')}>
           <div><div style={parseStyle('font-size:13px;color:rgba(247,242,232,.6);margin-bottom:2px;')}>até</div><div data-count="80" data-suffix="%" style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(40px,5vw,62px);color:#f7f2e8;line-height:1;")}>80%</div><div style={parseStyle('font-size:14px;color:rgba(247,242,232,.78);margin-top:10px;')}>mais rápido que um anúncio genérico</div></div>
-          <div><div style={parseStyle('font-size:13px;color:rgba(247,242,232,.6);margin-bottom:2px;')}>média de</div><div data-count="72" data-suffix=" dias" style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(40px,5vw,62px);color:#f7f2e8;line-height:1;")}>72 dias</div><div style={parseStyle('font-size:14px;color:rgba(247,242,232,.78);margin-top:10px;')}>para vender — a média nacional é 460 dias</div></div>
-          <div><div style={parseStyle('font-size:13px;color:rgba(247,242,232,.6);margin-bottom:2px;')}>&nbsp;</div><div data-count="100" data-suffix="%" style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(40px,5vw,62px);color:#f7f2e8;line-height:1;")}>100%</div><div style={parseStyle('font-size:14px;color:rgba(247,242,232,.78);margin-top:10px;')}>visitas qualificadas — só quem tem perfil real</div></div>
+          <div><div style={parseStyle('font-size:13px;color:rgba(247,242,232,.6);margin-bottom:2px;')}>média de</div><div data-count="72" data-suffix=" dias" style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(40px,5vw,62px);color:#f7f2e8;line-height:1;")}>72 dias</div><div style={parseStyle('font-size:14px;color:rgba(247,242,232,.78);margin-top:10px;')}>para vender, a média nacional é 460 dias</div></div>
+          <div><div style={parseStyle('font-size:13px;color:rgba(247,242,232,.6);margin-bottom:2px;')}>&nbsp;</div><div data-count="100" data-suffix="%" style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(40px,5vw,62px);color:#f7f2e8;line-height:1;")}>100%</div><div style={parseStyle('font-size:14px;color:rgba(247,242,232,.78);margin-top:10px;')}>visitas qualificadas, só quem tem perfil real</div></div>
         </div>
       </section>
 
@@ -632,7 +632,7 @@ export default function LotusAnunciar({
       <section style={parseStyle('background:#1d3a2c;padding:90px 32px;text-align:center;')}>
         <div style={parseStyle('max-width:760px;margin:0 auto;')}>
           <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);color:#f7f2e8;line-height:1.06;margin:0 0 18px;")}>Comece pela avaliação. É grátis.</h2>
-          <p style={parseStyle('font-size:18px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.55;max-width:520px;margin:0 auto 32px;')}>Descubra quanto vale o seu imóvel e converse com um especialista do seu bairro — sem custo e sem compromisso.</p>
+          <p style={parseStyle('font-size:18px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.55;max-width:520px;margin:0 auto 32px;')}>Descubra quanto vale o seu imóvel e converse com um especialista do seu bairro, sem custo e sem compromisso.</p>
           <div style={parseStyle('display:flex;flex-wrap:wrap;gap:14px;justify-content:center;')}>
             <Hoverable as="a" href="#topo" baseStyle={parseStyle('background:#b18a4a;color:#15241c;font-weight:600;font-size:16px;padding:15px 30px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:#cdab6e')}>Avaliar meu imóvel</Hoverable>
             <Hoverable as="a" href={waLink} target="_blank" rel="noopener" baseStyle={parseStyle('background:transparent;border:1.5px solid rgba(247,242,232,.4);color:#f7f2e8;font-weight:600;font-size:16px;padding:15px 30px;border-radius:40px;transition:background .2s;')} hoverStyle={parseStyle('background:rgba(247,242,232,.1)')}>Falar no WhatsApp</Hoverable>

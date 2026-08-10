@@ -213,7 +213,7 @@ export default function Allegrato() {
             Conquiste agora seu lugar.
           </h1>
           <p className="hero-sub">
-            O apartamento mais completo do Medeiros para você sair do aluguel pagando pouco — lazer com tudo pronto e a segurança da construtora nº 1 de Jundiaí.
+            O apartamento mais completo do Medeiros para você sair do aluguel pagando pouco, lazer com tudo pronto e a segurança da construtora nº 1 de Jundiaí.
           </p>
           <div className="price-pill">
             <span>
@@ -328,7 +328,7 @@ export default function Allegrato() {
               No bairro do Medeiros, praticidade e qualidade de vida caminham juntas. O Allegrato foi pensado para quem busca mais bem-estar e tempo de qualidade no dia a dia.
             </p>
             <p className="muted">
-              Com espaços planejados para diferentes momentos da rotina, o empreendimento une convivência, conforto e uma atmosfera que valoriza a vida dentro do condomínio — um verdadeiro condomínio-clube com a infraestrutura essencial já na primeira fase.
+              Com espaços planejados para diferentes momentos da rotina, o empreendimento une convivência, conforto e uma atmosfera que valoriza a vida dentro do condomínio, um verdadeiro condomínio-clube com a infraestrutura essencial já na primeira fase.
             </p>
           </div>
         </div>
@@ -344,7 +344,7 @@ export default function Allegrato() {
               A experiência de morar além do apartamento.
             </h2>
             <p className="lead">
-              Áreas pensadas para reunir pessoas, mover o corpo e aproveitar melhor o tempo — entregues decoradas e equipadas, prontas para usar desde o primeiro dia.
+              Áreas pensadas para reunir pessoas, mover o corpo e aproveitar melhor o tempo, entregues decoradas e equipadas, prontas para usar desde o primeiro dia.
             </p>
           </div>
           <div className="gal">
@@ -504,7 +504,7 @@ export default function Allegrato() {
               Diferenciais que viram economia de verdade.
             </h2>
             <p className="lead">
-              Não é só o que você vê — é o que você economiza todo mês. Tecnologia e entrega pensadas para um condomínio mais barato.
+              Não é só o que você vê, é o que você economiza todo mês. Tecnologia e entrega pensadas para um condomínio mais barato.
             </p>
           </div>
           <div className="diff-grid">
@@ -781,7 +781,7 @@ export default function Allegrato() {
                       <path d="M20 6 9 17l-5-5">
                       </path>
                     </svg>
-                    Sem vaga vinculada — entrada menor
+                    Sem vaga vinculada, entrada menor
                   </li>
                 </ul>
                 <div className="pfoot">
@@ -887,7 +887,7 @@ export default function Allegrato() {
                       <path d="M20 6 9 17l-5-5">
                       </path>
                     </svg>
-                    Duas suítes — diferenciação rara
+                    Duas suítes, diferenciação rara
                   </li>
                   <li>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -1000,7 +1000,7 @@ export default function Allegrato() {
               O preço de lançamento é o menor da vida do imóvel.
             </h2>
             <p style={parseStyle('margin-top:1rem')} className="lead">
-              Histórico de valorização de lançamentos da Santa Angela no Medeiros — do preço de lançamento ao valor atual:
+              Histórico de valorização de lançamentos da Santa Angela no Medeiros, do preço de lançamento ao valor atual:
             </p>
             <div className="val-list">
               <div className="val-row">
@@ -1065,7 +1065,7 @@ export default function Allegrato() {
               </div>
             </div>
             <p className="val-disc">
-              Fonte: desempenho passado de empreendimentos da Santa Angela. Rentabilidade passada não garante rentabilidade futura — informação apresentada como contexto de mercado, nunca como promessa de ganho.
+              Fonte: desempenho passado de empreendimentos da Santa Angela. Rentabilidade passada não garante rentabilidade futura, informação apresentada como contexto de mercado, nunca como promessa de ganho.
             </p>
           </div>
         </div>
@@ -1095,7 +1095,7 @@ export default function Allegrato() {
                 Patrimônio de Afetação
               </h3>
               <p>
-                O dinheiro dos compradores só pode ser usado nesta obra — protegido mesmo em caso de problema da incorporadora.
+                O dinheiro dos compradores só pode ser usado nesta obra, protegido mesmo em caso de problema da incorporadora.
               </p>
             </div>
             <div className="tcard reveal d1">
@@ -1310,7 +1310,7 @@ export default function Allegrato() {
             <div>
               <img className="alle" src="/allegrato/a001.png" alt="Allegrato Residencial" />
               <p>
-                Av. Juvenal Arantes, 1240 — Bairro Medeiros, Jundiaí/SP.
+                Av. Juvenal Arantes, 1240, Bairro Medeiros, Jundiaí/SP.
                 <br />
                 Empreendimento Minha Casa Minha Vida da Santa Angela Construtora.
               </p>
@@ -1381,7 +1381,7 @@ export default function Allegrato() {
               Imagens meramente ilustrativas. As perspectivas artísticas e plantas podem sofrer alterações sem aviso prévio. Mobiliário, decoração e paisagismo de áreas comuns conforme memorial descritivo e faseamento de entrega. Itens de lazer entregues por fases. Incorporação registrada sob matrícula nº 187.994 no 1º Oficial de Registro de Imóveis de Jundiaí/SP. Valores e condições sujeitos a análise de crédito e disponibilidade. © 2026 Santa Angela Construtora.
             </p>
             <span style={parseStyle('font-size:.78rem')} className="muted">
-              SPE 27 — Santa Angela Empreendimento Imobiliário Ltda.
+              SPE 27, Santa Angela Empreendimento Imobiliário Ltda.
             </span>
           </div>
         </div>

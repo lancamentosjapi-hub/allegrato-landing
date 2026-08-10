@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'Maxx Santa Angela: apartamentos de 71 a 98 m², 2 e 3 dormitórios, ao lado do Maxi Shopping Jundiaí. Lazer completo, áreas comuns decoradas e a confiança de quem entregou +9.800 unidades. A partir de R$ 790.365,90.',
   openGraph: {
     type: 'website',
-    title: 'Maxx Santa Angela — More pertinho de quem você gosta',
+    title: 'Maxx Santa Angela, More pertinho de quem você gosta',
     description:
       'Apartamentos de 71 a 98 m² ao lado do Maxi Shopping Jundiaí. Lazer completo e a assinatura Santa Angela.',
     images: [

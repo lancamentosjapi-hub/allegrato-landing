@@ -4,18 +4,18 @@ import VisttaCastanho from '@/components/VisttaCastanho';
 
 // Metadata portada do <head> do index.html original (valores EXATOS).
 export const metadata: Metadata = {
-  title: 'Vistta Castanho · Loteamento Fechado em Jundiaí — SP',
+  title: 'Vistta Castanho · Loteamento Fechado em Jundiaí, SP',
   description:
-    'Vistta Castanho: loteamento fechado com lotes a partir de 126 m² no bairro do Castanho, Jundiaí — entre São Paulo e Campinas. Clube completo, lago, portaria inteligente e natureza. Fale com um corretor.',
+    'Vistta Castanho: loteamento fechado com lotes a partir de 126 m² no bairro do Castanho, Jundiaí, entre São Paulo e Campinas. Clube completo, lago, portaria inteligente e natureza. Fale com um corretor.',
   keywords:
     'Vistta Castanho, loteamento fechado Jundiaí, lotes Castanho Jundiaí, terrenos condomínio fechado Jundiaí, comprar lote Jundiaí, Vistta Castanho Applausi',
   robots: 'index, follow',
   alternates: { canonical: 'https://www.lotusbrokers.com.br/vistta-castanho' },
   openGraph: {
     type: 'website',
-    title: 'Vistta Castanho · Loteamento Fechado em Jundiaí — SP',
+    title: 'Vistta Castanho · Loteamento Fechado em Jundiaí, SP',
     description:
-      'Um sonho do tamanho do seu. Lotes a partir de 126 m² em meio à natureza, com clube completo e lago. Castanho, Jundiaí — SP.',
+      'Um sonho do tamanho do seu. Lotes a partir de 126 m² em meio à natureza, com clube completo e lago. Castanho, Jundiaí, SP.',
     locale: 'pt_BR',
     images: ['/vistta-castanho/a008.jpg'],
   },
@@ -34,7 +34,7 @@ const jsonLd = {
   '@type': 'Residence',
   name: 'Vistta Castanho',
   description:
-    'Loteamento fechado com lotes a partir de 126 m² no bairro do Castanho, em Jundiaí — SP. Clube completo, lago, paisagismo multiespécies e portaria inteligente.',
+    'Loteamento fechado com lotes a partir de 126 m² no bairro do Castanho, em Jundiaí, SP. Clube completo, lago, paisagismo multiespécies e portaria inteligente.',
   image: 'assets/img/hero-lago.jpg',
   address: {
     '@type': 'PostalAddress',

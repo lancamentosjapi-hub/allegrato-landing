@@ -22,7 +22,7 @@ const montserrat = Montserrat({
 
 // Metadata portada do <head> do fonte estático.
 export const metadata: Metadata = {
-  title: 'Avalon Residencial — Apartamentos de 78,5 e 108 m² em Jundiaí | F A Oliva',
+  title: 'Avalon Residencial, Apartamentos de 78,5 e 108 m² em Jundiaí | F A Oliva',
   description:
     'Avalon Residencial, da F A Oliva. Apartamentos de 78,5 e 108 m², 2 e 3 dormitórios com suíte, 19 áreas de lazer, piscina coberta e aquecida. Vila Hortolândia, Jundiaí/SP.',
   keywords:
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    title: 'Avalon Residencial — Vila Hortolândia, Jundiaí/SP',
+    title: 'Avalon Residencial, Vila Hortolândia, Jundiaí/SP',
     description:
       'Apartamentos de 78,5 e 108 m² com suíte, 19 áreas de lazer e piscina coberta e aquecida.',
     images: ['/avalon/a001.jpg'],

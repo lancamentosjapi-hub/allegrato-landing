@@ -5,7 +5,7 @@ import './jardins-do-horto.css';
 // Metadata portada do <head>/<helmet> de jardins-do-horto/index.html (paridade de SEO).
 export const metadata: Metadata = {
   title:
-    'Jardins do Horto — Apartamentos de 72m² e 95m² no Horto Florestal, Jundiaí | Santa Angela',
+    'Jardins do Horto, Apartamentos de 72m² e 95m² no Horto Florestal, Jundiaí | Santa Angela',
   description:
     'Jardins do Horto: apartamentos de 72m² e 95m², 2 e 3 dormitórios no Horto Florestal, Jundiaí/SP. Lazer completo, ao lado do Maxi Shopping. Um empreendimento Santa Angela. Agende sua visita.',
   keywords:
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   robots: 'index,follow',
   openGraph: {
     type: 'website',
-    title: 'Jardins do Horto — Morar bem no Horto Florestal, Jundiaí',
+    title: 'Jardins do Horto, Morar bem no Horto Florestal, Jundiaí',
     description:
       'Apartamentos de 72m² e 95m² com lazer completo no coração do Horto Florestal. Um empreendimento Santa Angela.',
     images: ['assets/img/p01.jpg'],
