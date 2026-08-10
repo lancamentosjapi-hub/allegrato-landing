@@ -23,10 +23,19 @@
   [data-pdp-grid]{grid-template-columns:1fr !important;}
   /* /lotus-sobre — dois CTAs "Quer vender / Procurando um imóvel" lado a lado */
   div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important;}
-  /* Header: o CTA dourado "Falar com a LIA" é redundante no mobile (já está
-     dentro do drawer do menu). Esconder evita o overflow do header. */
+  /* Header: o CTA dourado é redundante no mobile (já está dentro do drawer do
+     menu). Esconder evita o overflow do header. */
   header a[style*="border-radius:40px"],
   header a[style*="border-radius: 40px"]{display:none !important;}
+
+  /* Retrato + texto lado a lado (fundador em /lotus-sobre, Squad Lançamentos,
+     corretor do condomínio). A foto tem largura fixa de 130–180px: num celular
+     de 360px sobravam ~36px para o texto na /lotus-sobre, o que espremia a bio
+     numa coluna de uma palavra por linha. Empilha.
+     A timeline de /lotus-recrutamento também usa `auto 1fr`, mas com bolinha de
+     48px — por isso a regra é por atributo e não pelo style inline. */
+  [data-retrato-grid]{grid-template-columns:1fr !important;}
+  [data-retrato-grid] > *{min-width:0 !important;}
 }
 
 /* Menu mobile (hambúrguer): escondido no desktop; aparece no mesmo breakpoint
