@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import AltosDaAvenida from '@/components/AltosDaAvenida';
 import './altos-da-avenida.css';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // Metadata portada do <head>/<helmet> de altos-da-avenida/index.html (paridade de SEO).
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ export default function AltosDaAvenidaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(residenceLd) }}
       />
       <AltosDaAvenida />
+      <VoltarParaLancamentos />
     </>
   );
 }

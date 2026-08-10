@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './brisas-do-japi.css';
 import BrisasDoJapi from '@/components/BrisasDoJapi';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // Next 15: themeColor vive no export `viewport`, não em `metadata`.
 export const viewport: Viewport = { themeColor: '#123c47' };
@@ -28,5 +29,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <BrisasDoJapi />;
+  return (
+    <>
+      <BrisasDoJapi />
+      <VoltarParaLancamentos />
+    </>
+  );
 }

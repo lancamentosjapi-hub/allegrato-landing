@@ -166,8 +166,12 @@ export type JardinsDoHortoProps = {
   email?: string;
 };
 
+// Número da Lotus. O default era '' e o waHref caía em '#contato': os botões de
+// WhatsApp desta landing rolavam a página em vez de abrir a conversa.
+const WHATSAPP_DEFAULT = 'https://wa.me/5511926143393';
+
 export default function JardinsDoHorto({
-  whatsappUrl = '',
+  whatsappUrl = WHATSAPP_DEFAULT,
   imobiliaria = '',
   telefone = '',
   email = '',
@@ -176,7 +180,6 @@ export default function JardinsDoHorto({
   const [lb, setLb] = useState<number | null>(null);
   const [sent, setSent] = useState(false);
 
-  // waHref: replica exata de renderVals — (wa && wa.length) ? wa : '#contato'.
   const waHref = whatsappUrl && whatsappUrl.length ? whatsappUrl : '#contato';
 
   const g = lb != null ? gallery[lb] : null;

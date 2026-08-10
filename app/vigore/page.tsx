@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import Vigore from '@/components/Vigore';
 import './vigore.css';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // theme-color do <head> do estático (Next 15: vai no export viewport, não em metadata).
 export const viewport: Viewport = {
@@ -83,6 +84,7 @@ export default function VigorePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Vigore />
+      <VoltarParaLancamentos />
     </>
   );
 }

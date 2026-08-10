@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './best-view-residence.css';
 import BestViewResidence from '@/components/BestViewResidence';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // Metadata portada do <helmet> do fonte estático.
 export const metadata: Metadata = {
@@ -21,5 +22,10 @@ export const metadata: Metadata = {
 };
 
 export default function BestViewResidencePage() {
-  return <BestViewResidence />;
+  return (
+    <>
+      <BestViewResidence />
+      <VoltarParaLancamentos />
+    </>
+  );
 }

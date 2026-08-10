@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './odeon.css';
 import Odeon from '@/components/Odeon';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // Metadata portada do <helmet> do fonte estático.
 export const metadata: Metadata = {
@@ -21,5 +22,10 @@ export const metadata: Metadata = {
 };
 
 export default function OdeonPage() {
-  return <Odeon />;
+  return (
+    <>
+      <Odeon />
+      <VoltarParaLancamentos />
+    </>
+  );
 }

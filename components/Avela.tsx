@@ -117,7 +117,7 @@ const ExpandIcon = () => (
 /* Dados estáticos (valores EXATOS do script)                         */
 /* ------------------------------------------------------------------ */
 
-const WHATSAPP_DEFAULT = '5511913141100';
+const WHATSAPP_DEFAULT = '5511926143393';
 const REVEAL_ANIM_DEFAULT = true;
 
 type Plan = {

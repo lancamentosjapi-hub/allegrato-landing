@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './avela.css';
 import Avela from '@/components/Avela';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // Metadata portada do <helmet> de avela/index.html (paridade de SEO com o estático).
 export const metadata: Metadata = {
@@ -20,5 +21,10 @@ export const metadata: Metadata = {
 };
 
 export default function AvelaPage() {
-  return <Avela />;
+  return (
+    <>
+      <Avela />
+      <VoltarParaLancamentos />
+    </>
+  );
 }

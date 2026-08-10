@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './vistta-castanho.css';
 import VisttaCastanho from '@/components/VisttaCastanho';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // Metadata portada do <head> do index.html original (valores EXATOS).
 export const metadata: Metadata = {
@@ -59,6 +60,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <VisttaCastanho />
+      <VoltarParaLancamentos />
     </>
   );
 }

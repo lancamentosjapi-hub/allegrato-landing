@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './portal-dos-lagos.css';
 import PortalDosLagos from '@/components/PortalDosLagos';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // Metadata portada do <head> do fonte portal-dos-lagos (title/description EXATOS).
 // canonical / OpenGraph seguem a convenção das demais landings.
@@ -35,5 +36,10 @@ export const metadata: Metadata = {
 };
 
 export default function PortalDosLagosPage() {
-  return <PortalDosLagos />;
+  return (
+    <>
+      <PortalDosLagos />
+      <VoltarParaLancamentos />
+    </>
+  );
 }

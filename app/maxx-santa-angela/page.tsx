@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import MaxxSantaAngela from '@/components/MaxxSantaAngela';
 import './maxx-santa-angela.css';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // theme-color do <helmet> estático (no Next 15 vai no export `viewport`).
 export const viewport: Viewport = {
@@ -50,6 +51,7 @@ export default function MaxxSantaAngelaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(residenceLd) }}
       />
       <MaxxSantaAngela />
+      <VoltarParaLancamentos />
     </>
   );
 }

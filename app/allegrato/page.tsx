@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './allegrato.css';
 import Allegrato from '@/components/Allegrato';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // Metadata portada do <head> do fonte estático.
 export const metadata: Metadata = {
@@ -21,5 +22,10 @@ export const metadata: Metadata = {
 };
 
 export default function AllegratoPage() {
-  return <Allegrato />;
+  return (
+    <>
+      <Allegrato />
+      <VoltarParaLancamentos />
+    </>
+  );
 }

@@ -253,7 +253,10 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
               A cor separa as duas, branco e bege. */}
           <h1 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(38px,5.4vw,68px);line-height:1.03;letter-spacing:-.02em;color:#fff;margin:0 0 22px;")}>
             <span style={parseStyle('display:block;')}>Grandes escolhas</span>
-            <span style={parseStyle('display:block;color:#ece2cf;')}>começam antes da chave.</span>
+            {/* Bege entre o #ece2cf (fundo bege do site) e o #cdab6e (dourado).
+                O #ece2cf tinha só 1.28x de contraste contra o branco da linha
+                de cima: as duas liam como a mesma cor e a separação sumia. */}
+            <span style={parseStyle('display:block;color:#e0cfa8;')}>começam antes da chave.</span>
           </h1>
           <p style={parseStyle('font-size:clamp(16px,1.7vw,20px);color:rgba(247,242,232,.82);font-weight:300;line-height:1.55;max-width:620px;margin:0 auto;')}>Pré-lançamentos, imóveis em obras e prontos para morar, selecionados com critério pela Lotus. Compare localização, planta, condições e estágio da obra para escolher com clareza o melhor momento de avançar.</p>
         </div>

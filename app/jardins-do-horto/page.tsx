@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import JardinsDoHorto from '@/components/JardinsDoHorto';
 import './jardins-do-horto.css';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // Metadata portada do <head>/<helmet> de jardins-do-horto/index.html (paridade de SEO).
 export const metadata: Metadata = {
@@ -49,6 +50,7 @@ export default function JardinsDoHortoPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(residenceLd) }}
       />
       <JardinsDoHorto />
+      <VoltarParaLancamentos />
     </>
   );
 }

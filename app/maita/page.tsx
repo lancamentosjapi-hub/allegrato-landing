@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './maita.css';
 import Maita from '@/components/Maita';
+import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
 
 // Metadata portada do <head> do fonte estático. O canonical aponta para o domínio
 // do portal (o original apontava para japilancamentos.com.br).
@@ -22,5 +23,10 @@ export const metadata: Metadata = {
 };
 
 export default function MaitaPage() {
-  return <Maita />;
+  return (
+    <>
+      <Maita />
+      <VoltarParaLancamentos />
+    </>
+  );
 }

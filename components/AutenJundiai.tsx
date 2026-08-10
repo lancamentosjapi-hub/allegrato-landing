@@ -23,7 +23,7 @@ import { useEffect, useRef } from 'react';
 import { sendLead } from '@/lib/lead';
 
 /* >>> CONFIGURE AQUI <<< — troque pelo WhatsApp da sua imobiliária */
-const WPP_NUMBER = '5511900000000'; // formato internacional, somente dígitos
+const WPP_NUMBER = '5511926143393'; // formato internacional, somente dígitos
 
 /* Tipologias (dados reais do manual) — valores EXATOS do a027.js */
 const TIPOS = [
