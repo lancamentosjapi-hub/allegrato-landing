@@ -284,8 +284,34 @@ const ocultos = new Set(OCULTOS_ATE_TROCAR_CAPA.map(chaveNome));
 //
 // Chave = nome do empreendimento como aparece no site. Valor = caminho em
 // public/ (a imagem precisa existir lá).
+// Escolhidas revisando as fotos de cada landing contra a capa que vinha do
+// dashboard. Critério: mostrar o empreendimento (fachada, conjunto ou área
+// comum que o identifique), não um cômodo isolado nem decorado genérico.
+// Avalon e SKY Videiras ficaram de fora: a capa que já tinham é a melhor foto
+// da landing deles.
 const CAPAS_CURADAS: Record<string, string> = {
-  // 'Jardins do Horto': '/jardins-do-horto/a004.jpg',
+  // fachada / conjunto
+  'Authoria by Tebas': '/authoria/a046.jpg',       // a do dash era só sacadas, cortada
+  'Jardins do Horto': '/jardins-do-horto/a004.jpg', // as torres ao pôr do sol
+  Maitá: '/maita/a007.jpg',
+  Manawa: '/manawa/a005.png',
+  Vigóre: '/vigore/a44.jpg',                       // as duas torres, não uma lateral
+  'Vivarte Grand Alamedas': '/vivarte/a015.jpg',   // o conjunto de dia
+  'Doppio Jundiaí': '/assets/doppio-capa.jpg',     // resolve também a foto repetida com o Vivarte
+  // aérea do conjunto
+  'Best View Residence': '/best-view-residence/a013.png',
+  'Forest Houses': '/forest-houses/a009.jpg',      // mostra que são casas em condomínio
+  // portaria / entrada (loteamentos e condomínios)
+  'Brisas do Japi': '/brisas-do-japi/HALLDEENTRADA.jpg', // e sai do servidor da construtora
+  'Gran Ville Santo Ângelo': '/gran-ville-santo-angelo/a013.jpg',
+  'Vistta Castanho': '/vistta-castanho/a009.jpg',
+  // lazer, quando é o que identifica o produto
+  Allegrato: '/allegrato/a013.jpg',                // piscinas com as torres ao fundo
+  Avelã: '/avela/a012.jpg',
+  // Odeon: a landing não tem NENHUMA foto de fachada — só decorado, plantas e
+  // aéreas da região. A piscina coberta é o melhor que existe até chegar uma
+  // foto do prédio.
+  'Odeon Residencial': '/odeon/a005.jpg',
 };
 
 const capasCuradas = new Map(Object.entries(CAPAS_CURADAS).map(([n, p]) => [chaveNome(n), p]));
@@ -315,10 +341,36 @@ const semCapaRuim = <T extends { name: string }>(itens: T[]): T[] =>
 // Criar a landing é o que o traz de volta — não há lista para editar aqui.
 const temPaginaPropria = <T extends { href: string | null }>(i: T) => Boolean(i.href);
 
-// Ordem: primeiro troca a capa, depois decide quem aparece.
+// Um empreendimento pode chegar por dois caminhos: o cadastro do banco e a
+// landing curada. O merge já descarta a curada quando a do banco é
+// apresentável, mas um cadastro pela metade (sem foto) escapava desse teste e
+// voltava a passar depois de ganhar capa curada, duplicando o card. Deduplicar
+// por nome no fim fecha isso independente da ordem em que os filtros rodam.
+// Entre duas cópias, fica a que TEM foto. Guardar simplesmente a primeira
+// escolhia o cadastro pela metade e descartava o bom: o card sumia inteiro
+// depois, ao ser reprovado no teste de "apresentável" lá na página.
+const semRepetidos = <T extends { name: string; img: string | null }>(itens: T[]): T[] => {
+  const melhor = new Map<string, T>();
+  for (const i of itens) {
+    const k = chaveNome(i.name);
+    const atual = melhor.get(k);
+    if (!atual || (!atual.img && i.img)) melhor.set(k, i);
+  }
+  // Preserva a ordem original em vez da ordem de inserção do Map.
+  const escolhidos = new Set(melhor.values());
+  return itens.filter((i) => escolhidos.has(i));
+};
+
+// Ordem importa: capa curada primeiro (senão um item bom seria reprovado por
+// falta de foto), depois quem aparece, depois `completo` — que descarta o
+// cadastro pela metade — e só então a deduplicação. Deduplicar antes de
+// `completo` fazia a cópia incompleta do banco vencer a curada e o
+// empreendimento sumir por inteiro.
 const publicaveis = <T extends { name: string; img: string | null; href: string | null }>(
-  itens: T[]
-): T[] => semCapaRuim(comCapaCurada(itens)).filter(temPaginaPropria);
+  itens: T[],
+  completo: (i: T) => boolean
+): T[] =>
+  semRepetidos(semCapaRuim(comCapaCurada(itens)).filter(temPaginaPropria).filter(completo));
 
 export async function getLancamentos(): Promise<LancamentoCard[]> {
   const rows = await fetchRowsComLanding();
@@ -347,7 +399,7 @@ export async function getLancamentos(): Promise<LancamentoCard[]> {
     href: d.href,
   }));
 
-  return publicaveis([...cards, ...daLanding]).sort((a, b) => {
+  return publicaveis([...cards, ...daLanding], isApresentavel).sort((a, b) => {
     const al = a.href ? 0 : 1;
     const bl = b.href ? 0 : 1;
     return al !== bl ? al - bl : a.name.localeCompare(b.name, 'pt-BR');
@@ -396,5 +448,5 @@ export async function getLancamentosList(): Promise<LancamentoListItem[]> {
     };
   });
 
-  return publicaveis([...itens, ...daLanding]);
+  return publicaveis([...itens, ...daLanding], isListItemApresentavel);
 }
