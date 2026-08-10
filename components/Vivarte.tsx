@@ -790,8 +790,8 @@ export default function Vivarte({
             </div>
             <div>
               <div style={parseStyle('font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#93A074;margin-bottom:18px;')}>Corretor parceiro</div>
-              <div style={parseStyle('border:1px dashed rgba(246,241,230,.28);border-radius:3px;padding:18px;display:flex;flex-direction:column;gap:6px;')}>
-                <span style={parseStyle("font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#F6F1E6;")}>{agencyName}</span>
+              <div style={parseStyle('border:1px dashed rgba(246,241,230,.28);border-radius:3px;padding:18px;display:flex;flex-direction:column;gap:10px;align-items:flex-start;')}>
+                <img src="/logo-lotus-dourado.png" alt={agencyName} style={{ height: 40, width: 'auto', display: 'block' }} />
                 <span style={parseStyle('font-size:.85rem;color:rgba(246,241,230,.5);')}>{creci}</span>
               </div>
             </div>

@@ -258,7 +258,14 @@ export default function JardinsDoHorto({
           lw.style.opacity = s ? '0' : '1';
           ld.style.opacity = s ? '1' : '0';
         }
-        if (burger) burger.style.background = s ? '#201D19' : '#fff';
+        // As outras duas barras do hambúrguer são box-shadow, não elementos.
+        // Trocar só o `background` escurecia a barra do meio e deixava as
+        // outras brancas sobre o cabeçalho claro: sobrava um traço só.
+        if (burger) {
+          const cor = s ? '#201D19' : '#fff';
+          burger.style.background = cor;
+          burger.style.boxShadow = `0 8px 0 ${cor}, 0 -8px 0 ${cor}`;
+        }
       }
       if (heroImg) heroImg.style.transform = 'translate3d(0,' + y * 0.16 + 'px,0) scale(1.12)';
       ticking = false;

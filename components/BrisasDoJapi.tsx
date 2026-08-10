@@ -694,7 +694,10 @@ export default function BrisasDoJapi({
             <div>
               <div style={parseStyle('color:#fff;font-weight:700;font-size:14px;margin-bottom:14px;')}>Atendimento</div>
               <a href={heroCta} target="_blank" rel="noopener" style={parseStyle('color:#c8a45c;text-decoration:none;font-weight:700;font-size:16px;')}>Falar no WhatsApp</a>
-              <p style={parseStyle('font-size:13.5px;line-height:1.6;margin:16px 0 0;')}>Anunciado por<br /><strong style={parseStyle('color:#fff;font-size:15px;')}>{agency}</strong></p>
+              <div style={parseStyle('font-size:13.5px;line-height:1.6;margin:16px 0 0;')}>
+                Anunciado por
+                <img src="/logo-lotus-dourado.png" alt={agency} style={{ height: 38, width: 'auto', display: 'block', marginTop: 8 }} />
+              </div>
             </div>
           </div>
           <p style={parseStyle('font-size:11.5px;line-height:1.7;margin:28px 0 0;max-width:none;')}>Incorporação registrada no 1º Oficial de Registro de Imóveis, Títulos e Documentos e Civil de Pessoa Jurídica da Comarca de Jundiaí/SP, no Livro nº 2 – Registro Geral, matrícula 173.538, em 17 de abril de 2023. As imagens aqui apresentadas são de caráter meramente ilustrativo, tendo como finalidade a divulgação do empreendimento para fins comerciais e estão sujeitas a alterações. O projeto será executado de acordo com o Memorial Descritivo. A vegetação que compõe o paisagismo é ilustrativa, apresenta porte adulto de referência e, na entrega do empreendimento, apresentará diferença de tamanho, pois será entregue em forma de mudas, conforme o projeto. A construtora reserva-se no direito de alterar as especificações deste material publicitário, prevalecendo as condições informadas no ato da venda e estabelecidas em contrato. CRECISP: 28693-J.</p>

@@ -693,3 +693,12 @@
 @keyframes vgPulse{0%{box-shadow:0 0 0 0 rgba(242,88,30,.55)}70%{box-shadow:0 0 0 16px rgba(242,88,30,0)}100%{box-shadow:0 0 0 0 rgba(242,88,30,0)}}
 @keyframes vgSpin{to{transform:rotate(360deg)}}
 #vg-root *::-webkit-scrollbar{width:11px;height:11px}#vg-root *::-webkit-scrollbar-track{background:#15110D}#vg-root *::-webkit-scrollbar-thumb{background:#3a322a;border-radius:8px}
+
+/* Nav responsivo. O componente já traz o botão-hambúrguer (#vg-burger), o
+   drawer (#vg-drawer) e o JS que os liga, mas o CSS não tinha nenhuma media
+   query: os links ficavam sempre visíveis e o botão de WhatsApp acabava por
+   cima do logo em telas estreitas. Aqui os links dão lugar ao hambúrguer. */
+@media (max-width: 900px) {
+  #vg-links { display: none !important; }
+  #vg-burger { display: flex !important; }
+}
