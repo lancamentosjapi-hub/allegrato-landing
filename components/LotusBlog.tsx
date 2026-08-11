@@ -903,7 +903,7 @@ export default function LotusBlog({
       )}
 
       {/* FOOTER */}
-      <footer style={parseStyle('background:#15241c;padding:72px 32px 36px;position:relative;overflow:hidden;')}>
+      <footer data-rodape-portal="" style={parseStyle('background:#15241c;padding:72px 32px 36px;position:relative;overflow:hidden;')}>
         <div style={{ ...parseStyle('position:absolute;inset:0;opacity:.04;mix-blend-mode:overlay;pointer-events:none;'), backgroundImage: NOISE_BG }}></div>
         <div style={parseStyle('max-width:1280px;margin:0 auto;position:relative;')}>
           <div style={parseStyle('display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(247,242,232,.12);')}>

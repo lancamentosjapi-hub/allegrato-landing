@@ -52,3 +52,16 @@
   [data-mapcol][data-mobile-on="1"]{display:block !important;}
   [data-listcol][data-mobile-off="1"]{display:none !important;}
 }
+
+/* Os CTAs flutuantes (WhatsApp, "Atendimento" e, nas landings, o botão de volta
+   para lançamentos) são position:fixed no rodapé da janela. Ao rolar até o fim
+   da página eles passavam por cima dos ícones sociais do rodapé. Reservar a
+   faixa resolve sem mover os botões — o !important é necessário porque o
+   padding do rodapé é style inline. */
+[data-rodape-portal] {
+  padding-bottom: 104px !important;
+}
+@media (max-width: 760px) {
+  /* No celular os dois CTAs empilham e ocupam mais altura. */
+  [data-rodape-portal] { padding-bottom: 132px !important; }
+}

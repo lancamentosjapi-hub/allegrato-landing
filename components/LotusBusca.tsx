@@ -544,7 +544,7 @@ export default function LotusBusca({
       </div>
 
       {/* ===== FOOTER (slim) ===== */}
-      <footer style={parseStyle('background:#15241c;padding:40px 32px;margin-top:24px;')}>
+      <footer data-rodape-portal="" style={parseStyle('background:#15241c;padding:40px 32px;margin-top:24px;')}>
         <div style={parseStyle('max-width:1480px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;')}>
           <div style={parseStyle('display:flex;align-items:center;gap:11px;')}>
             <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />

@@ -156,7 +156,7 @@ export default function LotusBairrosIndex({
       </section>
 
       {/* FOOTER */}
-      <footer style={parseStyle('background:#15241c;padding:56px 32px 36px;')}>
+      <footer data-rodape-portal="" style={parseStyle('background:#15241c;padding:56px 32px 36px;')}>
         <div style={parseStyle('max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;')}>
           <div style={parseStyle('display:flex;align-items:center;gap:12px;')}>
             <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
