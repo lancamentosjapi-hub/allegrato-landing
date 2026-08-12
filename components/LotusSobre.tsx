@@ -165,6 +165,33 @@ function ImageSlot({
   );
 }
 
+/**
+ * Aplica cor e peso aos trechos de `realce` dentro de um parágrafo.
+ *
+ * Divide o texto pelos trechos pedidos, em vez de trocar por HTML: nada de
+ * dangerouslySetInnerHTML e nenhum risco de quebrar acentuação ou tags. Trecho
+ * que não for encontrado simplesmente não realça — o parágrafo sai inteiro.
+ */
+function comRealce(texto: string, realce?: string[]) {
+  if (!realce || realce.length === 0) return texto;
+  const encontrados = realce.filter((r) => texto.includes(r));
+  if (encontrados.length === 0) return texto;
+
+  // Divide preservando os separadores, para reconstruir o parágrafo na ordem.
+  const escapado = encontrados.map((r) => r.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const partes = texto.split(new RegExp('(' + escapado.join('|') + ')'));
+
+  return partes.map((p, i) =>
+    encontrados.includes(p) ? (
+      <strong key={i} style={{ color: '#e0cfa8', fontWeight: 500 }}>
+        {p}
+      </strong>
+    ) : (
+      <React.Fragment key={i}>{p}</React.Fragment>
+    )
+  );
+}
+
 /* Textura de ruído (SVG) idêntica ao estático — usada como background-image. */
 const NOISE_BG =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -186,26 +213,77 @@ const ENDERECO_ESCRITORIO = {
 // `ritmo` = a enumeração curta ("São recomeços. São despedidas."), que respira
 // em bloco próprio em vez de virar mais um parágrafo corrido.
 type BlocoManifesto =
-  | { tipo: 'destaque'; texto: string }
-  | { tipo: 'texto'; texto: string }
-  | { tipo: 'ritmo'; abertura: string; itens: string[] };
+  /** Par de frases em oposição: a segunda é a virada. Abre e fecha o manifesto. */
+  | { tipo: 'abertura' | 'fecho'; texto: string; contraponto: string }
+  | { tipo: 'destaque'; texto: string; realce?: string[] }
+  | { tipo: 'texto'; texto: string; realce?: string[] }
+  | { tipo: 'ritmo'; abertura: string; itens: string[]; fecho: string };
 
+// `realce` marca os trechos que ganham cor e peso dentro do parágrafo. São
+// buscados literalmente no texto, então cada um precisa aparecer igualzinho —
+// se um realce não casar, o parágrafo sai inteiro, sem destaque, e nunca
+// quebrado. Poucos por bloco: destacar tudo é não destacar nada.
 const manifesto: BlocoManifesto[] = [
-  { tipo: 'destaque', texto: 'Há decisões que mudam um endereço. E há decisões que mudam uma vida.' },
-  { tipo: 'texto', texto: 'Comprar ou vender um imóvel não é apenas uma transação. É escolher onde uma família vai construir memórias. É transformar escolhas conscientes em patrimônio. É encerrar um ciclo para permitir que outro floresça.' },
-  { tipo: 'texto', texto: 'Estas são decisões grandes demais para serem conduzidas com pressa, pressão ou improviso.' },
+  {
+    tipo: 'abertura',
+    texto: 'Há decisões que mudam um endereço.',
+    contraponto: 'E há decisões que mudam uma vida.',
+  },
+  {
+    tipo: 'texto',
+    texto:
+      'Comprar ou vender um imóvel não é apenas uma transação. É escolher onde uma família vai construir memórias. É transformar escolhas conscientes em patrimônio. É encerrar um ciclo para permitir que outro floresça.',
+    realce: ['construir memórias', 'patrimônio', 'outro floresça'],
+  },
+  {
+    tipo: 'texto',
+    texto: 'Estas são decisões grandes demais para serem conduzidas com pressa, pressão ou improviso.',
+    realce: ['grandes demais'],
+  },
   {
     tipo: 'ritmo',
     abertura: 'Acreditamos que imóveis nunca são apenas imóveis.',
-    itens: ['São recomeços.', 'São despedidas.', 'São conquistas.', 'São a materialização de anos de trabalho, sonhos e coragem.'],
+    itens: ['São recomeços.', 'São despedidas.', 'São conquistas.'],
+    fecho: 'São a materialização de anos de trabalho, sonhos e coragem.',
   },
-  { tipo: 'texto', texto: 'Acreditamos que excelência é estar presente nos momentos que realmente importam. Para nós, cada imóvel possui um endereço, mas cada cliente possui uma história.' },
-  { tipo: 'texto', texto: 'Por isso, não tratamos pessoas como números ou oportunidades. Tratamos cada jornada com o respeito de quem compreende o peso financeiro e emocional de uma decisão imobiliária. Colocamos a escuta, a compreensão, a orientação e o cuidado no centro de cada atendimento.' },
-  { tipo: 'texto', texto: 'Nosso papel é interpretar desejos, esclarecer riscos, revelar possibilidades e conduzir cada cliente a uma decisão da qual continuará se orgulhando no futuro.' },
-  { tipo: 'texto', texto: 'O verdadeiro alto padrão não está apenas no valor do imóvel. Está na qualidade da condução, na atenção aos detalhes e na segurança sentida durante toda a jornada.' },
-  { tipo: 'destaque', texto: 'Como a flor que nos dá nome, acreditamos que grandes transformações podem nascer mesmo em meio à complexidade. Somos apaixonados por fazer grandes decisões florescerem.' },
-  { tipo: 'texto', texto: 'Uma imobiliária que não deseja apenas intermediar imóveis, mas elevar o padrão de como compradores e vendedores são tratados.' },
-  { tipo: 'texto', texto: 'Porque imóveis representam patrimônio. Mas as decisões tomadas ao redor deles representam vidas.' },
+  {
+    tipo: 'texto',
+    texto:
+      'Acreditamos que excelência é estar presente nos momentos que realmente importam. Para nós, cada imóvel possui um endereço, mas cada cliente possui uma história.',
+    realce: ['cada imóvel possui um endereço, mas cada cliente possui uma história'],
+  },
+  {
+    tipo: 'texto',
+    texto:
+      'Por isso, não tratamos pessoas como números ou oportunidades. Tratamos cada jornada com o respeito de quem compreende o peso financeiro e emocional de uma decisão imobiliária. Colocamos a escuta, a compreensão, a orientação e o cuidado no centro de cada atendimento.',
+    realce: ['a escuta, a compreensão, a orientação e o cuidado'],
+  },
+  {
+    tipo: 'texto',
+    texto:
+      'Nosso papel é interpretar desejos, esclarecer riscos, revelar possibilidades e conduzir cada cliente a uma decisão da qual continuará se orgulhando no futuro.',
+    realce: ['continuará se orgulhando no futuro'],
+  },
+  {
+    tipo: 'texto',
+    texto:
+      'O verdadeiro alto padrão não está apenas no valor do imóvel. Está na qualidade da condução, na atenção aos detalhes e na segurança sentida durante toda a jornada.',
+    realce: ['O verdadeiro alto padrão'],
+  },
+  {
+    tipo: 'destaque',
+    texto:
+      'Como a flor que nos dá nome, acreditamos que grandes transformações podem nascer mesmo em meio à complexidade.',
+    realce: ['grandes transformações'],
+  },
+  { tipo: 'destaque', texto: 'Somos apaixonados por fazer grandes decisões florescerem.', realce: ['florescerem'] },
+  {
+    tipo: 'texto',
+    texto:
+      'Uma imobiliária que não deseja apenas intermediar imóveis, mas elevar o padrão de como compradores e vendedores são tratados.',
+    realce: ['elevar o padrão'],
+  },
+  { tipo: 'fecho', texto: 'Porque imóveis representam patrimônio.', contraponto: 'Mas as decisões tomadas ao redor deles representam vidas.' },
 ];
 
 // As 7 Pétalas da Lótus.
@@ -305,24 +383,53 @@ export default function LotusSobre({
       {/* MANIFESTO */}
       <section style={parseStyle('background:#15241c;padding:110px 32px;position:relative;overflow:hidden;')}>
         <div style={{ position: 'absolute', inset: 0, opacity: 0.05, mixBlendMode: 'overlay', pointerEvents: 'none', backgroundImage: NOISE_BG }}></div>
-        <div style={parseStyle('max-width:760px;margin:0 auto;position:relative;')}>
-          <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#b18a4a;margin-bottom:28px;text-align:center;')}>Manifesto</div>
-          <div style={parseStyle('display:flex;flex-direction:column;gap:26px;')}>
-            {manifesto.map((b, i) =>
-              b.tipo === 'destaque' ? (
-                <p key={i} style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:clamp(22px,2.6vw,30px);line-height:1.3;color:#f7f2e8;margin:0;text-align:center;')}>{b.texto}</p>
-              ) : b.tipo === 'ritmo' ? (
-                <div key={i}>
-                  <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.7;margin:0 0 10px;')}>{b.abertura}</p>
-                  {b.itens.map((item, j) => (
-                    <p key={j} style={parseStyle('font-family:\'Fraunces\',serif;font-weight:300;font-size:19px;color:#cdab6e;line-height:1.5;margin:0;')}>{item}</p>
-                  ))}
-                </div>
-              ) : (
-                <p key={i} style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.7;margin:0;')}>{b.texto}</p>
-              )
-            )}
-            <p style={parseStyle('font-family:\'Fraunces\',serif;font-style:italic;font-weight:300;font-size:clamp(22px,2.8vw,32px);line-height:1.2;color:#cdab6e;margin:14px 0 0;text-align:center;')}>Grandes escolhas têm endereço.</p>
+        {/* 68ch é a medida em que uma linha ainda se lê sem esforço. O texto do
+            manifesto é longo: sem esse limite ele vira parede. */}
+        <div style={parseStyle('max-width:68ch;margin:0 auto;position:relative;')}>
+          <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#b18a4a;margin-bottom:44px;text-align:center;')}>Manifesto</div>
+
+          {/* Um ritmo só: abertura grande, corpo tranquilo, dois picos e o
+              fecho. O espaçamento entre blocos é maior que o de dentro deles,
+              para o olho agrupar as ideias sozinho. */}
+          <div style={parseStyle('display:flex;flex-direction:column;gap:34px;')}>
+            {manifesto.map((b, i) => {
+              if (b.tipo === 'abertura' || b.tipo === 'fecho') {
+                const abre = b.tipo === 'abertura';
+                return (
+                  <div key={i} style={parseStyle(abre ? 'text-align:center;margin-bottom:10px;' : 'text-align:center;margin-top:18px;padding-top:38px;border-top:1px solid rgba(205,171,110,.22);')}>
+                    <p style={parseStyle(`font-family:'Fraunces',serif;font-weight:300;font-size:clamp(${abre ? '26px,3.4vw,40px' : '22px,2.8vw,32px'});line-height:1.16;letter-spacing:-.01em;color:rgba(247,242,232,.72);margin:0;`)}>{b.texto}</p>
+                    {/* O contraponto é a virada da frase: ganha a cor e o peso. */}
+                    <p style={parseStyle(`font-family:'Fraunces',serif;font-weight:400;font-size:clamp(${abre ? '28px,3.8vw,46px' : '24px,3.1vw,36px'});line-height:1.16;letter-spacing:-.01em;color:#e0cfa8;margin:6px 0 0;`)}>{b.contraponto}</p>
+                  </div>
+                );
+              }
+              if (b.tipo === 'ritmo') {
+                return (
+                  <div key={i} style={parseStyle('padding:6px 0 6px 22px;border-left:2px solid rgba(205,171,110,.35);')}>
+                    <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.7;margin:0 0 14px;')}>{b.abertura}</p>
+                    {/* A enumeração é o coração do texto: serifada, dourada e em
+                        linhas próprias, para ser lida em três batidas. */}
+                    {b.itens.map((item, j) => (
+                      <p key={j} style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(21px,2.3vw,26px);color:#cdab6e;line-height:1.42;margin:0;")}>{item}</p>
+                    ))}
+                    <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.7;margin:14px 0 0;')}>{b.fecho}</p>
+                  </div>
+                );
+              }
+              if (b.tipo === 'destaque') {
+                return (
+                  <p key={i} style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(21px,2.5vw,28px);line-height:1.32;color:#f7f2e8;margin:0;text-align:center;")}>{comRealce(b.texto, b.realce)}</p>
+                );
+              }
+              if (b.tipo === 'texto') {
+                return (
+                  <p key={i} style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.75;margin:0;')}>{comRealce(b.texto, b.realce)}</p>
+                );
+              }
+              return null;
+            })}
+
+            <p style={parseStyle("font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:clamp(24px,3vw,34px);line-height:1.2;color:#cdab6e;margin:26px 0 0;text-align:center;")}>Grandes escolhas têm endereço.</p>
           </div>
         </div>
       </section>
