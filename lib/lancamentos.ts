@@ -249,7 +249,6 @@ const OCULTOS_ATE_TROCAR_CAPA = [
   'Residencial Terras da Alvorada',
   'Anhangabaú Design',
   'Vitale Fernande',
-  'Altissimi',
   'Resort Prime',
   'Santorini',
   'Diferenziato',

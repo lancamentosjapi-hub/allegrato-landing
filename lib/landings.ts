@@ -30,6 +30,14 @@ export function isLandingDir(appDir: string, name: string): boolean {
   );
 }
 
+/**
+ * Landings servidas como HTML estático de public/<slug>/index.html, com rewrite
+ * em next.config.mjs. Não vivem em app/, então a varredura do diretório não as
+ * enxerga — daí a lista explícita. Ao converter uma para componente React,
+ * remover o slug daqui e criar app/<slug>/.
+ */
+const LANDINGS_HTML = ['altissimi', 'oasis', 'vila-triunfo'];
+
 let cache: Set<string> | null = null;
 
 export function landingSlugs(): Set<string> {
@@ -48,7 +56,7 @@ export function landingSlugs(): Set<string> {
   if (slugs.length === 0) {
     console.error('[landings] nenhuma landing encontrada em app/, cards vão cair no contato');
   }
-  cache = new Set(slugs);
+  cache = new Set([...slugs, ...LANDINGS_HTML]);
   return cache;
 }
 
