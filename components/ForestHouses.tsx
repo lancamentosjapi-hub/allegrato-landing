@@ -348,7 +348,7 @@ export default function ForestHouses() {
       <header className="nav" id="nav" data-screen-label="Navegação">
         <div className="container nav__inner">
           <a href="#top" className="nav__brand" aria-label="Lotus Brokers, início">
-            <span className="bmark">Japi</span>
+            <span className="bmark">Lotus Brokers</span>
             <span className="bsub">Lançamentos</span>
           </a>
           <nav className="nav__menu" id="menu" aria-label="Navegação principal">
