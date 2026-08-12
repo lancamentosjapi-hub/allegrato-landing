@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { buildLeadPayload, type Lead } from '@/lib/lead';
+import { landingSlugs } from '@/lib/landings';
 
 // Proxy server-side dos formulários das landings → webhook de leads da LIA.
 //
@@ -7,7 +8,9 @@ import { buildLeadPayload, type Lead } from '@/lib/lead';
 // secreto e vazaria no bundle, e qualquer um poderia injetar lead no CRM.
 //
 // O cliente (lib/lead.ts) manda os campos crus. Esta rota valida, deriva o id
-// de deduplicação e o telefone E.164, e repassa com o segredo.
+// de deduplicação e o telefone E.164, marca lead de lançamento (ver
+// marcarLancamento) e repassa com o segredo. Classificação não se aceita do
+// navegador.
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -99,6 +102,42 @@ async function postWebhook(
   return false;
 }
 
+/**
+ * Marca lead de lançamento — contrato de identificação do CRM.
+ *
+ * Toda landing publicada deste repo é formulário de LANÇAMENTO, então o
+ * `portal` fixo ("Portal Lançamentos") vale para qualquer source que aponte
+ * para uma landing existente: é ele que classifica o lead do outro lado, e a
+ * fila dos corretores de lançamento filtra por essa marcação. `lancamento_id`
+ * e `property_code` (nome exato do cadastro) saem do banco pelo slug.
+ *
+ * Degradações, nesta ordem e de propósito:
+ * - slug que não é landing publicada → NÃO marca nada. Lead sem marcação fica
+ *   visível para todos os corretores; marcado errado some da fila certa.
+ * - landing sem linha no banco / Supabase fora → marca só `portal` e omite
+ *   id/código. O contrato manda omitir, nunca inventar.
+ * - erro aqui nunca derruba o registro do lead — marcação é enriquecimento.
+ */
+async function marcarLancamento(data: Record<string, string>): Promise<void> {
+  const slug = data.source.slice('landing_'.length); // source já validado pelo SOURCE_RE
+  if (!landingSlugs().has(slug)) return;
+
+  data.portal = 'Portal Lançamentos';
+  try {
+    // Import dinâmico: lib/supabase lança no load do módulo quando faltam as
+    // env NEXT_PUBLIC_* (mesmo motivo do import tardio em check-landings.ts),
+    // e env do portal ausente não pode derrubar o registro do lead.
+    const { getLancamentoParaLead } = await import('@/lib/lancamentos');
+    const lanc = await getLancamentoParaLead(slug);
+    if (lanc) {
+      data.lancamento_id = lanc.id;
+      data.property_code = lanc.nome;
+    }
+  } catch (err) {
+    console.error('[lead] lead segue sem lancamento_id (lookup falhou):', err);
+  }
+}
+
 export async function POST(req: NextRequest) {
   const url = process.env.LIA_LEAD_WEBHOOK_URL;
   const secret = process.env.LEAD_WEBHOOK_SECRET;
@@ -153,6 +192,9 @@ export async function POST(req: NextRequest) {
     console.error(`[lead] rate limit atingido para ${payload.data.id} (ip=${ip})`);
     return NextResponse.json({ error: 'rate_limited' }, { status: 429 });
   }
+
+  // Depois do rate limit de propósito: request rejeitado não gasta consulta ao banco.
+  await marcarLancamento(payload.data);
 
   const ok = await postWebhook(url, secret, payload);
   if (!ok) {

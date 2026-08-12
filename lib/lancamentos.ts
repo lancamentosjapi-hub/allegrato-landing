@@ -413,6 +413,24 @@ export async function getLancamentosRows(): Promise<LancamentoRow[]> {
   return fetchRowsComLanding();
 }
 
+/**
+ * Lançamento correspondente a uma landing publicada — insumo da marcação de
+ * lead de lançamento no /api/lead (campos `lancamento_id` e `property_code`
+ * do contrato do CRM). `nome` sai exatamente como cadastrado no dash, que é
+ * como o outro lado casa o lead com o empreendimento.
+ *
+ * null = landing sem linha no banco (ou Supabase fora — fetchRows já degrada
+ * para lista vazia). Nunca inventar id/nome aqui: lead marcado errado some da
+ * fila do time certo; sem id ele só segue sem o vínculo.
+ */
+export async function getLancamentoParaLead(
+  slug: string,
+): Promise<{ id: string; nome: string } | null> {
+  const rows = await fetchRowsComLanding();
+  const row = rows.find((r) => slugDaLanding(r) === slug);
+  return row ? { id: row.id, nome: row.nome } : null;
+}
+
 // Itens da listagem /lotus-lancamentos (com campos de filtro).
 export async function getLancamentosList(): Promise<LancamentoListItem[]> {
   const rows = await fetchRowsComLanding();
