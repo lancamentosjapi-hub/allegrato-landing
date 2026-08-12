@@ -65,3 +65,26 @@
   /* No celular os dois CTAs empilham e ocupam mais altura. */
   [data-rodape-portal] { padding-bottom: 132px !important; }
 }
+
+/* Landings sem media query própria (Odeon, Altos da Avenida, Best View,
+   Vivarte): grids de duas colunas que nunca empilhavam. Num aparelho de 360px
+   cada coluna ficava com ~150px. Os seletores miram o style inline exato, no
+   mesmo padrão das correções acima.
+   Os grids de repeat(3/4/6/12) destas mesmas páginas ficaram de fora de
+   propósito: sem ver a página não dá para saber se empilhar melhora ou piora
+   (uma fileira de ícones em 3 colunas pode estar correta a 360px). */
+@media (max-width: 760px) {
+  div[style*=".9fr 1.1fr"],
+  div[style*="1.1fr .9fr"],
+  div[style*="1.35fr 1fr"],
+  div[style*=".85fr 1.15fr"],
+  div[style*="1.05fr .95fr"],
+  div[style*="1.35fr .85fr"],
+  div[style*="190px 1fr"],
+  div[style*="minmax(0,1.65fr) minmax(0,1fr)"],
+  div[style*="minmax(320px, 1fr) minmax(340px, 1fr)"],
+  div[style*="minmax(320px, 1fr) minmax(360px, 1.1fr)"],
+  div[style*="minmax(340px, 1.25fr) minmax(300px, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+}
