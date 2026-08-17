@@ -1,4 +1,5 @@
 'use client';
+import { getBairro } from '@/lib/bairros';
 import { footerLegalLine } from '@/lib/site';
 
 /**
@@ -238,12 +239,34 @@ const DEPOIMENTOS_ATIVOS = false;
  */
 const PERFIS_PLACEHOLDER_ATIVOS = false;
 
-const neighborhoodsJundiai = [
-  { name: 'Eloy Chaves', city: 'Jundiaí', count: '34 imóveis', bairroSlug: 'eloy-chaves', slot: 'lotus-bairro-eloy', img: '/bairros/eloy-chaves.jpg' },
-  { name: 'Vianelo Bonfiglioli', city: 'Jundiaí', count: '', bairroSlug: 'vianelo-bonfiglioli', slot: 'lotus-bairro-vianelo', img: '' },
-  { name: 'Medeiros', city: 'Jundiaí', count: '22 imóveis', bairroSlug: 'medeiros', slot: 'lotus-bairro-medeiros', img: '/bairros/medeiros.jpg' },
-  { name: 'Caxambu', city: 'Jundiaí', count: '', bairroSlug: 'caxambu', slot: 'lotus-bairro-caxambu', img: '/bairros/caxambu.jpg' },
+/**
+ * Cards de bairro da home.
+ *
+ * Nome, cidade e foto vêm de lib/bairros.ts, a mesma fonte do guia em
+ * /lotus-bairro. Antes eram copiados à mão aqui, e foi exatamente isso que
+ * deixou o Vianelo sem foto na home depois de a imagem ser publicada no guia:
+ * a cópia daqui continuou vazia. É o mesmo problema que a lista de posts do
+ * blog logo abaixo já teve e que já foi resolvido do mesmo jeito.
+ *
+ * Aqui ficam só os campos que são da home: o slot da imagem e a contagem.
+ */
+const CARDS_BAIRRO = [
+  { bairroSlug: 'eloy-chaves', count: '34 imóveis', slot: 'lotus-bairro-eloy' },
+  { bairroSlug: 'vianelo-bonfiglioli', count: '', slot: 'lotus-bairro-vianelo' },
+  { bairroSlug: 'medeiros', count: '22 imóveis', slot: 'lotus-bairro-medeiros' },
+  { bairroSlug: 'caxambu', count: '', slot: 'lotus-bairro-caxambu' },
 ];
+
+const neighborhoodsJundiai = CARDS_BAIRRO.flatMap((c) => {
+  const b = getBairro(c.bairroSlug);
+  // Slug renomeado no guia não vira card em branco em silêncio: o sintoma
+  // seria um cartão sem nome nem foto e ninguém saberia por quê.
+  if (!b) {
+    console.error('[home] card de bairro sem guia correspondente:', c.bairroSlug);
+    return [];
+  }
+  return [{ ...c, name: b.nome, city: b.cidade, img: b.heroImg }];
+});
 
 
 // Destaques do blog — os três artigos mais recentes, vindos da mesma fonte que
