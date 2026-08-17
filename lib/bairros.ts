@@ -211,9 +211,20 @@ const caxambu: Bairro = {
  * seção "Transparência de mercado" (e as tipologias, que moram dentro dela)
  * não é exibida. Preencher só com dado real.
  *
- * Centro e Residencial São Venâncio têm foto própria em /public/bairros/. Nos
- * demais, heroImg vazio cai no gradiente do template, que é melhor do que
+ * Os três têm foto própria em /public/bairros/. Se um bairro novo entrar sem
+ * foto, heroImg vazio cai no gradiente do template, que é melhor do que
  * emprestar imagem de outro bairro.
+ *
+ * Jardim Brasil e Parque das Laranjeiras entraram nesta lista no commit 26986f6
+ * e foram retirados a pedido da Lotus no mesmo dia, 17/08/2026. Ficaram no ar
+ * cerca de vinte minutos. Nenhum link do site aponta para eles (o índice é
+ * gerado a partir deste arquivo), então some tudo junto.
+ *
+ * Cuidado ao conferir: /lotus-bairro/<slug-inexistente> devolve 200 com a
+ * página de "não encontrado", e não 404. Vale para qualquer slug desconhecido,
+ * não só para estes dois — é um soft 404 que a rota já tinha antes. O
+ * generateMetadata marca robots noindex nesse caso, então não indexa, mas o
+ * status continua errado. Corrigir é assunto de app/lotus-bairro/[slug].
  * ------------------------------------------------------------------------- */
 
 // `centro-itupeva` e não `centro`: Jundiaí também tem um Centro, e o slug é a
@@ -247,71 +258,13 @@ const centroItupeva: Bairro = {
   publicado: true,
 };
 
-const jardimBrasil: Bairro = {
-  slug: 'jardim-brasil',
-  nome: 'Jardim Brasil',
-  cidade: 'Itupeva',
-  tagline:
-    'Região residencial tradicional de Itupeva, bem localizada e próxima à área central, de perfil familiar e com forte presença de comércio local.',
-  heroImg: '',
-  stats: [
-    { value: 'Residencial', label: 'perfil predominante' },
-    { value: 'Famílias', label: 'público' },
-    { value: 'Perto do centro', label: 'localização' },
-  ],
-  tldr:
-    'O Jardim Brasil é uma região residencial tradicional de Itupeva, muito bem localizada e próxima da área central. Tem perfil familiar e forte presença de comércios locais, o que sustenta a rotina do bairro sem depender do deslocamento para o centro.',
-  guide: [
-    { num: '1', title: 'Como é viver aqui', text: 'É um bairro de perfil familiar e residencial tradicional, com rotina apoiada no comércio da própria região.' },
-    { num: '2', title: 'Localização', text: 'A proximidade com a área central é um dos pontos fortes: o bairro é bem localizado e resolve com facilidade o acesso ao centro da cidade.' },
-    { num: '3', title: 'Comércio e serviços', text: 'A presença de comércios locais é forte, o que atende o dia a dia dentro do próprio bairro.' },
-  ],
-  dados: [],
-  tipologias: [],
-  faq: [
-    { q: 'O Jardim Brasil é bom para famílias?', a: 'É uma região residencial tradicional de perfil familiar, com comércio local presente e proximidade da área central.' },
-    { q: 'O Jardim Brasil fica longe do centro de Itupeva?', a: 'Não. O bairro é bem localizado e fica próximo da área central da cidade.' },
-  ],
-  mapQuery: 'Jardim Brasil, Itupeva, SP',
-  publicado: true,
-};
-
-const parqueDasLaranjeiras: Bairro = {
-  slug: 'parque-das-laranjeiras',
-  nome: 'Parque das Laranjeiras',
-  cidade: 'Itupeva',
-  tagline:
-    'Bairro planejado e bastante procurado em Itupeva, conhecido pelas ruas arborizadas e pela boa infraestrutura para moradia.',
-  heroImg: '',
-  stats: [
-    { value: 'Planejado', label: 'formação' },
-    { value: 'Ruas arborizadas', label: 'característica' },
-    { value: 'Alta procura', label: 'demanda' },
-  ],
-  tldr:
-    'O Parque das Laranjeiras é um bairro planejado de Itupeva e um dos mais procurados da cidade. É conhecido pelas ruas arborizadas e pela boa infraestrutura para moradia, combinação que explica a busca constante por imóveis na região.',
-  guide: [
-    { num: '1', title: 'Como é viver aqui', text: 'As ruas arborizadas dão o tom do bairro e são um dos motivos pelos quais ele é tão procurado por quem busca morar bem em Itupeva.' },
-    { num: '2', title: 'Formação e planejamento', text: 'É um bairro planejado, e isso aparece na organização das ruas e na infraestrutura pensada para moradia.' },
-    { num: '3', title: 'Infraestrutura', text: 'A boa infraestrutura para moradia é um dos pontos que sustentam a procura pela região.' },
-  ],
-  dados: [],
-  tipologias: [],
-  faq: [
-    { q: 'Por que o Parque das Laranjeiras é tão procurado?', a: 'Pela combinação de bairro planejado, ruas arborizadas e boa infraestrutura para moradia.' },
-    { q: 'O Parque das Laranjeiras é um bairro planejado?', a: 'Sim, e o planejamento aparece na organização das ruas e na infraestrutura da região.' },
-  ],
-  mapQuery: 'Parque das Laranjeiras, Itupeva, SP',
-  publicado: true,
-};
-
 const novaMonteSerrat: Bairro = {
   slug: 'nova-monte-serrat',
   nome: 'Nova Monte Serrat',
   cidade: 'Itupeva',
   tagline:
     'Localidade popular de Itupeva em desenvolvimento constante, com fácil acesso aos bairros vizinhos e boa opção para investimento imobiliário.',
-  heroImg: '',
+  heroImg: '/bairros/nova-monte-serrat.jpg',
   stats: [
     { value: 'Em desenvolvimento', label: 'momento do bairro' },
     { value: 'Popular', label: 'perfil predominante' },
@@ -371,8 +324,6 @@ export const BAIRROS: Bairro[] = [
   medeiros,
   caxambu,
   centroItupeva,
-  jardimBrasil,
-  parqueDasLaranjeiras,
   novaMonteSerrat,
   residencialSaoVenancio,
 ];
