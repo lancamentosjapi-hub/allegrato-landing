@@ -211,9 +211,9 @@ const caxambu: Bairro = {
  * seção "Transparência de mercado" (e as tipologias, que moram dentro dela)
  * não é exibida. Preencher só com dado real.
  *
- * Só o Centro tem foto própria em /public/bairros/. Nos demais, heroImg vazio
- * cai no gradiente do template, que é melhor do que emprestar imagem de outro
- * bairro.
+ * Centro e Residencial São Venâncio têm foto própria em /public/bairros/. Nos
+ * demais, heroImg vazio cai no gradiente do template, que é melhor do que
+ * emprestar imagem de outro bairro.
  * ------------------------------------------------------------------------- */
 
 // `centro-itupeva` e não `centro`: Jundiaí também tem um Centro, e o slug é a
@@ -340,7 +340,7 @@ const residencialSaoVenancio: Bairro = {
   cidade: 'Itupeva',
   tagline:
     'Um dos loteamentos de maior destaque de Itupeva, muito procurado por quem quer morar em condomínio fechado com infraestrutura moderna.',
-  heroImg: '',
+  heroImg: '/bairros/residencial-sao-venancio.jpg',
   stats: [
     { value: 'Condomínio fechado', label: 'formato' },
     { value: 'Loteamento', label: 'tipo' },
