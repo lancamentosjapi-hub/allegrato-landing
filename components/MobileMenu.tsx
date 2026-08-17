@@ -10,9 +10,22 @@
  *
  * A lista de itens é a mesma fonte de verdade do LotusHeader (NAV_ITEMS),
  * importada de lá para não divergir.
+ *
+ * O drawer vai para document.body via portal, e isso NÃO é preferência de
+ * estilo: um ancestral com `backdrop-filter`, `filter`, `transform` ou
+ * `perspective` passa a ser o bloco de contenção dos descendentes
+ * `position:fixed`. O <header> da home (LotusHome) usa
+ * `backdrop-filter:blur(14px)`, então o `top:0;bottom:0` do painel resolvia
+ * contra a caixa do header — uns 70px de altura — e o menu abria como uma
+ * tira estreita deixando a página aparecer por baixo. O LotusHeader das
+ * outras páginas não tem blur, e por isso só a home quebrava.
+ *
+ * O portal resolve na raiz: o drawer deixa de depender de como o cabeçalho
+ * que o hospeda está estilizado. Ao mexer aqui, manter o portal.
  */
 
 import Link from 'next/link';
+import { createPortal } from 'react-dom';
 import { useEffect, useState, type CSSProperties } from 'react';
 import { NAV_ITEMS } from './LotusHeader';
 
@@ -159,7 +172,7 @@ export default function MobileMenu({
         </svg>
       </button>
 
-      {open && (
+      {open && createPortal(
         <>
           <div style={S.overlay} onClick={() => setOpen(false)} aria-hidden="true" />
           <div style={S.panel} role="dialog" aria-modal="true" aria-label="Menu de navegação">
@@ -196,7 +209,8 @@ export default function MobileMenu({
               {cta}
             </a>
           </div>
-        </>
+        </>,
+        document.body
       )}
     </>
   );
