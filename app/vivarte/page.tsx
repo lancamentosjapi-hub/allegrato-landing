@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './vivarte.css';
 import Vivarte from '@/components/Vivarte';
-import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
+import AtalhosLanding from '@/components/AtalhosLanding';
 
 // Metadata portada do <helmet> de vivarte/index.html (paridade de SEO com o estático).
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default function VivartePage() {
   return (
     <>
       <Vivarte />
-      <VoltarParaLancamentos />
+      <AtalhosLanding />
     </>
   );
 }

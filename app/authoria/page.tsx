@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './authoria.css';
 import Authoria from '@/components/Authoria';
-import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
+import AtalhosLanding from '@/components/AtalhosLanding';
 
 // Metadata portada do <head> de authoria/index.html (paridade de SEO com o estático).
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function AuthoriaPage() {
   return (
     <>
       <Authoria />
-      <VoltarParaLancamentos />
+      <AtalhosLanding />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import AutenJundiai from '@/components/AutenJundiai';
 import './auten-jundiai.css';
-import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
+import AtalhosLanding from '@/components/AtalhosLanding';
 
 // Metadata portada do <head> de auten-jundiai/index.html (paridade de SEO com o estático).
 export const metadata: Metadata = {
@@ -81,7 +81,7 @@ export default function AutenJundiaiPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(apartmentLd) }}
       />
       <AutenJundiai />
-      <VoltarParaLancamentos />
+      <AtalhosLanding />
     </>
   );
 }

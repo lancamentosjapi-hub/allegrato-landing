@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './resort-prime.css';
 import ResortPrime from '@/components/ResortPrime';
-import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
+import AtalhosLanding from '@/components/AtalhosLanding';
 
 // Metadata portada do <head> de resort-prime/index.html (paridade de SEO com o estático).
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function ResortPrimePage() {
   return (
     <>
       <ResortPrime />
-      <VoltarParaLancamentos />
+      <AtalhosLanding />
     </>
   );
 }

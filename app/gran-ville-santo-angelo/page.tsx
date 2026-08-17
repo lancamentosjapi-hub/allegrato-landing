@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './gran-ville-santo-angelo.css';
 import GranVilleSantoAngelo from '@/components/GranVilleSantoAngelo';
-import VoltarParaLancamentos from '@/components/VoltarParaLancamentos';
+import AtalhosLanding from '@/components/AtalhosLanding';
 
 // Metadata portada do <head> do index.html original (valores EXATOS).
 export const viewport: Viewport = { themeColor: '#2A3826' };
@@ -39,7 +39,7 @@ export default function Page() {
   return (
     <>
       <GranVilleSantoAngelo />
-      <VoltarParaLancamentos />
+      <AtalhosLanding />
     </>
   );
 }
