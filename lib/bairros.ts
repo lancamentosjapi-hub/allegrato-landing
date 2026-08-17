@@ -2,12 +2,16 @@
  * Guias de bairro — fonte única do conteúdo editorial de /lotus-bairro.
  *
  * Bairro não é dado transacional (não vive no Supabase); é conteúdo de guia.
- * Aqui fica o texto de cada bairro. Eloy Chaves está 100% preenchido (conteúdo
- * real que já existia na página). Os demais vêm com PLACEHOLDERS marcados
- * `TODO` — a estrutura é a mesma, basta trocar os textos por bairro.
+ * Aqui fica o texto de cada bairro, todo ele conteúdo real enviado pela Lotus.
+ * Nada aqui é estimado ou preenchido "para completar a página": campo sem
+ * informação fica vazio e a seção correspondente some (ver `dados`).
  *
  * Os imóveis de cada bairro NÃO ficam aqui: vêm do banco, filtrados por bairro
  * (ver getImoveisPorBairro em lib/imoveis.ts).
+ *
+ * O índice (/lotus-bairro) agrupa por `cidade` sozinho, na ordem em que as
+ * cidades aparecem no array BAIRROS. Para publicar uma cidade nova basta somar
+ * os bairros dela aqui.
  */
 
 export type BairroFaq = { q: string; a: string };
@@ -196,8 +200,182 @@ const caxambu: Bairro = {
   publicado: true,
 };
 
-// Ordem e imagens espelham os cards de bairro da home (LotusHome).
-export const BAIRROS: Bairro[] = [eloyChaves, vianeloBonfiglioli, medeiros, caxambu];
+/* ---------------------------------------------------------------------------
+ * ITUPEVA
+ *
+ * Conteúdo enviado pela Lotus em 17/08/2026, uma descrição curta por bairro.
+ * Os guias saíram só do que veio nessa descrição, por isso têm 3 blocos e não
+ * 6 como os de Jundiaí. Ao receber mais texto, é só somar blocos ao `guide`.
+ *
+ * `dados: []` em todos: não houve número de mercado informado, e sem isso a
+ * seção "Transparência de mercado" (e as tipologias, que moram dentro dela)
+ * não é exibida. Preencher só com dado real.
+ *
+ * Só o Centro tem foto própria em /public/bairros/. Nos demais, heroImg vazio
+ * cai no gradiente do template, que é melhor do que emprestar imagem de outro
+ * bairro.
+ * ------------------------------------------------------------------------- */
+
+// `centro-itupeva` e não `centro`: Jundiaí também tem um Centro, e o slug é a
+// URL pública — colidir depois obrigaria a redirecionar.
+const centroItupeva: Bairro = {
+  slug: 'centro-itupeva',
+  nome: 'Centro',
+  cidade: 'Itupeva',
+  tagline:
+    'O centro de Itupeva concentra a maior parte do comércio da cidade e a rodoviária, cortado por vias como a Avenida Brasil e a Avenida Itália.',
+  heroImg: '/bairros/centro-itupeva.jpg',
+  stats: [
+    { value: 'Central', label: 'localização' },
+    { value: 'Comércio', label: 'perfil predominante' },
+    { value: 'Rodoviária', label: 'transporte no bairro' },
+  ],
+  tldr:
+    'O Centro é onde Itupeva se concentra. Reúne a maior parte do comércio da cidade e a rodoviária, e é cortado por vias importantes como a Avenida Brasil e a Avenida Itália. É o ponto de referência tanto para quem chega à cidade quanto para quem resolve o dia a dia por perto.',
+  guide: [
+    { num: '1', title: 'Como é viver aqui', text: 'Morar no Centro é ter a cidade resolvida por perto: é a região que concentra a maior parte do comércio de Itupeva, o que coloca o dia a dia a uma distância curta.' },
+    { num: '2', title: 'Comércio e serviços', text: 'A maior parte do comércio da cidade está aqui, o que faz do bairro a referência de quem precisa resolver compras e serviços sem se deslocar.' },
+    { num: '3', title: 'Transporte e acessos', text: 'A rodoviária de Itupeva fica no bairro, e a circulação se dá por vias importantes como a Avenida Brasil e a Avenida Itália.' },
+  ],
+  dados: [],
+  tipologias: [],
+  faq: [
+    { q: 'O que tem no Centro de Itupeva?', a: 'O bairro concentra a maior parte do comércio da cidade e abriga a rodoviária.' },
+    { q: 'Quais são as principais vias do Centro?', a: 'A Avenida Brasil e a Avenida Itália são as vias mais importantes da região.' },
+  ],
+  mapQuery: 'Centro, Itupeva, SP',
+  publicado: true,
+};
+
+const jardimBrasil: Bairro = {
+  slug: 'jardim-brasil',
+  nome: 'Jardim Brasil',
+  cidade: 'Itupeva',
+  tagline:
+    'Região residencial tradicional de Itupeva, bem localizada e próxima à área central, de perfil familiar e com forte presença de comércio local.',
+  heroImg: '',
+  stats: [
+    { value: 'Residencial', label: 'perfil predominante' },
+    { value: 'Famílias', label: 'público' },
+    { value: 'Perto do centro', label: 'localização' },
+  ],
+  tldr:
+    'O Jardim Brasil é uma região residencial tradicional de Itupeva, muito bem localizada e próxima da área central. Tem perfil familiar e forte presença de comércios locais, o que sustenta a rotina do bairro sem depender do deslocamento para o centro.',
+  guide: [
+    { num: '1', title: 'Como é viver aqui', text: 'É um bairro de perfil familiar e residencial tradicional, com rotina apoiada no comércio da própria região.' },
+    { num: '2', title: 'Localização', text: 'A proximidade com a área central é um dos pontos fortes: o bairro é bem localizado e resolve com facilidade o acesso ao centro da cidade.' },
+    { num: '3', title: 'Comércio e serviços', text: 'A presença de comércios locais é forte, o que atende o dia a dia dentro do próprio bairro.' },
+  ],
+  dados: [],
+  tipologias: [],
+  faq: [
+    { q: 'O Jardim Brasil é bom para famílias?', a: 'É uma região residencial tradicional de perfil familiar, com comércio local presente e proximidade da área central.' },
+    { q: 'O Jardim Brasil fica longe do centro de Itupeva?', a: 'Não. O bairro é bem localizado e fica próximo da área central da cidade.' },
+  ],
+  mapQuery: 'Jardim Brasil, Itupeva, SP',
+  publicado: true,
+};
+
+const parqueDasLaranjeiras: Bairro = {
+  slug: 'parque-das-laranjeiras',
+  nome: 'Parque das Laranjeiras',
+  cidade: 'Itupeva',
+  tagline:
+    'Bairro planejado e bastante procurado em Itupeva, conhecido pelas ruas arborizadas e pela boa infraestrutura para moradia.',
+  heroImg: '',
+  stats: [
+    { value: 'Planejado', label: 'formação' },
+    { value: 'Ruas arborizadas', label: 'característica' },
+    { value: 'Alta procura', label: 'demanda' },
+  ],
+  tldr:
+    'O Parque das Laranjeiras é um bairro planejado de Itupeva e um dos mais procurados da cidade. É conhecido pelas ruas arborizadas e pela boa infraestrutura para moradia, combinação que explica a busca constante por imóveis na região.',
+  guide: [
+    { num: '1', title: 'Como é viver aqui', text: 'As ruas arborizadas dão o tom do bairro e são um dos motivos pelos quais ele é tão procurado por quem busca morar bem em Itupeva.' },
+    { num: '2', title: 'Formação e planejamento', text: 'É um bairro planejado, e isso aparece na organização das ruas e na infraestrutura pensada para moradia.' },
+    { num: '3', title: 'Infraestrutura', text: 'A boa infraestrutura para moradia é um dos pontos que sustentam a procura pela região.' },
+  ],
+  dados: [],
+  tipologias: [],
+  faq: [
+    { q: 'Por que o Parque das Laranjeiras é tão procurado?', a: 'Pela combinação de bairro planejado, ruas arborizadas e boa infraestrutura para moradia.' },
+    { q: 'O Parque das Laranjeiras é um bairro planejado?', a: 'Sim, e o planejamento aparece na organização das ruas e na infraestrutura da região.' },
+  ],
+  mapQuery: 'Parque das Laranjeiras, Itupeva, SP',
+  publicado: true,
+};
+
+const novaMonteSerrat: Bairro = {
+  slug: 'nova-monte-serrat',
+  nome: 'Nova Monte Serrat',
+  cidade: 'Itupeva',
+  tagline:
+    'Localidade popular de Itupeva em desenvolvimento constante, com fácil acesso aos bairros vizinhos e boa opção para investimento imobiliário.',
+  heroImg: '',
+  stats: [
+    { value: 'Em desenvolvimento', label: 'momento do bairro' },
+    { value: 'Popular', label: 'perfil predominante' },
+    { value: 'Investimento', label: 'procura' },
+  ],
+  tldr:
+    'A Nova Monte Serrat é uma localidade popular de Itupeva em desenvolvimento constante. O acesso fácil aos bairros vizinhos e o crescimento contínuo fazem dela uma boa opção para quem pensa em investimento imobiliário.',
+  guide: [
+    { num: '1', title: 'Como é viver aqui', text: 'É uma localidade popular, em desenvolvimento constante, com a rotina apoiada na conexão fácil com os bairros vizinhos.' },
+    { num: '2', title: 'Transporte e acessos', text: 'O acesso aos bairros vizinhos é fácil, o que ajuda tanto no deslocamento diário quanto na integração com o restante da cidade.' },
+    { num: '3', title: 'Perfil de investimento', text: 'O desenvolvimento constante da região faz dela uma boa opção de investimento imobiliário em Itupeva.' },
+  ],
+  dados: [],
+  tipologias: [],
+  faq: [
+    { q: 'Vale a pena investir na Nova Monte Serrat?', a: 'É uma localidade em desenvolvimento constante e com acesso fácil aos bairros vizinhos, fatores que a tornam uma boa opção de investimento imobiliário.' },
+    { q: 'Como é o perfil da Nova Monte Serrat?', a: 'É uma localidade popular de Itupeva, em crescimento contínuo.' },
+  ],
+  mapQuery: 'Nova Monte Serrat, Itupeva, SP',
+  publicado: true,
+};
+
+const residencialSaoVenancio: Bairro = {
+  slug: 'residencial-sao-venancio',
+  nome: 'Residencial São Venâncio',
+  cidade: 'Itupeva',
+  tagline:
+    'Um dos loteamentos de maior destaque de Itupeva, muito procurado por quem quer morar em condomínio fechado com infraestrutura moderna.',
+  heroImg: '',
+  stats: [
+    { value: 'Condomínio fechado', label: 'formato' },
+    { value: 'Loteamento', label: 'tipo' },
+    { value: 'Infraestrutura moderna', label: 'diferencial' },
+  ],
+  tldr:
+    'O Residencial São Venâncio é um dos empreendimentos e loteamentos de maior destaque de Itupeva. É muito buscado por quem deseja morar em condomínio fechado, com a infraestrutura moderna que a região oferece.',
+  guide: [
+    { num: '1', title: 'Como é viver aqui', text: 'A proposta é morar em condomínio fechado, com a segurança e a organização que esse formato oferece.' },
+    { num: '2', title: 'Destaque na cidade', text: 'É um dos empreendimentos e loteamentos de maior destaque de Itupeva, o que se traduz em procura constante.' },
+    { num: '3', title: 'Infraestrutura', text: 'A infraestrutura moderna é o diferencial mais citado por quem busca a região.' },
+  ],
+  dados: [],
+  tipologias: [],
+  faq: [
+    { q: 'O Residencial São Venâncio é condomínio fechado?', a: 'Sim. É um dos loteamentos de maior destaque de Itupeva, buscado justamente por quem quer morar em condomínio fechado.' },
+    { q: 'Qual o diferencial do Residencial São Venâncio?', a: 'A infraestrutura moderna somada ao formato de condomínio fechado, num dos empreendimentos de maior destaque da cidade.' },
+  ],
+  mapQuery: 'Residencial São Venâncio, Itupeva, SP',
+  publicado: true,
+};
+
+// A ordem daqui define a ordem do índice, inclusive das cidades: os bairros de
+// Jundiaí primeiro, depois os de Itupeva.
+export const BAIRROS: Bairro[] = [
+  eloyChaves,
+  vianeloBonfiglioli,
+  medeiros,
+  caxambu,
+  centroItupeva,
+  jardimBrasil,
+  parqueDasLaranjeiras,
+  novaMonteSerrat,
+  residencialSaoVenancio,
+];
 
 const BY_SLUG = new Map(BAIRROS.map((b) => [b.slug, b]));
 
