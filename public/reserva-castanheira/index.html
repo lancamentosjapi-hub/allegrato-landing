@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reserva Castanheira: loteamento fechado no Medeiros, Jundiaí/SP | Santa Angela</title>
+<meta name="description" content="Reserva Castanheira: loteamento fechado com lotes a partir de 250 m² no Medeiros, Jundiaí/SP. Clube com piscinas, quadras, academia, salão de festas e mirante. Realização Construtora Santa Angela.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/reserva-castanheira/fontes.css">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',system-ui,sans-serif;color:#2b2622;background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:#b5794a;text-decoration:none}
+a:hover{color:#c98f5e}
+input,select,button,textarea{font-family:'Montserrat',system-ui,sans-serif}
+@media(max-width:900px){
+  .g2{grid-template-columns:1fr !important}
+  .g3{grid-template-columns:1fr !important}
+  .g4{grid-template-columns:repeat(2,1fr) !important}
+  .sec{padding:64px 0 !important}
+}
+@media(max-width:1150px){
+  .navlinks{display:none !important}
+}
+.navlinks a{white-space:nowrap}
+@media(max-width:760px){
+  header nav{height:66px !important}
+  .brandtxt{display:none !important}
+  .logomark{height:38px !important}
+  h1{font-size:clamp(2rem,9vw,2.6rem) !important}
+  .hero{min-height:auto !important;padding:96px 0 76px !important}
+  .stat{border-right:none !important;text-align:left !important}
+  .statgrid{grid-template-columns:1fr 1fr !important;gap:22px 18px !important;padding:38px 24px !important}
+  .lazerlist{columns:1 !important}
+  .cardgrid{gap:12px !important}
+  .mapa{min-height:320px !important}
+  .formcard{padding:24px !important}
+  .footgrid{align-items:start !important}
+  .wafloat{right:14px !important;bottom:14px !important;padding:13px 18px !important;font-size:.85rem !important}
+}
+@media(max-width:520px){
+  .cardgrid{grid-template-columns:1fr !important}
+  .cardgrid>div{grid-column:span 1 !important;aspect-ratio:16/10 !important;min-height:0 !important}
+}
+
+
+
+/* Rolagem horizontal no celular.
+   Item de grid tem min-width:auto, ou seja, nao encolhe abaixo do proprio
+   min-content. O <select> do formulario se dimensiona pela opcao mais longa
+   ('Quero a tabela de lotes do Reserva Castanheira'), o que esticava a coluna
+   para 456px dentro de um aparelho de 360px e dava 120px de rolagem lateral.
+   Medido em Chrome a 320/360/390/430px antes e depois.
+   min-width:0 devolve a decisao de largura ao container; width:100% nos campos
+   impede que qualquer conteudo longo repita o problema. */
+.g2>*,.g3>*,.g4>*,.formcard,.formcard form,.formcard label{min-width:0}
+input,select,textarea{width:100%;max-width:100%}
+
+/* Lightbox das fotos. O bundle original nao tinha nenhum: as imagens eram
+   <img> sem clique. Camada 90, acima do cabecalho (60) e dos flutuantes (80). */
+.rc-zoom{cursor:zoom-in}
+#rc-lb{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;
+  background:rgba(20,17,14,.94);padding:24px;cursor:zoom-out}
+#rc-lb[open]{display:flex}
+#rc-lb img{max-width:min(1400px,94vw);max-height:88vh;width:auto;height:auto;border-radius:8px;
+  box-shadow:0 30px 80px rgba(0,0,0,.5)}
+#rc-lb figcaption{position:absolute;left:0;right:0;bottom:calc(18px + env(safe-area-inset-bottom));
+  text-align:center;color:rgba(255,255,255,.82);font-size:.85rem;padding:0 24px}
+#rc-lb button{position:absolute;top:calc(16px + env(safe-area-inset-top));right:18px;width:44px;height:44px;
+  border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.4);color:#fff;
+  font-size:24px;line-height:1;cursor:pointer}
+@media (max-width:760px){#rc-lb{padding:12px}}
+
+
+/* Atalhos de saida, mesmo componente visual das outras landings.
+   Camada 70: acima do conteudo, abaixo do WhatsApp flutuante (80). */
+.lt-atalhos{position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:70;
+  display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.lt-atalhos a{display:inline-flex;align-items:center;gap:8px;background:rgba(30,26,22,.92);color:#f4efe8;
+  font-family:'Montserrat',system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1;
+  text-decoration:none;padding:11px 17px;border-radius:40px;border:1px solid rgba(181,121,74,.5);
+  box-shadow:0 14px 34px -10px rgba(0,0,0,.6);backdrop-filter:blur(4px);transition:background .2s,transform .2s}
+.lt-atalhos a:hover{background:#b5794a;transform:translateY(-2px)}
+.lt-atalhos svg{flex-shrink:0}
+
+</style>
+</head>
+<body>
+
+
+<header style="position:sticky;top:0;z-index:60;background:rgba(43,38,34,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)">
+  <nav style="width:100%;max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:76px">
+    <a href="#topo" style="display:flex;align-items:center;gap:18px;text-decoration:none">
+      <img class="logomark" src="/reserva-castanheira/logo-reserva-castanheira.png" alt="Reserva Castanheira" style="height:46px;width:auto">
+      <span class="brandtxt" style="display:block;padding-left:18px;border-left:1px solid rgba(255,255,255,.2);font-family:'Playfair Display',Georgia,serif;color:#fff;font-size:1.1rem;font-weight:700;letter-spacing:.06em;line-height:1.1;white-space:nowrap">RESERVA CASTANHEIRA
+        <small style="display:block;font-family:'Montserrat',sans-serif;font-size:.52rem;letter-spacing:.34em;color:#b5794a;font-weight:600;margin-top:5px">CONSTRUTORA SANTA ANGELA</small>
+      </span>
+    </a>
+    <div class="navlinks" style="display:flex;gap:28px;align-items:center">
+      <a href="#projeto" style="color:rgba(255,255,255,.85);font-size:.88rem;font-weight:500;text-decoration:none">O Projeto</a>
+      <a href="#lazer" style="color:rgba(255,255,255,.85);font-size:.88rem;font-weight:500;text-decoration:none">Lazer</a>
+      <a href="#seguranca" style="color:rgba(255,255,255,.85);font-size:.88rem;font-weight:500;text-decoration:none">Segurança</a>
+      <a href="#localizacao" style="color:rgba(255,255,255,.85);font-size:.88rem;font-weight:500;text-decoration:none">Localização</a>
+      <a href="#contato" style="display:inline-flex;align-items:center;gap:8px;background:#b5794a;color:#fff;font-weight:600;font-size:.88rem;padding:11px 22px;border-radius:100px;text-decoration:none">Agende já sua visita</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="topo" style="position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 90px;background-image:linear-gradient(180deg,rgba(28,26,20,.5),rgba(28,26,20,.86)),url(&quot;/reserva-castanheira/fotos/01d93b28.jpg&quot;);background-size:cover;background-position:center">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:2">
+    <div style="max-width:800px">
+      <p style="font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#c98f5e;font-weight:600;margin-bottom:20px">Loteamento fechado · Medeiros · Jundiaí/SP</p>
+      <h1 style="font-family:'Playfair Display',Georgia,serif;color:#fff;font-size:clamp(2.5rem,6.5vw,4.8rem);line-height:1.03;font-weight:700;letter-spacing:-.02em">Construa a casa dos seus sonhos <em style="font-style:italic;color:#e7d6c4">cercado pela natureza.</em></h1>
+      <p style="color:rgba(255,255,255,.9);font-size:1.12rem;max-width:58ch;margin:24px 0 30px;text-wrap:pretty">Lotes a partir de 250 m² a 15 minutos do centro de Jundiaí, pertinho da Serra do Japi. Lazer completo, controle de acesso inteligente e a assinatura de mais de 40 anos da Construtora Santa Angela.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px">
+        <span style="border:1px solid rgba(255,255,255,.3);color:#fff;font-size:.8rem;padding:8px 16px;border-radius:100px;font-weight:500;background:rgba(255,255,255,.07)">Lotes a partir de 250 m²</span>
+        <span style="border:1px solid rgba(255,255,255,.3);color:#fff;font-size:.8rem;padding:8px 16px;border-radius:100px;font-weight:500;background:rgba(255,255,255,.07)">Clube com piscinas e quadras</span>
+        <span style="border:1px solid rgba(255,255,255,.3);color:#fff;font-size:.8rem;padding:8px 16px;border-radius:100px;font-weight:500;background:rgba(255,255,255,.07)">Reconhecimento facial e QR Code</span>
+        <span style="border:1px solid rgba(255,255,255,.3);color:#fff;font-size:.8rem;padding:8px 16px;border-radius:100px;font-weight:500;background:rgba(255,255,255,.07)">Gás natural encanado</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px">
+        <a href="https://wa.me/5511926143393?text=Ol%C3%A1!%20Quero%20agendar%20uma%20visita%20ao%20Reserva%20Castanheira%2C%20no%20Medeiros%2C%20em%20Jundia%C3%AD." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#b5794a;color:#fff;font-weight:600;font-size:.95rem;padding:16px 32px;border-radius:100px;text-decoration:none">Agende já sua visita →</a>
+        <a href="#lazer" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55);font-weight:600;font-size:.95rem;padding:16px 32px;border-radius:100px;text-decoration:none">Conhecer o lazer</a>
+      </div>
+    </div>
+  </div>
+  <p style="position:absolute;bottom:18px;left:0;right:0;z-index:2;text-align:center;color:rgba(255,255,255,.5);font-size:.66rem;padding:0 24px">Perspectiva artística, imagem meramente ilustrativa.</p>
+</section>
+
+<section style="background:linear-gradient(100deg,#2b2622,#4a4038);color:#fff">
+  <div class="g4 statgrid" style="width:100%;max-width:1200px;margin:0 auto;padding:52px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+    <div class="stat" style="text-align:center;border-right:1px solid rgba(255,255,255,.14)">
+      <b style="font-family:'Playfair Display',serif;display:block;font-size:2.3rem;color:#c98f5e;font-weight:600;line-height:1">250 m²</b>
+      <span style="display:block;margin-top:8px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72)">Lotes a partir de</span>
+    </div>
+    <div class="stat" style="text-align:center;border-right:1px solid rgba(255,255,255,.14)">
+      <b style="font-family:'Playfair Display',serif;display:block;font-size:2.3rem;color:#c98f5e;font-weight:600;line-height:1">16</b>
+      <span style="display:block;margin-top:8px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72)">Áreas de lazer e convivência</span>
+    </div>
+    <div class="stat" style="text-align:center;border-right:1px solid rgba(255,255,255,.14)">
+      <b style="font-family:'Playfair Display',serif;display:block;font-size:2.3rem;color:#c98f5e;font-weight:600;line-height:1">15 min</b>
+      <span style="display:block;margin-top:8px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72)">Do centro de Jundiaí</span>
+    </div>
+    <div class="stat" style="text-align:center">
+      <b style="font-family:'Playfair Display',serif;display:block;font-size:2.3rem;color:#c98f5e;font-weight:600;line-height:1">40 anos</b>
+      <span style="display:block;margin-top:8px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72)">De Construtora Santa Angela</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="projeto" style="background:#fff;padding:100px 0">
+  <div class="g2" style="width:100%;max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+    <div>
+      <p style="font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#b5794a;font-weight:600;margin-bottom:16px">O Projeto</p>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.12;letter-spacing:-.01em">Um refúgio natural para viver com liberdade e segurança.</h2>
+      <p style="color:#7a6f64;font-size:1.06rem;max-width:60ch;margin-top:18px;text-wrap:pretty">Se você sonha em viver em um lugar tranquilo, cercado pela natureza, mas sem abrir mão de conforto, lazer e segurança, o Reserva Castanheira é o lugar perfeito para você. Aqui você tem a oportunidade de construir a casa dos seus sonhos, com espaço para a sua família viver com liberdade.</p>
+      <ul style="list-style:none;margin-top:26px;display:grid;gap:14px">
+        <li style="display:flex;gap:14px;align-items:flex-start;font-size:1rem"><span style="color:#b5794a;font-weight:700;flex-shrink:0">250 m²</span><span><b style="color:#2b2622">Lotes amplos</b> para projetar a casa do seu jeito, com quintal e espaço de sobra.</span></li>
+        <li style="display:flex;gap:14px;align-items:flex-start;font-size:1rem"><span style="color:#b5794a;font-weight:700;flex-shrink:0">Clube</span><span><b style="color:#2b2622">Lazer completo</b> com quadras, sala de jogos, brinquedoteca, academia, fitness externo e piscinas adulto e infantil.</span></li>
+        <li style="display:flex;gap:14px;align-items:flex-start;font-size:1rem"><span style="color:#b5794a;font-weight:700;flex-shrink:0">Acesso</span><span><b style="color:#2b2622">Controle inteligente</b> com reconhecimento facial e QR Code, portaria monitorada por câmeras e infraestrutura para segurança patrimonial.</span></li>
+        <li style="display:flex;gap:14px;align-items:flex-start;font-size:1rem"><span style="color:#b5794a;font-weight:700;flex-shrink:0">Infra</span><span><b style="color:#2b2622">Energia elétrica subterrânea</b>, fibra ótica entregue, iluminação LED nas áreas comuns e gás natural encanado.</span></li>
+      </ul>
+      <a href="https://wa.me/5511926143393?text=Ol%C3%A1!%20Quero%20fazer%20uma%20simula%C3%A7%C3%A3o%20gratuita%20do%20Reserva%20Castanheira." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;margin-top:30px;background:#2b2622;color:#fff;font-weight:600;font-size:.95rem;padding:15px 30px;border-radius:100px;text-decoration:none">Faça sua simulação gratuita →</a>
+    </div>
+    <div>
+      <img class="rc-zoom" src="/reserva-castanheira/fotos/perspectiva-artistica-da-entrada-do-reserva-cast.jpg" alt="Perspectiva artística da entrada do Reserva Castanheira" style="width:100%;border-radius:18px;box-shadow:0 24px 48px rgba(43,38,34,.22)">
+      <img class="rc-zoom" src="/reserva-castanheira/fotos/vista-aerea-da-regiao-do-medeiros-jundiai.jpg" alt="Vista aérea da região do Medeiros, Jundiaí" style="width:100%;border-radius:18px;margin-top:18px;box-shadow:0 24px 48px rgba(43,38,34,.18)">
+      <p style="margin-top:14px;font-size:.7rem;color:#7a6f64">Perspectivas artísticas, imagens meramente ilustrativas. Consulte o memorial descritivo das áreas comuns.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="lazer" style="background:#ece4d8;padding:100px 0">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 24px">
+    <div style="max-width:62ch">
+      <p style="font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#b5794a;font-weight:600;margin-bottom:16px">Lazer &amp; áreas de convivência</p>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.12">Um clube exclusivo para a sua família aproveitar todos os dias.</h2>
+      <p style="color:#7a6f64;font-size:1.06rem;margin-top:18px;text-wrap:pretty">Quadra recreativa, quadras de areia, piscinas adulto e infantil, academia, playgrounds, salão de festas, espaço gourmet e o mirante com vista panorâmica da região.</p>
+    </div>
+    <div class="g4 cardgrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px">
+      <div style="grid-column:span 2;border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;min-height:300px">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/clube.jpg" alt="Clube" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:20px;color:#fff;font-weight:600;font-size:1.15rem">Clube</span>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/piscina-adulto-e-infantil.jpg" alt="Piscina adulto e infantil" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Piscina adulto e infantil</span>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/quadra-recreativa.jpg" alt="Quadra recreativa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Quadra recreativa</span>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/quadras-de-areia.jpg" alt="Quadras de areia" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Quadras de areia</span>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/academia.jpg" alt="Academia" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Academia</span>
+      </div>
+      <div style="grid-column:span 2;border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;min-height:300px">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/salao-de-festas.jpg" alt="Salão de festas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:20px;color:#fff;font-weight:600;font-size:1.15rem">Salão de festas</span>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/espaco-gourmet.jpg" alt="Espaço gourmet" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Espaço gourmet</span>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/churrasqueira.jpg" alt="Churrasqueira" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Churrasqueira</span>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/mirante.jpg" alt="Mirante" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Mirante</span>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/brinquedoteca.jpg" alt="Brinquedoteca" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Brinquedoteca</span>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/sala-de-jogos.jpg" alt="Sala de jogos" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Sala de jogos</span>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/playground.jpg" alt="Playground" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Playground</span>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/ciclofaixa.jpg" alt="Ciclofaixa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Ciclofaixa</span>
+      </div>
+    </div>
+    <div class="lazerlist" style="margin-top:34px;columns:3;column-gap:30px;font-size:.92rem;color:#7a6f64">
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Salão de festas e espaço gourmet</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Quadra recreativa</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Quadras de areia</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Piscina adulto e infantil</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Academia</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Fitness externo e trilha</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>3 playgrounds</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Brinquedoteca</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Sala de jogos</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Espaço Free Dog (Pet Place)</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Churrasqueira</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Mirante</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Pomar</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Bicicletários</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Sanitários de apoio às quadras</p>
+      <p style="break-inside:avoid;padding:5px 0;display:flex;gap:8px"><span style="color:#b5794a;font-size:.7rem;margin-top:5px">◆</span>Vestiários de apoio à academia e piscinas</p>
+    </div>
+    <p style="margin-top:24px;font-size:.7rem;color:#7a6f64;max-width:90ch">Perspectivas artísticas, imagens meramente ilustrativas. Para informações detalhadas sobre o que será efetivamente entregue, consulte o memorial descritivo das áreas comuns do Loteamento Residencial Reserva Castanheira, registrado sob nº 4, na matrícula nº 175.084 do 1º Oficial de Registro de Imóveis de Jundiaí-SP, em 05/06/2024. Quando da entrega, as árvores não terão porte adulto.</p>
+  </div>
+</section>
+
+<section class="sec" id="seguranca" style="background:#2b2622;color:#fff;padding:100px 0">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 24px">
+    <div style="max-width:62ch">
+      <p style="font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#c98f5e;font-weight:600;margin-bottom:16px">Segurança, serviços e infraestrutura</p>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.12;color:#fff">Um loteamento fechado pensado para a tranquilidade da sua família.</h2>
+    </div>
+    <div class="g3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px">
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:28px">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;margin-bottom:10px;color:#e7d6c4">Controle de acesso inteligente</h3>
+        <p style="color:rgba(255,255,255,.72);font-size:.92rem">Entregue com reconhecimento facial e QR Code, para moradores e visitantes entrarem sem burocracia.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:28px">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;margin-bottom:10px;color:#e7d6c4">Portaria monitorada</h3>
+        <p style="color:rgba(255,255,255,.72);font-size:.92rem">Monitoramento por câmeras na portaria, estacionamento de apoio e de visitantes, além de infraestrutura para segurança patrimonial.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:28px">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;margin-bottom:10px;color:#e7d6c4">Espaço delivery e conveniência</h3>
+        <p style="color:rgba(255,255,255,.72);font-size:.92rem">Recebimento de encomendas junto à portaria, administração e espaço conveniência a cargo da associação.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:28px">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;margin-bottom:10px;color:#e7d6c4">Condomínio inteligente</h3>
+        <p style="color:rgba(255,255,255,.72);font-size:.92rem">Infraestrutura de dados em fibra ótica entregue para interfone, telefone e TV, e infraestrutura para conectividade.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:28px">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;margin-bottom:10px;color:#e7d6c4">Energia subterrânea e LED</h3>
+        <p style="color:rgba(255,255,255,.72);font-size:.92rem">Rede elétrica subterrânea e iluminação em LED nas áreas comuns, mais segurança e menos poluição visual.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:28px">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;margin-bottom:10px;color:#e7d6c4">Gás natural encanado</h3>
+        <p style="color:rgba(255,255,255,.72);font-size:.92rem">Sua casa já nasce pronta para o gás encanado, sem troca de botijão.</p>
+      </div>
+    </div>
+    <div class="g3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px">
+      <div style="border-top:2px solid #b5794a;padding-top:18px">
+        <p style="font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#c98f5e;font-weight:600;margin-bottom:10px">Qualidade certificada</p>
+        <p style="color:rgba(255,255,255,.78);font-size:.9rem">Certificação PBQP-H nível A (regimento de 2018), ISO 9001:2015, atendimento à NBR 15575 (desempenho), NBR 9050 (acessibilidade em toda a área comum) e playgrounds conforme NBR 16071.</p>
+      </div>
+      <div style="border-top:2px solid #b5794a;padding-top:18px">
+        <p style="font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#c98f5e;font-weight:600;margin-bottom:10px">Áreas comuns</p>
+        <p style="color:rgba(255,255,255,.78);font-size:.9rem">Entregues decoradas, com sistema de som no salão de festas e espaço gourmet, dreno e infraestrutura para ar-condicionado na portaria, salão de festas, espaço gourmet e academia.</p>
+      </div>
+      <div style="border-top:2px solid #b5794a;padding-top:18px">
+        <p style="font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#c98f5e;font-weight:600;margin-bottom:10px">Conforto</p>
+        <p style="color:rgba(255,255,255,.78);font-size:.9rem">Piscinas com infraestrutura para climatização, infraestrutura para sistema de Wi-Fi e caixas de descarga com duplo acionamento de água.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="localizacao" style="background:#fff;padding:100px 0">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 24px">
+    <div style="max-width:62ch;margin-bottom:40px">
+      <p style="font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#b5794a;font-weight:600;margin-bottom:16px">Localização</p>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.12">Medeiros: o equilíbrio entre a Serra do Japi e a cidade.</h2>
+      <p style="color:#7a6f64;font-size:1.06rem;margin-top:18px;text-wrap:pretty">Localizado a apenas 15 minutos do centro de Jundiaí, o Medeiros oferece o equilíbrio ideal entre tranquilidade e praticidade. Você fica cercado por áreas verdes, bem perto da Serra do Japi, um remanescente raro da Mata Atlântica no interior do estado.</p>
+    </div>
+    <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+      <div>
+        <p style="font-size:1.05rem;font-weight:500;color:#2b2622;margin:0 0 24px;display:flex;gap:10px"><span style="color:#b5794a">📍</span>Avenida Reynaldo Porcari, nº 3065 · Medeiros · Jundiaí/SP</p>
+        <ul style="list-style:none;display:grid;gap:2px">
+          <li style="display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #e7dfd4;font-size:.95rem"><span style="color:#b5794a;font-weight:700">→</span>15 minutos do centro de Jundiaí</li>
+          <li style="display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #e7dfd4;font-size:.95rem"><span style="color:#b5794a;font-weight:700">→</span>Vizinho à Serra do Japi e suas áreas verdes</li>
+          <li style="display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #e7dfd4;font-size:.95rem"><span style="color:#b5794a;font-weight:700">→</span>Supermercados e comércio de bairro</li>
+          <li style="display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #e7dfd4;font-size:.95rem"><span style="color:#b5794a;font-weight:700">→</span>Creches e escolas</li>
+          <li style="display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #e7dfd4;font-size:.95rem"><span style="color:#b5794a;font-weight:700">→</span>Academias e postos de combustível</li>
+          <li style="display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #e7dfd4;font-size:.95rem"><span style="color:#b5794a;font-weight:700">→</span>UBS, unidade básica de saúde</li>
+        </ul>
+        <iframe class="mapa" title="Reserva Castanheira no mapa" src="https://www.google.com/maps?q=Avenida%20Reynaldo%20Porcari%2C%203065%2C%20Medeiros%2C%20Jundia%C3%AD%20-%20SP&amp;hl=pt-BR&amp;z=15&amp;output=embed" loading="lazy" style="width:100%;min-height:420px;border:0;border-radius:16px;margin-top:26px;display:block"></iframe>
+        <p style="margin-top:10px;font-size:.7rem;color:#7a6f64">Localização aproximada no mapa. Consulte o memorial descritivo.</p>
+      </div>
+      <div style="display:grid;gap:18px">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/vista-aerea-do-reserva-castanheira-em-meio-as-ar.jpg" alt="Vista aérea do Reserva Castanheira em meio às áreas verdes" style="width:100%;height:auto;border-radius:16px">
+        <img class="rc-zoom" src="/reserva-castanheira/fotos/perspectiva-artistica-da-entrada-do-loteamento.jpg" alt="Perspectiva artística da entrada do loteamento" style="width:100%;height:auto;border-radius:16px">
+        <p style="font-size:.7rem;color:#7a6f64;margin:0">Perspectivas artísticas, imagens meramente ilustrativas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:#f5f0e9;padding:100px 0">
+  <div class="g2" style="width:100%;max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+    <div>
+      <p style="font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#b5794a;font-weight:600;margin-bottom:16px">Quem constrói</p>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.12">Santa Angela: mais de 40 anos realizando sonhos em Jundiaí.</h2>
+      <p style="color:#7a6f64;font-size:1.06rem;margin-top:18px;text-wrap:pretty">Há mais de 40 anos a Construtora Santa Angela vem realizando sonhos na cidade de Jundiaí e está presente também nos municípios de Americana e Itatiba. Profissionais capacitados acompanham todas as fases de cada empreendimento, desde o início dos projetos até a entrega das chaves.</p>
+      <blockquote style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;color:#2b2622;border-left:3px solid #b5794a;padding-left:20px;margin-top:28px">“Conte com a gente para oferecer bem-estar e tranquilidade para sua família.”
+        <cite style="display:block;font-family:'Montserrat',sans-serif;font-style:normal;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#7a6f64;margin-top:12px">Construtora Santa Angela</cite>
+      </blockquote>
+    </div>
+    <img class="rc-zoom" src="/reserva-castanheira/fotos/empreendimento-santa-angela.jpg" alt="Empreendimento Santa Angela" style="width:100%;border-radius:18px;box-shadow:0 24px 48px rgba(43,38,34,.18)">
+  </div>
+</section>
+
+<section class="sec" id="contato" style="background-image:linear-gradient(180deg,rgba(28,26,20,.82),rgba(28,26,20,.92)),url(&quot;/reserva-castanheira/fotos/1a83e207.jpg&quot;);background-size:cover;background-position:center;color:#fff;padding:100px 0">
+  <div class="g2" style="width:100%;max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+    <div>
+      <p style="font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#c98f5e;font-weight:600;margin-bottom:16px">A vida te reserva o melhor</p>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.12;color:#fff">Garanta o seu lote no Reserva Castanheira.</h2>
+      <p style="color:rgba(255,255,255,.82);font-size:1.06rem;margin-top:18px">Fale com um especialista e receba a tabela de lotes disponíveis, condições de pagamento e a implantação completa do loteamento no seu WhatsApp.</p>
+      <ul style="list-style:none;display:grid;gap:12px;margin-top:26px">
+        <li style="display:flex;gap:12px;color:rgba(255,255,255,.9)"><span style="color:#c98f5e;font-weight:700">✓</span>Tabela de lotes e condições atualizadas</li>
+        <li style="display:flex;gap:12px;color:rgba(255,255,255,.9)"><span style="color:#c98f5e;font-weight:700">✓</span>Implantação e localização exata</li>
+        <li style="display:flex;gap:12px;color:rgba(255,255,255,.9)"><span style="color:#c98f5e;font-weight:700">✓</span>Atendimento rápido, sem compromisso</li>
+      </ul>
+      <a href="https://wa.me/5511926143393?text=Ol%C3%A1!%20Quero%20agendar%20uma%20visita%20ao%20Reserva%20Castanheira." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;margin-top:30px;background:#25d366;color:#0b3d1f;font-weight:700;font-size:.95rem;padding:16px 30px;border-radius:100px;text-decoration:none">Agende já sua visita</a>
+    </div>
+    <div class="formcard" style="background:#fff;color:#2b2622;border-radius:20px;padding:34px;box-shadow:0 30px 60px rgba(0,0,0,.35)">
+      <div id="rc-form-bloco">
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600">Receba mais informações</h3>
+          <p style="color:#7a6f64;font-size:.88rem;margin-top:6px">Respondemos em instantes pelo WhatsApp.</p>
+          <form id="rc-form" style="display:grid;gap:16px;margin-top:22px">
+            <label style="display:grid;gap:6px;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#7a6f64">Nome
+              <input type="text" name="nome" placeholder="Seu nome" required="" style="padding:13px 14px;border:1px solid #e7dfd4;border-radius:10px;font-size:.95rem;color:#2b2622">
+            </label>
+            <label style="display:grid;gap:6px;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#7a6f64">WhatsApp com DDD
+              <input type="tel" name="tel" placeholder="(11) 90000-0000" required="" style="padding:13px 14px;border:1px solid #e7dfd4;border-radius:10px;font-size:.95rem;color:#2b2622">
+            </label>
+            <label style="display:grid;gap:6px;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#7a6f64">Tenho interesse em
+              <select name="interesse" style="padding:13px 14px;border:1px solid #e7dfd4;border-radius:10px;font-size:.95rem;color:#2b2622;background:#fff">
+                <option>Quero a tabela de lotes do Reserva Castanheira</option>
+                <option>Quero um lote a partir de 250 m²</option>
+                <option>Quero um lote maior</option>
+                <option>Quero ver a implantação do loteamento</option>
+                <option>Quero agendar uma visita</option>
+              </select>
+            </label>
+            <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#b5794a;color:#fff;font-weight:600;font-size:.95rem;padding:16px 30px;border-radius:100px;border:none;cursor:pointer">Faça sua simulação gratuita →</button>
+            <p style="font-size:.68rem;color:#7a6f64">Ao enviar, você concorda em ser contatado sobre o Reserva Castanheira, inclusive por WhatsApp.</p>
+          </form>
+        </div>
+      </div>
+      <div id="rc-enviado" hidden>
+        <div style="text-align:center;padding:20px 0">
+          <p style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#2b2622">✓ Recebido!</p>
+          <p style="color:#7a6f64;font-size:.92rem;margin-top:10px">Abrimos o seu WhatsApp com a mensagem pronta: é só enviar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#1e1a16;color:rgba(255,255,255,.6);padding:56px 0 40px;font-size:.85rem">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 24px">
+    <div class="g2 footgrid" style="display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:end;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.12)">
+      <div>
+        <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style="height:56px;width:auto;margin-bottom:16px">
+        <p style="font-family:'Playfair Display',serif;color:#fff;font-size:1.3rem;font-weight:700;letter-spacing:.06em">RESERVA CASTANHEIRA</p>
+        <p style="margin-top:6px">Loteamento Residencial fechado · Jundiaí/SP</p>
+      </div>
+      <div>
+        <p style="color:#fff;font-weight:600">Realização: Construtora Santa Angela</p>
+        <p>Avenida Reynaldo Porcari, nº 3065 · Medeiros · Jundiaí/SP</p>
+        <p>WhatsApp: +55 11 92614-3393</p>
+      </div>
+    </div>
+    <p style="margin-top:24px;font-size:.7rem;line-height:1.7">Perspectivas artísticas, imagens meramente ilustrativas. Móveis, utensílios e itens de decoração não fazem parte do memorial descritivo. Para informações detalhadas sobre o que será efetivamente entregue, consulte o memorial descritivo das áreas comuns do Loteamento Residencial Reserva Castanheira, registrado sob nº 4, na matrícula nº 175.084 do 1º Oficial de Registro de Imóveis de Jundiaí-SP, em 05/06/2024. Quando da entrega, as árvores não terão porte adulto, as espécies poderão ser modificadas, não estar floridas ou desenvolvidas, a depender da época do ano. A trilha de pedriscos não é acessível para pessoas com mobilidade reduzida. O espaço conveniência fica a cargo da associação.</p>
+  </div>
+</footer>
+
+<a class="wafloat" href="https://wa.me/5511926143393?text=Ol%C3%A1!%20Quero%20agendar%20uma%20visita%20ao%20Reserva%20Castanheira%2C%20no%20Medeiros%2C%20em%20Jundia%C3%AD." target="_blank" rel="noopener" style="position:fixed;right:20px;bottom:20px;z-index:80;display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#0b3d1f;font-weight:700;font-size:.9rem;padding:14px 22px;border-radius:100px;box-shadow:0 12px 30px rgba(0,0,0,.28);text-decoration:none">
+  <svg sc-camel-view-box="0 0 24 24" style="width:20px;height:20px;fill:#0b3d1f"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.489-.917zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.017-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+  Falar no WhatsApp
+</a>
+
+
+
+
+
+<nav class="lt-atalhos" aria-label="Sair desta página">
+  <a href="/lotus-home"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg>Início</a>
+  <a href="/lotus-lancamentos"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Lançamentos</a>
+</nav>
+<figure id="rc-lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button type="button" aria-label="Fechar">&times;</button>
+  <img alt="">
+  <figcaption></figcaption>
+</figure>
+<script>
+// Lightbox: abre qualquer foto da galeria em tamanho cheio. Fecha no clique
+// fora, no botao e no Esc.
+(function () {
+  var lb = document.getElementById('rc-lb');
+  var alvo = lb.querySelector('img');
+  var legenda = lb.querySelector('figcaption');
+  function abrir(img) {
+    alvo.src = img.currentSrc || img.src;
+    alvo.alt = img.alt || '';
+    legenda.textContent = img.alt || '';
+    lb.setAttribute('open', '');
+    document.body.style.overflow = 'hidden';
+  }
+  function fechar() {
+    lb.removeAttribute('open');
+    document.body.style.overflow = '';
+    alvo.removeAttribute('src');
+  }
+  document.querySelectorAll('.rc-zoom').forEach(function (img) {
+    img.addEventListener('click', function () { abrir(img); });
+  });
+  lb.addEventListener('click', fechar);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fechar(); });
+})();
+
+// Formulario: leva os dados para o WhatsApp e troca o bloco pelo agradecimento.
+// Substitui o estado que o runtime do bundle controlava.
+(function () {
+  var f = document.getElementById('rc-form');
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var msg = 'Olá! Meu nome é ' + f.nome.value.trim() + '. ' + f.interesse.value +
+              '. Meu WhatsApp: ' + f.tel.value.trim() + '.';
+    window.open('https://wa.me/5511926143393?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    document.getElementById('rc-form-bloco').hidden = true;
+    document.getElementById('rc-enviado').hidden = false;
+  });
+})();
+</script>
+</body>
+</html>
