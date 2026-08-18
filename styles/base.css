@@ -88,3 +88,24 @@
     grid-template-columns: 1fr !important;
   }
 }
+
+/* CTAs flutuantes (WhatsApp + Atendimento) da home.
+ *
+ * Dois problemas medidos em Chrome a 390x844:
+ *
+ * 1. O banner de cookies é fixed no rodapé, largura toda, camada 9999. Ia de
+ *    y=585 a y=784; os botões, em bottom:24px na camada 95, de y=722 a y=776.
+ *    O banner cobria os dois por inteiro e não dava para clicar neles antes de
+ *    responder o aviso. CookieConsent agora publica a própria altura em
+ *    --lt-banner-h enquanto está na tela, e os botões sobem exatamente o
+ *    necessário. Sem banner a variável não existe e o fallback 0px mantém o
+ *    layout de antes, no celular e no desktop.
+ *
+ * 2. Faltava env(safe-area-inset-bottom): em iPhone com barra de gestos os
+ *    botões encostavam nela. Nenhuma folha de estilo do site usava a área
+ *    segura até aqui.
+ *
+ * O !important é necessário porque o `bottom` do container é style inline. */
+[data-flutuantes] {
+  bottom: calc(24px + env(safe-area-inset-bottom) + var(--lt-banner-h, 0px)) !important;
+}

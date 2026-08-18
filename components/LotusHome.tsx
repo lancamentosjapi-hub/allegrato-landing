@@ -1153,7 +1153,7 @@ export default function LotusHome({
 
       {/* ============ FLOATING: LIA + WHATSAPP ============ */}
       {liaEnabled && (
-        <div style={parseStyle('position:fixed;right:24px;bottom:24px;z-index:95;display:flex;flex-direction:column;align-items:flex-end;gap:14px;')}>
+        <div data-flutuantes="" style={parseStyle('position:fixed;right:24px;bottom:24px;z-index:95;display:flex;flex-direction:column;align-items:flex-end;gap:14px;')}>
           {liaOpen && <AtendimentoChat onClose={() => setLiaOpen(false)} />}
           <div style={parseStyle('display:flex;gap:12px;align-items:center;')}>
             <Hoverable as="a" href={waLink} target="_blank" rel="noopener" aria-label="WhatsApp" baseStyle={parseStyle('width:54px;height:54px;border-radius:50%;background:#25543b;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px -10px rgba(21,36,28,.6);transition:transform .2s;')} hoverStyle={parseStyle('transform:translateY(-2px)')}>

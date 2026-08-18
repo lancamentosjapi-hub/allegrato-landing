@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
 // Banner de consentimento portado do <script> inline do estático lotus-cookies/index.html.
 // Comportamento preservado: exibe só quando não há cookie "lotus_consent", grava o
@@ -53,12 +53,47 @@ const rejectBtn: CSSProperties = {
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
+  const caixaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (document.cookie.indexOf('lotus_consent=') === -1) {
       setVisible(true);
     }
   }, []);
+
+  /**
+   * Publica a altura do banner em --lt-banner-h enquanto ele está na tela.
+   *
+   * O banner é fixed, ocupa a largura toda no rodapé e vive na camada 9999;
+   * os CTAs flutuantes ficam em bottom:24px na camada 95. Medido num aparelho
+   * de 390px, o banner ia de y=585 a y=784 e os botões de y=722 a y=776: o
+   * banner cobria os dois por inteiro, e não havia como alcançá-los até
+   * aceitar os cookies.
+   *
+   * A altura vai para uma variável em vez de um valor fixo porque o banner
+   * muda de altura conforme a largura da tela (151px a 390px, 199px a 360px).
+   * Quem consome é [data-flutuantes] em styles/base.css.
+   */
+  useEffect(() => {
+    const raiz = document.documentElement;
+    if (!visible) {
+      raiz.style.removeProperty('--lt-banner-h');
+      return;
+    }
+    const medir = () => {
+      const h = caixaRef.current?.offsetHeight ?? 0;
+      raiz.style.setProperty('--lt-banner-h', `${h + 12}px`);
+    };
+    medir();
+    const obs = new ResizeObserver(medir);
+    if (caixaRef.current) obs.observe(caixaRef.current);
+    window.addEventListener('resize', medir);
+    return () => {
+      obs.disconnect();
+      window.removeEventListener('resize', medir);
+      raiz.style.removeProperty('--lt-banner-h');
+    };
+  }, [visible]);
 
   function setConsent(value: string) {
     document.cookie = `lotus_consent=${value};path=/;max-age=15552000;SameSite=Lax`;
@@ -70,7 +105,7 @@ export default function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div id="lotus-cookie" role="dialog" aria-label="Aviso de cookies" style={box}>
+    <div id="lotus-cookie" ref={caixaRef} role="dialog" aria-label="Aviso de cookies" style={box}>
       <p
         style={{
           margin: '0 0 12px',
