@@ -3,6 +3,7 @@ import { Montserrat, Playfair_Display } from 'next/font/google';
 import './avalon.css';
 import Avalon from '@/components/Avalon';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // O fonte carregava estas fontes pelo CDN do Google. next/font auto-hospeda:
 // sem request a terceiro e sem flash de fonte. As variáveis alimentam
@@ -43,6 +44,7 @@ export default function AvalonPage() {
   return (
     <div className={`${playfair.variable} ${montserrat.variable} avalon-root`}>
       <Avalon />
+      <RodapeVoltarLancamentos />
       <AtalhosLanding />
     </div>
   );

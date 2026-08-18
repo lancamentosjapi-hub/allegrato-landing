@@ -504,17 +504,67 @@ document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));
 </script>
 
-<!-- atalhos-lotus: espelho de components/AtalhosLanding.tsx. Ao converter esta
-     landing para componente React, apagar este bloco. -->
-<style>
-.lt-atalhos{position:fixed;left:22px;bottom:22px;z-index:10001;display:flex;flex-direction:column;align-items:flex-start;gap:10px;}
-.lt-atalhos a{display:inline-flex;align-items:center;gap:8px;background:rgba(21,36,28,.92);color:#f7f2e8;font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;font-size:14px;font-weight:600;line-height:1;text-decoration:none;padding:12px 18px;border-radius:40px;border:1px solid rgba(205,171,110,.45);box-shadow:0 14px 34px -10px rgba(21,36,28,.6);backdrop-filter:blur(4px);transition:background .2s,transform .2s;}
-.lt-atalhos a:hover{background:#1d3a2c;transform:translateY(-2px);}
-.lt-atalhos svg{flex-shrink:0;}
-</style>
-<nav class="lt-atalhos" aria-label="Sair desta página">
-  <a href="/lotus-home"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg>Início</a>
-  <a href="/lotus-lancamentos"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Lançamentos</a>
-</nav>
+
+<!-- navegacao-lotus: atalhos flutuantes + faixa de retorno.
+     Vai por JavaScript e nao como marcacao estatica porque o script desta
+     pagina reconstroi document.body no load e apagava os elementos injetados.
+     Espelha components/AtalhosLanding.tsx e RodapeVoltarLancamentos.tsx. -->
+<script>
+(function () {
+  var CSS = '' +
+    '.lt-atalhos{position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:10001;display:flex;flex-direction:column;align-items:flex-start;gap:10px}' +
+    '.lt-atalhos a{display:inline-flex;align-items:center;gap:8px;background:rgba(21,36,28,.92);color:#f7f2e8;font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:600;line-height:1;text-decoration:none;padding:11px 17px;border-radius:40px;border:1px solid rgba(205,171,110,.45);box-shadow:0 14px 34px -10px rgba(0,0,0,.6);transition:background .2s,transform .2s}' +
+    '.lt-atalhos a:hover{background:#1d3a2c;transform:translateY(-2px)}' +
+    '.lt-atalhos svg{flex-shrink:0}' +
+    '.lt-voltar{background:#15241c;border-top:1px solid rgba(205,171,110,.28);padding:38px 24px calc(38px + env(safe-area-inset-bottom));position:relative;z-index:2}' +
+    '.lt-voltar-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}' +
+    '.lt-voltar-marca{display:flex;align-items:center;gap:14px;min-width:0}' +
+    '.lt-voltar-marca img{height:34px;width:auto;display:block;flex-shrink:0;margin:0}' +
+    '.lt-voltar-marca span{font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.45;color:rgba(247,242,232,.66);min-width:0}' +
+    '.lt-voltar a{display:inline-flex;align-items:center;gap:10px;background:#b18a4a;color:#15241c;font-family:system-ui,-apple-system,sans-serif;font-size:15px;font-weight:600;line-height:1;text-decoration:none;padding:15px 26px;border-radius:40px;flex-shrink:0;transition:background .2s,transform .2s}' +
+    '.lt-voltar a:hover{background:#cdab6e;transform:translateY(-1px)}' +
+    '.lt-voltar a svg{flex-shrink:0}';
+
+  var SETA = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>';
+  var CASA = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg>';
+
+  function montar() {
+    if (!document.getElementById('lt-nav-css')) {
+      var st = document.createElement('style');
+      st.id = 'lt-nav-css';
+      st.textContent = CSS;
+      document.head.appendChild(st);
+    }
+    if (!document.querySelector('.lt-voltar')) {
+      var f = document.createElement('section');
+      f.className = 'lt-voltar';
+      f.innerHTML = '<div class="lt-voltar-in"><div class="lt-voltar-marca">' +
+        '<img src="/logo-lotus-dourado.png" alt="Lotus Brokers">' +
+        '<span>Quer comparar com outros empreendimentos?</span></div>' +
+        '<a href="/lotus-lancamentos">' + SETA + 'Ver todos os lançamentos</a></div>';
+      document.body.appendChild(f);
+    }
+    if (!document.querySelector('.lt-atalhos')) {
+      var n = document.createElement('nav');
+      n.className = 'lt-atalhos';
+      n.setAttribute('aria-label', 'Sair desta página');
+      n.innerHTML = '<a href="/lotus-home">' + CASA + 'Início</a>' +
+                    '<a href="/lotus-lancamentos">' + SETA + 'Lançamentos</a>';
+      document.body.appendChild(n);
+    }
+  }
+
+  function ligar() {
+    montar();
+    // O script da pagina pode trocar o body depois; recoloca quando isso ocorrer.
+    new MutationObserver(function () {
+      if (!document.querySelector('.lt-voltar') || !document.querySelector('.lt-atalhos')) montar();
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === 'complete') ligar();
+  else window.addEventListener('load', ligar);
+})();
+</script>
 </body>
 </html>

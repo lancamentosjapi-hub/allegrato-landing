@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './terrace-serra-do-japi.css';
 import TerraceSerraDoJapi from '@/components/TerraceSerraDoJapi';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <head> de terrace-serra-do-japi/index.html (valores EXATOS).
 export const metadata: Metadata = {
@@ -70,6 +71,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(apartmentComplexLd) }}
       />
       <TerraceSerraDoJapi />
+      <RodapeVoltarLancamentos />
       <AtalhosLanding />
     </>
   );

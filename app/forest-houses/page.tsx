@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './forest-houses.css';
 import ForestHouses from '@/components/ForestHouses';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <head> do index.html original (valores EXATOS).
 export const viewport: Viewport = { themeColor: '#022B1D' };
@@ -72,6 +73,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <ForestHouses />
+      <RodapeVoltarLancamentos />
       <AtalhosLanding />
     </>
   );
