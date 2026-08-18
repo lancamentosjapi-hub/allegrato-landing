@@ -33,6 +33,7 @@ const nextConfig = {
       { source: '/oasis', destination: '/oasis/index.html' },
       { source: '/vila-triunfo', destination: '/vila-triunfo/index.html' },
       { source: '/reserva-castanheira', destination: '/reserva-castanheira/index.html' },
+      { source: '/santorini', destination: '/santorini/index.html' },
     ];
   },
 };
