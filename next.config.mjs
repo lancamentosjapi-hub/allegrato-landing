@@ -17,12 +17,21 @@ const nextConfig = {
   // cabeçalho de qualquer componente em components/). Estas vão ao ar como
   // HTML, servidas de public/<slug>/index.html numa URL limpa.
   //
-  // Altissimi, Oásis e Vila Triunfo chegaram prontas do Wix, autocontidas.
-  // Reserva Castanheira chegou como bundle auto-extraível de 4,7 MB (formato
-  // dc-runtime, o mesmo das 23) e foi desempacotada aqui: as fotos e fontes
-  // viraram arquivos, as variáveis de template viraram valor literal e o
-  // estado do formulário virou um script curto. Desempacotar em vez de portar
-  // preserva o layout exatamente como o cliente aprovou.
+  // Duas famílias diferentes convivem aqui:
+  //
+  // 1. Reserva Castanheira e Santorini chegaram como bundle auto-extraível
+  //    (formato dc-runtime, o mesmo das 23) e foram DESEMPACOTADAS: fotos e
+  //    fontes viraram arquivos, as variáveis de template viraram valor literal
+  //    e o estado do formulário virou um script curto. Desempacotar em vez de
+  //    portar preserva o layout exatamente como o cliente aprovou.
+  //
+  // 2. Altissimi e Vila Triunfo continuam empacotadas, e Oásis é HTML comum.
+  //    As duas empacotadas montam a página em JavaScript e SUBSTITUEM document
+  //    inteiro no load, head e body: marcação ou <style> injetados no arquivo
+  //    não sobrevivem. Por isso a navegação do portal e o responsivo do
+  //    Altissimi entram por script, depois do load, com MutationObserver que
+  //    recoloca se o documento for trocado de novo. Ao desempacotá-las um dia,
+  //    remover esses injetores.
   //
   // O que elas NÃO herdam por não serem React: cabeçalho e rodapé do portal,
   // botão flutuante de volta para /lotus-lancamentos e o banner de cookies.
