@@ -250,7 +250,6 @@ const OCULTOS_ATE_TROCAR_CAPA = [
   'Anhangabaú Design',
   'Vitale Fernande',
   'Resort Prime',
-  'Santorini',
   'Diferenziato',
   'Auten Jundiaí',
   'Vila Itália',
@@ -304,6 +303,8 @@ const CAPAS_CURADAS: Record<string, string> = {
   'Brisas do Japi': '/brisas-do-japi/HALLDEENTRADA.jpg', // e sai do servidor da construtora
   'Gran Ville Santo Ângelo': '/gran-ville-santo-angelo/a013.jpg',
   'Vistta Castanho': '/vistta-castanho/a009.jpg',
+  // fachada enviada pela Lotus, recortada em 16:9
+  Santorini: '/santorini/fotos/fachada.jpg',
   // lazer, quando é o que identifica o produto
   Allegrato: '/allegrato/a013.jpg',                // piscinas com as torres ao fundo
   Avelã: '/avela/a012.jpg',
