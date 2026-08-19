@@ -1,56 +1,65 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { createPortal } from 'react-dom';
+import { useEffect, useState, type CSSProperties } from 'react';
 
 /**
- * Atalhos flutuantes de saída das landings de empreendimento: volta para a
- * listagem de lançamentos e volta para a home do portal.
+ * Atalhos de saída das landings: volta para a home e para a listagem de
+ * lançamentos.
  *
- * Ficam no canto INFERIOR ESQUERDO, empilhados. Três restrições explicam o
- * formato:
+ * Entram por portal DENTRO do <header> da própria página. Antes eram pílulas
+ * fixas no canto inferior esquerdo, o que atrapalhava a leitura: ficavam por
+ * cima do conteúdo durante a rolagem inteira e disputavam espaço com o botão
+ * do WhatsApp e com widgets do navegador.
  *
- * - Direita está ocupada: toda landing tem o botão de WhatsApp fixo em
- *   right:22px com 60px de diâmetro.
- * - Topo não serve: cada landing veio de uma exportação diferente e tem
- *   cabeçalho próprio, então não existe um ponto comum onde encaixar sem
- *   mexer em 23 layouts distintos.
- * - Empilhado e não lado a lado: num aparelho de 360px sobram ~240px entre a
- *   margem esquerda e o botão do WhatsApp, e os dois atalhos lado a lado
- *   passam disso. Em coluna não colidem em largura nenhuma.
+ * Portal em vez de editar o JSX de cada landing: são 23 cabeçalhos com
+ * estrutura e cor próprias, e qualquer mudança de texto ou destino voltaria a
+ * ser 23 edições.
  *
- * A ordem é de breadcrumb, do mais geral para o mais específico: Início em
- * cima, Lançamentos embaixo (o destino mais provável fica mais perto do
- * polegar).
+ * O grupo ocupa uma linha inteira do cabeçalho (`flexBasis: '100%'` resolve o
+ * caso do header ser flex; `width: 100%` resolve o caso de ser bloco), então
+ * ele nunca disputa espaço com o logo e o menu que já estão lá. Como todos os
+ * cabeçalhos das landings são escuros, as pílulas são translúcidas com borda
+ * clara, sem depender da paleta de cada uma.
  *
- * Componente único de propósito: mudar texto, destino ou posição é uma edição
- * só, não vinte e três.
+ * É `div role="navigation"` e não `nav`: styles/base.css tem a regra
+ * `header nav:not(.lt-mobile-nav){display:none}` no celular, que existe para
+ * esconder o menu horizontal do portal. Um `nav` aqui dentro cairia junto e o
+ * grupo sumia no mobile, que foi o que aconteceu na primeira tentativa.
+ *
+ * Sem <header> na página, nada é renderizado, em vez de o grupo aparecer solto
+ * no topo do conteúdo. Hoje todas têm.
+ *
+ * Complementa o [RodapeVoltarLancamentos], que é o botão no fim da página.
  */
 
-const ATALHOS = [
-  { href: '/lotus-home', rotulo: 'Início', icone: <IconeCasa /> },
-  { href: '/lotus-lancamentos', rotulo: 'Lançamentos', icone: <IconeSeta /> },
-];
+const grupo: CSSProperties = {
+  width: '100%',
+  flexBasis: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
+  padding: '8px 16px calc(8px + env(safe-area-inset-bottom, 0px))',
+  borderTop: '1px solid rgba(255,255,255,.12)',
+  boxSizing: 'border-box',
+};
 
 export default function AtalhosLanding() {
-  return (
-    <nav
-      aria-label="Sair desta página"
-      style={{
-        position: 'fixed',
-        left: 22,
-        bottom: 22,
-        zIndex: 75,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        gap: 10,
-      }}
-    >
-      {ATALHOS.map((a) => (
-        <Atalho key={a.href} {...a} />
-      ))}
-    </nav>
+  const [cabecalho, setCabecalho] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setCabecalho(document.querySelector('header'));
+  }, []);
+
+  if (!cabecalho) return null;
+
+  return createPortal(
+    <div data-atalhos-landing="" role="navigation" aria-label="Sair desta página" style={grupo}>
+      <Atalho href="/lotus-home" rotulo="Início" icone={<IconeCasa />} />
+      <Atalho href="/lotus-lancamentos" rotulo="Lançamentos" icone={<IconeSeta />} />
+    </div>,
+    cabecalho
   );
 }
 
@@ -63,20 +72,18 @@ function Atalho({ href, rotulo, icone }: { href: string; rotulo: string; icone: 
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: 8,
-        background: hover ? '#1d3a2c' : 'rgba(21,36,28,.92)',
-        color: '#f7f2e8',
+        gap: 7,
+        background: hover ? 'rgba(255,255,255,.16)' : 'rgba(255,255,255,.08)',
+        color: '#fff',
         fontFamily: "'Hanken Grotesk',system-ui,sans-serif",
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: 600,
         lineHeight: 1,
-        padding: '12px 18px',
+        whiteSpace: 'nowrap',
+        padding: '8px 14px',
         borderRadius: 40,
-        border: '1px solid rgba(205,171,110,.45)',
-        boxShadow: '0 14px 34px -10px rgba(21,36,28,.6)',
-        backdropFilter: 'blur(4px)',
-        transition: 'background .2s, transform .2s',
-        transform: hover ? 'translateY(-2px)' : 'none',
+        border: '1px solid rgba(255,255,255,.22)',
+        transition: 'background .2s',
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
@@ -92,7 +99,7 @@ function Atalho({ href, rotulo, icone }: { href: string; rotulo: string; icone: 
 
 function IconeCasa() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M3 10.5 12 3l9 7.5" />
       <path d="M5.5 9.5V20h13V9.5" />
     </svg>
@@ -101,7 +108,7 @@ function IconeCasa() {
 
 function IconeSeta() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M19 12H5" />
       <path d="m11 18-6-6 6-6" />
     </svg>

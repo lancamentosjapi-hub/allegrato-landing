@@ -189,10 +189,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 <script>
 (function () {
   var CSS = '' +
-    '.lt-atalhos{position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:10001;display:flex;flex-direction:column;align-items:flex-start;gap:10px}' +
-    '.lt-atalhos a{display:inline-flex;align-items:center;gap:8px;background:rgba(21,36,28,.92);color:#f7f2e8;font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:600;line-height:1;text-decoration:none;padding:11px 17px;border-radius:40px;border:1px solid rgba(205,171,110,.45);box-shadow:0 14px 34px -10px rgba(0,0,0,.6);transition:background .2s,transform .2s}' +
-    '.lt-atalhos a:hover{background:#1d3a2c;transform:translateY(-2px)}' +
-    '.lt-atalhos svg{flex-shrink:0}' +
+    '.lt-atalhos{width:100%;flex-basis:100%;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:8px 16px;border-top:1px solid rgba(255,255,255,.12)}.lt-atalhos a{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);color:#fff;font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:600;line-height:1;white-space:nowrap;text-decoration:none;padding:8px 14px;border-radius:40px;border:1px solid rgba(255,255,255,.22);transition:background .2s}.lt-atalhos a:hover{background:rgba(255,255,255,.16)}.lt-atalhos svg{flex-shrink:0}header:has(>.lt-atalhos){flex-wrap:wrap}.lt-atalhos{flex-shrink:0}' +
     '.lt-voltar{background:#15241c;border-top:1px solid rgba(205,171,110,.28);padding:38px 24px calc(38px + env(safe-area-inset-bottom));position:relative;z-index:2}' +
     '.lt-voltar-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}' +
     '.lt-voltar-marca{display:flex;align-items:center;gap:14px;min-width:0}' +
@@ -229,14 +226,21 @@ document.addEventListener('DOMContentLoaded', async function() {
     var destino = rod || document.body;
     f.className = rod ? 'lt-voltar-rodape' : 'lt-voltar';
     if (f.parentElement !== destino) destino.appendChild(f);
-    if (!document.querySelector('.lt-atalhos')) {
-      var n = document.createElement('nav');
+    // Mesma logica do botao do rodape: o <header> so existe depois que o
+    // script da pagina monta o conteudo, entao o grupo e reposicionado quando
+    // ele aparece, e identificado por id para nao ser recriado a cada mutacao.
+    var n = document.getElementById('lt-atalhos-el');
+    if (!n) {
+      n = document.createElement('div');
+      n.setAttribute('role', 'navigation');
+      n.id = 'lt-atalhos-el';
       n.className = 'lt-atalhos';
       n.setAttribute('aria-label', 'Sair desta página');
       n.innerHTML = '<a href="/lotus-home">' + CASA + 'Início</a>' +
                     '<a href="/lotus-lancamentos">' + SETA + 'Lançamentos</a>';
-      document.body.appendChild(n);
     }
+    var cab = document.querySelector('header');
+    if (cab && n.parentElement !== cab) cab.appendChild(n);
   }
 
   function ligar() {

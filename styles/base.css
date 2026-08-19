@@ -25,8 +25,11 @@
   div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important;}
   /* Header: o CTA dourado é redundante no mobile (já está dentro do drawer do
      menu). Esconder evita o overflow do header. */
-  header a[style*="border-radius:40px"],
-  header a[style*="border-radius: 40px"]{display:none !important;}
+  /* A exceção [data-atalhos-landing] existe porque as pílulas de atalho das
+     landings também usam raio 40px e caíam nesta regra: no celular o grupo
+     ficava com 17px de altura, só o padding, com os dois links invisíveis. */
+  header a[style*="border-radius:40px"]:not([data-atalhos-landing] a),
+  header a[style*="border-radius: 40px"]:not([data-atalhos-landing] a){display:none !important;}
 
   /* Retrato + texto lado a lado (fundador em /lotus-sobre, Squad Lançamentos,
      corretor do condomínio). A foto tem largura fixa de 130–180px: num celular
@@ -108,4 +111,23 @@
  * O !important é necessário porque o `bottom` do container é style inline. */
 [data-flutuantes] {
   bottom: calc(24px + env(safe-area-inset-bottom) + var(--lt-banner-h, 0px)) !important;
+}
+
+/* Atalhos de saída das landings, portados para dentro do <header> por
+   components/AtalhosLanding.tsx.
+ *
+ * O grupo pede a linha inteira (width e flex-basis 100%), mas vários
+ * cabeçalhos são flex SEM wrap: nesse caso o navegador encolhe o item em vez
+ * de quebrar a linha. Medido em Chrome a 390px, o grupo saía com 17px de
+ * altura e 175px de largura no Vigóre, contra 49px e a largura toda no
+ * desktop, ou seja, as pílulas ficavam achatadas e ilegíveis.
+ *
+ * Autorizar a quebra no cabeçalho que hospeda o grupo resolve sem tocar no
+ * layout de nenhum deles: os cabeçalhos que já cabiam continuam numa linha só.
+ * O :has() limita a regra a quem realmente tem o grupo dentro. */
+header:has(> [data-atalhos-landing]) {
+  flex-wrap: wrap;
+}
+[data-atalhos-landing] {
+  flex-shrink: 0;
 }
