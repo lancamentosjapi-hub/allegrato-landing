@@ -259,7 +259,6 @@ const OCULTOS_ATE_TROCAR_CAPA = [
   'Vallis',
   'Terrace Serra do Japi',
   'Gioviale',
-  'Reserva Castanheira',
   'Maxx Santa Ângela',
   'Mutton',
   'Villagio Tunis',
@@ -305,6 +304,8 @@ const CAPAS_CURADAS: Record<string, string> = {
   'Vistta Castanho': '/vistta-castanho/a009.jpg',
   // fachada enviada pela Lotus, recortada em 16:9
   Santorini: '/santorini/fotos/fachada.jpg',
+  // portaria com o letreiro do empreendimento, da propria landing
+  'Reserva Castanheira': '/reserva-castanheira/fotos/perspectiva-artistica-da-entrada-do-reserva-cast.jpg',
   // lazer, quando é o que identifica o produto
   Allegrato: '/allegrato/a013.jpg',                // piscinas com as torres ao fundo
   Avelã: '/avela/a012.jpg',
