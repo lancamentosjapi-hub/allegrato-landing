@@ -89,6 +89,15 @@ input,select,textarea{width:100%;max-width:100%}
 .lt-atalhos svg{flex-shrink:0}
 
 </style>
+<style>
+.lt-voltar-rodape{border-top:1px solid rgba(255,255,255,.14);margin-top:28px;padding-top:26px;
+  display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.lt-voltar-rodape a{display:inline-flex;align-items:center;gap:10px;background:#b18a4a;color:#15241c;
+  font-family:system-ui,-apple-system,sans-serif;font-size:15px;font-weight:600;line-height:1;
+  text-decoration:none;padding:15px 26px;border-radius:40px;transition:background .2s,transform .2s}
+.lt-voltar-rodape a:hover{background:#cdab6e;transform:translateY(-1px)}
+.lt-voltar-rodape svg{flex-shrink:0}
+</style>
 </head>
 <body>
 
@@ -429,6 +438,7 @@ input,select,textarea{width:100%;max-width:100%}
     </div>
     <p style="margin-top:24px;font-size:.7rem;line-height:1.7">Perspectivas artísticas, imagens meramente ilustrativas. Móveis, utensílios e itens de decoração não fazem parte do memorial descritivo. Para informações detalhadas sobre o que será efetivamente entregue, consulte o memorial descritivo das áreas comuns do Loteamento Residencial Reserva Castanheira, registrado sob nº 4, na matrícula nº 175.084 do 1º Oficial de Registro de Imóveis de Jundiaí-SP, em 05/06/2024. Quando da entrega, as árvores não terão porte adulto, as espécies poderão ser modificadas, não estar floridas ou desenvolvidas, a depender da época do ano. A trilha de pedriscos não é acessível para pessoas com mobilidade reduzida. O espaço conveniência fica a cargo da associação.</p>
   </div>
+  <div class="lt-voltar-rodape"><a href="/lotus-lancamentos"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Ver todos os lançamentos da Lotus</a></div>
 </footer>
 
 <a class="wafloat" href="https://wa.me/5511926143393?text=Ol%C3%A1!%20Quero%20agendar%20uma%20visita%20ao%20Reserva%20Castanheira%2C%20no%20Medeiros%2C%20em%20Jundia%C3%AD." target="_blank" rel="noopener" style="position:fixed;right:20px;bottom:20px;z-index:80;display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#0b3d1f;font-weight:700;font-size:.9rem;padding:14px 22px;border-radius:100px;box-shadow:0 12px 30px rgba(0,0,0,.28);text-decoration:none">
@@ -441,33 +451,6 @@ input,select,textarea{width:100%;max-width:100%}
 
 
 
-<!-- rodape-voltar-lotus: espelho de components/RodapeVoltarLancamentos.tsx.
-     Ao converter esta landing para componente React, apagar este bloco. -->
-<style>
-.lt-voltar{background:#15241c;border-top:1px solid rgba(205,171,110,.28);
-  padding:38px 24px calc(38px + env(safe-area-inset-bottom))}
-.lt-voltar-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;
-  gap:20px;flex-wrap:wrap}
-.lt-voltar-marca{display:flex;align-items:center;gap:14px;min-width:0}
-.lt-voltar-marca img{height:34px;width:auto;display:block;flex-shrink:0;margin:0}
-.lt-voltar-marca span{font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:14px;line-height:1.45;
-  color:rgba(247,242,232,.66);min-width:0}
-.lt-voltar a{display:inline-flex;align-items:center;gap:10px;background:#b18a4a;color:#15241c;
-  font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:15px;font-weight:600;line-height:1;
-  text-decoration:none;padding:15px 26px;border-radius:40px;flex-shrink:0;
-  transition:background .2s,transform .2s}
-.lt-voltar a:hover{background:#cdab6e;transform:translateY(-1px)}
-.lt-voltar a svg{flex-shrink:0}
-</style>
-<section class="lt-voltar">
-  <div class="lt-voltar-in">
-    <div class="lt-voltar-marca">
-      <img src="/logo-lotus-dourado.png" alt="Lotus Brokers">
-      <span>Quer comparar com outros empreendimentos?</span>
-    </div>
-    <a href="/lotus-lancamentos"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Ver todos os lançamentos</a>
-  </div>
-</section>
 <nav class="lt-atalhos" aria-label="Sair desta página">
   <a href="/lotus-home"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg>Início</a>
   <a href="/lotus-lancamentos"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Lançamentos</a>
