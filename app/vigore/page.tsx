@@ -3,7 +3,7 @@ import Vigore from '@/components/Vigore';
 import './vigore.css';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // theme-color do <head> do estático (Next 15: vai no export viewport, não em metadata).
 export const viewport: Viewport = {
@@ -86,7 +86,7 @@ export default function VigorePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Vigore />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

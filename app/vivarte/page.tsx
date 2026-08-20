@@ -3,7 +3,7 @@ import './vivarte.css';
 import Vivarte from '@/components/Vivarte';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // Metadata portada do <helmet> de vivarte/index.html (paridade de SEO com o estático).
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function VivartePage() {
   return (
     <>
       <Vivarte />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

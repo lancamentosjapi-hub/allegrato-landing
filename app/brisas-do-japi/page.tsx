@@ -3,7 +3,7 @@ import './brisas-do-japi.css';
 import BrisasDoJapi from '@/components/BrisasDoJapi';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // Next 15: themeColor vive no export `viewport`, não em `metadata`.
 export const viewport: Viewport = { themeColor: '#123c47' };
@@ -34,7 +34,7 @@ export default function Page() {
   return (
     <>
       <BrisasDoJapi />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

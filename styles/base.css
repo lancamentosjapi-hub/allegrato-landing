@@ -131,3 +131,16 @@ header:has(> [data-atalhos-landing]) {
 [data-atalhos-landing] {
   flex-shrink: 0;
 }
+
+/* Bloco institucional do rodapé das landings (components/RodapeLotus.tsx).
+   Grade de 4 colunas no desktop, igual à da home. Abaixo de 900px vira duas
+   colunas e, no celular, uma só: a coluna da marca tem 300px de texto e não
+   cabe em quatro num aparelho. */
+@media (max-width: 900px) {
+  [data-rodape-lotus-grid] { grid-template-columns: 1fr 1fr !important; gap: 30px !important; }
+  [data-rodape-lotus-grid] > *:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  [data-rodape-lotus-grid] { grid-template-columns: 1fr !important; }
+  [data-rodape-lotus-base] { justify-content: flex-start !important; }
+}

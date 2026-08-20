@@ -3,7 +3,7 @@ import AltosDaAvenida from '@/components/AltosDaAvenida';
 import './altos-da-avenida.css';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // Metadata portada do <head>/<helmet> de altos-da-avenida/index.html (paridade de SEO).
 export const metadata: Metadata = {
@@ -55,7 +55,7 @@ export default function AltosDaAvenidaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(residenceLd) }}
       />
       <AltosDaAvenida />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

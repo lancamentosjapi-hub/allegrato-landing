@@ -3,7 +3,7 @@ import './allegrato.css';
 import Allegrato from '@/components/Allegrato';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // Metadata portada do <head> do fonte estático.
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default function AllegratoPage() {
   return (
     <>
       <Allegrato />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

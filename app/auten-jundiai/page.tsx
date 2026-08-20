@@ -3,7 +3,7 @@ import AutenJundiai from '@/components/AutenJundiai';
 import './auten-jundiai.css';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // Metadata portada do <head> de auten-jundiai/index.html (paridade de SEO com o estático).
 export const metadata: Metadata = {
@@ -83,7 +83,7 @@ export default function AutenJundiaiPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(apartmentLd) }}
       />
       <AutenJundiai />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

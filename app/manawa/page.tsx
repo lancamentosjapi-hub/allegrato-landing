@@ -3,7 +3,7 @@ import './manawa.css';
 import Manawa from '@/components/Manawa';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // Metadata portada do <head> de manawa/index.html (paridade de SEO com o estático).
 export const viewport: Viewport = { themeColor: '#2c1e10' };
@@ -39,7 +39,7 @@ export default function ManawaPage() {
   return (
     <>
       <Manawa />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

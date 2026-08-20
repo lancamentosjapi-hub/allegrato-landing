@@ -3,7 +3,7 @@ import './gran-ville-santo-angelo.css';
 import GranVilleSantoAngelo from '@/components/GranVilleSantoAngelo';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // Metadata portada do <head> do index.html original (valores EXATOS).
 export const viewport: Viewport = { themeColor: '#2A3826' };
@@ -41,7 +41,7 @@ export default function Page() {
   return (
     <>
       <GranVilleSantoAngelo />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

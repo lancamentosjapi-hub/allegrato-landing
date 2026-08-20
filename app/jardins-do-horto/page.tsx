@@ -3,7 +3,7 @@ import JardinsDoHorto from '@/components/JardinsDoHorto';
 import './jardins-do-horto.css';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // Metadata portada do <head>/<helmet> de jardins-do-horto/index.html (paridade de SEO).
 export const metadata: Metadata = {
@@ -52,7 +52,7 @@ export default function JardinsDoHortoPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(residenceLd) }}
       />
       <JardinsDoHorto />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

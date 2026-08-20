@@ -3,7 +3,7 @@ import './portal-dos-lagos.css';
 import PortalDosLagos from '@/components/PortalDosLagos';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // Metadata portada do <head> do fonte portal-dos-lagos (title/description EXATOS).
 // canonical / OpenGraph seguem a convenção das demais landings.
@@ -41,7 +41,7 @@ export default function PortalDosLagosPage() {
   return (
     <>
       <PortalDosLagos />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

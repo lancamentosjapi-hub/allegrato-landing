@@ -3,7 +3,7 @@ import './resort-prime.css';
 import ResortPrime from '@/components/ResortPrime';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // Metadata portada do <head> de resort-prime/index.html (paridade de SEO com o estático).
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function ResortPrimePage() {
   return (
     <>
       <ResortPrime />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

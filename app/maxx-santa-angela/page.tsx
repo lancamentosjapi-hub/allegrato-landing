@@ -3,7 +3,7 @@ import MaxxSantaAngela from '@/components/MaxxSantaAngela';
 import './maxx-santa-angela.css';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // theme-color do <helmet> estático (no Next 15 vai no export `viewport`).
 export const viewport: Viewport = {
@@ -53,7 +53,7 @@ export default function MaxxSantaAngelaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(residenceLd) }}
       />
       <MaxxSantaAngela />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>

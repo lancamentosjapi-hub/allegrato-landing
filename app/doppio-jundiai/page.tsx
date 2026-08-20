@@ -3,7 +3,7 @@ import './doppio-jundiai.css';
 import DoppioJundiai from '@/components/DoppioJundiai';
 import AtalhosLanding from '@/components/AtalhosLanding';
 import LightboxPlantas from '@/components/LightboxPlantas';
-import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
+import RodapeLotus from '@/components/RodapeLotus';
 
 // Metadata portada do <helmet> do fonte estático.
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default function DoppioJundiaiPage() {
   return (
     <>
       <DoppioJundiai />
-      <RodapeVoltarLancamentos />
+      <RodapeLotus />
       <AtalhosLanding />
       <LightboxPlantas />
     </>
