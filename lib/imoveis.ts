@@ -1,4 +1,5 @@
 import { supabase, TENANT_ID } from './supabase';
+import { resumoDescricao } from './resumo-imovel';
 
 // Camada de dados dos IMÓVEIS do Portal.
 // Fonte: view pública portal_imoveis (Supabase, leitura anônima, RLS por
@@ -94,13 +95,18 @@ export type ImovelBusca = {
   price: string; // valor formatado (ex "R$ 790.000")
   pinLabel: string; // rótulo curto do pin do mapa (ex "R$ 790k")
   badge: string; // selo opcional ("Lotus Listing")
+  /** Descrição integral, como veio do dash. A página do imóvel usa esta. */
   desc: string;
+  /** Trecho curto de `desc`, para o card da listagem. Ver resumoDescricao. */
+  resumo: string;
   img: string; // capa (url do Storage) ou '' (fallback gradiente)
   slot: string;
   x: string; // posição do pin no mapa decorativo (derivada do código)
   y: string;
   recent: number; // score p/ ordenação "mais recentes" (derivado)
 };
+
+export { resumoDescricao };
 
 /** Mapeia finalidade do banco -> aba da busca. Aceita venda/locação/aluguel. */
 function finalidadeToAba(finalidade: string | null): 'comprar' | 'alugar' {
@@ -148,6 +154,7 @@ function toBusca(row: ImovelRow, index: number): ImovelBusca {
     pinLabel: pinLabelDe(valor, aluguel),
     badge: '',
     desc: row.descricao?.trim() ?? '',
+    resumo: resumoDescricao(row.descricao),
     img: capaUrl(row.fotos) ?? '',
     slot: 'busca-' + row.codigo_imovel,
     x,

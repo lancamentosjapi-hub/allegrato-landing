@@ -468,7 +468,7 @@ export default function LotusBusca({
                     <div style={parseStyle("font-family:'Fraunces',serif;font-size:21px;color:#1d3a2c;font-weight:400;line-height:1;")}>{r.price}</div>
                     <div style={parseStyle('font-size:13px;font-weight:600;color:#15241c;margin-top:7px;')}>{r.type} · {r.neighborhood} <span style={parseStyle('color:#8aa593;font-weight:400;')}>· {r.city}</span></div>
                     <div style={parseStyle('font-size:13px;color:#3f6249;margin-top:4px;')}>{r.specs}</div>
-                    <div style={parseStyle('font-size:12.5px;color:#8aa593;margin-top:10px;line-height:1.45;')}>{r.desc}</div>
+                    <div style={parseStyle('font-size:12.5px;color:#8aa593;margin-top:10px;line-height:1.45;')}>{r.resumo}</div>
                   </div>
                 </Hoverable>
               ))}
