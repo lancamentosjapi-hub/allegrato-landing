@@ -501,5 +501,95 @@ header:has(>.lt-atalhos){flex-wrap:wrap}.lt-atalhos{flex-shrink:0}
   });
 })();
 </script>
+
+<!-- lightbox-plantas: espelho de components/LightboxPlantas.tsx.
+     Toda planta abre no mesmo modal, com Esc, clique no fundo e trava de
+     scroll. Ao converter esta landing para componente React, apagar este
+     bloco e montar <LightboxPlantas />. -->
+
+<script>
+(function () {
+  var RE = /planta|tipologia|implanta/i;
+  var SEC = '[id*="planta" i], [id*="tipologia" i]';
+  function ehPlanta(img) {
+    if (RE.test(img.alt || '')) return true;
+    return !!(img.closest && img.closest(SEC));
+  }
+
+  // CSS por JavaScript e nao como <style> no arquivo: nas paginas que
+  // reconstroem o documento no load, um <style> estatico e apagado junto e o
+  // modal abria sem estilo nenhum.
+  var CSS_LB = '#lt-planta-lb{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:clamp(12px,4vw,40px);background:rgba(10,14,12,.94);backdrop-filter:blur(3px);cursor:zoom-out}#lt-planta-lb[open]{display:flex;animation:ltPlantaEntra .22s ease-out}@keyframes ltPlantaEntra{from{opacity:0}to{opacity:1}}@media (prefers-reduced-motion:reduce){#lt-planta-lb[open]{animation:none}}#lt-planta-lb figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;max-height:100%}#lt-planta-lb img{display:block;max-width:min(1600px,96vw);max-height:84vh;width:auto;height:auto;object-fit:contain;border-radius:6px;background:#fff;cursor:default;box-shadow:0 30px 90px rgba(0,0,0,.55)}#lt-planta-lb figcaption{color:rgba(255,255,255,.82);font-family:system-ui,-apple-system,sans-serif;font-size:14px;text-align:center;max-width:90vw}#lt-planta-lb button{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:14px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.32);background:rgba(0,0,0,.42);color:#fff;font-size:26px;line-height:1;cursor:pointer}';
+  function garantirCss() {
+    if (document.getElementById('lt-planta-css')) return;
+    var st = document.createElement('style');
+    st.id = 'lt-planta-css';
+    st.textContent = CSS_LB;
+    document.head.appendChild(st);
+  }
+  var lb, alvo, legenda, scrollAnterior;
+  function montarModal() {
+    garantirCss();
+    // Nas paginas que reconstroem o documento o modal antigo fica orfao:
+    // checar containment, e nao so a existencia da variavel.
+    var atual = document.getElementById('lt-planta-lb');
+    if (atual && document.body.contains(atual)) { lb = atual; alvo = lb.querySelector('img'); legenda = lb.querySelector('figcaption'); return; }
+    lb = document.createElement('div');
+    lb.id = 'lt-planta-lb';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.innerHTML = '<button type="button" aria-label="Fechar">&times;</button>' +
+                   '<figure><img alt=""><figcaption></figcaption></figure>';
+    document.body.appendChild(lb);
+    alvo = lb.querySelector('img');
+    legenda = lb.querySelector('figcaption');
+    // Fundo e botao fecham; a imagem nao, para dar para aproximar sem fechar.
+    lb.addEventListener('click', fechar);
+    alvo.addEventListener('click', function (e) { e.stopPropagation(); });
+  }
+
+  function abrir(img) {
+    montarModal();
+    alvo.src = img.currentSrc || img.src;
+    alvo.alt = img.alt || 'Planta do empreendimento';
+    legenda.textContent = alvo.alt;
+    lb.setAttribute('aria-label', alvo.alt);
+    lb.setAttribute('open', '');
+    scrollAnterior = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fechar() {
+    if (!lb || !lb.hasAttribute('open')) return;
+    lb.removeAttribute('open');
+    document.body.style.overflow = scrollAnterior || '';
+    alvo.removeAttribute('src');
+  }
+
+  // Fase de captura: impede que o lightbox proprio da pagina abra junto.
+  document.addEventListener('click', function (e) {
+    var img = e.target && e.target.closest && e.target.closest('img');
+    if (!img || !ehPlanta(img)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    abrir(img);
+  }, true);
+
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fechar(); });
+
+  function marcar() {
+    var imgs = document.querySelectorAll('img');
+    for (var i = 0; i < imgs.length; i++) if (ehPlanta(imgs[i])) imgs[i].style.cursor = 'zoom-in';
+  }
+  function ligar() {
+    montarModal();
+    marcar();
+    new MutationObserver(function () { montarModal(); marcar(); })
+      .observe(document.documentElement, { childList: true, subtree: true });
+  }
+  if (document.readyState === 'complete') ligar();
+  else window.addEventListener('load', ligar);
+})();
+</script>
 </body>
 </html>

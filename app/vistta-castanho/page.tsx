@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './vistta-castanho.css';
 import VisttaCastanho from '@/components/VisttaCastanho';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <head> do index.html original (valores EXATOS).
@@ -63,6 +64,7 @@ export default function Page() {
       <VisttaCastanho />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './authoria.css';
 import Authoria from '@/components/Authoria';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <head> de authoria/index.html (paridade de SEO com o estático).
@@ -33,6 +34,7 @@ export default function AuthoriaPage() {
       <Authoria />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import Vigore from '@/components/Vigore';
 import './vigore.css';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // theme-color do <head> do estático (Next 15: vai no export viewport, não em metadata).
@@ -87,6 +88,7 @@ export default function VigorePage() {
       <Vigore />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

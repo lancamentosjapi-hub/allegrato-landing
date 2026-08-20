@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './maita.css';
 import Maita from '@/components/Maita';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <head> do fonte estático. O canonical aponta para o domínio
@@ -29,6 +30,7 @@ export default function MaitaPage() {
       <Maita />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

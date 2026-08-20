@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './allegrato.css';
 import Allegrato from '@/components/Allegrato';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <head> do fonte estático.
@@ -28,6 +29,7 @@ export default function AllegratoPage() {
       <Allegrato />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

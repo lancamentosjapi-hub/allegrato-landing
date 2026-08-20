@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './manawa.css';
 import Manawa from '@/components/Manawa';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <head> de manawa/index.html (paridade de SEO com o estático).
@@ -40,6 +41,7 @@ export default function ManawaPage() {
       <Manawa />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

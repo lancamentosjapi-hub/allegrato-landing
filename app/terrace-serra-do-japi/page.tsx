@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './terrace-serra-do-japi.css';
 import TerraceSerraDoJapi from '@/components/TerraceSerraDoJapi';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <head> de terrace-serra-do-japi/index.html (valores EXATOS).
@@ -73,6 +74,7 @@ export default function Page() {
       <TerraceSerraDoJapi />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

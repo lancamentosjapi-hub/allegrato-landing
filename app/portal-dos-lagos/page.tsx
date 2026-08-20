@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './portal-dos-lagos.css';
 import PortalDosLagos from '@/components/PortalDosLagos';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <head> do fonte portal-dos-lagos (title/description EXATOS).
@@ -42,6 +43,7 @@ export default function PortalDosLagosPage() {
       <PortalDosLagos />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

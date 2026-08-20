@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './gran-ville-santo-angelo.css';
 import GranVilleSantoAngelo from '@/components/GranVilleSantoAngelo';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <head> do index.html original (valores EXATOS).
@@ -42,6 +43,7 @@ export default function Page() {
       <GranVilleSantoAngelo />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

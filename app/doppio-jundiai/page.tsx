@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './doppio-jundiai.css';
 import DoppioJundiai from '@/components/DoppioJundiai';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <helmet> do fonte estático.
@@ -28,6 +29,7 @@ export default function DoppioJundiaiPage() {
       <DoppioJundiai />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

@@ -3,6 +3,7 @@ import { Montserrat, Playfair_Display } from 'next/font/google';
 import './sky-videiras.css';
 import SkyVideiras from '@/components/SkyVideiras';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Mesmo par de fontes do fonte estático, auto-hospedado pelo next/font.
@@ -44,6 +45,7 @@ export default function SkyVideirasPage() {
       <SkyVideiras />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </div>
   );
 }

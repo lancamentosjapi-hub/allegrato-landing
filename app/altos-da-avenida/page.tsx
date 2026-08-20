@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import AltosDaAvenida from '@/components/AltosDaAvenida';
 import './altos-da-avenida.css';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <head>/<helmet> de altos-da-avenida/index.html (paridade de SEO).
@@ -56,6 +57,7 @@ export default function AltosDaAvenidaPage() {
       <AltosDaAvenida />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

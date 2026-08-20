@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './avela.css';
 import Avela from '@/components/Avela';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <helmet> de avela/index.html (paridade de SEO com o estático).
@@ -27,6 +28,7 @@ export default function AvelaPage() {
       <Avela />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

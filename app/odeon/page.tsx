@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './odeon.css';
 import Odeon from '@/components/Odeon';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // Metadata portada do <helmet> do fonte estático.
@@ -28,6 +29,7 @@ export default function OdeonPage() {
       <Odeon />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </>
   );
 }

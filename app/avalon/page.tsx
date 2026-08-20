@@ -3,6 +3,7 @@ import { Montserrat, Playfair_Display } from 'next/font/google';
 import './avalon.css';
 import Avalon from '@/components/Avalon';
 import AtalhosLanding from '@/components/AtalhosLanding';
+import LightboxPlantas from '@/components/LightboxPlantas';
 import RodapeVoltarLancamentos from '@/components/RodapeVoltarLancamentos';
 
 // O fonte carregava estas fontes pelo CDN do Google. next/font auto-hospeda:
@@ -46,6 +47,7 @@ export default function AvalonPage() {
       <Avalon />
       <RodapeVoltarLancamentos />
       <AtalhosLanding />
+      <LightboxPlantas />
     </div>
   );
 }
