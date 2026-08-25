@@ -248,13 +248,14 @@ const PERFIS_PLACEHOLDER_ATIVOS = false;
  * a cópia daqui continuou vazia. É o mesmo problema que a lista de posts do
  * blog logo abaixo já teve e que já foi resolvido do mesmo jeito.
  *
- * Aqui ficam só os campos que são da home: o slot da imagem e a contagem.
+ * Aqui fica só o que é da home: o slot da imagem. A contagem vem do banco
+ * (prop bairroCounts), calculada em app/lotus-home/page.tsx.
  */
 const CARDS_BAIRRO = [
-  { bairroSlug: 'eloy-chaves', count: '34 imóveis', slot: 'lotus-bairro-eloy' },
-  { bairroSlug: 'vianelo-bonfiglioli', count: '', slot: 'lotus-bairro-vianelo' },
-  { bairroSlug: 'medeiros', count: '22 imóveis', slot: 'lotus-bairro-medeiros' },
-  { bairroSlug: 'caxambu', count: '', slot: 'lotus-bairro-caxambu' },
+  { bairroSlug: 'eloy-chaves', slot: 'lotus-bairro-eloy' },
+  { bairroSlug: 'vianelo-bonfiglioli', slot: 'lotus-bairro-vianelo' },
+  { bairroSlug: 'medeiros', slot: 'lotus-bairro-medeiros' },
+  { bairroSlug: 'caxambu', slot: 'lotus-bairro-caxambu' },
 ];
 
 const neighborhoodsJundiai = CARDS_BAIRRO.flatMap((c) => {
@@ -267,6 +268,13 @@ const neighborhoodsJundiai = CARDS_BAIRRO.flatMap((c) => {
   }
   return [{ ...c, name: b.nome, city: b.cidade, img: b.heroImg }];
 });
+
+// Contagem de imóveis do card vem do banco (prop bairroCounts). Sem imóvel
+// publicado o card não promete nada — número fixo aqui já quebrou promessa na home.
+function labelImoveis(n: number | undefined): string {
+  if (!n) return '';
+  return n === 1 ? '1 imóvel' : `${n} imóveis`;
+}
 
 
 // Destaques do blog — os três artigos mais recentes, vindos da mesma fonte que
@@ -300,6 +308,7 @@ export default function LotusHome({
   bannerAuto = BANNER_AUTO_DEFAULT,
   revealAnim = REVEAL_ANIM_DEFAULT,
   developments,
+  bairroCounts,
 }: {
   whatsapp?: string;
   liaEnabled?: boolean;
@@ -307,6 +316,8 @@ export default function LotusHome({
   revealAnim?: boolean;
   // Empreendimentos vindos do Supabase (ISR). Ausente/vazio → usa o fallback estático.
   developments?: DevelopmentCard[];
+  // Imóveis aprovados por slug de bairro (contados no servidor). Ausente → sem contagem.
+  bairroCounts?: Record<string, number>;
 } = {}) {
   // Fonte efetiva: Supabase se veio conteúdo apresentável; senão o array curado.
   const devs: DevelopmentCard[] =
@@ -503,7 +514,7 @@ export default function LotusHome({
           <a href="#topo" style={parseStyle('display:flex;align-items:center;gap:12px;')}>
             <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
           </a>
-          <nav style={parseStyle('display:flex;align-items:center;gap:34px;font-size:15px;font-weight:500;color:rgba(247,242,232,.86);')}>
+          <nav data-portal-nav="" style={parseStyle('display:flex;align-items:center;gap:34px;font-size:15px;font-weight:500;color:rgba(247,242,232,.86);')}>
             <Hoverable as="a" href="/lotus-lancamentos" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Lançamentos</Hoverable>
             <Hoverable as="a" href="/lotus-busca" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Comprar</Hoverable>
             <Hoverable as="a" href="/lotus-bairro" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Bairros</Hoverable>
@@ -766,7 +777,7 @@ export default function LotusHome({
                 <div style={parseStyle('position:absolute;left:0;right:0;bottom:0;padding:20px;')}>
                   <div style={parseStyle('font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#cdab6e;margin-bottom:5px;')}>{n.city}</div>
                   <div style={parseStyle("font-family:'Fraunces',serif;font-size:21px;font-weight:400;color:#f7f2e8;line-height:1.05;")}>{n.name}</div>
-                  <div style={parseStyle('font-size:12.5px;color:rgba(247,242,232,.7);margin-top:5px;')}>{n.count}</div>
+                  <div style={parseStyle('font-size:12.5px;color:rgba(247,242,232,.7);margin-top:5px;')}>{labelImoveis(bairroCounts?.[n.bairroSlug])}</div>
                 </div>
               </Hoverable>
             ))}

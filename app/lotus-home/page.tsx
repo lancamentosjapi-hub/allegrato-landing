@@ -1,6 +1,8 @@
 import LotusHome from '@/components/LotusHome';
 import { type DevelopmentCard } from '@/lib/developments';
 import { getLancamentos, isApresentavel, type LancamentoCard } from '@/lib/lancamentos';
+import { getImoveisBusca } from '@/lib/imoveis';
+import { BAIRROS } from '@/lib/bairros';
 
 // ISR: revalida a cada 1h. O Portal é praticamente read-only; revalidação
 // on-demand (trigger do dash → /api/revalidate) entra numa fase futura.
@@ -30,9 +32,17 @@ export default async function LotusHomePage() {
   // portal_lancamentos. Se vier vazio (banco sem dados / falha), passa undefined
   // e o componente cai no seu fallback interno — rede de segurança contra página
   // vazia, não completa a lista com mock.
-  const cards = await getLancamentos();
+  const [cards, imoveis] = await Promise.all([getLancamentos(), getImoveisBusca()]);
   const apresentaveis = cards.filter(isApresentavel).map(toDevelopment);
   const developments = apresentaveis.length > 0 ? apresentaveis : undefined;
 
-  return <LotusHome developments={developments} />;
+  // Contagem real por bairro (mesmo critério de /lotus-bairro: nome do bairro
+  // do imóvel == nome do guia). Antes eram números fixos que não batiam com a busca.
+  const bairroCounts: Record<string, number> = {};
+  for (const b of BAIRROS) {
+    const alvo = b.nome.trim().toLowerCase();
+    bairroCounts[b.slug] = imoveis.filter((im) => im.neighborhood.trim().toLowerCase() === alvo).length;
+  }
+
+  return <LotusHome developments={developments} bairroCounts={bairroCounts} />;
 }

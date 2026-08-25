@@ -2,15 +2,11 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { readConsent, writeConsent, type ConsentValue } from '@/lib/consent';
 
 // Banner de consentimento portado do <script> inline do estático lotus-cookies/index.html.
-// Comportamento preservado: exibe só quando não há cookie "lotus_consent", grava o
-// consentimento por 180 dias (15552000s) e faz push no dataLayer (GTM).
-declare global {
-  interface Window {
-    dataLayer?: Array<Record<string, unknown>>;
-  }
-}
+// Exibe só quando não há cookie "lotus_consent"; a gravação + Consent Mode v2
+// ficam em lib/consent.ts (compartilhado com components/Analytics.tsx).
 
 const box: CSSProperties = {
   position: 'fixed',
@@ -56,9 +52,7 @@ export default function CookieConsent() {
   const caixaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (document.cookie.indexOf('lotus_consent=') === -1) {
-      setVisible(true);
-    }
+    if (readConsent() === null) setVisible(true);
   }, []);
 
   /**
@@ -95,11 +89,9 @@ export default function CookieConsent() {
     };
   }, [visible]);
 
-  function setConsent(value: string) {
-    document.cookie = `lotus_consent=${value};path=/;max-age=15552000;SameSite=Lax`;
+  function setConsent(value: ConsentValue) {
+    writeConsent(value);
     setVisible(false);
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'cookie_consent', consent: value });
   }
 
   if (!visible) return null;

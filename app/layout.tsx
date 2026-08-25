@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import CookieConsent from '@/components/CookieConsent';
+import Analytics, { AnalyticsNoScript } from '@/components/Analytics';
 import PreloadHints from '@/components/PreloadHints';
 
 // Metadata portada de lotus-home/index.html (paridade de SEO com o estático).
@@ -53,7 +54,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR">
       <body>
+        <AnalyticsNoScript />
         <PreloadHints />
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
