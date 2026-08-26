@@ -293,7 +293,6 @@ const tabOn = tabBase + 'color:#15241c;box-shadow:inset 0 -2px 0 #b18a4a;';
 const tabOff = tabBase + 'color:#8aa593;';
 const finBase = 'padding:9px 20px;font-size:13.5px;font-weight:600;border-radius:30px;border:1px solid;cursor:pointer;transition:all .2s;';
 const finOn = finBase + 'background:#1d3a2c;color:#f7f2e8;border-color:#1d3a2c;';
-const finOff = finBase + 'background:transparent;color:#3f6249;border-color:rgba(21,36,28,.2);';
 
 const NOISE_BG =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -327,7 +326,6 @@ export default function LotusHome({
   const [openFaq, setOpenFaq] = useState(0);
   const [subscribed, setSubscribed] = useState(false);
   const [activeTab, setActiveTab] = useState<'filtros' | 'conversa'>('filtros');
-  const [finalidade, setFinalidade] = useState<'comprar' | 'alugar'>('comprar');
   const [bannerIndex, setBannerIndex] = useState(0);
   const [reviewIndex, setReviewIndex] = useState(0);
 
@@ -451,7 +449,6 @@ export default function LotusHome({
 
   // Derivados de estado (render context)
   const tab = activeTab;
-  const fin = finalidade;
   const bi = bannerIndex;
   const ri = reviewIndex;
 
@@ -565,8 +562,14 @@ export default function LotusHome({
               {tab === 'filtros' && (
                 <div style={parseStyle('padding:18px;')}>
                   <div style={parseStyle('display:flex;gap:8px;margin-bottom:14px;')}>
-                    <button onClick={() => setFinalidade('comprar')} style={parseStyle(fin === 'comprar' ? finOn : finOff)}>Comprar</button>
-                    <button onClick={() => setFinalidade('alugar')} style={parseStyle(fin === 'alugar' ? finOn : finOff)}>Alugar</button>
+                    {/* Só "Comprar". A opção "Alugar" saiu da home a pedido da
+                        Lotus: a vitrine da primeira página é de compra. O par
+                        continua existindo em /lotus-busca, que é onde a locação
+                        é de fato pesquisável.
+                        Vira <span> e não <button> porque não há mais escolha a
+                        fazer: um botão que não alterna nada convida um clique
+                        que não faz nada. */}
+                    <span style={parseStyle(finOn)}>Comprar</span>
                   </div>
                   <div style={parseStyle('display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px;')}>
                     <select aria-label="Tipo de imóvel" style={parseStyle('width:100%;border:1px solid rgba(21,36,28,.18);background:#fff;color:#15241c;font-size:14px;padding:13px 12px;border-radius:10px;outline:none;cursor:pointer;')}>

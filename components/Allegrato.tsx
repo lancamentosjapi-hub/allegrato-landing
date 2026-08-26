@@ -18,6 +18,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { parseStyle, useReveal, waHref } from '@/lib/dc-runtime';
 import { sendLead } from '@/lib/lead';
+import CtaSimulacao from './CtaSimulacao';
 
 // TODO(Lotus): número de vendas real — o fonte marcava este como PLACEHOLDER.
 const WA_NUMBER = '5511926143393';
@@ -28,17 +29,6 @@ const waDefault = waUrl();
 
 type LbItem = { src: string; cap: string };
 
-/** Parcela da Tabela Price — mesma fórmula do a019.js (80% em 360x a 8,16% a.a.). */
-function parcela(price: number) {
-  const financed = Math.round(price * 0.8);
-  const i = 0.0816 / 12;
-  const n = 360;
-  const pmt = (financed * (i * Math.pow(1 + i, n))) / (Math.pow(1 + i, n) - 1);
-  return { financed, pmt: Math.round(pmt) };
-}
-
-const brl = (n: number) => n.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
-
 /** Máscara de telefone BR, idêntica à do fonte. */
 function maskFone(raw: string) {
   const v = raw.replace(/\D/g, '').slice(0, 11);
@@ -48,11 +38,8 @@ function maskFone(raw: string) {
   return '';
 }
 
-const SIM_MIN = 250000;
-const SIM_MAX = 400000;
 
 export default function Allegrato() {
-  const [price, setPrice] = useState(350000);
   const [lb, setLb] = useState<{ items: LbItem[]; i: number } | null>(null);
   const [sentUrl, setSentUrl] = useState<string | null>(null);
   const [fone, setFone] = useState('');
@@ -60,8 +47,6 @@ export default function Allegrato() {
   const foneRef = useRef<HTMLInputElement>(null);
   const interesseRef = useRef<HTMLSelectElement>(null);
 
-  const sim = useMemo(() => parcela(price), [price]);
-  const simPct = ((price - SIM_MIN) / (SIM_MAX - SIM_MIN)) * 100;
 
   /* Header: sólido ao rolar, claro enquanto o hero estiver visível. */
   useEffect(() => {
@@ -935,61 +920,16 @@ export default function Allegrato() {
               Com renda familiar até R$ 9.600 e juros a partir de 8,16% ao ano, comprar na planta significa parcelas menores agora. Simule uma estimativa:
             </p>
             <div style={parseStyle('margin-top:30px')} className="simbox">
-              <div className="simrow">
-                <span className="lab">
-                  Valor do imóvel
-                </span>
-                <div className="val" id="simValor">
-                  R$ {brl(price)}
-                </div>
-                <input
-                  type="range"
-                  id="simRange"
-                  min={SIM_MIN}
-                  max={SIM_MAX}
-                  step="5000"
-                  value={price}
-                  aria-label="Valor do imóvel"
-                  onChange={(e) => setPrice(Number(e.target.value))}
-                  style={{
-                    background: `linear-gradient(90deg, var(--teal) ${simPct}%, rgba(255,255,255,.18) ${simPct}%)`,
-                  }}
-                />
-              </div>
-              <div className="sim-out">
-                <div>
-                  <span className="lab">
-                    Parcela estimada a partir de
-                  </span>
-                  <div className="big">
-                    R${' '}
-                    <span id="simParcela">
-                      {brl(sim.pmt)}
-                    </span>
-                    <small>
-                      /mês
-                    </small>
-                  </div>
-                </div>
-                <div style={parseStyle('text-align:right')}>
-                  <span className="lab">
-                    Financiamento
-                  </span>
-                  <div style={parseStyle('font-size:1.3rem;margin:.2em 0 0')} className="val" id="simFin">
-                    R$ {brl(sim.financed)}
-                  </div>
-                </div>
-              </div>
-              <p className="sim-note">
-                Estimativa para fins ilustrativos: financiamento de 80% do valor em 360 meses a 8,16% a.a. (Tabela Price), sem considerar FGTS, subsídio ou seguros. Os valores oficiais e a simulação real são feitos com a CAIXA, sujeitos a análise de crédito.
+              {/* O simulador de parcela que ficava aqui foi removido: ele
+                  calculava Tabela Price a 8,16% a.a. sobre 80% do valor em 360
+                  meses e mostrava um numero exato na tela, sem FGTS, sem
+                  subsidio e sem analise de credito. Numero preciso e errado
+                  vira expectativa quebrada no atendimento. A simulacao passa a
+                  ser feita pela LIA, com os dados da pessoa. */}
+              <p className="sim-note" style={parseStyle('margin-bottom:18px')}>
+                A simulacao considera renda, FGTS, subsidio do Minha Casa Minha Vida e o banco escolhido. Fazemos com voce, sem custo e sem compromisso.
               </p>
-              <a style={parseStyle('width:100%;margin-top:18px')} className="btn btn-wa wa-link" href={waDefault} target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2">
-                  </path>
-                </svg>
-                Quero a simulação oficial
-              </a>
+              <CtaSimulacao />
             </div>
           </div>
           <div className="col-r reveal d1">

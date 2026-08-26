@@ -24,6 +24,7 @@ import React, {
 import { p34, p49, p52, p66 } from '@/app/brisas-do-japi/plantas';
 import Link from 'next/link';
 import { sendLead } from '@/lib/lead';
+import CtaSimulacao from './CtaSimulacao';
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -585,7 +586,7 @@ export default function BrisasDoJapi({
               <div style={parseStyle('font-size:14.5px;color:rgba(232,240,239,.75);line-height:1.5;')}>Nossos corretores ajudam você a simular o financiamento e conhecer o decorado.</div>
             </div>
           </div>
-          <Hoverable as="a" data-reveal="" data-reveal-delay="260" href="#contato" baseStyle={parseStyle('display:inline-block;background:#c8a45c;color:#152730;text-decoration:none;font-size:16px;font-weight:700;padding:17px 38px;border-radius:100px;box-shadow:0 14px 34px rgba(200,164,92,.4);transition:transform .25s ease;')} hoverStyle={parseStyle('transform:translateY(-3px);')}>Quero simular meu financiamento</Hoverable>
+          <CtaSimulacao style={parseStyle('margin-top:26px')} />
         </div>
       </section>
 
