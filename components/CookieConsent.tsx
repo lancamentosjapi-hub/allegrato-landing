@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import { readConsent, writeConsent, type ConsentValue } from '@/lib/consent';
+import { CONSENT_REABRIR, readConsent, writeConsent, type ConsentValue } from '@/lib/consent';
 
 // Banner de consentimento portado do <script> inline do estático lotus-cookies/index.html.
 // Exibe só quando não há cookie "lotus_consent"; a gravação + Consent Mode v2
@@ -53,6 +53,12 @@ export default function CookieConsent() {
 
   useEffect(() => {
     if (readConsent() === null) setVisible(true);
+    // O botao "Abrir preferencias de cookies" (/lotus-cookies) pede o banner de
+    // volta mesmo com escolha ja gravada: a LGPD exige poder rever o
+    // consentimento, e sem isso so limpando cookies no navegador.
+    const reabrir = () => setVisible(true);
+    window.addEventListener(CONSENT_REABRIR, reabrir);
+    return () => window.removeEventListener(CONSENT_REABRIR, reabrir);
   }, []);
 
   /**
