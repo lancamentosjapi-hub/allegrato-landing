@@ -5,15 +5,15 @@
  * em ~10 componentes. Centralizar aqui evita divergência e deixa a troca dos
  * números reais num só lugar.
  *
- * TODO go-live: substituir CRECI_PJ e CNPJ pelos números reais da empresa.
- * Enquanto forem placeholders (00000/00.000...), a linha legal é omitida do
- * rodapé para não exibir dados falsos em produção (ver `footerLegalLine`).
+ * CRECI e CNPJ reais informados pela Lotus em 26/08/2026. A guarda
+ * isPlaceholder continua no código: se algum dia um valor voltar a ser
+ * genérico, a linha legal se omite sozinha em vez de publicar número falso.
  */
 
 export const SITE = {
   nome: 'Lotus Brokers',
-  creciPj: 'CRECI PJ 00000-J', // TODO: número real do CRECI PJ
-  cnpj: 'CNPJ 00.000.000/0001-00', // TODO: CNPJ real
+  creciPj: 'CRECI 054615-J',
+  cnpj: 'CNPJ 67.767.385/0001-98',
   regiao: 'Jundiaí · Itupeva · SP',
   ano: 2026,
 } as const;

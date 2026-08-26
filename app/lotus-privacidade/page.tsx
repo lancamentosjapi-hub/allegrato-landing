@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { CONSENT_INLINE_SCRIPT } from '@/lib/consent-inline';
-import { footerLegalLine } from '@/lib/site';
+import { footerLegalLine, SITE } from '@/lib/site';
 
 // Metadata portado do <head> do fonte estatico (lotus-privacidade/index.html).
 export const metadata: Metadata = {
@@ -86,7 +86,8 @@ export default function LotusPrivacidadePage() {
         <p>
           A Lotus Brokers é uma imobiliária que atua em Jundiaí, Itupeva e região, e utiliza
           tecnologia, inclusive inteligência artificial, para dar suporte ao atendimento e à
-          consultoria imobiliária. Razão social, CNPJ, CRECI-PJ e endereço completos: [⬜].
+          consultoria imobiliária. Somos o controlador dos seus dados: {SITE.cnpj}, {SITE.creciPj},
+          com endereço na Av. José Luiz Sereno, 655, sala 5, Jardim Ermida II, Jundiaí/SP.
         </p>
         <h2>2. O que este documento faz</h2>
         <p>
