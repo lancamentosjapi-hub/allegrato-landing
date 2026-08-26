@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { CONSENT_INLINE_SCRIPT } from '@/lib/consent-inline';
 import { footerLegalLine } from '@/lib/site';
 
 // Metadata portado do <head> do fonte estatico (lotus-privacidade/index.html).
@@ -47,8 +48,8 @@ footer{background:var(--ink);color:rgba(247,242,232,.7);font-size:13px}
 footer a{color:rgba(247,242,232,.7);text-decoration:none}footer a:hover{color:var(--gold)}
 `;
 
-// Script de consentimento de cookies EXATO do fonte (roda no browser; nao requer 'use client').
-const cookieScript = `(function(){try{var b=document.getElementById("lotus-cookie");if(!b)return;if(document.cookie.indexOf("lotus_consent=")===-1){b.style.display="block";}function s(v){document.cookie="lotus_consent="+v+";path=/;max-age=15552000;SameSite=Lax";b.style.display="none";window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"cookie_consent",consent:v});}document.getElementById("lotus-cookie-accept").addEventListener("click",function(){s("all")});document.getElementById("lotus-cookie-reject").addEventListener("click",function(){s("essential")});}catch(e){}})();`;
+// Consentimento: script compartilhado, em lib/consent-inline.ts.
+const cookieScript = CONSENT_INLINE_SCRIPT;
 
 export default function LotusPrivacidadePage() {
   return (

@@ -1,5 +1,6 @@
 'use client';
 import { footerLegalLine } from '@/lib/site';
+import { readConsent, writeConsent, type ConsentValue } from '@/lib/consent';
 
 /**
  * LotusRecrutamento — porte 1:1 de lotus-recrutamento/index.html (mecanismo dc-runtime) para React.
@@ -146,7 +147,9 @@ function CookieBanner() {
 
   useEffect(() => {
     try {
-      if (document.cookie.indexOf('lotus_consent=') === -1) {
+      // readConsent() em vez do nome do cookie repetido aqui: se ele mudar,
+      // muda num lugar so.
+      if (readConsent() === null) {
         setVisible(true);
       }
     } catch {
@@ -154,14 +157,14 @@ function CookieBanner() {
     }
   }, []);
 
-  const setConsent = (v: string) => {
+  // Delegado a lib/consent.ts, que grava o cookie E atualiza o Consent Mode v2.
+  // Antes esta cópia só gravava o cookie: quem aceitava aqui via o banner sumir,
+  // mas o GA4 seguia bloqueado pelo default 'denied' e o Clarity nunca carregava,
+  // porque ele escuta um evento que esta cópia não emitia.
+  const setConsent = (v: ConsentValue) => {
     try {
-      document.cookie =
-        'lotus_consent=' + v + ';path=/;max-age=15552000;SameSite=Lax';
+      writeConsent(v);
       setVisible(false);
-      const w = window as unknown as { dataLayer?: unknown[] };
-      w.dataLayer = w.dataLayer || [];
-      w.dataLayer.push({ event: 'cookie_consent', consent: v });
     } catch {
       /* noop */
     }
