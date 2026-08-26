@@ -23,6 +23,7 @@ function toEmpItem(item: LancamentoListItem, i: number): EmpItem {
     price: item.price,
     specs: item.specs,
     exclusive: item.exclusive,
+    builder: item.builder,
     slot: `le-dyn-${i}`,
     img: item.img,
     href: item.href,

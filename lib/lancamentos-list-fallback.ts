@@ -18,6 +18,11 @@ export type EmpItem = {
   price: string | null;
   specs: string;
   exclusive: boolean;
+  // Construtora canonicalizada, alimenta o filtro de /lotus-lancamentos.
+  // Opcional porque os itens estaticos deste arquivo nao a declaram: quando
+  // ausente, o empreendimento simplesmente nao e alcancado por esse filtro,
+  // igual ja acontece com tipo e preco.
+  builder?: string;
   slot: string;
   // Estáticos resolvem a imagem por EMP_IMG[id]; dinâmicos (Supabase) já trazem img.
   img?: string | null;

@@ -178,6 +178,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
   const [fStage, setFStage] = useState('any');
   const [fType, setFType] = useState('any');
   const [fPrice, setFPrice] = useState('any');
+  const [fBuilder, setFBuilder] = useState('any');
   const [sortKey, setSortKey] = useState('rel');
   const [openFaq, setOpenFaq] = useState(0);
   const [leadDone, setLeadDone] = useState(false);
@@ -196,14 +197,23 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
       (fCity === 'any' || e.city === fCity) &&
       (fStage === 'any' || e.stage === fStage) &&
       (fType === 'any' || e.type === fType) &&
-      (fPrice === 'any' || e.priceNum <= parseInt(fPrice, 10)),
+      (fPrice === 'any' || e.priceNum <= parseInt(fPrice, 10)) &&
+      (fBuilder === 'any' || e.builder === fBuilder),
   );
   if (sortKey === 'priceAsc') list = [...list].sort((a, b) => a.priceNum - b.priceNum);
   else if (sortKey === 'priceDesc') list = [...list].sort((a, b) => b.priceNum - a.priceNum);
 
   const view = list.map((e) => ({ ...e, img: e.img ?? EMP_IMG[e.id] }));
 
-  const hasFilter = fCity !== 'any' || fStage !== 'any' || fType !== 'any' || fPrice !== 'any';
+  const hasFilter =
+    fCity !== 'any' || fStage !== 'any' || fType !== 'any' || fPrice !== 'any' || fBuilder !== 'any';
+
+  // Opcoes vindas dos proprios lancamentos, e nao de lista escrita a mao: se o
+  // dashboard cadastrar uma construtora nova, ela aparece aqui sozinha. Nome
+  // vazio fica de fora, para nao virar uma opcao em branco.
+  const construtoras = [...new Set(emps.map((e) => e.builder ?? '').filter(Boolean))].sort((a, b) =>
+    a.localeCompare(b, 'pt-BR'),
+  );
   const count = list.length;
   const hasResults = list.length > 0;
   const noResults = list.length === 0;
@@ -213,6 +223,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
     setFStage('any');
     setFType('any');
     setFPrice('any');
+    setFBuilder('any');
     setSortKey('rel');
   };
 
@@ -301,6 +312,24 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
               <select className="lt-field" value={fPrice} onChange={(e) => setFPrice(e.target.value)}>
                 <option value="any">Qualquer valor</option><option value="600000">Até R$ 600 mil</option><option value="900000">Até R$ 900 mil</option><option value="1500000">Até R$ 1,5 mi</option><option value="9999999">Acima de R$ 1,5 mi</option>
               </select>
+              {/* Construtora: unico filtro com opcoes dinamicas. Some por
+                  inteiro quando nenhum lancamento publicado tem construtora
+                  preenchida, em vez de exibir um seletor de uma opcao so. */}
+              {construtoras.length > 0 && (
+                <select
+                  className="lt-field"
+                  aria-label="Filtrar por construtora"
+                  value={fBuilder}
+                  onChange={(e) => setFBuilder(e.target.value)}
+                >
+                  <option value="any">Todas as construtoras</option>
+                  {construtoras.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+              )}
             </div>
             <select className="lt-field" value={sortKey} onChange={(e) => setSortKey(e.target.value)}>
               <option value="rel">Ordenar: relevância</option><option value="priceAsc">Menor preço</option><option value="priceDesc">Maior preço</option>

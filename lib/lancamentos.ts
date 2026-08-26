@@ -1,6 +1,7 @@
 import { supabase, TENANT_ID } from './supabase';
 import { hrefForSlug, slugParaLanding, slugify } from './landings';
 import { developmentsFallback, type DevelopmentCard } from './developments';
+import { mapaDeConstrutoras } from './construtoras';
 
 // Reexportados por compatibilidade: a descoberta das landings mora em landings.ts
 // (ver o comentário de lá), mas `toCard`/`toListItem` continuam sendo o ponto de
@@ -110,6 +111,8 @@ export type LancamentoListItem = {
   price: string | null;
   specs: string;
   exclusive: boolean;
+  /** Construtora já canonicalizada (ver lib/construtoras.ts). '' quando o dash não preencheu. */
+  builder: string;
   img: string | null;
   href: string | null; // landing rica se existir; senão null (card abre contato)
 };
@@ -136,6 +139,7 @@ export function toListItem(row: LancamentoRow): LancamentoListItem {
     price: precoOuNulo(row.preco_texto),
     specs: row.specs ?? row.dormitorios ?? '',
     exclusive: row.exclusivo ?? false,
+    builder: row.construtora?.trim() ?? '',
     img: capa(row.fotos),
     href: hrefForSlug(slug),
   };
@@ -462,10 +466,20 @@ export async function getLancamentosList(): Promise<LancamentoListItem[]> {
       price: precoOuNulo(d.price),
       specs: d.specs,
       exclusive: d.exclusive,
+      builder: d.builder,
       img: d.img,
       href: d.href,
     };
   });
 
-  return publicaveis([...itens, ...daLanding], isListItemApresentavel);
+  // Canonicaliza a construtora DEPOIS de juntar banco e fallback: so com todas
+  // as grafias a vista da para saber que "Santa Angela" e "Santa Ângela" sao a
+  // mesma. Sem isso o filtro mostraria a construtora duas vezes, e escolher uma
+  // das opcoes esconderia metade dos empreendimentos dela.
+  const publicados = publicaveis([...itens, ...daLanding], isListItemApresentavel);
+  const canonico = mapaDeConstrutoras(publicados.map((i) => i.builder));
+  // Fora do mapa significa nome nao informado ou placeholder: vira string
+  // vazia, entao o empreendimento nao aparece como opcao nem sob um nome que
+  // nao e o dele. Ele so deixa de ser alcancado por este filtro.
+  return publicados.map((i) => ({ ...i, builder: canonico.get(i.builder) ?? '' }));
 }

@@ -34,3 +34,7 @@ FINALIZAR.MD
 # Screenshots de auditoria/QA na RAIZ do repo (os assets de produção vivem em public/)
 /*.png
 /Landing Pages/
+
+# Retratos de auditoria gerados sob demanda (dados do dashboard).
+# Entregues direto para a Lotus; versionar so guardaria dado desatualizado.
+auditoria-*.csv
