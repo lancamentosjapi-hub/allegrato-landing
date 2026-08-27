@@ -20,8 +20,8 @@ test('acento e caixa não atrapalham', () => {
   assert.equal(bairroDoGuia('  jardim ermida ii  ', GUIAS), 'Eloy Chaves');
 });
 
-test('loteamento sem pertencimento confirmado não é agrupado', () => {
-  // Preferimos não agrupar a agrupar errado.
+test('bairro de nível próprio não é agrupado sob outro', () => {
+  // Confirmado pela Lotus: estes quatro são bairros, não sub-bairros.
   for (const b of ['Jardim Messina', 'Jardim Pacaembu', 'Vila Rio Branco', 'Jardim Colonial'])
     assert.equal(bairroDoGuia(b, GUIAS), null, b);
 });

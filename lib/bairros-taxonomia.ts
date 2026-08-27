@@ -10,11 +10,12 @@
  * Eloy Chaves mostrava zero imóveis e a página do imóvel não tinha guia para
  * apontar. Não era falta de estoque; era taxonomia.
  *
- * Este mapa é a ponte, e é deliberadamente PARCIAL: só entra pertencimento que
+ * Este mapa é a ponte, e cobre só quem é de fato sub-bairro: só entra pertencimento que
  * dá para confirmar. Os títulos de AP676 e AP677 dizem "Vila Sereno, Eloy
  * Chaves" enquanto o campo bairro diz "Jardim Ermida II" — é daí que sai a
- * relação, não de chute geográfico. Loteamento sem origem confirmada fica de
- * fora e simplesmente não é agrupado, o que é melhor do que agrupar errado.
+ * relação, não de chute geográfico. Os demais nomes que aparecem no cadastro
+ * são bairros de verdade, e não sub-bairros: ver BAIRROS_SEM_GUIA_AINDA no fim
+ * do arquivo.
  *
  * Quando o dashboard ganhar um campo próprio de sub-bairro, este mapa vira
  * fallback: a leitura passa a preferir o dado cadastrado e só cai aqui para os
@@ -63,3 +64,22 @@ export function nomesDoBairro(bairroDoGuiaNome: string): string[] {
 export function subBairrosConhecidos(): Record<string, string> {
   return { ...PERTENCE_A };
 }
+
+/**
+ * Bairros confirmados pela Lotus em 26/08/2026 como sendo de NÍVEL DE BAIRRO,
+ * e não sub-bairros de outro.
+ *
+ * Ficam registrados porque a ausência deles no mapa acima é uma decisão, não um
+ * esquecimento: eles aparecem no cadastro dos imóveis, não têm guia hoje, e
+ * quem revisar isto depois poderia achar que faltou mapear e inventar um pai.
+ *
+ * Como são nível de bairro, ganham guia próprio quando a Lotus quiser: basta
+ * acrescentá-los em lib/bairros.ts e a busca por imóveis já funciona, sem
+ * precisar tocar neste arquivo.
+ */
+export const BAIRROS_SEM_GUIA_AINDA = [
+  'Jardim Messina',
+  'Jardim Pacaembu',
+  'Vila Rio Branco',
+  'Jardim Colonial',
+] as const;
