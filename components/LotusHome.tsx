@@ -24,7 +24,7 @@ import React, {
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { developmentsFallback, type DevelopmentCard } from '@/lib/developments';
-import { POSTS } from './LotusBlog';
+import { POSTS, type Post } from '@/lib/blog-posts';
 import { SQUADS } from '@/lib/squads';
 import MobileMenu from './MobileMenu';
 
@@ -280,7 +280,7 @@ function labelImoveis(n: number | undefined): string {
 // Destaques do blog — os três artigos mais recentes, vindos da mesma fonte que
 // alimenta /lotus-blog. Manter uma lista própria aqui era o que fazia a home
 // exibir títulos que já não existiam e nenhuma capa.
-const posts = POSTS.slice(0, 3);
+const postsFallback = POSTS.slice(0, 3);
 
 const brokers: Array<{ name: string; squad: string; area: string; creci: string; slot: string; img?: string }> = [
   { name: 'Marina Tavares', squad: 'Alto Padrão', area: 'Eloy Chaves', creci: 'CRECI 000001-F', slot: 'lotus-broker-marina' },
@@ -308,6 +308,7 @@ export default function LotusHome({
   revealAnim = REVEAL_ANIM_DEFAULT,
   developments,
   bairroCounts,
+  posts,
 }: {
   whatsapp?: string;
   liaEnabled?: boolean;
@@ -317,10 +318,14 @@ export default function LotusHome({
   developments?: DevelopmentCard[];
   // Imóveis aprovados por slug de bairro (contados no servidor). Ausente → sem contagem.
   bairroCounts?: Record<string, number>;
+  // Destaques do blog ja filtrados por data de publicacao (a rota decide a
+  // hora, ver lib/blog-agenda). Ausente -> os tres primeiros da lista.
+  posts?: Post[];
 } = {}) {
   // Fonte efetiva: Supabase se veio conteúdo apresentável; senão o array curado.
   const devs: DevelopmentCard[] =
     developments && developments.length > 0 ? developments : developmentsFallback;
+  const artigos: Post[] = posts && posts.length > 0 ? posts : postsFallback;
   // state (espelha o `state` do dc-runtime)
   const [liaOpen, setLiaOpen] = useState(false);
   /* Busca da home. Antes os selects não guardavam estado e o botão navegava
@@ -920,7 +925,7 @@ export default function LotusHome({
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:26px;margin-bottom:64px;')}>
             {/* hint-placeholder-count: 3 */}
-            {posts.map((p, i) => (
+            {artigos.map((p, i) => (
               <Hoverable key={i} as="a" data-reveal="" baseStyle={parseStyle('cursor:default;display:flex;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(21,36,28,.32);transition:transform .35s ease, box-shadow .35s ease;')} hoverStyle={parseStyle('transform:translateY(-5px);box-shadow:0 30px 60px -32px rgba(21,36,28,.42)')}>
                 <div style={parseStyle('position:relative;aspect-ratio:16/10;background:#3f6249;')}>
                   <ImageSlot id={p.slot} src={p.img} style={parseStyle('position:absolute;inset:0;width:100%;height:100%;')} alt={p.title} />

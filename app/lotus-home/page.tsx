@@ -3,6 +3,8 @@ import { type DevelopmentCard } from '@/lib/developments';
 import { getLancamentos, isApresentavel, type LancamentoCard } from '@/lib/lancamentos';
 import { getImoveisBusca } from '@/lib/imoveis';
 import { BAIRROS } from '@/lib/bairros';
+import { POSTS } from '@/lib/blog-posts';
+import { publicados } from '@/lib/blog-agenda';
 import { nomesDoBairro } from '@/lib/bairros-taxonomia';
 
 // ISR: revalida a cada 1h. O Portal é praticamente read-only; revalidação
@@ -48,5 +50,11 @@ export default async function LotusHomePage() {
     bairroCounts[b.slug] = imoveis.filter((im) => alvos.has(im.neighborhood.trim().toLowerCase())).length;
   }
 
-  return <LotusHome developments={developments} bairroCounts={bairroCounts} />;
+  // Os tres destaques do blog saem da MESMA fonte de /lotus-blog e respeitam o
+  // agendamento: artigo marcado para amanha nao pode vazar na home hoje.
+  const destaques = publicados(POSTS).slice(0, 3);
+
+  return (
+    <LotusHome developments={developments} bairroCounts={bairroCounts} posts={destaques} />
+  );
 }
