@@ -12,6 +12,9 @@
 
 export const SITE = {
   nome: 'Lotus Brokers',
+  /** Razão social registrada. O campo nome acima é o fantasia, usado na interface. */
+  razaoSocial: 'Lotus Brokers Negócios Imobiliários',
+  endereco: 'Av. José Luiz Sereno, 655, sala 5, Jardim Ermida II, Jundiaí/SP',
   creciPj: 'CRECI 054615-J',
   cnpj: 'CNPJ 67.767.385/0001-98',
   regiao: 'Jundiaí · Itupeva · SP',

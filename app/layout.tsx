@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SITE } from '@/lib/site';
 import './globals.css';
 import CookieConsent from '@/components/CookieConsent';
 import Analytics, { AnalyticsNoScript } from '@/components/Analytics';
@@ -34,10 +35,17 @@ export const metadata: Metadata = {
 };
 
 // JSON-LD RealEstateAgent (portado do estático).
+//
+// legalName, taxID e o endereço de rua entram porque o Google usa esses campos
+// para casar o site com a empresa no Knowledge Panel e no perfil local. São
+// invisíveis ao visitante: indexação, não conteúdo de página.
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'RealEstateAgent',
-  name: 'Lotus Brokers',
+  name: SITE.nome,
+  legalName: SITE.razaoSocial,
+  // O prefixo "CNPJ " é rótulo de interface; o schema quer só o número.
+  taxID: SITE.cnpj.replace(/\D/g, ''),
   description:
     'Imobiliária moderna de Jundiaí e Itupeva, voltada para um atendimento de excelência, com equipe de corretores segmentada por especialidade e por bairro.',
   areaServed: ['Jundiaí', 'Itupeva', 'Vinhedo', 'Valinhos', 'Indaiatuba'],
@@ -46,6 +54,7 @@ const jsonLd = {
     addressRegion: 'SP',
     addressCountry: 'BR',
     addressLocality: 'Jundiaí',
+    streetAddress: 'Av. José Luiz Sereno, 655, sala 5, Jardim Ermida II',
   },
   slogan: 'Grandes escolhas têm endereço.',
 };
