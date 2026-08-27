@@ -323,6 +323,27 @@ export default function LotusHome({
     developments && developments.length > 0 ? developments : developmentsFallback;
   // state (espelha o `state` do dc-runtime)
   const [liaOpen, setLiaOpen] = useState(false);
+  /* Busca da home. Antes os selects não guardavam estado e o botão navegava
+     para /lotus-busca com URL fixa: a escolha se perdia no caminho e a
+     listagem abria sem filtro nenhum, mostrando terreno em busca por
+     apartamento. Agora cada campo tem estado e vira parâmetro na URL. */
+  const [fTipo, setFTipo] = useState('');
+  const [fCidade, setFCidade] = useState('');
+  const [fBairro, setFBairro] = useState('');
+  const [fMax, setFMax] = useState('');
+
+  /** URL da busca com o que foi preenchido; campo vazio não vira parâmetro. */
+  const urlDaBusca = (extra?: Record<string, string>) => {
+    const p = new URLSearchParams();
+    if (fTipo) p.set('tipo', fTipo);
+    if (fCidade) p.set('cidade', fCidade);
+    if (fBairro) p.set('bairro', fBairro);
+    if (fMax) p.set('max', fMax);
+    for (const [k, v] of Object.entries(extra ?? {})) if (v.trim()) p.set(k, v.trim());
+    const qs = p.toString();
+    return '/lotus-busca' + (qs ? '?' + qs : '');
+  };
+
   const [openFaq, setOpenFaq] = useState(0);
   const [subscribed, setSubscribed] = useState(false);
   const [activeTab, setActiveTab] = useState<'filtros' | 'conversa'>('filtros');
@@ -572,22 +593,22 @@ export default function LotusHome({
                     <span style={parseStyle(finOn)}>Comprar</span>
                   </div>
                   <div style={parseStyle('display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px;')}>
-                    <select aria-label="Tipo de imóvel" style={parseStyle('width:100%;border:1px solid rgba(21,36,28,.18);background:#fff;color:#15241c;font-size:14px;padding:13px 12px;border-radius:10px;outline:none;cursor:pointer;')}>
-                      <option>Qualquer tipo</option><option>Apartamento</option><option>Casa</option><option>Casa em condomínio</option><option>Terreno</option><option>Comercial</option>
+                    <select aria-label="Tipo de imóvel" value={fTipo} onChange={(e) => setFTipo(e.target.value)} style={parseStyle('width:100%;border:1px solid rgba(21,36,28,.18);background:#fff;color:#15241c;font-size:14px;padding:13px 12px;border-radius:10px;outline:none;cursor:pointer;')}>
+                      <option value="">Qualquer tipo</option><option>Apartamento</option><option>Casa</option><option>Casa em condomínio</option><option>Terreno</option><option>Comercial</option>
                     </select>
-                    <select aria-label="Cidade" style={parseStyle('width:100%;border:1px solid rgba(21,36,28,.18);background:#fff;color:#15241c;font-size:14px;padding:13px 12px;border-radius:10px;outline:none;cursor:pointer;')}>
-                      <option>Todas as cidades</option><option>Jundiaí</option><option>Itupeva</option><option>Vinhedo</option><option>Valinhos</option><option>Cabreúva</option>
+                    <select aria-label="Cidade" value={fCidade} onChange={(e) => setFCidade(e.target.value)} style={parseStyle('width:100%;border:1px solid rgba(21,36,28,.18);background:#fff;color:#15241c;font-size:14px;padding:13px 12px;border-radius:10px;outline:none;cursor:pointer;')}>
+                      <option value="">Todas as cidades</option><option>Jundiaí</option><option>Itupeva</option><option>Vinhedo</option><option>Valinhos</option><option>Cabreúva</option>
                     </select>
-                    <select aria-label="Bairro" style={parseStyle('width:100%;border:1px solid rgba(21,36,28,.18);background:#fff;color:#15241c;font-size:14px;padding:13px 12px;border-radius:10px;outline:none;cursor:pointer;')}>
-                      <option>Todos os bairros</option><option>Eloy Chaves</option><option>Anhangabaú</option><option>Malota</option><option>Medeiros</option><option>Centro</option>
+                    <select aria-label="Bairro" value={fBairro} onChange={(e) => setFBairro(e.target.value)} style={parseStyle('width:100%;border:1px solid rgba(21,36,28,.18);background:#fff;color:#15241c;font-size:14px;padding:13px 12px;border-radius:10px;outline:none;cursor:pointer;')}>
+                      <option value="">Todos os bairros</option><option>Eloy Chaves</option><option>Anhangabaú</option><option>Malota</option><option>Medeiros</option><option>Centro</option>
                     </select>
-                    <select aria-label="Faixa de preço" style={parseStyle('width:100%;border:1px solid rgba(21,36,28,.18);background:#fff;color:#15241c;font-size:14px;padding:13px 12px;border-radius:10px;outline:none;cursor:pointer;')}>
-                      <option>Qualquer valor</option><option>Até R$ 500 mil</option><option>R$ 500 mil – 1 mi</option><option>R$ 1 – 2 mi</option><option>R$ 2 – 3 mi</option><option>Acima de R$ 3 mi</option>
+                    <select aria-label="Faixa de preço" value={fMax} onChange={(e) => setFMax(e.target.value)} style={parseStyle('width:100%;border:1px solid rgba(21,36,28,.18);background:#fff;color:#15241c;font-size:14px;padding:13px 12px;border-radius:10px;outline:none;cursor:pointer;')}>
+                      <option value="">Qualquer valor</option><option value="500000">Até R$ 500 mil</option><option value="1000000">R$ 500 mil a 1 mi</option><option value="2000000">R$ 1 a 2 mi</option><option value="3000000">R$ 2 a 3 mi</option><option value="99000000">Acima de R$ 3 mi</option>
                     </select>
                   </div>
                   <Hoverable
                     as="button"
-                    onClick={() => { window.top!.location.href = 'https://www.lotusbrokers.com.br/lotus-busca'; }}
+                    onClick={() => { window.location.href = urlDaBusca(); }}
                     baseStyle={parseStyle('width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#b18a4a;color:#15241c;font-weight:600;font-size:15.5px;padding:15px;border:none;border-radius:10px;cursor:pointer;transition:background .2s, transform .2s;')}
                     hoverStyle={parseStyle('background:#a07a3c;transform:translateY(-1px)')}
                   >
@@ -600,10 +621,17 @@ export default function LotusHome({
                 <div style={parseStyle('padding:18px;')}>
                   <label htmlFor="lotus-q" style={parseStyle('display:block;font-size:12.5px;font-weight:600;letter-spacing:.04em;color:#3f6249;padding:2px 0 8px;')}>Descreva o imóvel que você procura</label>
                   <div style={parseStyle('display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(21,36,28,.14);border-radius:12px;padding:6px 6px 6px 16px;')}>
-                    <input id="lotus-q" ref={searchRef} type="text" placeholder="Ex.: casa com 4 suítes perto da Serra do Japi, até R$ 2,5 mi" style={parseStyle('flex:1;border:none;outline:none;background:transparent;font-size:15.5px;color:#15241c;padding:9px 0;')} />
+                    <input
+                      id="lotus-q"
+                      ref={searchRef}
+                      type="text"
+                      onKeyDown={(e) => { if (e.key === 'Enter') window.location.href = urlDaBusca({ q: searchRef.current?.value ?? '' }); }} placeholder="Ex.: casa com 4 suítes perto da Serra do Japi, até R$ 2,5 mi" style={parseStyle('flex:1;border:none;outline:none;background:transparent;font-size:15.5px;color:#15241c;padding:9px 0;')} />
                     <Hoverable
                       as="button"
-                      onClick={() => { if (searchRef.current) searchRef.current.focus(); }}
+                      // Antes so dava focus() no campo: a busca por texto nao
+                      // levava a lugar nenhum. Agora leva o texto para /lotus-busca,
+                      // que sabe interpreta-lo.
+                      onClick={() => { window.location.href = urlDaBusca({ q: searchRef.current?.value ?? '' }); }}
                       baseStyle={parseStyle('flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:600;font-size:15px;padding:11px 18px;border:none;border-radius:9px;cursor:pointer;transition:background .2s;')}
                       hoverStyle={parseStyle('background:#a07a3c')}
                     >

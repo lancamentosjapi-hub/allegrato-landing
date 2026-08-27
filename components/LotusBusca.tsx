@@ -26,6 +26,7 @@ import React, {
   type ReactNode,
 } from 'react';
 import LotusHeader from './LotusHeader';
+import { formatValor } from '@/lib/imoveis';
 import type { ImovelBusca } from '@/lib/imoveis';
 
 // Chat do Atendimento Rápido — chunk só carrega quando o usuário abre o widget.
@@ -228,6 +229,52 @@ export default function LotusBusca({
     setFinalidade(fin);
     setSelectedId(null);
   };
+
+  /* -------- filtros vindos da URL (busca da home) --------
+   *
+   * A busca da home não tinha como transmitir o que a pessoa escolheu: os
+   * selects não guardavam estado e o botão navegava para uma URL fixa, sem
+   * parâmetro. Resultado: escolher "Apartamento" e buscar caía aqui SEM filtro
+   * nenhum, e a listagem mostrava tudo, terreno inclusive. Era esse o bug do
+   * "apartamento traz terreno".
+   *
+   * Os parâmetros são estruturados (tipo, cidade, bairro, max, fin) e não texto
+   * livre: a interpretação de frase é heurística e não deve decidir um filtro
+   * que a pessoa já escolheu num select. `q` continua aceito para a aba de
+   * texto livre, e aí sim passa pelo interpretador.
+   */
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    if ([...p.keys()].length === 0) return;
+
+    const novos: Chip[] = [];
+    const tipo = p.get('tipo');
+    if (tipo) novos.push({ id: 'type', kind: 'type', val: tipo, label: tipo });
+    const cidade = p.get('cidade');
+    const bairro = p.get('bairro');
+    const local = bairro || cidade;
+    if (local) novos.push({ id: 'loc', kind: 'loc', val: local.toLowerCase(), label: local });
+    const max = p.get('max');
+    if (max && /^\d+$/.test(max)) {
+      novos.push({
+        id: 'priceMax',
+        kind: 'priceMax',
+        val: parseInt(max, 10),
+        label: 'até ' + formatValor(parseInt(max, 10)),
+      });
+    }
+    if (p.get('fin') === 'alugar') setFinalidade('alugar');
+    if (novos.length) setChips(novos);
+
+    // Texto livre chega pela outra aba da home; aí a interpretação faz sentido.
+    const q = p.get('q');
+    if (q && searchRef.current) {
+      searchRef.current.value = q;
+      parseAndSearch();
+    }
+    // Só na montagem: depois disso quem manda são os chips.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /* -------- componentDidMount: exibe botão "Mapa" no mobile -------- */
   useEffect(() => {
