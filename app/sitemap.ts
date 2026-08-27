@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getImovelCodigos } from '@/lib/imoveis';
 import { getCondominioIds } from '@/lib/condominios';
-import { bairroSlugs } from '@/lib/bairros';
+import { bairroSlugsIndexaveis } from '@/lib/bairros';
 import { landingSlugs } from '@/lib/landings';
 
 /**
@@ -73,7 +73,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     })),
-    ...bairroSlugs().map((slug) => ({
+    ...bairroSlugsIndexaveis().map((slug) => ({
       url: url(`/lotus-bairro/${slug}`),
       lastModified: agora,
       changeFrequency: 'monthly' as const,
