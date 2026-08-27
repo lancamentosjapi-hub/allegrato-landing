@@ -27,6 +27,8 @@ import React, {
 } from 'react';
 import LotusHeader from './LotusHeader';
 import { formatValor } from '@/lib/imoveis';
+import { CONSENT_EVENT, reabrirPreferencias } from '@/lib/consent';
+import { alternarFavorito, lerBuscas, lerFavoritos, podeGuardar, salvarBusca, type BuscaSalva } from '@/lib/preferencias';
 import type { ImovelBusca } from '@/lib/imoveis';
 
 // Chat do Atendimento Rápido — chunk só carrega quando o usuário abre o widget.
@@ -161,6 +163,8 @@ export default function LotusBusca({
   const [chips, setChips] = useState<Chip[]>([]);
   const [sortKey, setSortKey] = useState('rel');
   const [favs, setFavs] = useState<Record<string, boolean>>({});
+  const [buscas, setBuscas] = useState<BuscaSalva[]>([]);
+  const [consentiu, setConsentiu] = useState(true);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [liaOpen, setLiaOpen] = useState(false);
   const [savedOpen, setSavedOpen] = useState(false);
@@ -320,7 +324,10 @@ export default function LotusBusca({
         e.preventDefault();
         e.stopPropagation();
       }
-      setFavs((s) => ({ ...s, [r.id]: !s[r.id] }));
+      // Grava no navegador: antes o favorito sumia ao recarregar.
+      const novos = alternarFavorito(r.id);
+      setFavs(Object.fromEntries(novos.map((c) => [c, true])));
+      if (!podeGuardar()) reabrirPreferencias();
     },
     selectPin: () => setSelectedId(r.id),
   }));
@@ -380,12 +387,63 @@ export default function LotusBusca({
   const closeSelected = () => setSelectedId(null);
 
   const toggleSaved = () => {
+    // Sem resposta ao banner ainda, pede a escolha antes de guardar.
+    if (!podeGuardar()) {
+      reabrirPreferencias();
+      return;
+    }
     setSavedOpen((s) => !s);
     setSavedDone(false);
   };
+  /* Favoritos e buscas salvas: persistem no navegador (lib/preferencias.ts).
+   *
+   * Antes o botão "Salvar esta busca" só abria um painel e os favoritos viviam
+   * em useState, sumindo ao recarregar. Agora ambos são lidos na montagem e
+   * gravados a cada mudança.
+   *
+   * Guardar só começa depois que a pessoa respondeu o banner de cookies. Se ela
+   * ainda não respondeu, clicar em salvar reabre o banner em vez de gravar às
+   * escondidas ou falhar em silêncio. Recusar os não-essenciais NÃO desliga a
+   * funcionalidade: favorito é armazenamento funcional, pedido pelo titular. */
+  useEffect(() => {
+    const favoritos = lerFavoritos();
+    if (favoritos.length) setFavs(Object.fromEntries(favoritos.map((c) => [c, true])));
+    setBuscas(lerBuscas());
+    setConsentiu(podeGuardar());
+    const aoConsentir = () => {
+      setConsentiu(podeGuardar());
+      setFavs(Object.fromEntries(lerFavoritos().map((c) => [c, true])));
+      setBuscas(lerBuscas());
+    };
+    window.addEventListener(CONSENT_EVENT, aoConsentir);
+    return () => window.removeEventListener(CONSENT_EVENT, aoConsentir);
+  }, []);
+
+  /** Rótulo legível da busca atual, a partir dos filtros ativos. */
+  const rotuloDaBusca = () => {
+    const partes = chips.map((c) => c.label);
+    partes.unshift(finalidade === 'alugar' ? 'Alugar' : 'Comprar');
+    return partes.join(' · ');
+  };
+
+  /** Query da busca atual, para reabrir depois no mesmo estado. */
+  const queryDaBusca = () => {
+    const p = new URLSearchParams();
+    if (finalidade === 'alugar') p.set('fin', 'alugar');
+    for (const c of chips) {
+      if (c.kind === 'type') p.set('tipo', String(c.val));
+      else if (c.kind === 'loc') p.set('bairro', String(c.val));
+      else if (c.kind === 'priceMax') p.set('max', String(c.val));
+      else if (c.kind === 'beds') p.set('dorms', String(c.val));
+    }
+    return p.toString();
+  };
+
   const savedForm = !savedDone;
   const submitSaved = (e: React.FormEvent) => {
     if (e && e.preventDefault) e.preventDefault();
+    // A data vem de fora da lib para ela permanecer pura e testavel.
+    setBuscas(salvarBusca(queryDaBusca(), rotuloDaBusca(), new Date().toISOString()));
     setSavedDone(true);
   };
 
