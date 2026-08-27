@@ -331,7 +331,7 @@ export default function LotusFaq({
         <div style={parseStyle('max-width:680px;margin:0 auto;position:relative;text-align:center;')}>
           <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#cdab6e;margin-bottom:16px;')}>Não achou sua resposta?</div>
           <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.8vw,44px);color:#f7f2e8;line-height:1.05;margin:0 0 14px;")}>Manda sua dúvida pra gente.</h2>
-          <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.55;margin:0 0 34px;')}>Um especialista do seu bairro responde pessoalmente, sem robô, sem enrolação.</p>
+          <p style={parseStyle('font-size:17px;color:rgba(247,242,232,.78);font-weight:300;line-height:1.55;margin:0 0 34px;')}>A LIA faz o primeiro atendimento na hora, a qualquer horário, e passa para um especialista do seu bairro assim que você quiser. É só pedir.</p>
           <div style={parseStyle('background:#f7f2e8;border-radius:22px;padding:clamp(28px,4vw,40px);text-align:left;')}>
             {askDone && (
               <>

@@ -916,7 +916,7 @@ export default function LotusHome({
               <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:18px;')}>Blog Lotus · em breve</div>
               <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0;color:#15241c;")}>Conhecimento para grandes escolhas.</h2>
             </div>
-            <Hoverable as="a" href="/lotus-blog" target="_top" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:700;font-size:15px;padding:13px 26px;border-radius:40px;white-space:nowrap;transition:transform .2s, background .2s;')} hoverStyle={parseStyle('background:#cdab6e;transform:translateY(-2px)')}>Em breve <span style={parseStyle('font-size:17px;')}>→</span></Hoverable>
+            <Hoverable as="a" href="/lotus-blog" target="_top" baseStyle={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:700;font-size:15px;padding:13px 26px;border-radius:40px;white-space:nowrap;transition:transform .2s, background .2s;')} hoverStyle={parseStyle('background:#cdab6e;transform:translateY(-2px)')}>Saiba mais <span style={parseStyle('font-size:17px;')}>→</span></Hoverable>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:26px;margin-bottom:64px;')}>
             {/* hint-placeholder-count: 3 */}
@@ -972,7 +972,7 @@ export default function LotusHome({
               <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0 0 16px;color:#15241c;")}>Boas decisões começam com boas perguntas.</h2>
               <p style={parseStyle('font-size:17px;color:#3f6249;font-weight:300;line-height:1.55;margin:0;')}>Conteúdo direto pra você decidir com segurança, de quem faz isso todos os dias na região.</p>
             </div>
-            <Link href="/lotus-faq" style={parseStyle('display:inline-flex;align-items:center;gap:8px;color:#1d3a2c;font-weight:600;font-size:15px;border-bottom:1.5px solid #b18a4a;padding-bottom:3px;white-space:nowrap;')}>Em breve <span>→</span></Link>
+            <Link href="/lotus-faq" style={parseStyle('display:inline-flex;align-items:center;gap:8px;color:#1d3a2c;font-weight:600;font-size:15px;border-bottom:1.5px solid #b18a4a;padding-bottom:3px;white-space:nowrap;')}>Saiba mais <span>→</span></Link>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px;')}>
             {/* hint-placeholder-count: 6 */}
