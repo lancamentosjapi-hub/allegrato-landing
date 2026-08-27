@@ -2,6 +2,7 @@
 import { footerLegalLine } from '@/lib/site';
 import { demonstrativoDe, temAreaDeTerreno } from '@/lib/tipologia';
 import { bairroDoGuia } from '@/lib/bairros-taxonomia';
+import CtaSimulacao from './CtaSimulacao';
 import { listBairros } from '@/lib/bairros';
 
 /**
@@ -292,7 +293,7 @@ export default function LotusImovel({
 
   const faqData = buildFaq(data);
 
-  // state = { saved, formDone, lightboxOpen, lightboxIndex, valor, entrada, prazo, taxa, openFaq }
+  // state = { saved, formDone, lightboxOpen, lightboxIndex, valor, openFaq }
   const [saved, setSaved] = useState(false);
   const [formDone, setFormDone] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -300,9 +301,6 @@ export default function LotusImovel({
   // Calculadora começa no valor de venda do imóvel (dentro dos limites do slider).
   const valorInicial = Math.min(5000000, Math.max(500000, data.valor_venda || 2450000));
   const [valor, setValor] = useState(valorInicial);
-  const [entrada, setEntrada] = useState(20);
-  const [prazo, setPrazo] = useState(30);
-  const [taxa, setTaxa] = useState(10.5);
   const [openFaq, setOpenFaq] = useState(0);
 
   // fmt(n) do estático
@@ -317,12 +315,6 @@ export default function LotusImovel({
       `Vim pela página do imóvel ${data.codigo_imovel} (${titulo}) e quero agendar uma visita.`,
     );
 
-  // Cálculo da calculadora (Tabela Price) — idêntico ao renderVals.
-  const financed = valor * (1 - entrada / 100);
-  const i = taxa / 100 / 12;
-  const n = prazo * 12;
-  const parcela = i > 0 ? (financed * i) / (1 - Math.pow(1 + i, -n)) : financed / n;
-  const renda = parcela / 0.3;
 
   // photosView do lightbox (uma por foto existente).
   const li = lightboxIndex;
@@ -377,10 +369,6 @@ export default function LotusImovel({
   const lightboxCounter = li + 1 + ' / ' + totalLightbox;
 
   const valorFmt = fmt(valor);
-  const entradaFmt = fmt((valor * entrada) / 100);
-  const parcelaFmt = fmt(parcela);
-  const financedFmt = fmt(financed);
-  const rendaFmt = fmt(renda);
 
   return (
     <div ref={rootRef}>
@@ -536,48 +524,21 @@ export default function LotusImovel({
       </section>
 
       {/* CALCULADORA */}
+      {/* Simulador de financiamento REMOVIDO a pedido da Lotus.
+          Havia sliders de entrada, prazo e taxa calculando a parcela pela
+          Tabela Price. O numero saia exato na tela e desatualizado na vida
+          real: a taxa e chute, FGTS e subsidio nao entram, e nada disso
+          sobrevive a analise de credito. Numero preciso e errado vira
+          expectativa quebrada no atendimento. A simulacao passa a ser feita
+          pela LIA, com os dados da pessoa. */}
       <section style={parseStyle('background:#f7f2e8;padding:90px 32px;')}>
-        <div style={parseStyle('max-width:980px;margin:0 auto;')}>
-          <div style={parseStyle('text-align:center;margin-bottom:44px;')}>
-            <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:14px;')}>Simulador</div>
-            <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.4vw,42px);color:#15241c;margin:0 0 16px;")}>Quanto fica a parcela?</h2>
-            <div style={parseStyle('display:inline-flex;align-items:center;gap:8px;background:#ece2cf;border-radius:30px;padding:8px 16px;')}>
-              <span style={parseStyle('width:7px;height:7px;border-radius:50%;background:#b18a4a;')}></span>
-              <span style={parseStyle('font-size:13px;font-weight:600;color:#3f6249;')}>Cálculo pela Tabela Price · apenas uma estimativa para você ter uma base</span>
-            </div>
-          </div>
-          <div style={parseStyle('display:grid;grid-template-columns:1fr 1fr;gap:40px;background:#fff;border-radius:22px;padding:40px;box-shadow:0 24px 60px -38px rgba(21,36,28,.4);')}>
-            <div style={parseStyle('display:flex;flex-direction:column;gap:26px;')}>
-              <div>
-                <div style={parseStyle('display:flex;justify-content:space-between;font-size:14px;color:#3f6249;margin-bottom:10px;')}><span>Valor do imóvel</span><strong style={parseStyle('color:#15241c;')}>{valorFmt}</strong></div>
-                <input type="range" min="500000" max="5000000" step="50000" value={valor} onInput={(e) => setValor(parseInt((e.target as HTMLInputElement).value, 10))} onChange={(e) => setValor(parseInt(e.target.value, 10))} style={parseStyle('width:100%;')} />
-              </div>
-              <div>
-                <div style={parseStyle('display:flex;justify-content:space-between;font-size:14px;color:#3f6249;margin-bottom:10px;')}><span>Entrada · {entrada}%</span><strong style={parseStyle('color:#15241c;')}>{entradaFmt}</strong></div>
-                <input type="range" min="10" max="60" step="5" value={entrada} onInput={(e) => setEntrada(parseInt((e.target as HTMLInputElement).value, 10))} onChange={(e) => setEntrada(parseInt(e.target.value, 10))} style={parseStyle('width:100%;')} />
-              </div>
-              <div>
-                <div style={parseStyle('display:flex;justify-content:space-between;font-size:14px;color:#3f6249;margin-bottom:10px;')}><span>Prazo</span><strong style={parseStyle('color:#15241c;')}>{prazo} anos</strong></div>
-                <input type="range" min="5" max="35" step="5" value={prazo} onInput={(e) => setPrazo(parseInt((e.target as HTMLInputElement).value, 10))} onChange={(e) => setPrazo(parseInt(e.target.value, 10))} style={parseStyle('width:100%;')} />
-              </div>
-              <div>
-                <div style={parseStyle('display:flex;justify-content:space-between;font-size:14px;color:#3f6249;margin-bottom:10px;')}><span>Taxa de juros (a.a.)</span><strong style={parseStyle('color:#15241c;')}>{taxa}%</strong></div>
-                <input type="range" min="8" max="14" step="0.5" value={taxa} onInput={(e) => setTaxa(parseFloat((e.target as HTMLInputElement).value))} onChange={(e) => setTaxa(parseFloat(e.target.value))} style={parseStyle('width:100%;')} />
-              </div>
-            </div>
-            <div style={parseStyle('background:#1d3a2c;border-radius:16px;padding:32px;display:flex;flex-direction:column;justify-content:center;text-align:center;')}>
-              <div style={parseStyle('font-size:13px;color:rgba(247,242,232,.7);margin-bottom:8px;')}>Parcela mensal estimada</div>
-              <div style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,4.4vw,52px);color:#cdab6e;line-height:1;")}>{parcelaFmt}</div>
-              <div style={parseStyle('height:1px;background:rgba(247,242,232,.14);margin:24px 0;')}></div>
-              <div style={parseStyle('display:flex;justify-content:space-between;font-size:13.5px;color:rgba(247,242,232,.8);margin-bottom:10px;')}><span>Valor financiado</span><span>{financedFmt}</span></div>
-              <div style={parseStyle('display:flex;justify-content:space-between;font-size:13.5px;color:rgba(247,242,232,.8);')}><span>Renda sugerida</span><span>{rendaFmt}</span></div>
-              <a href={waLink} target="_blank" rel="noopener" style={parseStyle('margin-top:24px;display:flex;align-items:center;justify-content:center;gap:8px;background:#b18a4a;color:#15241c;font-weight:600;font-size:14.5px;padding:13px;border-radius:11px;')}><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"></path></svg>Falar com um corretor</a>
-            </div>
-          </div>
-          <div style={parseStyle('display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid rgba(177,138,74,.35);border-radius:14px;padding:18px 22px;margin-top:20px;')}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b18a4a" strokeWidth="1.8" style={parseStyle('flex-shrink:0;margin-top:1px;')}><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 7.5h.01"></path></svg>
-            <p style={parseStyle('font-size:13.5px;color:#3f6249;font-weight:400;line-height:1.55;margin:0;')}><strong style={parseStyle('color:#15241c;')}>Isto é apenas uma simulação, sem valor de proposta ou compromisso</strong>, serve só para você ter uma base do valor da parcela, calculada pela <strong style={parseStyle('color:#15241c;')}>Tabela Price</strong>. As condições reais (taxa, prazo e aprovação) dependem de <strong style={parseStyle('color:#15241c;')}>análise de crédito</strong> do banco e variam por perfil. Para uma avaliação de verdade, <strong style={parseStyle('color:#15241c;')}>fale com um corretor da Lotus</strong>, a gente te acompanha do cálculo à aprovação.</p>
-          </div>
+        <div style={parseStyle('max-width:820px;margin:0 auto;text-align:center;')}>
+          <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:16px;')}>Financiamento</div>
+          <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.4vw,42px);color:#15241c;margin:0 0 16px;")}>Quanto fica a parcela?</h2>
+          <p style={parseStyle('font-size:16px;color:#3f6249;font-weight:300;line-height:1.6;margin:0 0 28px;')}>
+            Depende da sua renda, do FGTS, do subsídio a que você tem direito e do banco escolhido. Em vez de um número aproximado aqui, a gente faz a conta com os seus dados, sem custo e sem compromisso.
+          </p>
+          <CtaSimulacao />
         </div>
       </section>
 
