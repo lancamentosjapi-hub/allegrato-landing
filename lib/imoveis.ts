@@ -1,5 +1,6 @@
 import { supabase, TENANT_ID } from './supabase';
 import { resumoDescricao } from './resumo-imovel';
+import { nomesDoBairro } from './bairros-taxonomia';
 
 // Camada de dados dos IMÓVEIS do Portal.
 // Fonte: view pública portal_imoveis (Supabase, leitura anônima, RLS por
@@ -181,9 +182,12 @@ export async function getImoveisPorBairro(
   bairro: string,
   limite = 4
 ): Promise<ImovelBusca[]> {
-  const alvo = bairro.trim().toLowerCase();
+  // O guia procura por si E pelos sub-bairros que pertencem a ele: o cadastro
+  // grava o nivel mais especifico ("Jardim Ermida II") e a comparacao exata com
+  // o nome do guia ("Eloy Chaves") nao achava nada. Ver lib/bairros-taxonomia.
+  const alvos = new Set(nomesDoBairro(bairro).map((n) => n.trim().toLowerCase()));
   const todos = await getImoveisBusca();
-  return todos.filter((im) => im.neighborhood.trim().toLowerCase() === alvo).slice(0, limite);
+  return todos.filter((im) => alvos.has(im.neighborhood.trim().toLowerCase())).slice(0, limite);
 }
 
 // Um imóvel por codigo_imovel (para a rota /lotus-imovel/[codigo]).
