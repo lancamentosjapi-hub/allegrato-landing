@@ -3,6 +3,7 @@ import { type DevelopmentCard } from '@/lib/developments';
 import { getLancamentos, isApresentavel, type LancamentoCard } from '@/lib/lancamentos';
 import { getImoveisBusca } from '@/lib/imoveis';
 import { BAIRROS } from '@/lib/bairros';
+import { nomesDoBairro } from '@/lib/bairros-taxonomia';
 
 // ISR: revalida a cada 1h. O Portal é praticamente read-only; revalidação
 // on-demand (trigger do dash → /api/revalidate) entra numa fase futura.
@@ -36,12 +37,15 @@ export default async function LotusHomePage() {
   const apresentaveis = cards.filter(isApresentavel).map(toDevelopment);
   const developments = apresentaveis.length > 0 ? apresentaveis : undefined;
 
-  // Contagem real por bairro (mesmo critério de /lotus-bairro: nome do bairro
-  // do imóvel == nome do guia). Antes eram números fixos que não batiam com a busca.
+  // Contagem real por bairro, pelo MESMO critério de getImoveisPorBairro: o
+  // guia conta a si e aos sub-bairros que pertencem a ele (ver
+  // lib/bairros-taxonomia). Comparar só com b.nome zerava o card do Eloy
+  // Chaves na home enquanto a página do bairro listava três imóveis — os dele
+  // estão cadastrados como Jardim Ermida I/II.
   const bairroCounts: Record<string, number> = {};
   for (const b of BAIRROS) {
-    const alvo = b.nome.trim().toLowerCase();
-    bairroCounts[b.slug] = imoveis.filter((im) => im.neighborhood.trim().toLowerCase() === alvo).length;
+    const alvos = new Set(nomesDoBairro(b.nome).map((n) => n.trim().toLowerCase()));
+    bairroCounts[b.slug] = imoveis.filter((im) => alvos.has(im.neighborhood.trim().toLowerCase())).length;
   }
 
   return <LotusHome developments={developments} bairroCounts={bairroCounts} />;
