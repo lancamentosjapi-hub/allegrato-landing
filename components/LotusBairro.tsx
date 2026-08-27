@@ -318,7 +318,7 @@ export default function LotusBairro({
       </section>
 
       {/* GEO / RESUMO + FAQ */}
-      <section style={parseStyle('max-width:1200px;margin:0 auto;padding:72px 32px;display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:start;')}>
+      <section style={parseStyle('max-width:1200px;margin:0 auto;padding:72px 32px;display:grid;grid-template-columns:' + (faqs.length > 0 ? '1fr 1.05fr' : '1fr') + ';gap:48px;align-items:start;')}>
         <div>
           <div style={parseStyle('font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#b18a4a;margin-bottom:16px;')}>Resumo do bairro</div>
           <h2 style={parseStyle("font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3vw,38px);color:#15241c;line-height:1.08;margin:0 0 20px;")}>{nomeBairro} em poucas linhas.</h2>
@@ -327,6 +327,7 @@ export default function LotusBairro({
             <p style={parseStyle('font-size:15.5px;color:rgba(247,242,232,.85);font-weight:300;line-height:1.65;margin:0;')}>{bairro.tldr}</p>
           </div>
         </div>
+        {faqs.length > 0 && (
         <div>
           {/* sc-for list=faqs as=f (4) */}
           {faqs.map((f, i) => (
@@ -342,9 +343,13 @@ export default function LotusBairro({
             </div>
           ))}
         </div>
+        )}
       </section>
 
-      {/* GUIA PROFUNDO */}
+      {/* GUIA PROFUNDO, só aparece quando há bloco escrito. Um bairro que
+          entrou no índice antes da copy chegar exibiria o título "Como é
+          viver em X." sobre uma faixa vazia. Mesma regra de `dados`. */}
+      {guide.length > 0 && (
       <section style={parseStyle('background:#ece2cf;padding:90px 32px;')}>
         <div style={parseStyle('max-width:1080px;margin:0 auto;')}>
           <div style={parseStyle('text-align:center;max-width:620px;margin:0 auto 56px;')}>
@@ -365,6 +370,7 @@ export default function LotusBairro({
           </div>
         </div>
       </section>
+      )}
 
       {/* DADOS DO BAIRRO, só aparece quando há número real. Um bairro sem dado
           de mercado exibiria "Transparência de mercado" sobre uma faixa vazia
