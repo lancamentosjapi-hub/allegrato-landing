@@ -1,5 +1,6 @@
 'use client';
 import { footerLegalLine } from '@/lib/site';
+import { demonstrativoDe, temAreaDeTerreno } from '@/lib/tipologia';
 
 /**
  * LotusImovel — porte 1:1 de lotus-imovel/index.html (mecanismo dc-runtime) para React,
@@ -169,11 +170,13 @@ function localCurto(data: ImovelRow): string {
 // FAQ genérico adaptado ao bairro/tipo (nada de dados inventados por imóvel).
 function buildFaq(data: ImovelRow) {
   const tipoLabel = (data.tipo || data.tipo_simplificado || 'imóvel').toLowerCase();
+  // "deste" ou "desta" conforme a tipologia: o template escrevia "deste casa".
+  const dest = demonstrativoDe(data.tipo || data.tipo_simplificado);
   const local = data.bairro || data.cidade || 'na região';
   return [
     {
       q: 'O imóvel aceita financiamento?',
-      a: `A maioria dos imóveis aceita financiamento bancário. A Lotus acompanha a simulação e a aprovação com você, fale com o especialista para confirmar as condições deste ${tipoLabel}.`,
+      a: `A maioria dos imóveis aceita financiamento bancário. A Lotus acompanha a simulação e a aprovação com você, fale com o especialista para confirmar as condições ${dest} ${tipoLabel}.`,
     },
     {
       q: 'Como agendar uma visita?',
@@ -234,7 +237,13 @@ export default function LotusImovel({
   if (data.banheiros) stats.push({ value: String(data.banheiros), label: 'banheiros' });
   if (data.vagas) stats.push({ value: String(data.vagas), label: 'vagas' });
   if (data.area_util) stats.push({ value: String(data.area_util), label: 'm² úteis' });
-  if (data.area_total) stats.push({ value: String(data.area_total), label: 'm² terreno' });
+  // "m² terreno" so em tipologia que tem terreno proprio. Em apartamento o
+  // cadastro traz area_total igual a area_util (101/101), entao a pagina
+  // exibia "101 m² terreno" para um apartamento de 101 m². O campo continua no
+  // banco; muda so a exibicao.
+  if (data.area_total && temAreaDeTerreno(data.tipo || data.tipo_simplificado)) {
+    stats.push({ value: String(data.area_total), label: 'm² terreno' });
+  }
 
   // Descrição: usa a do banco; se vazia, texto genérico curto e honesto.
   const descricao =
