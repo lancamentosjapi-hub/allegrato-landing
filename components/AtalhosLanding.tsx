@@ -17,11 +17,11 @@ import { useEffect, useState, type CSSProperties } from 'react';
  * estrutura e cor próprias, e qualquer mudança de texto ou destino voltaria a
  * ser 23 edições.
  *
- * O grupo ocupa uma linha inteira do cabeçalho (`flexBasis: '100%'` resolve o
- * caso do header ser flex; `width: 100%` resolve o caso de ser bloco), então
- * ele nunca disputa espaço com o logo e o menu que já estão lá. Como todos os
- * cabeçalhos das landings são escuros, as pílulas são translúcidas com borda
- * clara, sem depender da paleta de cada uma.
+ * O grupo fica EM LINHA com o logo, o menu e os CTAs do cabeçalho, a pedido da
+ * Lotus. Ocupava uma linha própria antes; agora disputa espaço com o resto,
+ * daí `flexShrink: 0`, que impede as pílulas de serem esmagadas quando o
+ * cabeçalho aperta. Como todos os cabeçalhos das landings são escuros, elas
+ * são translúcidas com borda clara, sem depender da paleta de cada uma.
  *
  * É `div role="navigation"` e não `nav`: styles/base.css tem a regra
  * `header nav:not(.lt-mobile-nav){display:none}` no celular, que existe para
@@ -34,22 +34,51 @@ import { useEffect, useState, type CSSProperties } from 'react';
  * Complementa o [RodapeVoltarLancamentos], que é o botão no fim da página.
  */
 
+/**
+ * Onde encaixar o grupo, e por que depende da largura.
+ *
+ * No desktop o destino é o PAI do último link do cabeçalho, ou seja, o
+ * container dos CTAs ("Lista VIP", "WhatsApp"): virando irmão deles, o grupo
+ * entra na mesma linha seja qual for a estrutura da landing. Montar direto no
+ * <header> não serve, porque em boa parte delas o <header> é bloco e o flex
+ * mora num <nav> interno; o grupo virava uma faixa de largura total ABAIXO dos
+ * botões (medido: 1253px no Santorini, 378px no Odeon).
+ *
+ * No celular esse mesmo container é escondido pelas media queries das próprias
+ * landings (`.navlinks{display:none}` por volta de 1100px), e o grupo sumia
+ * junto: medido 0x0 no Odeon e no Santorini a 390px. Abaixo do breakpoint o
+ * destino volta a ser o <header>, onde o grupo fica visível em linha própria.
+ *
+ * 1100px é o menor breakpoint em que as landings escondem o menu horizontal.
+ */
+const LARGURA_CTAS_VISIVEIS = 1100;
+
+function destinoNoCabecalho(): HTMLElement | null {
+  const cab = document.querySelector('header');
+  if (!cab) return null;
+  if (window.innerWidth < LARGURA_CTAS_VISIVEIS) return cab;
+  const links = cab.querySelectorAll('a');
+  const ultimo = links[links.length - 1];
+  return (ultimo?.parentElement as HTMLElement) ?? cab;
+}
+
 const grupo: CSSProperties = {
-  width: '100%',
-  flexBasis: '100%',
   display: 'flex',
   alignItems: 'center',
   gap: 8,
-  padding: '8px 16px calc(8px + env(safe-area-inset-bottom, 0px))',
-  borderTop: '1px solid rgba(255,255,255,.12)',
-  boxSizing: 'border-box',
+  flexShrink: 0,
+  marginRight: 12,
 };
 
 export default function AtalhosLanding() {
   const [cabecalho, setCabecalho] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    setCabecalho(document.querySelector('header'));
+    const escolher = () => setCabecalho(destinoNoCabecalho());
+    escolher();
+    // Girar o aparelho ou redimensionar cruza o breakpoint e muda o destino.
+    window.addEventListener('resize', escolher);
+    return () => window.removeEventListener('resize', escolher);
   }, []);
 
   if (!cabecalho) return null;

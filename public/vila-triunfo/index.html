@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 <script>
 (function () {
   var CSS = '' +
-    '.lt-atalhos{width:100%;flex-basis:100%;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:8px 16px;border-top:1px solid rgba(255,255,255,.12)}.lt-atalhos a{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);color:#fff;font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:600;line-height:1;white-space:nowrap;text-decoration:none;padding:8px 14px;border-radius:40px;border:1px solid rgba(255,255,255,.22);transition:background .2s}.lt-atalhos a:hover{background:rgba(255,255,255,.16)}.lt-atalhos svg{flex-shrink:0}header:has(>.lt-atalhos){flex-wrap:wrap}.lt-atalhos{flex-shrink:0}' +
+    '.lt-atalhos{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-right:12px}.lt-atalhos a{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);color:#fff;font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:600;line-height:1;white-space:nowrap;text-decoration:none;padding:8px 14px;border-radius:40px;border:1px solid rgba(255,255,255,.22);transition:background .2s}.lt-atalhos a:hover{background:rgba(255,255,255,.16)}.lt-atalhos svg{flex-shrink:0}' +
     '.lt-voltar{background:#15241c;border-top:1px solid rgba(205,171,110,.28);padding:38px 24px calc(38px + env(safe-area-inset-bottom));position:relative;z-index:2}' +
     '.lt-voltar-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}' +
     '.lt-voltar-marca{display:flex;align-items:center;gap:14px;min-width:0}' +
@@ -239,8 +239,14 @@ document.addEventListener('DOMContentLoaded', async function() {
       n.innerHTML = '<a href="/lotus-home">' + CASA + 'Início</a>' +
                     '<a href="/lotus-lancamentos">' + SETA + 'Lançamentos</a>';
     }
+    // Ao lado dos CTAs, nao no <header>: o header e bloco e o flex mora num
+    // <nav> interno, entao anexar nele punha o grupo numa faixa abaixo dos botoes.
     var cab = document.querySelector('header');
-    if (cab && n.parentElement !== cab) cab.appendChild(n);
+    var links = cab ? cab.querySelectorAll('a') : [];
+    // Abaixo de 1100px o container dos CTAs e escondido pela media query da
+    // propria landing; o grupo volta para o <header> para nao sumir junto.
+    var destino = (window.innerWidth < 1100) ? cab : ((links.length ? links[links.length - 1].parentElement : null) || cab);
+    if (destino && n.parentElement !== destino) destino.appendChild(n);
   }
 
   function ligar() {

@@ -70,8 +70,7 @@ input,select,textarea{width:100%;max-width:100%}
 .lt-voltar-rodape svg{flex-shrink:0}
 </style>
 <style>
-.lt-atalhos{width:100%;flex-basis:100%;box-sizing:border-box;display:flex;align-items:center;gap:8px;
-  padding:8px 16px;border-top:1px solid rgba(255,255,255,.12)}
+.lt-atalhos{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-right:12px}
 .lt-atalhos a{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);color:#fff;
   font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:600;line-height:1;
   white-space:nowrap;text-decoration:none;padding:8px 14px;border-radius:40px;
@@ -79,7 +78,7 @@ input,select,textarea{width:100%;max-width:100%}
 .lt-atalhos a:hover{background:rgba(255,255,255,.16)}
 .lt-atalhos svg{flex-shrink:0}
 /* Cabecalho flex sem wrap encolhia o grupo em vez de dar linha propria. */
-header:has(>.lt-atalhos){flex-wrap:wrap}.lt-atalhos{flex-shrink:0}
+
 </style>
 </head>
 <body>
@@ -101,7 +100,7 @@ header:has(>.lt-atalhos){flex-wrap:wrap}.lt-atalhos{flex-shrink:0}
       <a href="#contato" style="border:1px solid rgba(255,255,255,.45);color:#fff;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;padding:12px 24px;text-decoration:none;white-space:nowrap">Agende já sua visita</a>
     </div>
   </nav>
-  <div class="lt-atalhos" role="navigation" aria-label="Sair desta página"><a href="/lotus-home"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg>Início</a><a href="/lotus-lancamentos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Lançamentos</a></div>
+  
 </header>
 
 <section class="hero" id="topo" style="position:relative;min-height:94vh;display:flex;align-items:flex-end;padding:120px 0 72px;background-image:linear-gradient(180deg,rgba(8,16,32,.30),rgba(8,16,32,.80)),url(&quot;/santorini/fotos/142284be.jpg&quot;);background-size:cover;background-position:center">
@@ -500,6 +499,14 @@ header:has(>.lt-atalhos){flex-wrap:wrap}.lt-atalhos{flex-shrink:0}
   if (document.readyState === 'complete') ligar();
   else window.addEventListener('load', ligar);
 })();
+</script>
+
+<script>
+// Encaixa os atalhos AO LADO dos CTAs do cabecalho. Montar direto no <header>
+// nao serve: nessas paginas o header e bloco e o flex mora num <nav> interno,
+// entao o grupo virava faixa de largura total abaixo dos botoes. O alvo e o
+// pai do ultimo link do cabecalho, que e o container dos CTAs.
+(function(){function pos(){var c=document.querySelector("header");if(!c)return;if(document.querySelector(".lt-atalhos"))return;var l=c.querySelectorAll("a");var d=(window.innerWidth<1100)?c:((l.length?l[l.length-1].parentElement:null)||c);var w=document.createElement("div");w.innerHTML="<div class=\"lt-atalhos\" role=\"navigation\" aria-label=\"Sair desta página\"><a href=\"/lotus-home\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 10.5 12 3l9 7.5\"/><path d=\"M5.5 9.5V20h13V9.5\"/></svg>Início</a><a href=\"/lotus-lancamentos\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M19 12H5\"/><path d=\"m11 18-6-6 6-6\"/></svg>Lançamentos</a></div>";d.appendChild(w.firstElementChild);}if(document.readyState==="complete")pos();else window.addEventListener("load",pos);})();
 </script>
 </body>
 </html>

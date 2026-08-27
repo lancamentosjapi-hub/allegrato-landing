@@ -116,15 +116,13 @@
 /* Atalhos de saída das landings, portados para dentro do <header> por
    components/AtalhosLanding.tsx.
  *
- * O grupo pede a linha inteira (width e flex-basis 100%), mas vários
- * cabeçalhos são flex SEM wrap: nesse caso o navegador encolhe o item em vez
- * de quebrar a linha. Medido em Chrome a 390px, o grupo saía com 17px de
- * altura e 175px de largura no Vigóre, contra 49px e a largura toda no
- * desktop, ou seja, as pílulas ficavam achatadas e ilegíveis.
+ * O grupo fica EM LINHA com os demais botões do cabeçalho. Vários desses
+ * cabeçalhos são flex SEM wrap, então o navegador encolhe o item em vez de
+ * quebrar a linha: sem flex-shrink 0 as pílulas ficavam achatadas e ilegíveis
+ * (medido a 390px no Vigóre: 17px de altura, contra 49px no desktop).
  *
- * Autorizar a quebra no cabeçalho que hospeda o grupo resolve sem tocar no
- * layout de nenhum deles: os cabeçalhos que já cabiam continuam numa linha só.
- * O :has() limita a regra a quem realmente tem o grupo dentro. */
+ * O :has() autoriza a quebra apenas nos cabeçalhos que hospedam o grupo E que
+ * não teriam espaço: quem já cabe numa linha continua numa linha. */
 header:has(> [data-atalhos-landing]) {
   flex-wrap: wrap;
 }

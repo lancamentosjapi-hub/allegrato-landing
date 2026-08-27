@@ -38,3 +38,6 @@ FINALIZAR.MD
 # Retratos de auditoria gerados sob demanda (dados do dashboard).
 # Entregues direto para a Lotus; versionar so guardaria dado desatualizado.
 auditoria-*.csv
+
+# Scripts de verificacao gerados durante o trabalho (Chrome via CDP).
+.tmp-*
