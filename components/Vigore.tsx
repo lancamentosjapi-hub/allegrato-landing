@@ -122,8 +122,13 @@ function FocusableInput({ baseStyle, focusStyle, ...rest }: FocusableInputProps)
 // Base CDN dos assets locais aNN.* (mesma usada pelas outras landings — padrão avela).
 const IMG = '/vigore/';
 
-const LOGO_WEBP =
-  'https://static.wixstatic.com/media/72b66e_7ce953d96f414a579806196cd13fa852~mv2.webp';
+// Logo do empreendimento, servido pelo proprio dominio.
+//
+// Vinha de static.wixstatic.com, o CDN do site antigo da construtora: a marca
+// do Vigore dependia de um servidor de terceiro continuar no ar e continuar
+// permitindo hotlink. Se qualquer um dos dois mudasse, o cabecalho ficava sem
+// logo e ninguem ficaria sabendo. Arquivo enviado pela Lotus em 28/08/2026.
+const LOGO_WEBP = '/vigore/logo.webp';
 
 // waMain — lógica EXATA do renderVals() do script.
 const waMain =

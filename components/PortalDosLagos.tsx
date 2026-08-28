@@ -263,10 +263,19 @@ export default function PortalDosLagos() {
     <>
       {/* ============ NAV ============ */}
       <header className="nav" id="nav">
-        {/* O logo da Imobiliária Japi saiu; a marca do nav passa a ser o nome do
-            próprio empreendimento, para o link de voltar ao topo não ficar vazio. */}
+        {/* O logo da Imobiliária Japi saiu daqui e a marca virou texto, porque o
+            que existia era a marca da imobiliária e não a do empreendimento. Com o
+            logo próprio enviado pela Lotus em 28/08/2026, a marca volta a ser
+            imagem. É a versão negativa: o nav é transparente sobre o hero escuro e
+            fica rgba(9,27,32,.9) ao rolar, então é branco nos dois estados. */}
         <a className="nav__brand" href="#top" aria-label="Portal dos Lagos">
-          Portal dos Lagos
+          <img
+            className="nav__logo"
+            src="/portal-dos-lagos/logo.png"
+            alt="Portal dos Lagos"
+            width={774}
+            height={456}
+          />
         </a>
         <nav className="nav__links">
           <a href="#localizacao">Localização</a>

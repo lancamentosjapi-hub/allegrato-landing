@@ -735,6 +735,11 @@ h1,h2,h3,h4{font-family:var(--f-display);font-weight:500;line-height:1.08;letter
 /* A marca do nav virou texto (era o logo da imobiliária). Sobre o hero o nav é
    transparente, então precisa da mesma cor clara dos demais itens + sombra,
    senão o texto some na imagem. */
+/* O logo do empreendimento: altura fixa e largura automatica, para nao
+   distorcer a arte. 30px no desktop e 24px no celular deixam a marca no mesmo
+   peso visual dos itens do menu, sem competir com eles. */
+.nav__logo{height:30px;width:auto;display:block}
+@media (max-width:760px){.nav__logo{height:24px}}
 .nav__brand{
   display:flex;align-items:center;gap:12px;
   font-family:var(--f-display);font-size:16px;font-weight:600;
