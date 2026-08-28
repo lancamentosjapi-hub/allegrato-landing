@@ -798,20 +798,6 @@ export default function Vigore() {
               'opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.16,.84,.44,1),transform 1s cubic-bezier(.16,.84,.44,1)'
             )}
           >
-            <div
-              style={parseStyle(
-                'display:inline-flex;align-items:center;gap:11px;margin-bottom:26px'
-              )}
-            >
-              <span style={parseStyle('width:34px;height:1px;background:#F2581E')}></span>
-              <span
-                style={parseStyle(
-                  "font-family:'Archivo';font-weight:700;font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:#fff"
-                )}
-              >
-                Lançamento · Bairro Colônia · Jundiaí/SP
-              </span>
-            </div>
           </div>
           <img
             data-reveal=""
