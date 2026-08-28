@@ -229,25 +229,80 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Mesma logica do botao do rodape: o <header> so existe depois que o
     // script da pagina monta o conteudo, entao o grupo e reposicionado quando
     // ele aparece, e identificado por id para nao ser recriado a cada mutacao.
-    var n = document.getElementById('lt-atalhos-el');
-    if (!n) {
-      n = document.createElement('div');
-      n.setAttribute('role', 'navigation');
-      n.id = 'lt-atalhos-el';
-      n.className = 'lt-atalhos';
-      n.setAttribute('aria-label', 'Sair desta página');
-      n.innerHTML = '<a href="/lotus-home">' + CASA + 'Início</a>' +
-                    '<a href="/lotus-lancamentos">' + SETA + 'Lançamentos</a>';
-    }
-    // Ao lado dos CTAs, nao no <header>: o header e bloco e o flex mora num
-    // <nav> interno, entao anexar nele punha o grupo numa faixa abaixo dos botoes.
-    var cab = document.querySelector('header');
-    var links = cab ? cab.querySelectorAll('a') : [];
-    // Abaixo de 1100px o container dos CTAs e escondido pela media query da
-    // propria landing; o grupo volta para o <header> para nao sumir junto.
-    var destino = (window.innerWidth < 1100) ? cab : ((links.length ? links[links.length - 1].parentElement : null) || cab);
-    if (destino && n.parentElement !== destino) destino.appendChild(n);
-  }
+          // "Inicio" e o PRIMEIRO item do menu do cabecalho e "Voltar" o ULTIMO,
+      // com os itens da propria landing entre os dois. Antes era um grupo unico
+      // que caia inteiro no fim da barra, com o rotulo "Lancamentos".
+      //
+      // Cada um tem id proprio, pela mesma razao do botao do rodape: o
+      // MutationObserver chama montar() a cada mudanca do documento, e procurar
+      // por classe recriaria os elementos toda vez.
+      //
+      // Espelha components/AtalhosLanding.tsx, que faz o mesmo nas landings em
+      // React. Mudou la, muda aqui.
+      var cab = document.querySelector('header');
+      if (cab) {
+        var links = cab.querySelectorAll('a');
+        var nossos = function (a) {
+          return a.parentElement &&
+            (a.parentElement.id === 'lt-atalho-inicio-el' || a.parentElement.id === 'lt-atalho-voltar-el');
+        };
+        // A marca e o primeiro link que nao e nosso; o fim, o ultimo.
+        var marca = null, ultimo = null, k;
+        for (k = 0; k < links.length; k++) { if (!nossos(links[k])) { marca = links[k]; break; } }
+        for (k = links.length - 1; k >= 0; k--) { if (!nossos(links[k])) { ultimo = links[k]; break; } }
+
+        var ini = document.getElementById('lt-atalho-inicio-el');
+        if (!ini) {
+          ini = document.createElement('span');
+          ini.id = 'lt-atalho-inicio-el';
+          ini.className = 'lt-atalhos';
+          ini.setAttribute('role', 'navigation');
+          ini.setAttribute('aria-label', 'Ir para a home da Lotus');
+          ini.innerHTML = '<a href="/lotus-home">' + CASA + 'Início</a>';
+        }
+        var volt = document.getElementById('lt-atalho-voltar-el');
+        if (!volt) {
+          volt = document.createElement('span');
+          volt.id = 'lt-atalho-voltar-el';
+          volt.className = 'lt-atalhos';
+          volt.setAttribute('role', 'navigation');
+          volt.setAttribute('aria-label', 'Voltar para os lançamentos');
+          // A classe .lt-atalhos traz margin-right, que serve ao 'Inicio'
+          // (folga antes do menu) mas sobraria a direita do ultimo item.
+          volt.style.marginRight = '0';
+          volt.style.marginLeft = '12px';
+          volt.innerHTML = '<a href="/lotus-lancamentos">' + SETA + 'Voltar</a>';
+        }
+
+        if (window.innerWidth < 1100) {
+          // Abaixo de 1100px o container dos CTAs e escondido pela media query
+          // da propria landing. Os dois voltam para o <header>, em linha
+          // propria, na ordem Inicio -> Voltar.
+          if (ini.parentElement !== cab) cab.appendChild(ini);
+          if (volt.parentElement !== cab) cab.appendChild(volt);
+        } else {
+          var menu = cab.querySelector('nav');
+          var alvoIni = null;
+          if (menu && marca && !menu.contains(marca)) {
+            // Menu separado da marca: "Inicio" e o primeiro item dele.
+            if (ini.parentElement !== menu) menu.insertBefore(ini, menu.firstChild);
+            alvoIni = menu;
+          } else if (marca && marca.parentElement) {
+            // Marca dentro do menu: "Inicio" entra logo depois dela, para nao
+            // ficar na frente do logo.
+            if (ini.parentElement !== marca.parentElement) {
+              marca.parentElement.insertBefore(ini, marca.nextSibling);
+            }
+            alvoIni = marca.parentElement;
+          }
+          if (!alvoIni && ini.parentElement !== cab) cab.insertBefore(ini, cab.firstChild);
+
+          var fim = (ultimo ? ultimo.parentElement : null) || cab;
+          if (volt.parentElement !== fim) fim.appendChild(volt);
+        }
+      }
+
+}
 
   function ligar() {
     montar();
