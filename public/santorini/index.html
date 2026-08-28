@@ -502,11 +502,130 @@ input,select,textarea{width:100%;max-width:100%}
 </script>
 
 <script>
-// Encaixa os atalhos AO LADO dos CTAs do cabecalho. Montar direto no <header>
-// nao serve: nessas paginas o header e bloco e o flex mora num <nav> interno,
-// entao o grupo virava faixa de largura total abaixo dos botoes. O alvo e o
-// pai do ultimo link do cabecalho, que e o container dos CTAs.
-(function(){function pos(){var c=document.querySelector("header");if(!c)return;if(document.querySelector(".lt-atalhos"))return;var l=c.querySelectorAll("a");var d=(window.innerWidth<1100)?c:((l.length?l[l.length-1].parentElement:null)||c);var w=document.createElement("div");w.innerHTML="<div class=\"lt-atalhos\" role=\"navigation\" aria-label=\"Sair desta página\"><a href=\"/lotus-home\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 10.5 12 3l9 7.5\"/><path d=\"M5.5 9.5V20h13V9.5\"/></svg>Início</a><a href=\"/lotus-lancamentos\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M19 12H5\"/><path d=\"m11 18-6-6 6-6\"/></svg>Lançamentos</a></div>";d.appendChild(w.firstElementChild);}if(document.readyState==="complete")pos();else window.addEventListener("load",pos);})();
+// "Inicio" e o PRIMEIRO item do menu do cabecalho e "Voltar" e o ULTIMO, com os
+// itens da propria landing entre os dois. Sao dois pontos de montagem: o grupo
+// unico de antes caia inteiro no fim da barra.
+//
+// A barra e achada por COMPORTAMENTO (presa no topo, larga, baixa) e nao pela
+// tag: em parte destas paginas o <header> e o hero e a barra real e um <nav>.
+//
+// O MutationObserver e necessario em Altissimi e Vila Triunfo, que trocam o
+// documento inteiro depois do load e levariam os atalhos junto. Nas outras tres
+// ele so re-monta quando o cabecalho muda, o que nao custa nada.
+//
+// Espelha components/AtalhosLanding.tsx — mudou la, muda aqui.
+(function(){
+  var MAXH = 200, LARGO = 1100;
+  function caraDeBarra(el){
+    var cs = getComputedStyle(el);
+    if (cs.display === 'none' || cs.visibility === 'hidden') return false;
+    var r = el.getBoundingClientRect();
+    return r.height > 0 && r.height <= MAXH && r.width >= innerWidth * 0.8;
+  }
+  function barraDoTopo(){
+    var todos = document.querySelectorAll('header,nav,div'), i;
+    for (i = 0; i < todos.length; i++) {
+      var p = getComputedStyle(todos[i]).position;
+      if (p !== 'fixed' && p !== 'sticky') continue;
+      if (todos[i].getBoundingClientRect().top > 8) continue;
+      if (caraDeBarra(todos[i])) return todos[i];
+    }
+    var hs = document.querySelectorAll('header');
+    for (i = 0; i < hs.length; i++) {
+      if (hs[i].getBoundingClientRect().top > MAXH) continue;
+      if (caraDeBarra(hs[i])) return hs[i];
+    }
+    return null;
+  }
+  function menuVisivel(barra){
+    var ns = barra.querySelectorAll('nav');
+    for (var i = 0; i < ns.length; i++) {
+      if (ns[i] === barra) continue;
+      var cs = getComputedStyle(ns[i]);
+      if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+      var r = ns[i].getBoundingClientRect();
+      if (r.height === 0 || r.height > MAXH) continue;
+      return ns[i];
+    }
+    return null;
+  }
+  function pilula(href, icone, texto){ return '<a href="' + href + '">' + icone + texto + '</a>'; }
+  var CASA = "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 10.5 12 3l9 7.5\"/><path d=\"M5.5 9.5V20h13V9.5\"/></svg>";
+  var SETA = "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M19 12H5\"/><path d=\"m11 18-6-6 6-6\"/></svg>";
+  var montando = false;
+  function montar(){
+    if (montando) return;
+    montando = true;
+    try {
+      var velhos = document.querySelectorAll('.lt-atalhos'), i;
+      for (i = 0; i < velhos.length; i++) velhos[i].parentNode.removeChild(velhos[i]);
+      var barra = barraDoTopo();
+      if (!barra) return;
+
+      if (innerWidth >= LARGO) {
+        var ini = document.createElement('span');
+        ini.className = 'lt-atalhos';
+        ini.style.marginRight = '12px';
+        ini.innerHTML = pilula('/lotus-home', CASA, 'Início');
+        // So da para entrar como primeiro filho do menu quando a marca esta
+        // FORA dele: em Reserva Castanheira, Santorini e Oasis o <nav> guarda
+        // logo, menu e CTAs no mesmo flex, e prender no comeco punha o
+        // "Inicio" na frente do logo.
+        var menu = menuVisivel(barra);
+        var marca = barra.querySelector('a');
+        if (menu && (!marca || !menu.contains(marca))) {
+          menu.insertBefore(ini, menu.firstChild);
+        } else if (marca && marca.parentElement) {
+          marca.parentElement.insertBefore(ini, marca.nextSibling);
+        } else {
+          (menu || barra).insertBefore(ini, (menu || barra).firstChild);
+        }
+        var volt = document.createElement('span');
+        volt.className = 'lt-atalhos';
+        volt.style.marginRight = '0';
+        volt.style.marginLeft = '12px';
+        volt.innerHTML = pilula('/lotus-lancamentos', SETA, 'Voltar');
+        var links = barra.querySelectorAll('a');
+        var fim = (links.length ? links[links.length - 1].parentElement : null) || barra;
+        fim.appendChild(volt);
+        return;
+      }
+
+      // Sem menu horizontal visivel, os dois ocupam uma linha propria na barra.
+      var linha = document.createElement('div');
+      linha.className = 'lt-atalhos';
+      linha.style.cssText = 'width:100%;margin-right:0;padding-bottom:10px;box-sizing:border-box';
+      linha.innerHTML = pilula('/lotus-home', CASA, 'Início') + pilula('/lotus-lancamentos', SETA, 'Voltar');
+      barra.appendChild(linha);
+      // Alinha com o logo: cada pagina usa um padding proprio na barra.
+      var logo = barra.querySelector('a');
+      if (logo) {
+        var recuo = logo.getBoundingClientRect().left - linha.getBoundingClientRect().left;
+        if (recuo > 0 && recuo < 80) linha.style.paddingLeft = recuo + 'px';
+      }
+      barra.style.flexWrap = 'wrap';
+    } finally {
+      montando = false;
+    }
+  }
+  var agendado = null;
+  function remontar(){
+    clearTimeout(agendado);
+    agendado = setTimeout(montar, 120);
+  }
+  if (document.readyState === 'complete') montar();
+  else addEventListener('load', montar);
+  addEventListener('resize', remontar);
+  new MutationObserver(function(muts){
+    for (var i = 0; i < muts.length; i++) {
+      var alvo = muts[i].target;
+      // Mudanca provocada pelo proprio grupo nao dispara outra montagem.
+      if (alvo && alvo.closest && alvo.closest('.lt-atalhos')) continue;
+      remontar();
+      return;
+    }
+  }).observe(document.documentElement, { childList: true, subtree: true });
+})();
 </script>
 </body>
 </html>

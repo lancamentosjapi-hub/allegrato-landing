@@ -123,11 +123,19 @@
  *
  * O :has() autoriza a quebra apenas nos cabeçalhos que hospedam o grupo E que
  * não teriam espaço: quem já cabe numa linha continua numa linha. */
-header:has(> [data-atalhos-landing]) {
+:has(> [data-atalhos-linha]) {
   flex-wrap: wrap;
 }
 [data-atalhos-landing] {
   flex-shrink: 0;
+}
+/* A âncora do portal não pode virar uma caixa no meio do flex da barra:
+   display:contents faz os filhos participarem do layout do hospedeiro como se
+   o span não existisse. Sem isso, o "Início" entrava como um item extra do
+   menu e desalinhava o espaçamento dos demais. */
+[data-atalho-inicio],
+[data-atalho-voltar] {
+  display: contents;
 }
 
 /* Bloco institucional do rodapé das landings (components/RodapeLotus.tsx).
