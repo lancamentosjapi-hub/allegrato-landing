@@ -362,6 +362,7 @@ export default function Vigore() {
     /* ---- plantas toggle ---- */
     const planName = root.querySelector<HTMLElement>('#vg-plan-name');
     const planArea = root.querySelector<HTMLElement>('#vg-plan-area');
+    const planImg = root.querySelector<HTMLImageElement>('#vg-plan-img');
     const planBtns = Array.from(q('.vg-plan'));
     const planHandlers: Array<{ btn: HTMLElement; fn: () => void }> = [];
     planBtns.forEach((btn) => {
@@ -376,6 +377,11 @@ export default function Vigore() {
         btn.style.borderColor = '#F2581E';
         if (planName) planName.textContent = btn.getAttribute('data-name');
         if (planArea) planArea.textContent = btn.getAttribute('data-area');
+        const arq = btn.getAttribute('data-img');
+        if (planImg && arq) {
+          planImg.src = IMG + arq;
+          planImg.alt = `Planta do apartamento de 2 dormitórios, ${btn.getAttribute('data-area')}, ${(btn.getAttribute('data-name') ?? '').toLowerCase()}`;
+        }
       };
       btn.addEventListener('click', fn);
       planHandlers.push({ btn, fn });
@@ -1343,6 +1349,7 @@ export default function Vigore() {
               <button
                 className="vg-plan"
                 data-plan="0"
+                data-img="a00.jpg"
                 data-area="53,27 m²"
                 data-name="Planta Final 01"
                 style={parseStyle(
@@ -1354,6 +1361,7 @@ export default function Vigore() {
               <button
                 className="vg-plan"
                 data-plan="1"
+                data-img="planta-final03-5437.webp"
                 data-area="54,37 m²"
                 data-name="Planta Final 03"
                 style={parseStyle(
@@ -1365,6 +1373,7 @@ export default function Vigore() {
               <button
                 className="vg-plan"
                 data-plan="2"
+                data-img="planta-final08-5470.webp"
                 data-area="54,70 m²"
                 data-name="Planta Final 08"
                 style={parseStyle(
@@ -1478,8 +1487,9 @@ export default function Vigore() {
                 )}
               >
                 <img
+                  id="vg-plan-img"
                   src={`${IMG}a00.jpg`}
-                  alt="Planta tipo do apartamento de 2 dormitórios"
+                  alt="Planta do apartamento de 2 dormitórios, 53,27 m², final 01"
                   style={parseStyle('width:100%;object-fit:contain')}
                 />
               </div>
