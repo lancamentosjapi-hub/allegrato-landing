@@ -290,8 +290,8 @@ export default function ResortPrime() {
       <header className="header" data-screen-label="Header">
         <div className="wrap header__row">
           <a href="#topo" className="logo-img" aria-label="Resort Prime Santa Angela">
-            <img className="l-white" src="/resort-prime/a003.png" alt="Resort Prime" />
-            <img className="l-dark" src="/resort-prime/a001.png" alt="Resort Prime" />
+            <img className="l-white" src="/resort-prime/logo-claro.webp" alt="Resort Prime" width={1320} height={180} />
+            <img className="l-dark" src="/resort-prime/logo-escuro.webp" alt="Resort Prime" width={1320} height={180} />
           </a>
           <nav className="nav">
             <a href="#localizacao">Localização</a>
@@ -322,7 +322,7 @@ export default function ResortPrime() {
       {/* ===================== Menu mobile ===================== */}
       <div className="mobile-menu" id="mobile-menu">
         <div className="mobile-menu__top">
-          <span className="logo-img"><img src="/resort-prime/a003.png" alt="Resort Prime" /></span>
+          <span className="logo-img"><img src="/resort-prime/logo-claro.webp" alt="Resort Prime" width={1320} height={180} /></span>
           <button className="mobile-menu__close" aria-label="Fechar">×</button>
         </div>
         <nav>
