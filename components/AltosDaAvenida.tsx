@@ -528,10 +528,6 @@ export default function AltosDaAvenida({
         <div style={parseStyle('position:relative; z-index:2; flex:1; display:flex; align-items:center; width:100%;')}>
           <div style={parseStyle('max-width:1340px; margin:0 auto; padding:120px clamp(20px,4vw,64px) 40px; width:100%; box-sizing:border-box;')}>
           <div style={parseStyle('max-width:720px;')}>
-            <div data-reveal="" style={parseStyle('display:inline-flex; align-items:center; gap:12px; margin-bottom:26px;')}>
-              <span style={parseStyle('width:30px; height:1px; background:#d6a98c;')}></span>
-              <span style={parseStyle("font-family:'Barlow Semi Condensed',sans-serif; font-size:13px; letter-spacing:.3em; text-transform:uppercase; color:#e6cdba;")}>Lançamento · Jardim do Lago · Jundiaí</span>
-            </div>
             <h1 style={parseStyle('margin:0; color:#fff; line-height:.96;')}>
               <span data-reveal="" data-reveal-delay="80" style={parseStyle("display:block; font-family:'Sacramento',cursive; font-size:clamp(46px,7vw,92px); color:#e9b896; font-weight:400; line-height:.9; margin-bottom:-4px;")}>Viva os seus</span>
               <span data-reveal="" data-reveal-delay="160" style={parseStyle("display:block; font-family:'Cormorant Garamond',serif; font-size:clamp(58px,11vw,148px); font-weight:600; letter-spacing:-.01em;")}>Altos momentos</span>
