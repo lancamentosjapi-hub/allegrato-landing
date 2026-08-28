@@ -453,10 +453,6 @@ export default function JardinsDoHorto({
         <div style={parseStyle('position:absolute; inset:0; background:linear-gradient(96deg, rgba(20,17,14,.66) 0%, rgba(20,17,14,.30) 38%, rgba(20,17,14,0) 66%);')}></div>
         <div style={parseStyle('position:absolute; top:0; left:0; right:0; height:200px; background:linear-gradient(180deg, rgba(15,12,10,.6) 0%, rgba(15,12,10,0) 100%);')}></div>
         <div style={parseStyle('position:relative; width:100%; max-width:1340px; margin:0 auto; padding:clamp(118px,17vh,180px) 32px 64px;')}>
-          <div style={parseStyle('display:inline-flex; align-items:center; gap:10px; padding:8px 16px; border:1px solid rgba(255,255,255,.32); border-radius:100px; backdrop-filter:blur(4px); margin-bottom:26px;')}>
-            <span style={parseStyle('width:7px; height:7px; border-radius:50%; background:#F09080; box-shadow:0 0 0 0 rgba(240,144,128,.6); animation:jh-pulse 2.4s infinite;')}></span>
-            <span style={parseStyle('color:#fff; font-size:12.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase;')}>Em obras · Horto Florestal, Jundiaí</span>
-          </div>
           <h1 style={parseStyle("margin:0; color:#fff; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(44px,7.4vw,104px); line-height:.97; letter-spacing:-.01em; text-shadow:0 2px 50px rgba(0,0,0,.4);")}>
             O brilho de<br /><span style={parseStyle('font-style:italic; color:#F4D9CF;')}>morar bem</span>
           </h1>
