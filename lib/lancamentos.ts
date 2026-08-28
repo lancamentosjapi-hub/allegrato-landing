@@ -248,25 +248,12 @@ function partesLocalizacao(location: string): { neighborhood: string; city: stri
 // Ficam fora da home e da listagem até a troca. Assim que a foto principal for
 // ajustada no dashboard, apagar o nome desta lista devolve o empreendimento.
 // Esvaziar a lista devolve todos.
+// 28/08/2026: capas trocadas no dashboard; ficam só os que ainda não foram mexidos.
 const OCULTOS_ATE_TROCAR_CAPA = [
   'Lago Samambaia',
-  'Residencial Terras da Alvorada',
-  'Anhangabaú Design',
-  'Vitale Fernande',
-  'Resort Prime',
-  'Diferenziato',
-  'Auten Jundiaí',
   'Vila Itália',
-  'Altos da Avenida',
-  'Reserva Marajoara',
-  'Hub 9 de julho',
-  'Vallis',
-  'Terrace Serra do Japi',
-  'Gioviale',
-  'Maxx Santa Ângela',
   'Mutton',
-  'Villagio Tunis',
-  'Portal dos Lagos',
+  'Diferenziato',
 ];
 
 const chaveNome = (nome: string) => nome.normalize('NFC').toLowerCase().trim().replace(/\s+/g, ' ');
@@ -290,34 +277,8 @@ const ocultos = new Set(OCULTOS_ATE_TROCAR_CAPA.map(chaveNome));
 // comum que o identifique), não um cômodo isolado nem decorado genérico.
 // Avalon e SKY Videiras ficaram de fora: a capa que já tinham é a melhor foto
 // da landing deles.
-const CAPAS_CURADAS: Record<string, string> = {
-  // fachada / conjunto
-  'Authoria by Tebas': '/authoria/a046.jpg',       // a do dash era só sacadas, cortada
-  'Jardins do Horto': '/jardins-do-horto/a004.jpg', // as torres ao pôr do sol
-  Maitá: '/maita/a007.jpg',
-  Manawa: '/manawa/a005.png',
-  Vigóre: '/vigore/a44.jpg',                       // as duas torres, não uma lateral
-  'Vivarte Grand Alamedas': '/vivarte/a015.jpg',   // o conjunto de dia
-  'Doppio Jundiaí': '/assets/doppio-capa.jpg',     // resolve também a foto repetida com o Vivarte
-  // aérea do conjunto
-  'Best View Residence': '/best-view-residence/a013.png',
-  'Forest Houses': '/forest-houses/a009.jpg',      // mostra que são casas em condomínio
-  // portaria / entrada (loteamentos e condomínios)
-  'Brisas do Japi': '/brisas-do-japi/HALLDEENTRADA.jpg', // e sai do servidor da construtora
-  'Gran Ville Santo Ângelo': '/gran-ville-santo-angelo/a013.jpg',
-  'Vistta Castanho': '/vistta-castanho/a009.jpg',
-  // fachada enviada pela Lotus, recortada em 16:9
-  Santorini: '/santorini/fotos/fachada.jpg',
-  // portaria com o letreiro do empreendimento, da propria landing
-  'Reserva Castanheira': '/reserva-castanheira/fotos/perspectiva-artistica-da-entrada-do-reserva-cast.jpg',
-  // lazer, quando é o que identifica o produto
-  Allegrato: '/allegrato/a013.jpg',                // piscinas com as torres ao fundo
-  Avelã: '/avela/a012.jpg',
-  // Odeon: a landing não tem NENHUMA foto de fachada — só decorado, plantas e
-  // aéreas da região. A piscina coberta é o melhor que existe até chegar uma
-  // foto do prédio.
-  'Odeon Residencial': '/odeon/a005.jpg',
-};
+// 28/08/2026: todas as capas foram trocadas no dashboard — mapa esvaziado, o banco manda.
+const CAPAS_CURADAS: Record<string, string> = {};
 
 const capasCuradas = new Map(Object.entries(CAPAS_CURADAS).map(([n, p]) => [chaveNome(n), p]));
 
