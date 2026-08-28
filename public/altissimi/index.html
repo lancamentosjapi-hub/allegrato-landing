@@ -188,6 +188,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 <script>
 (function () {
   var CSS = '' +
+    // Overlay de erro do bundler: ferramenta de desenvolvimento que mostra
+    // caixa vermelha ao visitante em QUALQUER erro de janela, inclusive
+    // imagem lenta ou bloqueada por extensao. Nao pode aparecer em producao.
+    '#__bundler_err{display:none !important}' +
     '.lt-atalhos{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-right:12px}.lt-atalhos a{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);color:#fff;font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:600;line-height:1;white-space:nowrap;text-decoration:none;padding:8px 14px;border-radius:40px;border:1px solid rgba(255,255,255,.22);transition:background .2s}.lt-atalhos a:hover{background:rgba(255,255,255,.16)}.lt-atalhos svg{flex-shrink:0}' +
     '.lt-voltar{background:#15241c;border-top:1px solid rgba(205,171,110,.28);padding:38px 24px calc(38px + env(safe-area-inset-bottom));position:relative;z-index:2}' +
     '.lt-voltar-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}' +
@@ -239,6 +243,38 @@ document.addEventListener('DOMContentLoaded', async function() {
       //
       // Espelha components/AtalhosLanding.tsx, que faz o mesmo nas landings em
       // React. Mudou la, muda aqui.
+
+      // ---- Marca do cabecalho: logo no lugar do texto ----
+      // A marca era o nome escrito em duas <span>. O logo oficial chegou em
+      // 28/08/2026 e entra como imagem, mantendo o link para o topo.
+      //
+      // O arquivo servido e a versao NEGATIVA, gerada do original: ele veio
+      // escuro sobre fundo branco, e o cabecalho e transparente sobre o hero
+      // escuro. Filtro CSS nao servia porque o fundo branco nao e transparente
+      // — brightness(0) invert(1) pintava o retangulo inteiro de branco. O
+      // desenho virou o canal alfa, entao so a marca aparece.
+      var marcaLink = document.querySelector('header a[href="#topo"]');
+      if (marcaLink && !marcaLink.querySelector('#lt-logo-el')) {
+        var logo = document.createElement('img');
+        logo.id = 'lt-logo-el';
+        logo.src = '/altissimi/logo.png';
+        logo.alt = 'Altissimi Residencial';
+        logo.width = 292;
+        logo.height = 120;
+        logo.style.cssText =
+          'height:34px;width:auto;display:block';
+        marcaLink.textContent = '';
+        marcaLink.appendChild(logo);
+      }
+
+      // ---- Placeholder de template que nunca foi substituido ----
+      // O lightbox nasce com src="{{ lightboxSrc }}" e so recebe a imagem de
+      // verdade ao abrir. Enquanto isso o navegador tenta baixar a string
+      // literal, leva 404 e dispara um evento de erro. Tirar o atributo enquanto
+      // nao ha imagem resolve sem tocar no template.
+      var pendentes = document.querySelectorAll('img[src*="{{"]');
+      for (var p = 0; p < pendentes.length; p++) pendentes[p].removeAttribute('src');
+
       var cab = document.querySelector('header');
       if (cab) {
         var links = cab.querySelectorAll('a');

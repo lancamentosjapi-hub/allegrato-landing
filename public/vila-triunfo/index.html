@@ -189,6 +189,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 <script>
 (function () {
   var CSS = '' +
+    // Mesmo motivo do Altissimi: o overlay de erro do bundler e ferramenta
+    // de desenvolvimento e nao pode aparecer para o visitante.
+    '#__bundler_err{display:none !important}' +
     '.lt-atalhos{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-right:12px}.lt-atalhos a{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);color:#fff;font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:600;line-height:1;white-space:nowrap;text-decoration:none;padding:8px 14px;border-radius:40px;border:1px solid rgba(255,255,255,.22);transition:background .2s}.lt-atalhos a:hover{background:rgba(255,255,255,.16)}.lt-atalhos svg{flex-shrink:0}' +
     '.lt-voltar{background:#15241c;border-top:1px solid rgba(205,171,110,.28);padding:38px 24px calc(38px + env(safe-area-inset-bottom));position:relative;z-index:2}' +
     '.lt-voltar-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}' +
