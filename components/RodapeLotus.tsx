@@ -81,12 +81,56 @@ const REDES = [
   { nome: 'TikTok', href: 'https://www.tiktok.com/@lotusbrokers', d: 'M16 3c.3 2.1 1.5 3.6 3.5 3.9v2.6c-1.3.1-2.5-.3-3.5-1v5.8c0 3.3-2.4 5.7-5.5 5.7A5.4 5.4 0 0 1 5 14.7c0-3 2.3-5.3 5.4-5.1v2.7c-.4-.1-.8-.2-1.2-.1-1.3.2-2.1 1.2-2 2.6.1 1.3 1.1 2.1 2.4 2 .1 0 .2 0 .3-.1 1.1-.3 1.6-1.1 1.6-2.4V3H16z' },
 ];
 
+/**
+ * A que distância da borda começa o conteúdo do rodapé da landing.
+ *
+ * O bloco institucional é filho direto do <footer>, mas o padding horizontal de
+ * quase todas as landings mora num container INTERNO. O bloco ficava fora dele
+ * e encostava na borda da tela enquanto o resto do rodapé respeitava o recuo —
+ * medido no Odeon a 375px: o conteúdo da própria página em x=28, o bloco em
+ * x=0, com a linha de CRECI e CNPJ colada na borda.
+ *
+ * Medido em vez de fixo porque cada landing usa o seu (20, 24, 28px, e clamp()
+ * em várias). A referência é o primeiro texto do rodapé que não pertence ao
+ * bloco.
+ */
+function recuoDoRodape(rodape: HTMLElement, bloco: HTMLElement): number {
+  // A referência é a borda do PRÓPRIO bloco, não a do <footer>: em parte das
+  // landings o rodapé já tem padding, e descontar a borda dele somava esse
+  // padding duas vezes — no Vigóre o bloco ia para x=102 contra os 51px do
+  // conteúdo da página. Como padding não desloca a border-box, medir daqui dá
+  // o mesmo número antes e depois de aplicar, sem oscilar no resize.
+  const borda = bloco.getBoundingClientRect().left;
+  for (const el of rodape.querySelectorAll<HTMLElement>('*')) {
+    if (bloco.contains(el) || el.children.length > 0) continue;
+    if ((el.textContent ?? '').trim().length < 3) continue;
+    const recuo = el.getBoundingClientRect().left - borda;
+    // Texto centralizado ou fora do fluxo daria um número sem sentido.
+    if (recuo > 0 && recuo < 120) return Math.round(recuo);
+  }
+  return 0;
+}
+
 export default function RodapeLotus({ tema = TEMA_PADRAO }: { tema?: TemaRodape }) {
   const [rodape, setRodape] = useState<HTMLElement | null>(null);
+  const [recuo, setRecuo] = useState(0);
 
   useEffect(() => {
     setRodape(document.querySelector('footer'));
   }, []);
+
+  // Só dá para medir depois que o bloco está na página. Remede ao
+  // redimensionar porque boa parte das landings usa clamp() no padding.
+  useEffect(() => {
+    if (!rodape) return;
+    const medir = () => {
+      const bloco = rodape.querySelector<HTMLElement>('[data-rodape-lotus]');
+      if (bloco) setRecuo(recuoDoRodape(rodape, bloco));
+    };
+    medir();
+    window.addEventListener('resize', medir);
+    return () => window.removeEventListener('resize', medir);
+  }, [rodape]);
 
   if (!rodape) return null;
 
@@ -107,6 +151,8 @@ export default function RodapeLotus({ tema = TEMA_PADRAO }: { tema?: TemaRodape 
         borderTop: `1px solid ${tema.borda}`,
         marginTop: 34,
         paddingTop: 34,
+        paddingLeft: recuo,
+        paddingRight: recuo,
         fontFamily: "'Hanken Grotesk',system-ui,sans-serif",
         color: tema.texto,
       }}

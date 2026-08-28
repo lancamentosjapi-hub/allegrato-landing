@@ -10,7 +10,7 @@
   select.lt-field{appearance:none;-webkit-appearance:none;padding-right:34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%233f6249' stroke-width='2.4'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;cursor:pointer;}
   @media (max-width:760px){
     [data-banner-grid]{grid-template-columns:1fr !important;}
-    [data-banner-grid] > div:last-child{display:none !important;} section{padding-left:20px !important;padding-right:20px !important;} section[style*="padding:120px"]{padding-top:64px !important;padding-bottom:64px !important;} #topo > div[style*="padding:150px"]{padding:110px 20px 56px !important;} #topo div[style*="padding:38px 42px"]{padding:26px 20px 24px !important;} header div[style*="padding:18px 40px"]{padding:14px 20px !important;} div[style*="grid-template-columns:repeat(2,1fr)"]{grid-template-columns:1fr !important;} div[style*="1.3fr 1fr 1fr"], div[style*="1.1fr 1fr"], div[style*="1fr 1.1fr"]{grid-template-columns:1fr !important;} div[style*="1.6fr 1fr 1fr 1fr"]{grid-template-columns:1fr !important;gap:28px !important;} div[style*="minmax(310px"], div[style*="minmax(320px"], div[style*="minmax(340px"], div[style*="minmax(360px"]{grid-template-columns:1fr !important;} div[style*="minmax(190px"]{grid-template-columns:repeat(2,1fr) !important;} section[style*="padding: 120px"]{padding-top:64px !important;padding-bottom:64px !important;} header div[style*="padding: 18px 40px"]{padding:14px 20px !important;} #topo > div[style*="padding: 150px"]{padding:110px 20px 56px !important;} #topo div[style*="padding: 38px 42px"]{padding:26px 20px 24px !important;} div[style*="repeat(2, 1fr)"]{grid-template-columns:1fr !important;} header a[style*="border-radius: 40px"]{padding:9px 14px !important;font-size:13px !important;white-space:nowrap !important;} } @media (max-width:760px){ header nav:not(.lt-mobile-nav){display:none !important;} } @media (max-width:1100px) and (min-width:761px){ header nav{gap:16px !important;font-size:13.5px !important;} header div[style*="padding: 18px 40px"]{padding:16px 22px !important;gap:18px !important;}
+    [data-banner-grid] > div:last-child{display:none !important;} section{padding-left:20px !important;padding-right:20px !important;} section[style*="padding:120px"]{padding-top:64px !important;padding-bottom:64px !important;} #topo > div[style*="padding:150px"]{padding:110px 20px 56px !important;} #topo div[style*="padding:38px 42px"]{padding:26px 20px 24px !important;} header div[style*="padding:18px 40px"]{padding:14px 20px !important;} div[style*="grid-template-columns:repeat(2,1fr)"]{grid-template-columns:1fr !important;} div[style*="1.3fr 1fr 1fr"], div[style*="1.1fr 1fr"], div[style*="1fr 1.1fr"]{grid-template-columns:1fr !important;} div[style*="1.6fr 1fr 1fr 1fr"]:not([data-rodape-lotus-grid]){grid-template-columns:1fr !important;gap:28px !important;} div[style*="minmax(310px"], div[style*="minmax(320px"], div[style*="minmax(340px"], div[style*="minmax(360px"]{grid-template-columns:1fr !important;} div[style*="minmax(190px"]{grid-template-columns:repeat(2,1fr) !important;} section[style*="padding: 120px"]{padding-top:64px !important;padding-bottom:64px !important;} header div[style*="padding: 18px 40px"]{padding:14px 20px !important;} #topo > div[style*="padding: 150px"]{padding:110px 20px 56px !important;} #topo div[style*="padding: 38px 42px"]{padding:26px 20px 24px !important;} div[style*="repeat(2, 1fr)"]{grid-template-columns:1fr !important;} header a[style*="border-radius: 40px"]{padding:9px 14px !important;font-size:13px !important;white-space:nowrap !important;} } @media (max-width:760px){ header nav:not(.lt-mobile-nav){display:none !important;} } @media (max-width:1100px) and (min-width:761px){ header nav{gap:16px !important;font-size:13.5px !important;} header div[style*="padding: 18px 40px"]{padding:16px 22px !important;gap:18px !important;}
   }
 
 /* Correções de overflow horizontal no mobile (grids fixos que não empilhavam).
@@ -149,4 +149,27 @@
 @media (max-width: 560px) {
   [data-rodape-lotus-grid] { grid-template-columns: 1fr !important; }
   [data-rodape-lotus-base] { justify-content: flex-start !important; }
+}
+
+/* Folga para os CTAs flutuantes no rodapé das landings.
+ *
+ * O bloco institucional (components/RodapeLotus) é o último conteúdo do rodapé,
+ * e a linha de CRECI e CNPJ fica na base dele. Os CTAs flutuantes — WhatsApp e,
+ * quando existe, Atendimento — são position:fixed no canto inferior direito.
+ * Medido no Odeon a 375px: o botão ocupava y726–786, por cima da linha legal,
+ * que ia de y645 a y772. A informação obrigatória ficava parcialmente coberta
+ * em TODAS as landings.
+ *
+ * As páginas do portal já reservavam essa faixa, via [data-rodape-portal] mais
+ * acima neste arquivo. As landings não tinham equivalente porque o rodapé é de
+ * cada página, não do portal.
+ *
+ * O respiro vai no bloco e não no <footer>: assim cada landing mantém o próprio
+ * padding, e a soma (34+64+40 no desktop, 34+92+40 no celular) chega à mesma
+ * faixa livre que o portal já usa. */
+[data-rodape-lotus] {
+  padding-bottom: 64px;
+}
+@media (max-width: 760px) {
+  [data-rodape-lotus] { padding-bottom: 92px; }
 }
