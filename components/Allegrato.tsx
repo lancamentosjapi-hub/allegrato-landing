@@ -724,11 +724,8 @@ export default function Allegrato() {
           </div>
           <div className="plan-grid">
             <div className="plan reveal">
-              <div className="pv plan-open" data-img="assets/planta-2dorm.png" data-cap="Tipo 2 dormitórios · Torre B/C/D · 56,11 m²">
-                <span className="badge hot">
-                  Mais procurada
-                </span>
-                <img className="planimg" src="/allegrato/a007.png" alt="Planta do apartamento de 2 dormitórios, 56 m²" loading="lazy" />
+              <div className="pv plan-open" data-img="/allegrato/planta-ta-5512-final01.webp" data-cap="2 dormitórios · Torre A · Final 01 · 55,12 m²">
+                <img className="planimg" src="/allegrato/planta-ta-5512-final01.webp" alt="Planta do apartamento de 2 dormitórios, 55,12 m², Torre A, final 01" loading="lazy" />
                 <span className="zoom">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="11" cy="11" r="7">
@@ -744,7 +741,7 @@ export default function Allegrato() {
                   2 dormitórios
                 </h3>
                 <div className="area">
-                  56,11 m² · Torre B/C/D
+                  55,12 m² · Torre A · Final 01
                 </div>
                 <ul>
                   <li>
@@ -759,20 +756,10 @@ export default function Allegrato() {
                       <path d="M20 6 9 17l-5-5">
                       </path>
                     </svg>
-                    Cozinha linear e varanda funcional
-                  </li>
-                  <li>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <path d="M20 6 9 17l-5-5">
-                      </path>
-                    </svg>
-                    Sem vaga vinculada, entrada menor
+                    Cozinha integrada e varanda
                   </li>
                 </ul>
                 <div className="pfoot">
-                  <span className="vol">
-                    276 unidades
-                  </span>
                   <a className="wa-link" href={waDefault} target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M5 12h14M13 6l6 6-6 6">
@@ -784,11 +771,8 @@ export default function Allegrato() {
               </div>
             </div>
             <div className="plan reveal d1">
-              <div className="pv plan-open" data-img="assets/planta-homeoffice.png" data-cap="Tipo decorado · Torre A · Final 07 · 64,62 m²">
-                <span className="badge">
-                  Decorado
-                </span>
-                <img className="planimg" src="/allegrato/a003.png" alt="Planta do apartamento decorado com home office, 64 m²" loading="lazy" />
+              <div className="pv plan-open" data-img="/allegrato/planta-ta-6305-final08.webp" data-cap="2 dormitórios · Torre A · Final 08 · 63,05 m²">
+                <img className="planimg" src="/allegrato/planta-ta-6305-final08.webp" alt="Planta do apartamento de 2 dormitórios, 63,05 m², Torre A, final 08" loading="lazy" />
                 <span className="zoom">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="11" cy="11" r="7">
@@ -801,10 +785,10 @@ export default function Allegrato() {
               </div>
               <div className="pbody">
                 <h3>
-                  2 dorms + home office
+                  2 dormitórios
                 </h3>
                 <div className="area">
-                  64,62 m² · apartamento decorado
+                  63,05 m² · Torre A · Final 08
                 </div>
                 <ul>
                   <li>
@@ -812,27 +796,17 @@ export default function Allegrato() {
                       <path d="M20 6 9 17l-5-5">
                       </path>
                     </svg>
-                    Home office multifuncional
+                    Sala de estar e jantar integradas
                   </li>
                   <li>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M20 6 9 17l-5-5">
                       </path>
                     </svg>
-                    Setorização íntima x social
-                  </li>
-                  <li>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <path d="M20 6 9 17l-5-5">
-                      </path>
-                    </svg>
-                    Planta do apartamento decorado
+                    Cozinha integrada e varanda
                   </li>
                 </ul>
                 <div className="pfoot">
-                  <span className="vol">
-                    Torre A · Final 07
-                  </span>
                   <a className="wa-link" href={waDefault} target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M5 12h14M13 6l6 6-6 6">
@@ -844,11 +818,8 @@ export default function Allegrato() {
               </div>
             </div>
             <div className="plan reveal d2">
-              <div className="pv plan-open" data-img="assets/planta-2suites.png" data-cap="Tipo 2 suítes · Torre A · Final 03 · 63,75 m²">
-                <span className="badge">
-                  Topo da linha
-                </span>
-                <img className="planimg" src="/allegrato/a004.png" alt="Planta do apartamento com 2 suítes e lavabo, 63 m²" loading="lazy" />
+              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5512-final01.webp" data-cap="2 dormitórios · Torre B/C/D · Final 01 · 55,12 m²">
+                <img className="planimg" src="/allegrato/planta-tbcd-5512-final01.webp" alt="Planta do apartamento de 2 dormitórios, 55,12 m², Torre B/C/D, final 01" loading="lazy" />
                 <span className="zoom">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="11" cy="11" r="7">
@@ -861,10 +832,10 @@ export default function Allegrato() {
               </div>
               <div className="pbody">
                 <h3>
-                  2 suítes + lavabo
+                  2 dormitórios
                 </h3>
                 <div className="area">
-                  63,75 m² · Torre A
+                  55,12 m² · Torre B/C/D · Final 01
                 </div>
                 <ul>
                   <li>
@@ -872,27 +843,158 @@ export default function Allegrato() {
                       <path d="M20 6 9 17l-5-5">
                       </path>
                     </svg>
-                    Duas suítes, diferenciação rara
+                    Sala de estar e jantar integradas
                   </li>
                   <li>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M20 6 9 17l-5-5">
                       </path>
                     </svg>
-                    Lavabo social
-                  </li>
-                  <li>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <path d="M20 6 9 17l-5-5">
-                      </path>
-                    </svg>
-                    Vaga de garagem coberta
+                    Cozinha integrada e varanda
                   </li>
                 </ul>
                 <div className="pfoot">
-                  <span className="vol">
-                    Finais 3 e 4 · Torre A
-                  </span>
+                  <a className="wa-link" href={waDefault} target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M13 6l6 6-6 6">
+                      </path>
+                    </svg>
+                    Ver disponibilidade
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="plan reveal d3">
+              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5611-final03.webp" data-cap="2 dormitórios · Torre B/C/D · Final 03 · 56,11 m²">
+                <img className="planimg" src="/allegrato/planta-tbcd-5611-final03.webp" alt="Planta do apartamento de 2 dormitórios, 56,11 m², Torre B/C/D, final 03" loading="lazy" />
+                <span className="zoom">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="7">
+                    </circle>
+                    <path d="M21 21l-4.3-4.3M11 8v6M8 11h6">
+                    </path>
+                  </svg>
+                  Ampliar planta
+                </span>
+              </div>
+              <div className="pbody">
+                <h3>
+                  2 dormitórios
+                </h3>
+                <div className="area">
+                  56,11 m² · Torre B/C/D · Final 03
+                </div>
+                <ul>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M20 6 9 17l-5-5">
+                      </path>
+                    </svg>
+                    Sala de estar e jantar integradas
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M20 6 9 17l-5-5">
+                      </path>
+                    </svg>
+                    Cozinha integrada e varanda
+                  </li>
+                </ul>
+                <div className="pfoot">
+                  <a className="wa-link" href={waDefault} target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M13 6l6 6-6 6">
+                      </path>
+                    </svg>
+                    Ver disponibilidade
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="plan reveal d3">
+              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5722-final08.webp" data-cap="2 dormitórios · Torre B/C/D · Final 08 · 57,22 m²">
+                <img className="planimg" src="/allegrato/planta-tbcd-5722-final08.webp" alt="Planta do apartamento de 2 dormitórios, 57,22 m², Torre B/C/D, final 08" loading="lazy" />
+                <span className="zoom">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="7">
+                    </circle>
+                    <path d="M21 21l-4.3-4.3M11 8v6M8 11h6">
+                    </path>
+                  </svg>
+                  Ampliar planta
+                </span>
+              </div>
+              <div className="pbody">
+                <h3>
+                  2 dormitórios
+                </h3>
+                <div className="area">
+                  57,22 m² · Torre B/C/D · Final 08
+                </div>
+                <ul>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M20 6 9 17l-5-5">
+                      </path>
+                    </svg>
+                    Sala de estar e jantar integradas
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M20 6 9 17l-5-5">
+                      </path>
+                    </svg>
+                    Cozinha integrada e varanda
+                  </li>
+                </ul>
+                <div className="pfoot">
+                  <a className="wa-link" href={waDefault} target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M13 6l6 6-6 6">
+                      </path>
+                    </svg>
+                    Ver disponibilidade
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="plan reveal d3">
+              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5896-final07.webp" data-cap="2 dormitórios · Torre B/C/D · Final 07 · 58,96 m²">
+                <img className="planimg" src="/allegrato/planta-tbcd-5896-final07.webp" alt="Planta do apartamento de 2 dormitórios, 58,96 m², Torre B/C/D, final 07" loading="lazy" />
+                <span className="zoom">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="7">
+                    </circle>
+                    <path d="M21 21l-4.3-4.3M11 8v6M8 11h6">
+                    </path>
+                  </svg>
+                  Ampliar planta
+                </span>
+              </div>
+              <div className="pbody">
+                <h3>
+                  2 dormitórios
+                </h3>
+                <div className="area">
+                  58,96 m² · Torre B/C/D · Final 07
+                </div>
+                <ul>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M20 6 9 17l-5-5">
+                      </path>
+                    </svg>
+                    Sala de estar e jantar integradas
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M20 6 9 17l-5-5">
+                      </path>
+                    </svg>
+                    Cozinha integrada e varanda
+                  </li>
+                </ul>
+                <div className="pfoot">
                   <a className="wa-link" href={waDefault} target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M5 12h14M13 6l6 6-6 6">
