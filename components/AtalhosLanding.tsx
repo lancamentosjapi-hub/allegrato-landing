@@ -190,6 +190,7 @@ type Montagem =
 
 export default function AtalhosLanding() {
   const [montagem, setMontagem] = useState<Montagem | null>(null);
+  const [cor, setCor] = useState<string | null>(null);
 
   useEffect(() => {
     let ancoras: HTMLElement[] = [];
@@ -239,10 +240,46 @@ export default function AtalhosLanding() {
     };
   }, []);
 
+  /**
+   * Reamostra a cor do vizinho na rolagem, e não só na montagem.
+   *
+   * Cabeçalho de landing costuma trocar de estado ao sair do hero — o do
+   * Allegrato ganha `.solid` e os links passam de branco para escuro. Ler a cor
+   * uma vez só deixaria as pílulas presas no primeiro estado, que é o bug que
+   * originou esta mudança.
+   *
+   * A leitura é barata (um getComputedStyle) e sai em requestAnimationFrame,
+   * então acontece no máximo uma vez por quadro, mesmo com a rolagem disparando
+   * o evento dezenas de vezes por segundo.
+   */
+  useEffect(() => {
+    const barra = barraDoTopo();
+    if (!barra) return;
+    let agendado = false;
+    const amostrar = () => {
+      agendado = false;
+      setCor(corDeVizinho(barra));
+    };
+    const pedir = () => {
+      if (agendado) return;
+      agendado = true;
+      requestAnimationFrame(amostrar);
+    };
+    amostrar();
+    window.addEventListener('scroll', pedir, { passive: true });
+    window.addEventListener('resize', pedir);
+    return () => {
+      window.removeEventListener('scroll', pedir);
+      window.removeEventListener('resize', pedir);
+    };
+  }, [montagem]);
+
+  // Depois dos hooks, nunca antes: sair mais cedo mudaria a ordem deles entre
+  // renders e o React quebra por isso.
   if (!montagem) return null;
 
-  const inicio = <Atalho href="/lotus-home" rotulo="Início" icone={<IconeCasa />} />;
-  const voltar = <Atalho href="/lotus-lancamentos" rotulo="Voltar" icone={<IconeSeta />} />;
+  const inicio = <Atalho href="/lotus-home" rotulo="Início" icone={<IconeCasa />} cor={cor} />;
+  const voltar = <Atalho href="/lotus-lancamentos" rotulo="Voltar" icone={<IconeSeta />} cor={cor} />;
 
   if (montagem.modo === 'inline') {
     return (
@@ -291,33 +328,50 @@ const linhaPropria: CSSProperties = {
   boxSizing: 'border-box',
 };
 
-function Atalho({ href, rotulo, icone }: { href: string; rotulo: string; icone: React.ReactNode }) {
-  const [hover, setHover] = useState(false);
+/**
+ * A cor de um item de menu vizinho, para as pílulas usarem a mesma.
+ *
+ * Era branco fixo, partindo da premissa de que toda barra de landing é escura.
+ * Não é: no Allegrato a barra começa sobre o hero, com links brancos, e ao
+ * rolar vira `.solid` — fundo claro e links escuros. As pílulas continuavam
+ * brancas e sumiam na metade da rolagem.
+ *
+ * Deixar a cor herdar do CSS também não resolve, e foi a primeira tentativa:
+ * funciona onde a regra é `nav a`, mas boa parte das landings pinta o menu por
+ * classe (`.navlinks a`), que a pílula não casa. No Vigóre ela herdava o preto
+ * do documento e sumia numa barra escura.
+ *
+ * Copiar a cor JÁ CALCULADA de um vizinho é o único jeito que vale para as 23
+ * de uma vez, seja qual for o seletor que a landing usou — e é literalmente o
+ * que foi pedido: a mesma cor dos outros botões, inclusive na transição.
+ *
+ * A referência é um link do menu, não a marca: o logo costuma ter cor própria.
+ */
+function corDeVizinho(barra: HTMLElement): string | null {
+  const menu = menuVisivelDentro(barra) ?? barra;
+  const marca = barra.querySelector('a');
+  for (const a of menu.querySelectorAll<HTMLElement>('a')) {
+    if (a === marca || a.hasAttribute('data-atalho-pilula')) continue;
+    if ((a.textContent ?? '').trim().length < 2) continue;
+    const cor = getComputedStyle(a).color;
+    if (cor && cor !== 'rgba(0, 0, 0, 0)') return cor;
+  }
+  return null;
+}
 
+function Atalho({
+  href,
+  rotulo,
+  icone,
+  cor,
+}: {
+  href: string;
+  rotulo: string;
+  icone: React.ReactNode;
+  cor: string | null;
+}) {
   return (
-    <Link
-      href={href}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 7,
-        // Todas as barras das landings são escuras: translúcido com borda clara
-        // funciona nas 26 sem depender da paleta de cada uma.
-        background: hover ? 'rgba(255,255,255,.16)' : 'rgba(255,255,255,.08)',
-        color: '#fff',
-        fontFamily: "'Hanken Grotesk',system-ui,sans-serif",
-        fontSize: 13,
-        fontWeight: 600,
-        lineHeight: 1,
-        whiteSpace: 'nowrap',
-        padding: '8px 14px',
-        borderRadius: 40,
-        border: '1px solid rgba(255,255,255,.22)',
-        transition: 'background .2s',
-      }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
+    <Link href={href} data-atalho-pilula="" style={cor ? { color: cor } : undefined}>
       {icone}
       {rotulo}
     </Link>

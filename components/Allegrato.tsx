@@ -724,7 +724,7 @@ export default function Allegrato() {
           </div>
           <div className="plan-grid">
             <div className="plan reveal">
-              <div className="pv plan-open" data-img="/allegrato/planta-ta-5512-final01.webp" data-cap="2 dormitórios · Torre A · Final 01 · 55,12 m²">
+              <div className="pv plan-open" data-img="/allegrato/planta-ta-5512-final01.webp" data-cap="55,12 m² · Torre A · Final 01">
                 <img className="planimg" src="/allegrato/planta-ta-5512-final01.webp" alt="Planta do apartamento de 2 dormitórios, 55,12 m², Torre A, final 01" loading="lazy" />
                 <span className="zoom">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -738,10 +738,10 @@ export default function Allegrato() {
               </div>
               <div className="pbody">
                 <h3>
-                  2 dormitórios
+                  55,12 m²
                 </h3>
                 <div className="area">
-                  55,12 m² · Torre A · Final 01
+                  Torre A · Final 01
                 </div>
                 <ul>
                   <li>
@@ -771,7 +771,7 @@ export default function Allegrato() {
               </div>
             </div>
             <div className="plan reveal d1">
-              <div className="pv plan-open" data-img="/allegrato/planta-ta-6305-final08.webp" data-cap="2 dormitórios · Torre A · Final 08 · 63,05 m²">
+              <div className="pv plan-open" data-img="/allegrato/planta-ta-6305-final08.webp" data-cap="63,05 m² · Torre A · Final 08">
                 <img className="planimg" src="/allegrato/planta-ta-6305-final08.webp" alt="Planta do apartamento de 2 dormitórios, 63,05 m², Torre A, final 08" loading="lazy" />
                 <span className="zoom">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -785,10 +785,10 @@ export default function Allegrato() {
               </div>
               <div className="pbody">
                 <h3>
-                  2 dormitórios
+                  63,05 m²
                 </h3>
                 <div className="area">
-                  63,05 m² · Torre A · Final 08
+                  Torre A · Final 08
                 </div>
                 <ul>
                   <li>
@@ -818,7 +818,7 @@ export default function Allegrato() {
               </div>
             </div>
             <div className="plan reveal d2">
-              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5512-final01.webp" data-cap="2 dormitórios · Torre B/C/D · Final 01 · 55,12 m²">
+              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5512-final01.webp" data-cap="55,12 m² · Torre B/C/D · Final 01">
                 <img className="planimg" src="/allegrato/planta-tbcd-5512-final01.webp" alt="Planta do apartamento de 2 dormitórios, 55,12 m², Torre B/C/D, final 01" loading="lazy" />
                 <span className="zoom">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -832,10 +832,10 @@ export default function Allegrato() {
               </div>
               <div className="pbody">
                 <h3>
-                  2 dormitórios
+                  55,12 m²
                 </h3>
                 <div className="area">
-                  55,12 m² · Torre B/C/D · Final 01
+                  Torre B/C/D · Final 01
                 </div>
                 <ul>
                   <li>
@@ -865,7 +865,7 @@ export default function Allegrato() {
               </div>
             </div>
             <div className="plan reveal d3">
-              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5611-final03.webp" data-cap="2 dormitórios · Torre B/C/D · Final 03 · 56,11 m²">
+              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5611-final03.webp" data-cap="56,11 m² · Torre B/C/D · Final 03">
                 <img className="planimg" src="/allegrato/planta-tbcd-5611-final03.webp" alt="Planta do apartamento de 2 dormitórios, 56,11 m², Torre B/C/D, final 03" loading="lazy" />
                 <span className="zoom">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -879,10 +879,10 @@ export default function Allegrato() {
               </div>
               <div className="pbody">
                 <h3>
-                  2 dormitórios
+                  56,11 m²
                 </h3>
                 <div className="area">
-                  56,11 m² · Torre B/C/D · Final 03
+                  Torre B/C/D · Final 03
                 </div>
                 <ul>
                   <li>
@@ -912,7 +912,7 @@ export default function Allegrato() {
               </div>
             </div>
             <div className="plan reveal d3">
-              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5722-final08.webp" data-cap="2 dormitórios · Torre B/C/D · Final 08 · 57,22 m²">
+              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5722-final08.webp" data-cap="57,22 m² · Torre B/C/D · Final 08">
                 <img className="planimg" src="/allegrato/planta-tbcd-5722-final08.webp" alt="Planta do apartamento de 2 dormitórios, 57,22 m², Torre B/C/D, final 08" loading="lazy" />
                 <span className="zoom">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -926,10 +926,10 @@ export default function Allegrato() {
               </div>
               <div className="pbody">
                 <h3>
-                  2 dormitórios
+                  57,22 m²
                 </h3>
                 <div className="area">
-                  57,22 m² · Torre B/C/D · Final 08
+                  Torre B/C/D · Final 08
                 </div>
                 <ul>
                   <li>
@@ -959,7 +959,7 @@ export default function Allegrato() {
               </div>
             </div>
             <div className="plan reveal d3">
-              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5896-final07.webp" data-cap="2 dormitórios · Torre B/C/D · Final 07 · 58,96 m²">
+              <div className="pv plan-open" data-img="/allegrato/planta-tbcd-5896-final07.webp" data-cap="58,96 m² · Torre B/C/D · Final 07">
                 <img className="planimg" src="/allegrato/planta-tbcd-5896-final07.webp" alt="Planta do apartamento de 2 dormitórios, 58,96 m², Torre B/C/D, final 07" loading="lazy" />
                 <span className="zoom">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -973,10 +973,10 @@ export default function Allegrato() {
               </div>
               <div className="pbody">
                 <h3>
-                  2 dormitórios
+                  58,96 m²
                 </h3>
                 <div className="area">
-                  58,96 m² · Torre B/C/D · Final 07
+                  Torre B/C/D · Final 07
                 </div>
                 <ul>
                   <li>
