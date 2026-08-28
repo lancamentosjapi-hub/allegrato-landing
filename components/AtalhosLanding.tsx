@@ -241,37 +241,41 @@ export default function AtalhosLanding() {
   }, []);
 
   /**
-   * Reamostra a cor do vizinho na rolagem, e não só na montagem.
+   * Reamostra a cor do vizinho quando o cabeçalho troca de estado.
    *
-   * Cabeçalho de landing costuma trocar de estado ao sair do hero — o do
-   * Allegrato ganha `.solid` e os links passam de branco para escuro. Ler a cor
-   * uma vez só deixaria as pílulas presas no primeiro estado, que é o bug que
-   * originou esta mudança.
+   * Cabeçalho de landing muda de aparência ao sair do hero — o do Allegrato
+   * troca a classe `on-dark` por `solid` e os links passam de branco para
+   * escuro. Ler a cor uma vez só deixaria as pílulas presas no primeiro estado,
+   * que é o bug de origem.
    *
-   * A leitura é barata (um getComputedStyle) e sai em requestAnimationFrame,
-   * então acontece no máximo uma vez por quadro, mesmo com a rolagem disparando
-   * o evento dezenas de vezes por segundo.
+   * A amostragem é um laço próprio, e NÃO reação a evento da página.
+   *
+   * Duas tentativas anteriores falharam por depender de quem dispara primeiro:
+   * escutar `scroll` deixava a pílula um estado atrasada, porque quem troca a
+   * classe do cabeçalho é o script da própria landing e ele roda depois do
+   * nosso; e MutationObserver no atributo da barra não dispara de forma
+   * confiável durante a rolagem nestas páginas. Nas duas, a pílula ficava
+   * branca com o menu já escuro.
+   *
+   * Lendo por conta própria não há ordem para acertar: qualquer que seja o
+   * caminho pelo qual a landing muda a cor, no quadro seguinte a pílula segue.
+   *
+   * O custo é um getComputedStyle a cada seis quadros (~10 vezes por segundo),
+   * o que não aparece em perfil, e o laço pausa com a aba em segundo plano
+   * porque requestAnimationFrame já não roda ali. `setCor` com o mesmo valor
+   * não re-renderiza, então o laço só custa render quando a cor de fato muda.
    */
   useEffect(() => {
     const barra = barraDoTopo();
     if (!barra) return;
-    let agendado = false;
-    const amostrar = () => {
-      agendado = false;
-      setCor(corDeVizinho(barra));
+    let quadro = 0;
+    let conta = 0;
+    const laco = () => {
+      if (conta++ % 6 === 0) setCor(corDeVizinho(barra));
+      quadro = requestAnimationFrame(laco);
     };
-    const pedir = () => {
-      if (agendado) return;
-      agendado = true;
-      requestAnimationFrame(amostrar);
-    };
-    amostrar();
-    window.addEventListener('scroll', pedir, { passive: true });
-    window.addEventListener('resize', pedir);
-    return () => {
-      window.removeEventListener('scroll', pedir);
-      window.removeEventListener('resize', pedir);
-    };
+    laco();
+    return () => cancelAnimationFrame(quadro);
   }, [montagem]);
 
   // Depois dos hooks, nunca antes: sair mais cedo mudaria a ordem deles entre
@@ -359,6 +363,28 @@ function corDeVizinho(barra: HTMLElement): string | null {
   return null;
 }
 
+/** A mesma cor com outra opacidade, para o fundo e a borda da pílula. */
+function comOpacidade(cor: string, alpha: number): string {
+  const n = cor.match(/[\d.]+/g);
+  if (!n || n.length < 3) return `rgba(255,255,255,${alpha})`;
+  return `rgba(${n[0]}, ${n[1]}, ${n[2]}, ${alpha})`;
+}
+
+/**
+ * O estilo fica no INLINE, não em folha de estilo.
+ *
+ * Chegou a ir para styles/base.css junto com a mudança de cor, e quebrou: as
+ * landings pintam o menu com seletores de especificidade maior que
+ * `[data-atalho-pilula]` — `.nav a` do Allegrato é (0,1,1) contra (0,1,0) —
+ * então elas venciam. Medido: a pílula saía com 14,72px em vez de 13px e
+ * herdava o `opacity:.82` do menu, ficando maior e mais apagada que os
+ * vizinhos. Estilo inline vence qualquer regra sem !important, que é o que
+ * garante a mesma forma nas 23 landings.
+ *
+ * A COR, essa sim, vem de fora: é copiada de um item de menu vizinho e chega
+ * pronta em `cor`. Fundo e borda são a mesma cor com outra opacidade, então
+ * acompanham automaticamente.
+ */
 function Atalho({
   href,
   rotulo,
@@ -370,8 +396,36 @@ function Atalho({
   icone: React.ReactNode;
   cor: string | null;
 }) {
+  const [hover, setHover] = useState(false);
+  const tom = cor ?? '#fff';
+
   return (
-    <Link href={href} data-atalho-pilula="" style={cor ? { color: cor } : undefined}>
+    <Link
+      href={href}
+      data-atalho-pilula=""
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 7,
+        color: tom,
+        background: comOpacidade(tom, hover ? 0.18 : 0.09),
+        border: `1px solid ${comOpacidade(tom, 0.26)}`,
+        // O menu de várias landings aplica opacity nos links; sem fixar aqui,
+        // a pílula ficava mais apagada que os botões ao lado.
+        opacity: 1,
+        fontFamily: "'Hanken Grotesk',system-ui,sans-serif",
+        fontSize: 13,
+        fontWeight: 600,
+        lineHeight: 1,
+        whiteSpace: 'nowrap',
+        padding: '8px 14px',
+        borderRadius: 40,
+        textDecoration: 'none',
+        transition: 'background .2s, color .35s, border-color .35s',
+      }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
       {icone}
       {rotulo}
     </Link>
