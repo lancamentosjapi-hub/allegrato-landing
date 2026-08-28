@@ -282,6 +282,16 @@ function labelImoveis(n: number | undefined): string {
 // exibir títulos que já não existiam e nenhuma capa.
 const postsFallback = POSTS.slice(0, 3);
 
+/**
+ * Quantos lançamentos a home mostra em destaque.
+ *
+ * A home é vitrine, não catálogo: a lista inteira vive em /lotus-lancamentos,
+ * e o botão "Ver mais empreendimentos" logo abaixo da grade leva para lá.
+ * Eram todos os publicáveis, o que fazia a seção crescer sem limite conforme
+ * a Lotus cadastrava empreendimento.
+ */
+const DESTAQUES_NA_HOME = 5;
+
 const brokers: Array<{ name: string; squad: string; area: string; creci: string; slot: string; img?: string }> = [
   { name: 'Marina Tavares', squad: 'Alto Padrão', area: 'Eloy Chaves', creci: 'CRECI 000001-F', slot: 'lotus-broker-marina' },
   { name: 'Rafael Nunes', squad: 'Lançamentos', area: 'Itupeva', creci: 'CRECI 000002-F', slot: 'lotus-broker-rafael' },
@@ -538,8 +548,8 @@ export default function LotusHome({
             <img src="/logo-lotus-dourado.png" alt="Lotus Brokers" style={{ height: 34, width: 'auto', display: 'block' }} />
           </a>
           <nav data-portal-nav="" style={parseStyle('display:flex;align-items:center;gap:34px;font-size:15px;font-weight:500;color:rgba(247,242,232,.86);')}>
-            <Hoverable as="a" href="/lotus-lancamentos" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Lançamentos</Hoverable>
             <Hoverable as="a" href="/lotus-busca" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Comprar</Hoverable>
+            <Hoverable as="a" href="/lotus-lancamentos" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Lançamentos</Hoverable>
             <Hoverable as="a" href="/lotus-bairro" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Bairros</Hoverable>
             <Hoverable as="a" href="/lotus-sobre" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>A Lotus</Hoverable>
             <Hoverable as="a" href="/lotus-corretores" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Corretores</Hoverable>
@@ -732,8 +742,7 @@ export default function LotusHome({
             <Link href="/lotus-lancamentos" data-reveal-launches="" style={parseStyle('display:inline-flex;align-items:center;gap:8px;color:#1d3a2c;font-weight:600;font-size:15px;border-bottom:1.5px solid #b18a4a;padding-bottom:3px;white-space:nowrap;')}>Ver todos os empreendimentos <span>→</span></Link>
           </div>
           <div style={parseStyle('display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:26px;')}>
-            {/* hint-placeholder-count: 6 */}
-            {devs.map((d, i) => (
+            {devs.slice(0, DESTAQUES_NA_HOME).map((d, i) => (
               // Sem landing o card cai no WhatsApp, mesmo comportamento de
               // /lotus-lancamentos. Antes o href virava `undefined` e o card
               // continuava dizendo "Ver este empreendimento" sem levar a lugar nenhum.
@@ -1162,8 +1171,8 @@ export default function LotusHome({
             <div>
               <div style={parseStyle('font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#cdab6e;margin-bottom:18px;')}>Serviços</div>
               <div style={parseStyle('display:flex;flex-direction:column;gap:12px;font-size:14.5px;color:rgba(247,242,232,.72);')}>
-                <Hoverable as="a" href="/lotus-lancamentos" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Lançamentos</Hoverable>
                 <Hoverable as="a" href="/lotus-busca" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Comprar &amp; alugar</Hoverable>
+                <Hoverable as="a" href="/lotus-lancamentos" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Lançamentos</Hoverable>
                 <Hoverable as="a" href="/lotus-anunciar" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Anunciar imóvel</Hoverable>
                 <Hoverable as="a" href="/lotus-bairro" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Bairros</Hoverable>
                 <Hoverable as="a" href="/lotus-blog" target="_top" baseStyle={parseStyle('transition:color .2s;')} hoverStyle={parseStyle('color:#cdab6e')}>Blog</Hoverable>
