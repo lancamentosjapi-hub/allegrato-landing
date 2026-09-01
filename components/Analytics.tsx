@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CONSENT_EVENT, readConsent, type ConsentValue } from '@/lib/consent';
 
 // Medição do site (Parte 1 do briefing 8h): GTM + GA4 (via GTM) + Clarity.
@@ -12,7 +12,7 @@ import { CONSENT_EVENT, readConsent, type ConsentValue } from '@/lib/consent';
 // LGPD / Consent Mode v2: o script inline abaixo roda antes do GTM e declara
 // analytics_storage/ad_storage = denied por padrão (ou granted, se já existe
 // cookie lotus_consent=all). CookieConsent faz o `consent update` no aceite.
-// O Clarity não tem consent mode: só carrega com consentimento 'all'.
+// Clarity e Meta Pixel não têm consent mode: só carregam com consentimento 'all'.
 //
 // GA4 em SPA: o GTM não vê a navegação client-side do Next. Cada troca de rota
 // faz push de `page_view` no dataLayer. Na tag GA4 Configuration do GTM, desligar
@@ -22,6 +22,25 @@ import { CONSENT_EVENT, readConsent, type ConsentValue } from '@/lib/consent';
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
+const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
+/** Consentimento atual, reagindo ao aceite do banner (CONSENT_EVENT). */
+function useConsent(): ConsentValue | null {
+  const [consent, setConsent] = useState<ConsentValue | null>(null);
+  useEffect(() => {
+    setConsent(readConsent());
+    const onChange = (e: Event) => setConsent((e as CustomEvent<ConsentValue>).detail);
+    window.addEventListener(CONSENT_EVENT, onChange);
+    return () => window.removeEventListener(CONSENT_EVENT, onChange);
+  }, []);
+  return consent;
+}
 
 const consentInit = `
 window.dataLayer = window.dataLayer || [];
@@ -52,19 +71,43 @@ function PageViews() {
 }
 
 function Clarity() {
-  const [consent, setConsent] = useState<ConsentValue | null>(null);
-  useEffect(() => {
-    setConsent(readConsent());
-    const onChange = (e: Event) => setConsent((e as CustomEvent<ConsentValue>).detail);
-    window.addEventListener(CONSENT_EVENT, onChange);
-    return () => window.removeEventListener(CONSENT_EVENT, onChange);
-  }, []);
+  const consent = useConsent();
   if (!CLARITY_ID || consent !== 'all') return null;
   return (
     <Script id="clarity" strategy="afterInteractive">
       {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${CLARITY_ID}");`}
+    </Script>
+  );
+}
+
+function MetaPixel() {
+  const consent = useConsent();
+  const pathname = usePathname();
+  const primeiraRota = useRef(true);
+
+  // PageView por troca de rota SPA. A primeira é pulada: o snippet base já
+  // dispara o PageView inicial ao carregar. Sem consentimento, fbq não existe
+  // e o optional chaining vira no-op.
+  useEffect(() => {
+    if (!pathname) return;
+    if (primeiraRota.current) {
+      primeiraRota.current = false;
+      return;
+    }
+    window.fbq?.('track', 'PageView');
+  }, [pathname]);
+
+  if (!META_PIXEL_ID || consent !== 'all') return null;
+  return (
+    <Script id="meta-pixel" strategy="afterInteractive">
+      {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`}
     </Script>
   );
 }
@@ -81,6 +124,7 @@ j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefo
       </Script>
       <PageViews />
       <Clarity />
+      <MetaPixel />
     </>
   );
 }
