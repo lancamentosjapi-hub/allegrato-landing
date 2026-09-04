@@ -180,8 +180,8 @@ input,select,textarea{width:100%;max-width:100%}
     </div>
     <div>
       <img class="rc-zoom" src="/reserva-castanheira/fotos/perspectiva-artistica-da-entrada-do-reserva-cast.jpg" alt="Perspectiva artística da entrada do Reserva Castanheira" style="width:100%;border-radius:18px;box-shadow:0 24px 48px rgba(43,38,34,.22)">
-      <img class="rc-zoom" src="/reserva-castanheira/fotos/vista-aerea-da-regiao-do-medeiros-jundiai.jpg" alt="Vista aérea da região do Medeiros, Jundiaí" style="width:100%;border-radius:18px;margin-top:18px;box-shadow:0 24px 48px rgba(43,38,34,.18)">
-      <p style="margin-top:14px;font-size:.7rem;color:#7a6f64">Perspectivas artísticas, imagens meramente ilustrativas. Consulte o memorial descritivo das áreas comuns.</p>
+      <img class="rc-zoom" src="/reserva-castanheira/fotos/foto-aerea-da-obra-do-reserva-castanheira.jpg" alt="Foto aérea da obra do Reserva Castanheira" style="width:100%;border-radius:18px;margin-top:18px;box-shadow:0 24px 48px rgba(43,38,34,.18)">
+      <p style="margin-top:14px;font-size:.7rem;color:#7a6f64">Acima, perspectiva artística, imagem meramente ilustrativa. Abaixo, foto real da obra. Consulte o memorial descritivo das áreas comuns.</p>
     </div>
   </div>
 </section>
@@ -193,71 +193,74 @@ input,select,textarea{width:100%;max-width:100%}
       <h2 style="font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.12">Um clube exclusivo para a sua família aproveitar todos os dias.</h2>
       <p style="color:#7a6f64;font-size:1.06rem;margin-top:18px;text-wrap:pretty">Quadra recreativa, quadras de areia, piscinas adulto e infantil, academia, playgrounds, salão de festas, espaço gourmet e o mirante com vista panorâmica da região.</p>
     </div>
+    <!-- Cada card empilha foto + degrade + rotulo. O degrade e o rotulo levam
+         pointer-events:none porque cobrem a <img> e, sem isso, o clique nunca
+         chegava nela: eram as unicas fotos da pagina que nao abriam no lightbox. -->
     <div class="g4 cardgrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px">
       <div style="grid-column:span 2;border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;min-height:300px">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/clube.jpg" alt="Clube" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:20px;color:#fff;font-weight:600;font-size:1.15rem">Clube</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:20px;color:#fff;font-weight:600;font-size:1.15rem">Clube</span>
       </div>
       <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/piscina-adulto-e-infantil.jpg" alt="Piscina adulto e infantil" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Piscina adulto e infantil</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:18px;color:#fff;font-weight:600">Piscina adulto e infantil</span>
       </div>
       <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/quadra-recreativa.jpg" alt="Quadra recreativa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Quadra recreativa</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:18px;color:#fff;font-weight:600">Quadra recreativa</span>
       </div>
       <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/quadras-de-areia.jpg" alt="Quadras de areia" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Quadras de areia</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:18px;color:#fff;font-weight:600">Quadras de areia</span>
       </div>
       <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/academia.jpg" alt="Academia" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Academia</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:18px;color:#fff;font-weight:600">Academia</span>
       </div>
       <div style="grid-column:span 2;border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;min-height:300px">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/salao-de-festas.jpg" alt="Salão de festas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:20px;color:#fff;font-weight:600;font-size:1.15rem">Salão de festas</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:20px;color:#fff;font-weight:600;font-size:1.15rem">Salão de festas</span>
       </div>
       <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/espaco-gourmet.jpg" alt="Espaço gourmet" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Espaço gourmet</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:18px;color:#fff;font-weight:600">Espaço gourmet</span>
       </div>
       <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/churrasqueira.jpg" alt="Churrasqueira" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Churrasqueira</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:18px;color:#fff;font-weight:600">Churrasqueira</span>
       </div>
       <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/mirante.jpg" alt="Mirante" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Mirante</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:18px;color:#fff;font-weight:600">Mirante</span>
       </div>
       <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/brinquedoteca.jpg" alt="Brinquedoteca" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Brinquedoteca</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:18px;color:#fff;font-weight:600">Brinquedoteca</span>
       </div>
       <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/sala-de-jogos.jpg" alt="Sala de jogos" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Sala de jogos</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:18px;color:#fff;font-weight:600">Sala de jogos</span>
       </div>
       <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/playground.jpg" alt="Playground" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Playground</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:18px;color:#fff;font-weight:600">Playground</span>
       </div>
       <div style="border-radius:16px;overflow:hidden;position:relative;background:#3a332c;display:flex;align-items:flex-end;aspect-ratio:4/5">
         <img class="rc-zoom" src="/reserva-castanheira/fotos/ciclofaixa.jpg" alt="Ciclofaixa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
-        <span style="position:relative;z-index:2;padding:18px;color:#fff;font-weight:600">Ciclofaixa</span>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,rgba(25,20,16,.82))"></div>
+        <span style="position:relative;z-index:2;pointer-events:none;padding:18px;color:#fff;font-weight:600">Ciclofaixa</span>
       </div>
     </div>
     <div class="lazerlist" style="margin-top:34px;columns:3;column-gap:30px;font-size:.92rem;color:#7a6f64">
