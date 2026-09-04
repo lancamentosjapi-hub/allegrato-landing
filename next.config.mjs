@@ -44,6 +44,7 @@ const nextConfig = {
       { source: '/reserva-castanheira', destination: '/reserva-castanheira/index.html' },
       { source: '/santorini', destination: '/santorini/index.html' },
       { source: '/epic-jundiai', destination: '/epic-jundiai/index.html' },
+      { source: '/mistral-jundiai', destination: '/mistral-jundiai/index.html' },
     ];
   },
 };

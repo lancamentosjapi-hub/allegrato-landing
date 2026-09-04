@@ -34,14 +34,14 @@ function toDevelopment(c: LancamentoCard): DevelopmentCard {
  *
  * /lotus-lancamentos ordena por nome, e a home mostra só cinco. Sem esta
  * lista, um lançamento novo só apareceria na home se o nome começasse com A:
- * o Epic Jundiaí, pedido em 04/09/2026, ficava de fora pela letra, atrás de
- * Allegrato, Altissimi, Altos da Avenida, Auten e Authoria.
+ * o Epic e o Mistral Jundiaí, pedidos em 04/09/2026, ficavam de fora pela
+ * letra, atrás de Allegrato, Altissimi, Altos da Avenida, Auten e Authoria.
  *
  * Os slugs daqui vêm primeiro, na ordem escrita; o resto segue a ordem da
  * listagem. Slug que não existir mais é ignorado, então tirar uma landing do
  * ar não quebra a home nem exige mexer aqui.
  */
-const DESTAQUES_DA_HOME: readonly string[] = ['/epic-jundiai'];
+const DESTAQUES_DA_HOME: readonly string[] = ['/epic-jundiai', '/mistral-jundiai'];
 
 /** Os destaques na frente, preservando a ordem original para os demais. */
 function comDestaquesNaFrente(lista: DevelopmentCard[]): DevelopmentCard[] {
