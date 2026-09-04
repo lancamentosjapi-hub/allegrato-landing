@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
-import { readdirSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { slugify, hrefForSlug, isLandingDir, slugParaLanding } from './landings.ts';
+import { slugify, hrefForSlug, isLandingDir, slugParaLanding, LANDINGS_HTML } from './landings.ts';
 import { developmentsFallback } from './developments.ts';
 
 /* ---------- slugify ---------- */
@@ -78,15 +78,29 @@ for (const slug of landings) {
   );
 }
 
-// E o contrário: entrada apontando para pasta que não existe vira card com link
-// quebrado na home, já que o fallback não passa por hrefForSlug.
+/* ---------- landings estáticas ---------- */
+// As de LANDINGS_HTML não moram em app/: são public/<slug>/index.html servidos
+// por um rewrite. O slug listado sem o arquivo no lugar vira 404 no link do
+// card, que é a única forma de quebrar delas.
+for (const slug of LANDINGS_HTML) {
+  assert.ok(
+    existsSync(join(process.cwd(), 'public', slug, 'index.html')),
+    `landing estática ${slug} está em LANDINGS_HTML mas não tem public/${slug}/index.html`,
+  );
+  assert.equal(hrefForSlug(slug), `/${slug}`, `landing estática ${slug} deveria linkar`);
+}
+
+// E o contrário: entrada apontando para página que não existe vira card com link
+// quebrado na home, já que o fallback não passa por hrefForSlug. Vale tanto a
+// pasta em app/ quanto o HTML estático — as duas são página de verdade.
+const paginas = new Set([...landings, ...LANDINGS_HTML]);
 for (const slug of fallbackSlugs) {
   assert.ok(
-    landings.includes(slug),
-    `lib/developments.ts aponta para /${slug}, que não existe em app/`,
+    paginas.has(slug),
+    `lib/developments.ts aponta para /${slug}, que não existe nem em app/ nem em LANDINGS_HTML`,
   );
 }
 
 console.log(
-  `ok — ${landings.length} landings, todas linkáveis e todas presentes na vitrine`,
+  `ok — ${landings.length} landings em app/ + ${LANDINGS_HTML.length} estáticas, todas linkáveis`,
 );

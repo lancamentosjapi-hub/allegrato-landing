@@ -20,6 +20,11 @@ export type DevelopmentCard = {
 // O fonte estático tinha um `,,` esparso entre Vistta Castanho e Doppio; `.map`
 // ignora buracos, então o resultado observável são estes 18 cards reais.
 export const developmentsFallback: DevelopmentCard[] = [
+  // Landing recebida em 04/09/2026. Dados tirados da propria pagina: a
+  // incorporadora aparece no bloco de ficha tecnica ('Incorporacao Inkkorp') e
+  // a metragem e a tipologia no hero. Preco nao e informado na landing, entao
+  // fica 'Consultar valor' — o mesmo que os demais usam quando nao ha tabela.
+  { name: 'Epic Jundiaí', location: 'Jardim Botânico · Jundiaí', stage: 'Lançamento', builder: 'Inkkorp', specs: '207 m² · 4 suítes · 4 vagas', price: 'Consultar valor', exclusive: true, img: '/epic-jundiai/capa.jpg', href: '/epic-jundiai' },
   { name: 'Altos da Avenida', location: 'Jardim do Lago · Jundiaí', stage: 'Em obras', builder: 'Santa Angela', specs: '58–105 m² · 2 e 3 dorms', price: 'Consultar valor', exclusive: true, img: '/altos-da-avenida/a005.png', href: '/altos-da-avenida' },
   { name: 'Auten Jundiaí', location: 'Anhangabaú · Jundiaí', stage: 'Lançamento', builder: 'Construtora', specs: '128–264 m² · até 4 suítes', price: 'Consultar valor', exclusive: true, img: '/auten-jundiai/a023.jpg', href: '/auten-jundiai' },
   { name: 'Authoria by Tebas', location: 'Jundiaí', stage: 'Lançamento', builder: 'Tebas', specs: '137–211 m² · 3 e 4 suítes', price: 'Consultar valor', exclusive: true, img: '/authoria/a002.jpg', href: '/authoria' },

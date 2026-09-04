@@ -29,6 +29,32 @@ function toDevelopment(c: LancamentoCard): DevelopmentCard {
 // para /lotus-lancamentos, então mora em lib/lancamentos.ts e as duas páginas a
 // herdam. Mantê-la aqui viraria uma segunda cópia para divergir.
 
+/**
+ * Quais lançamentos abrem a vitrine da home.
+ *
+ * /lotus-lancamentos ordena por nome, e a home mostra só cinco. Sem esta
+ * lista, um lançamento novo só apareceria na home se o nome começasse com A:
+ * o Epic Jundiaí, pedido em 04/09/2026, ficava de fora pela letra, atrás de
+ * Allegrato, Altissimi, Altos da Avenida, Auten e Authoria.
+ *
+ * Os slugs daqui vêm primeiro, na ordem escrita; o resto segue a ordem da
+ * listagem. Slug que não existir mais é ignorado, então tirar uma landing do
+ * ar não quebra a home nem exige mexer aqui.
+ */
+const DESTAQUES_DA_HOME: readonly string[] = ['/epic-jundiai'];
+
+/** Os destaques na frente, preservando a ordem original para os demais. */
+function comDestaquesNaFrente(lista: DevelopmentCard[]): DevelopmentCard[] {
+  const destaque = (d: DevelopmentCard) => DESTAQUES_DA_HOME.indexOf(d.href ?? "");
+  return [...lista].sort((a, b) => {
+    const ia = destaque(a), ib = destaque(b);
+    if (ia === ib) return 0;
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
+  });
+}
+
 export default async function LotusHomePage() {
   // Fonte = SÓ o banco (Supabase). Sem mock de fallback: a home mostra
   // exclusivamente os lançamentos apresentáveis (foto + localização) da view
@@ -36,7 +62,7 @@ export default async function LotusHomePage() {
   // e o componente cai no seu fallback interno — rede de segurança contra página
   // vazia, não completa a lista com mock.
   const [cards, imoveis] = await Promise.all([getLancamentos(), getImoveisBusca()]);
-  const apresentaveis = cards.filter(isApresentavel).map(toDevelopment);
+  const apresentaveis = comDestaquesNaFrente(cards.filter(isApresentavel).map(toDevelopment));
   const developments = apresentaveis.length > 0 ? apresentaveis : undefined;
 
   // Contagem real por bairro, pelo MESMO critério de getImoveisPorBairro: o
