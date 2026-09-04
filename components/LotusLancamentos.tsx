@@ -164,6 +164,21 @@ const faqData = [
   { q: 'Posso financiar um lançamento?', a: 'Sim. Durante a obra você paga direto à construtora e, na entrega (ou perto dela), pode financiar o saldo pelo banco. A Lotus acompanha a simulação.' },
 ];
 
+/**
+ * Ordem em que a listagem abre: alfabetica pelo nome.
+ *
+ * Antes o padrao era 'rel' ("relevancia"), que nao ordenava nada — a lista saia
+ * na ordem em que o Postgres devolvia as linhas, porque a consulta nao tem
+ * ORDER BY. Na pratica isso significava que a posicao de um empreendimento
+ * mudava sozinha a cada escrita no banco, e quem procurava um nome especifico
+ * tinha que varrer a grade inteira.
+ *
+ * localeCompare com 'pt-BR' para acento nao jogar nome para o fim da lista
+ * ("Ãngela" depois de "Zeta" e o que a comparacao crua faz).
+ */
+const ORDEM_PADRAO = 'az';
+const porNome = (a: EmpItem, b: EmpItem) => a.name.localeCompare(b.name, 'pt-BR');
+
 /* ------------------------------------------------------------------ */
 /* Componente                                                          */
 /* ------------------------------------------------------------------ */
@@ -179,7 +194,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
   const [fType, setFType] = useState('any');
   const [fPrice, setFPrice] = useState('any');
   const [fBuilder, setFBuilder] = useState('any');
-  const [sortKey, setSortKey] = useState('rel');
+  const [sortKey, setSortKey] = useState(ORDEM_PADRAO);
   const [openFaq, setOpenFaq] = useState(0);
   const [leadDone, setLeadDone] = useState(false);
   const [newsDone, setNewsDone] = useState(false);
@@ -200,8 +215,12 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
       (fPrice === 'any' || e.priceNum <= parseInt(fPrice, 10)) &&
       (fBuilder === 'any' || e.builder === fBuilder),
   );
-  if (sortKey === 'priceAsc') list = [...list].sort((a, b) => a.priceNum - b.priceNum);
-  else if (sortKey === 'priceDesc') list = [...list].sort((a, b) => b.priceNum - a.priceNum);
+  // O nome desempata os dois ordenamentos por preco: quem nao tem valor
+  // cadastrado entra com priceNum 0, entao sem criterio de desempate esse bloco
+  // inteiro sairia embaralhado — e em ordem diferente a cada carregamento.
+  if (sortKey === 'priceAsc') list = [...list].sort((a, b) => a.priceNum - b.priceNum || porNome(a, b));
+  else if (sortKey === 'priceDesc') list = [...list].sort((a, b) => b.priceNum - a.priceNum || porNome(a, b));
+  else list = [...list].sort(porNome);
 
   const view = list.map((e) => ({ ...e, img: e.img ?? EMP_IMG[e.id] }));
 
@@ -224,7 +243,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
     setFType('any');
     setFPrice('any');
     setFBuilder('any');
-    setSortKey('rel');
+    setSortKey(ORDEM_PADRAO);
   };
 
   const submitLead = (e: React.FormEvent) => {
@@ -332,7 +351,7 @@ export default function LotusLancamentos({ emps: empsProp }: { emps?: EmpItem[] 
               )}
             </div>
             <select className="lt-field" value={sortKey} onChange={(e) => setSortKey(e.target.value)}>
-              <option value="rel">Ordenar: relevância</option><option value="priceAsc">Menor preço</option><option value="priceDesc">Maior preço</option>
+              <option value="az">Ordenar: A a Z</option><option value="priceAsc">Menor preço</option><option value="priceDesc">Maior preço</option>
             </select>
           </div>
           <div style={parseStyle('display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:26px;flex-wrap:wrap;')}>
