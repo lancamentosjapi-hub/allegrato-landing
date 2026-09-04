@@ -513,3 +513,42 @@
 .ada-root ::selection { background: #bd6a45; color: #fff; }
 /* Compensa o header fixo (~90px) nos saltos de âncora do menu. */
 html { scroll-behavior: smooth; scroll-padding-top: 98px; }
+
+/* ---- Cabeçalho em tela de notebook: espaçamento apertado o suficiente. ----
+
+   O menu do topo cabe com folga quando o <nav> alcança o seu max-width de
+   1340px, o que exige uma janela de ~1460px. Abaixo disso o nav encolhe, e como
+   ele é nowrap quem cede é o texto dos itens: "O EMPREENDIMENTO" e "QUERO SABER
+   MAIS" quebravam no meio e o cabeçalho passava de 90px para 104px de altura,
+   com os itens amontoados.
+
+   A causa é a padronização: os atalhos "Início" e "Voltar" somam ~170px que o
+   cabeçalho original não previa. Em vez de tirar os atalhos, que a Lotus pediu
+   em todas as landings, esta faixa de largura recupera os ~113px que faltam
+   apertando os três espaçamentos do próprio cabeçalho — nenhum item some.
+
+   !important porque os valores originais são estilo inline em
+   components/AltosDaAvenida.tsx, e estilo inline vence regra sem !important.
+   Escopado em .ada-root para não vazar para as outras rotas do portal. */
+@media (max-width: 1500px) {
+  .ada-root header {
+    padding-left: clamp(20px, 2.2vw, 64px) !important;
+    padding-right: clamp(20px, 2.2vw, 64px) !important;
+  }
+  .ada-root header > nav { gap: 16px !important; }
+  .ada-root [data-desk-nav] { gap: 20px !important; }
+}
+
+/* Abaixo de ~1230px nem o aperto acima resolve: o menu sozinho pede mais
+   largura do que sobra, e faltam ~165px. Aqui o cabeçalho passa a ocupar duas
+   linhas — marca e "Início" em cima, itens do menu e "Voltar" embaixo — em vez
+   de espremer as palavras. A ordem que a Lotus pediu continua de pé: "Início"
+   é o primeiro item e "Voltar" o último, na leitura.
+
+   O limite inferior é 1100px porque é lá que components/AtalhosLanding.tsx já
+   move os dois botões para uma linha só deles; abaixo disso esta regra não tem
+   o que fazer. */
+@media (min-width: 1100px) and (max-width: 1249px) {
+  .ada-root header > nav { flex-wrap: wrap !important; row-gap: 10px !important; }
+  .ada-root [data-desk-nav] { flex-shrink: 0 !important; }
+}
