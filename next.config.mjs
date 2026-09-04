@@ -45,6 +45,7 @@ const nextConfig = {
       { source: '/santorini', destination: '/santorini/index.html' },
       { source: '/epic-jundiai', destination: '/epic-jundiai/index.html' },
       { source: '/mistral-jundiai', destination: '/mistral-jundiai/index.html' },
+      { source: '/gioviale', destination: '/gioviale/index.html' },
     ];
   },
 };
